@@ -1,0 +1,28 @@
+{
+  "name": "webzueri.ch",
+  "version": "1.0.0",
+  "description": "Learn, share and collaborate with your local Web professionals and enthusiasts!",
+  "author": "Aleksej Dix",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
+    "precommit": "npm run lint"
+  },
+  "dependencies": {
+    "nuxt": "^1.0.0",
+    "storyblok-nuxt": "^0.0.3"
+  },
+  "devDependencies": {
+    "autoprefixer": "^7.1.6",
+    "babel-eslint": "^8.2.1",
+    "cross-env": "^5.0.1",
+    "eslint": "^4.15.0",
+    "eslint-loader": "^1.7.1",
+    "eslint-plugin-vue": "^4.0.0",
+    "tailwindcss": "^0.1.3"
+  }
+}
