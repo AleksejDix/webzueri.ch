@@ -1,6 +1,20 @@
 <template>
-  <nuxt/>
+  <div>
+    <main-nav></main-nav>
+    <nuxt/>
+  </div>
 </template>
+
+<script>
+import MainNav from "~/components/navigation/Main"
+
+export default {
+  components: {
+    MainNav
+  },
+}
+</script>
+
 
 <style>
 
