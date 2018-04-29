@@ -1,9 +1,11 @@
 <template>
   <div>
-    <pre>
-      {{ story }}
-    </pre>
+    <component v-if="story.content.component"
+      :key="story.content._uid"
+      :blok="story.content"
+      :is="story.content.component"></component>
   </div>
+
   <!-- <component
     v-if="story.content.component"
     :key="story.content._uid"
@@ -28,13 +30,7 @@
 </template>
 
 <script>
-
-import Page from "~/components/Page"
-
 export default {
-  components: {
-    Page
-  },
   mounted () {
     if (this.$storyblok.inEditor) {
       this.$storyblok.init()
@@ -43,14 +39,11 @@ export default {
       })
     }
   },
-  asyncData (context) {
-    return context.app.$storyapi.get('cdn/stories/107491', {
-      version: 'draft'
-    })
-    .then(res => res.data)
-    .catch(res => {
-      context.error({ statusCode: res.response.status, message: res.response.data })
-    })
+  computed: {
+    story () { return this.$store.state.story }
+  },
+  async fetch (context) {
+    await context.store.dispatch('FETCH_STORY_BY_SLUG', context)
   }
 }
 </script>

@@ -1,16 +1,23 @@
 <template>
   <div>
-    <main-nav></main-nav>
+    <ul>
+      <li><nuxt-link to="/">home</nuxt-link></li>
+      <li><nuxt-link to="/talks/">talks</nuxt-link></li>
+    </ul>
     <nuxt/>
   </div>
 </template>
 
 <script>
-import MainNav from "~/components/navigation/Main"
 
 export default {
-  components: {
-    MainNav
+  mounted () {
+    if (this.$storyblok.inEditor) {
+      this.$storyblok.init()
+      this.$storyblok.on('change', () => {
+        location.reload(true)
+      })
+    }
   },
 }
 </script>
