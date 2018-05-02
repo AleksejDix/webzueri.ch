@@ -36,14 +36,13 @@ module.exports = {
   */
   plugins: [
     '~/plugins/components'
+
   ],
 
   /*
   ** Nuxt.js modules
   */
-  modules: [
-    ['storyblok-nuxt', {accessToken: 'IuVWvQkX74oxYX02lx5fYwtt', cacheProvider: 'memory'}]
-  ],
+  modules: [],
 
   /*
   ** Build configuration

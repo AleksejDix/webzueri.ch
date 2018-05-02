@@ -31,14 +31,6 @@
 
 <script>
 export default {
-  mounted () {
-    if (this.$storyblok.inEditor) {
-      this.$storyblok.init()
-      this.$storyblok.on('change', () => {
-        location.reload(true)
-      })
-    }
-  },
   computed: {
     story () { return this.$store.state.story }
   },

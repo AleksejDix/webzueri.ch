@@ -6,12 +6,14 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   computed: {
-    story () { return this.$store.state.story }
+    ...mapState(['story', 'talks'])
   },
   async fetch (context) {
-    await context.store.dispatch('FETCH_STORY_BY_SLUG', context)
+    await context.store.dispatch('FETCH_STORY_BY_SLUG')
   }
 }
 </script>

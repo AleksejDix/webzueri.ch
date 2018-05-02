@@ -12,7 +12,7 @@ export default {
     ...mapState(['story'])
   },
   async fetch (context) {
-    await context.store.dispatch('FETCH_STORY_BY_SLUG', context)
+    await context.store.dispatch('FETCH_STORY_BY_SLUG')
   }
 }
 </script>

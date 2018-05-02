@@ -14,6 +14,7 @@
     "heroku-postbuild": "npm run build"
   },
   "dependencies": {
+    "@nuxtjs/axios": "^5.3.1",
     "npm": "^5.8.0",
     "nuxt": "^1.0.0",
     "storyblok-nuxt": "^0.0.3"
