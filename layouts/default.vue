@@ -1,32 +1,108 @@
 <template>
-  <div class="layout-home" >
-    <nav>
-      <nuxt-link to="/">home</nuxt-link>
-      <nuxt-link to="/talks/">talks</nuxt-link>
-    </nav>
-    <main>
-      <nav class="action-bar">
-        <a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLSfTaa-_wOFOQv3dZ7Ord9TJ3vN8wNdzUY5VQqzFiTg_WMQwEw/viewform?c=0&w=1">
-          <div>
-            submit new talk
+  <div>
+    <navigation-main></navigation-main>
+
+
+    <div class="min-h-screen bg-yellow flex items-center">
+      <div class="mx-auto max-w-3xl -mt-8">
+        <div class="text-right flex flex-row-reverse">
+          <h1 class="font-display text-yellow-darker text-5xl font tracking-tight leading-tight" style="font-size: 72pt">
+          upcomming<br> talks<br> for<br>
+          27 May 2018</h1>
+        </div>
+
+        <div class="text-right flex flex-row-reverse flex-wrap py-12 -m-4">
+          <div class="p-4"  v-for="n in 3" :key="n">
+            <div class="chip bg-white flex overflow-hidden rounded items-center">
+              <div>
+                <img class="block w-32" src="https://conf.vuejs.org/img/evan.jpg" alt="">
+              </div>
+              <div class="flex-1 p-8">
+                <h2 class="leading-normal text-xl"><strong>Evan You</strong><br>
+                  <span class="text-grey-dark font-normal">Introduction to Vue.js</span>
+                </h2>
+              </div>
+            </div>
           </div>
-        </a>
+
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="flex">
+
+    <div class="flex-1">
+
+    <main class="max-w-xl m-auto">
+      <nav class="action-bar">
+        <button-default @click="openModal">open</button-default>
       </nav>
       <nuxt/>
     </main>
+
+    </div>
+
+    <aside class="max-w-xs flex-1 py-4 px-12  border-l">
+
+      <h4 class="py-6 text-xl">Sponsors</h4>
+
+      <p class="text-grey-dark text-sm font-semibold leading-normal mb-4">Without you it would not be possible!</p>
+
+      <div class="bg-grey-light rounded p-4 mb-4">
+        <img class="w-32 mx-auto" src="https://zurich.impacthub.ch/wp-content/themes/naked-wordpress-master/img/logos/ihz_black_nobaseline_60px.png" alt="">
+      </div>
+      <fetch url="sponsors" class="mb-4">
+
+      </fetch>
+
+
+      <button-default class="w-full bg-purple text-white">become a sponsor</button-default>
+
+    </aside>
+
+    </div>
+
+    <modal
+      :show="showNewTalkModal"
+      @close="showNewTalkModal = false">
+      <div slot="header">Submit new talk</div>
+    </modal>
+
+    <svg-symbols></svg-symbols>
   </div>
 </template>
 
 <script>
 
+import Modal from "@/components/Modal"
+import NavigationMain from "@/components/NavigationMain"
+import SvgSymbols from "@/components/SvgSymbols"
+import ButtonDefault from '@/components/ButtonDefault';
+
 export default {
+  components: { Modal, SvgSymbols, NavigationMain, ButtonDefault },
+  data() {
+    return {
+      showNewTalkModal: false
+    }
+  },
+  methods: {
+    say(msg) {
+      console.log(msg)
+    },
+    openModal() {
+      this.showNewTalkModal = true
+      console.log(this)
+    }
+  }
 }
 </script>
 
 <style>
 
 html {
-  background-color: HSLA(195,29%,97%,1.00);
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
   line-height: 1;
   -ms-text-size-adjust: 100%;
@@ -39,7 +115,6 @@ html {
   background-repeat: no-repeat;
   background-size: 1900px;
   background-position: 50% -460px;
-
 }
 
 /* html {
@@ -58,81 +133,11 @@ body {
   padding: 0;
 }
 
-.layout-home {
-  height: 100%;
-  margin: 0 auto;
-  max-width: 1240px;
-  display: grid;
-  grid-column-gap: 60px;
-  grid-template-columns: 3fr 9fr;
-  justify-content: center;
-}
-
-/* .layout-home nav,
-.layout-home main {
-  outline: 2px solid red;
-} */
 
 .action-bar {
   display: flex;
   justify-content: flex-end;
   padding: 40px 0;
-}
-
-
-
-.btn {
-  display: inline-block;
-  position: relative;
-	background: linear-gradient(-90deg, #EE7752, #E73C7E, #23A6D5, #23D5AB, #EE7752);
-	background-size: 400% 100%;
-  text-transform: uppercase;
-  font-weight: 700;
-  border: none;
-  border-radius: 0.25em;
-  font-size: 13px;
-  letter-spacing: 1px;
-  padding: 0;
-  margin: 0;
-  animation: Gradient 4s ease infinite;
-  text-decoration: none;
-
-}
-
-.btn div {
-  color: black;
-  min-height: 48px;
-  line-height: 48px;
-  padding: 0 1.618em;
-  border-radius: inherit;
-  background-size: inherit;
-  background-image: inherit;
-  animation: Gradient 4s ease infinite;
-  position: relative;
-  z-index: 1;
-  mix-blend-mode: overlay;
-  font-family: 'Helvetica Neue';
-
-}
-
-@keyframes Gradient {
-	50% {
-		background-position: 140% 50%;
-    transform: skew(-2deg);
-	}
-}
-
-.btn::after {
-  content: '';
-  position: absolute;
-  background-size: inherit;
-  background-image: inherit;
-  animation: inherit;
-  left: 0px;
-  right: 0px;
-  top: 2px;
-  height: 100%;
-  filter: blur(0.5rem);
 }
 
 

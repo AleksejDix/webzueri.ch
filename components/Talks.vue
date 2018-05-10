@@ -1,7 +1,7 @@
 <template>
   <div class="talks">
     <h1>Future Taks</h1>
-    <ul class="talks-list">
+    <ul class="talks-list list-reset">
       <li v-for="talk in talks" :key="talk.uuid">
         <talk :talk="talk"></talk>
       </li>

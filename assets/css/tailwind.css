@@ -13,12 +13,41 @@
 */
 @tailwind preflight;
 
-ul {
-  padding: 0;
-  list-style: none;
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
 }
-li {
-  margin: 0;
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+
+html {
+  font-size: 0.875em;
+}
+
+
+h1,h2,h3,h4,h5,h6 {
+  @apply text-base
+}
+
+.list-bullets {
+  @apply list-reset;
+}
+
+
+:focus{
+  outline-color: #9561e2;
+}
+
+
+.list-bullets li {
+  @apply pl-8 text-base bg-no-repeat leading-normal;
+  background-position: left .25rem;
+  background-size: 1.125rem;
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 20C4.477 20 0 15.523 0 10S4.477 0 10 0s10 4.477 10 10-4.477 10-10 10zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zM7.707 9.293L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414z' fill='%239561e2' fill-rule='evenodd'/%3E%3C/svg%3E")
+}
+
+.list-bullets li + li {
+  @apply .mt-2;
 }
 
 /**

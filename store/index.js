@@ -10,11 +10,11 @@ const $storyapi = new StoryblokClient({
 })
 
 
-const User = {
+const user = {
   get: async (id) => await $storyapi.get("cdn/stories/", { version: 'published', by_uuids: id })
 }
 
-const Story = {
+const page = {
   get: async (slug) => await $storyapi.get("cdn/stories/", { version: 'published', starts_with: slug, is_startpage: 0 })
 }
 
@@ -35,11 +35,11 @@ const createStore = () => {
     },
     actions: {
       async GET_TALKS (store) {
-        const {data: {stories}} = await Story.get('talks');
+        const {data: {stories}} = await page.get('talks');
 
         const talks = stories.map(async (talk) => {
           const id = talk.content.speaker
-          const {data: {stories}} = await User.get(id)
+          const {data: {stories}} = await user.get(id)
           talk.content.speaker = stories[0]
           return talk
         })
