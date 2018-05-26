@@ -1,6 +1,6 @@
 <template>
-<div class="bg-yellow p-6">
-  <nav class="max-w-3xl mx-auto flex items-center justify-between flex-wrap px-2">
+<div class="bg-yellow">
+  <nav class="max-w-5xl mx-auto flex items-center justify-between flex-wrap py-6 px-4">
 
     <nuxt-link to="/" class="flex items-center flex-no-shrink mr-6 no-underline">
       <svg class="w-6 mr-4 h-6 fill-black">
@@ -17,13 +17,16 @@
 
     <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
       <div class="text-sm lg:flex-grow">
-        <nuxt-link to="/" class="font-semibold no-underline block mt-4 lg:inline-block lg:mt-0 text-white mr-4">
+        <nuxt-link to="/" class="font-semibold no-underline block mt-4 lg:inline-block lg:mt-0 text-indigo-darkest mr-4">
+          Events
+        </nuxt-link>
+        <nuxt-link to="/" class="font-semibold no-underline block mt-4 lg:inline-block lg:mt-0 text-indigo-darkest mr-4">
           Talks
         </nuxt-link>
-        <nuxt-link to="/" class="font-semibold no-underline block mt-4 lg:inline-block lg:mt-0 text-white mr-4">
-          Become a Sponsor
+        <nuxt-link to="/" class="font-semibold no-underline block mt-4 lg:inline-block lg:mt-0 text-indigo-darkest  mr-4">
+          Speakers
         </nuxt-link>
-        <nuxt-link to="/" class="font-semibold no-underline block mt-4 lg:inline-block lg:mt-0 text-white">
+        <nuxt-link to="/" class="font-semibold no-underline block mt-4 lg:inline-block lg:mt-0 text-indigo-darkest">
           Team
         </nuxt-link>
       </div>

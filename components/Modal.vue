@@ -1,8 +1,10 @@
 <template>
   <transition name="fade">
   <div
-    class="model-mask bg-yellow fixed pin overflow-auto p-4"
+    style="background-color: rgba(47,54,95,.82)"
+    class="model-mask  fixed pin overflow-auto p-4"
     v-if="show" @close.self="show = false"
+
     >
 
     <section
@@ -10,9 +12,9 @@
       class="modal max-w-sm bg-white rounded-lg mx-auto shadow-lg overflow-hidden">
       <focus-lock :disabled="!show">
 
-      <header class="modal-header px-12 py-6 bg-grey-lighter">
+      <header class="modal-header px-12 py-6 bg-yellow border-b border-yellow-dark">
 
-        <h1 class="tracking-wide text-center text-lg font-semibold uppercase text-grey-dark antialiased font-medium">
+        <h1 class="text-xl text-base text-indigo-darker font-display font-bold tracking-wide uppercase text-center">
           <slot name="header"></slot>
         </h1>
 
@@ -29,7 +31,7 @@
 
       </div>
 
-      <form class="w-full max-w-md px-12">
+      <form class="w-full max-w-md px-12" @submit.prevent="">
         <div class="flex flex-wrap -mx-3 mb-6">
           <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="grid-first-name">

@@ -2,65 +2,77 @@
   <div>
     <navigation-main></navigation-main>
 
+    <section class="max-w-5xl mx-auto p-4">
+      <header class="flex items-baseline justify-between border-b-2 border-grey-light mb-8">
+        <h2 class="text-xl text-base text-indigo-darker font-display font-bold tracking-wide uppercase py-4 border-b-2 border-indigo -mb-2px">next event</h2>
+        <a class="font-semibold text-indigo-dark hover:underline no-underline" href="https://www.meetup.com/Web-Zurich/">RSVG on Meetup</a>
+      </header>
+    </section>
 
-    <div class="min-h-screen bg-yellow flex items-center">
-      <div class="mx-auto max-w-3xl -mt-8">
-        <div class="text-right flex flex-row-reverse">
-          <h1 class="font-display text-yellow-darker text-5xl font tracking-tight leading-tight" style="font-size: 72pt">
-          upcomming<br> talks<br> for<br>
-          27 May 2018</h1>
+    <section class="max-w-5xl mx-auto p-4">
+      <header class="flex items-baseline justify-between border-b-2 border-grey-light mb-8">
+        <h2 class="text-xl text-base text-indigo-darker font-display font-bold tracking-wide uppercase py-4 border-b-2 border-indigo -mb-2px">Recordings</h2>
+        <a class="font-semibold text-indigo-dark hover:underline no-underline" href="https://www.youtube.com/channel/UChFcu8mbNjHZO7Zt5mDpSXA/videos">view all</a>
+      </header>
+
+      <div class="flex flex-wrap -m-4">
+
+        <div class="w-full md:max-w-xs p-4 flex">
+          <aside class="flex flex-col w-full p-6 rounded shadow overflow-hidden" style="background-image: linear-gradient(0deg, #A0F0ED 0, #5661B3 100%);">
+            <h4 class="mb-6 text-2xl text-white">You have video skill?</h4>
+            <p class="text-grey-lightest text-base font-semibold leading-normal mb-6">We always need help with video recording!</p>
+            <button-default class="mt-auto w-full bg-purple text-white">Apply as helper</button-default>
+          </aside>
         </div>
 
-        <div class="text-right flex flex-row-reverse flex-wrap py-12 -m-4">
-          <div class="p-4"  v-for="n in 3" :key="n">
-            <div class="chip bg-white flex overflow-hidden rounded items-center">
-              <div>
-                <img class="block w-32" src="https://conf.vuejs.org/img/evan.jpg" alt="">
-              </div>
-              <div class="flex-1 p-8">
-                <h2 class="leading-normal text-xl"><strong>Evan You</strong><br>
-                  <span class="text-grey-dark font-normal">Introduction to Vue.js</span>
-                </h2>
-              </div>
-            </div>
-          </div>
-
+        <div class="flex-1 p-4">
+          <ol class=" list-reset flex flex-wrap -m-4">
+            <li class="w-full md:w-1/2 lg:w-1/3 p-4" v-for="n in 3" :key="n">
+              <card></card>
+            </li>
+          </ol>
         </div>
+
       </div>
-    </div>
 
+    </section>
+
+
+    <section class="max-w-5xl mx-auto p-4">
+      <header class="flex items-baseline justify-between border-b-2 border-grey-light mb-8">
+        <h2 class="text-xl text-base text-indigo-darker font-display font-bold tracking-wide uppercase py-4 border-b-2 border-indigo -mb-2px">Past Events</h2>
+        <a class="font-semibold text-indigo-dark hover:underline no-underline" href="https://www.meetup.com/Web-Zurich/">view all</a>
+      </header>
+    </section>
 
 
     <div class="flex">
 
-    <div class="flex-1">
+      <div class="flex-1">
 
-    <main class="max-w-xl m-auto">
-      <nav class="action-bar">
-        <button-default @click="openModal">open</button-default>
-      </nav>
-      <nuxt/>
-    </main>
+        <main class="max-w-xl m-auto">
+          <nav class="action-bar">
+            <button-default @click="openModal" class="bg-purple text-white">submit new talk</button-default>
+          </nav>
+          <nuxt/>
+        </main>
 
-    </div>
-
-    <aside class="max-w-xs flex-1 py-4 px-12  border-l">
-
-      <h4 class="py-6 text-xl">Sponsors</h4>
-
-      <p class="text-grey-dark text-sm font-semibold leading-normal mb-4">Without you it would not be possible!</p>
-
-      <div class="bg-grey-light rounded p-4 mb-4">
-        <img class="w-32 mx-auto" src="https://zurich.impacthub.ch/wp-content/themes/naked-wordpress-master/img/logos/ihz_black_nobaseline_60px.png" alt="">
       </div>
-      <fetch url="sponsors" class="mb-4">
 
-      </fetch>
+      <aside class="max-w-xs flex-1 py-4 px-12  border-l">
+
+        <h4 class="py-6 text-xl">Sponsors</h4>
+
+        <p class="text-grey-dark text-sm font-semibold leading-normal mb-4">Without you it would not be possible!</p>
+
+        <div class="bg-grey-light rounded p-4 mb-4">
+          <img class="w-32 mx-auto" src="https://zurich.impacthub.ch/wp-content/themes/naked-wordpress-master/img/logos/ihz_black_nobaseline_60px.png" alt="">
+        </div>
 
 
-      <button-default class="w-full bg-purple text-white">become a sponsor</button-default>
+        <button-default class="w-full bg-purple text-white">become a sponsor</button-default>
 
-    </aside>
+      </aside>
 
     </div>
 
@@ -79,10 +91,11 @@
 import Modal from "@/components/Modal"
 import NavigationMain from "@/components/NavigationMain"
 import SvgSymbols from "@/components/SvgSymbols"
-import ButtonDefault from '@/components/ButtonDefault';
+import ButtonDefault from '@/components/ButtonDefault'
+import Card from '@/components/Card'
 
 export default {
-  components: { Modal, SvgSymbols, NavigationMain, ButtonDefault },
+  components: { Card, Modal, SvgSymbols, NavigationMain, ButtonDefault },
   data() {
     return {
       showNewTalkModal: false
