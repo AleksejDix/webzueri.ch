@@ -1,5 +1,5 @@
 <template>
-<div class="bg-yellow">
+<div class="bg-green-lighter">
   <nav class="max-w-5xl mx-auto flex items-center justify-between flex-wrap py-6 px-4">
 
     <nuxt-link to="/" class="flex items-center flex-no-shrink mr-6 no-underline">

@@ -2,6 +2,21 @@
   <div>
     <navigation-main></navigation-main>
 
+    <section class="py-8 bg-green-lighter">
+      <div class="max-w-3xl mx-auto pt-8">
+        <div class="px-4">
+          <h1 class="mb-4 leading-tight text-3xl md:text-5xl text-base text-indigo-darker font-display font-bold tracking-wide uppercase text-center">People making <br class="md:hidden"> the web in Zürich</h1>
+          <p class="leading-normal text-center text-xl md:text-2xl text-yellow-darkerst">Learn, share and collaborate with your local <strong>web professionals</strong> and enthusiasts!</p>
+        </div>
+        <div class="my-12 h-64 py-12 bg-auto bg-center bg-no-repeat" style="background-image: url('/people.svg')">
+        </div>
+      </div>
+
+
+    </section>
+
+
+
     <section class="max-w-5xl mx-auto p-4">
       <header class="flex items-baseline justify-between border-b-2 border-grey-light mb-8">
         <h2 class="text-xl text-base text-indigo-darker font-display font-bold tracking-wide uppercase py-4 border-b-2 border-indigo -mb-2px">next event</h2>
