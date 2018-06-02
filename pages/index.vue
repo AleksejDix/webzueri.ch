@@ -1,9 +1,9 @@
 <template>
   <div>
-    <component v-if="story.content.component"
+    <!-- <component v-if="story.content.component"
       :key="story.content._uid"
       :blok="story.content"
-      :is="story.content.component"></component>
+      :is="story.content.component"></component> -->
   </div>
 
   <!-- <component

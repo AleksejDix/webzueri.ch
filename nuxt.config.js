@@ -13,6 +13,9 @@ module.exports = {
   */
   head: {
     title: pkg.name,
+    bodyAttrs: {
+      class: 'bg-grey-lightests'
+    },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
