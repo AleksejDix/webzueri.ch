@@ -89,7 +89,8 @@
     <div class="text w-1/2">
       <div class="py-4 px-8">
         <h2 class="py-6 text-2xl text-base text-indigo-darkest font-display font-normal tracking-wide ">Join our community on <strong>slack</strong></h2>
-        <p class="text-lg leading-normal text-indigo-darkest font-medium">Find out what's up in <strong>Zürich & the web</strong> in our <strong>Slack channel</strong>. Get help from your local peers, find out what's going on around you.
+        <p class="text-lg leading-normal text-indigo-darkest font-medium">Get the latest Zurich- and web-news in our Slack channel.
+Or <strong>find help</strong> from your local peers and see what’s up around you.
         </p>
         <div class="cta-bar py-8">
           <button class="shadow-md bg-pink-dark text-white py-4 px-8 rounded font-bold">Join Slack</button>
@@ -97,6 +98,11 @@
       </div>
     </div>
   </div>
+</section>
+
+
+<section class="max-w-2xl mx-auto">
+  <nuxt/>
 </section>
 
     <!-- <section class="max-w-5xl mx-auto p-4">

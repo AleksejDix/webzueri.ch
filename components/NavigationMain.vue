@@ -19,17 +19,8 @@
 
     <div class="w-full lg:flex lg:items-center lg:w-auto ml-auto">
       <div class="text-base lg:flex-grow">
-        <nuxt-link to="/" class="font-semibold no-underline block lg:inline-block text-indigo-darkest py-4 px-6 hover:bg-white rounded-full">
-          Events
-        </nuxt-link>
-        <nuxt-link to="/" class="font-semibold no-underline block lg:inline-block text-indigo-darkest py-4 px-6 hover:bg-white rounded-full">
-          Community
-        </nuxt-link>
-        <nuxt-link to="/" class="font-semibold no-underline block lg:inline-block text-indigo-darkest  py-4 px-6 hover:bg-white rounded-full">
-          Venue
-        </nuxt-link>
-        <nuxt-link to="/" class="font-semibold no-underline block lg:inline-block text-indigo-darkest py-4 px-6 hover:bg-white rounded-full">
-          Workshops
+        <nuxt-link to="/code-of-conduct" class="font-semibold no-underline block lg:inline-block text-indigo-darkest py-4 px-6 hover:bg-white rounded-full">
+          code of conduct
         </nuxt-link>
       </div>
     </div>
