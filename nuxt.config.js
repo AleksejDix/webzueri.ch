@@ -14,7 +14,7 @@ module.exports = {
   head: {
     title: pkg.name,
     bodyAttrs: {
-      class: 'bg-grey-lightests'
+      class: 'antialiased bg-grey-lightests'
     },
     meta: [
       { charset: 'utf-8' },
