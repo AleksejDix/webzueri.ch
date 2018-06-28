@@ -3,6 +3,7 @@ import Vuex from 'vuex';
 const createStore = () => {
   return new Vuex.Store({
     state: {
+      authUser: null,
       eventsPerPage: 5,
       menu: {
         intern: {
@@ -55,8 +56,22 @@ const createStore = () => {
           ]
         }
       }
+    },
+    mutations: {
+      SET_TALKS (state, payload) {
+        state.talks = payload
+      },
+
+      SET_STORY (state, payload) {
+        state.story = payload.story
+      },
+
+      SET_AUTH_USER (state, payload) {
+        state.authUser = payload
+        console.log(state.authUser)
+      }
     }
   });
-};
+}
 
 export default createStore;

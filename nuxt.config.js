@@ -14,7 +14,8 @@ class TailwindExtractor {
 export default {
   mode: "universal",
   router: {
-    base: "/"
+    base: '/',
+    middleware: 'router-auth'
   },
   env: {
     baseUrl: process.env.NOW_URL || "http://localhost:3000"
@@ -47,13 +48,20 @@ export default {
   /*
   ** Global CSS
   */
-  css: ["~/assets/css/tailwind.css"],
-
+  css: [
+    '~/assets/css/tailwind.css'
+  ],
   /*
   ** Plugins to load before mounting the App
   */
-  plugins: ["~/plugins/components"],
-
+  plugins: [
+    '~/plugins/components',
+    '~/plugins/fireauth.js'
+  ],
+  /*
+  ** Nuxt.js modules
+  */
+  modules: [],
   /*
   ** Build configuration
   */
