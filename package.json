@@ -14,10 +14,14 @@
     "heroku-postbuild": "npm run build"
   },
   "dependencies": {
-    "@nuxtjs/axios": "^5.3.1",
-    "npm": "^5.8.0",
-    "nuxt": "^1.0.0",
-    "storyblok-nuxt": "^0.0.3",
+    "@nuxtjs/apollo": "^3.0.0",
+    "apollo-cache-inmemory": "^1.1.1",
+    "apollo-link": "^1.0.3",
+    "apollo-link-http": "^1.2.0",
+    "graphql": "^0.11.7",
+    "graphql-tag": "^2.5.0",
+    "nuxt": "^1.0.0-rc11",
+    "vue-markdown": "^2.2.4",
     "vue-focus-lock": "^1.2.0"
   },
   "devDependencies": {

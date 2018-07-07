@@ -1,6 +1,6 @@
 <template>
   <div>
-    <pre>{{story}}</pre>
+
     <section class="py-24 bg-green-lighter">
       <div class="max-w-3xl mx-auto pt-8">
         <div class="px-4">
@@ -18,61 +18,38 @@
     <section class="px-4">
       <div class="max-w-2xl mx-auto relative bg-indigo-darker shadow-lg rounded -mt-24 overflow-hidden">
         <div class="flex text-white text-lg">
-          <div class="flex-1 px-8">
-            <h2 class="py-6  text-2xl inkline-block text-base text-grey-lightest font-display font-medium tracking-wide border-b-2">Next Event: <span class="text-white font-bold">22. June 2018 18:30</span></h2>
+          <div class="w-3/4 px-8">
+            <h2 class="py-6  text-2xl inkline-block text-base text-grey-lightest font-display font-medium tracking-wide border-b-2">Next Event: <span class="text-white font-bold">{{nextEvent.date | date }}</span></h2>
              <ol class="list-reset py-4">
-               <li>
+               <li v-for="talk in nextEvent.talks" :key="talk.id">
                  <div class="flex py-2">
                     <div class=" flex items-center">
                       <time class="text-2xl font-mono text-white pr-4">18:40</time>
-                      <img class="rounded-full mr-4 inline-block w-24 h-24 border-2 border-white" src="https://randomuser.me/api/portraits/men/49.jpg" alt="">
+                      <div class="pr-4 flex-no-shrink" v-for="speaker in talk.speakers" :key="speaker.id">
+                        <img  class="rounded-full inline-block w-24 h-24 border-2 border-white" :src="speaker.speakerPicture.url" :alt="speaker.name">
+                      </div>
                       <h4 class="text-2xl leading-normal">
-                        <div ><a class="name font-light text-green-lighter no-underline" href="">Gilbert Carter</a></div>
-                        <div>Let’s Talk About Speech CSS</div>
-                      </h4>
-                    </div>
-                  </div>
-               </li>
-                 <li>
-                 <div class="flex py-2">
-                    <div class=" flex items-center">
-                      <time class="text-2xl font-mono text-white pr-4">19:00</time>
-                      <img class="rounded-full mr-4 inline-block w-24 h-24 border-2 border-white" src="https://randomuser.me/api/portraits/women/34.jpg" alt="">
-                      <h4 class="text-2xl leading-normal">
-                        <div ><a class="name font-light text-green-lighter no-underline" href="">Heather Newman</a></div>
-                        <div>Let’s Talk About Speech CSS</div>
-                      </h4>
-                    </div>
-                  </div>
-               </li>
-                 <li>
-                 <div class="flex py-2">
-                    <div class=" flex items-center">
-                      <time class="text-2xl font-mono text-white pr-4">19:20</time>
-                      <img class="rounded-full mr-4 inline-block w-24 h-24 border-2 border-white" src="https://randomuser.me/api/portraits/men/23.jpg" alt="">
-                      <h4 class="text-2xl leading-normal">
-                        <div ><a class="name font-light text-green-lighter no-underline" href="">Gilbert Carter</a></div>
-                        <div>Let’s Talk About Speech CSS</div>
+                        <div v-for="speaker in talk.speakers" :key="speaker.id"><a class="name font-light text-green-lighter no-underline" href="">{{speaker.name}}</a></div>
+                        <div>{{talk.name}}</div>
                       </h4>
                     </div>
                   </div>
                </li>
              </ol>
           </div>
-          <div class=" px-8 bg-pink-dark py-8 text-pink-lightest font-medium flex flex-col">
+          <div class="px-8 bg-pink-dark py-8 text-pink-lightest font-medium flex w-1/4 flex-col">
             <div class="flex-1">
+
             <h3 class="uppercase text-sm py-4 tracking-wide text-pink-darker">Where</h3>
             <div class="leading-normal pb-4">
-            <p>Impact Hub Zürich - Viadukt</p>
-            <p>Viaduktstrasse 93, 8005 Zürich</p>
+              {{nextEvent.venue.name}}
             </div>
             <h3 class="uppercase text-sm py-4 tracking-wide text-pink-darker">When</h3>
             <div class="leading-normal pb-4">
-              <p>Date: Wednesday May 30th</p>
-              <p>Time: 18:30</p>
+               {{nextEvent.venue.when}}
             </div>
             </div>
-            <button class="shadow bg-grey-lightest text-indigo-darkest py-4 px-8 rounded font-bold">RSVP on Meetup</button>
+            <a class="shadow bg-grey-lightest text-indigo-darkest py-4 px-8 rounded font-bold no-underline" v-if="nextEvent.meetupLink" :href="nextEvent.meetupLink">RSVP on Meetup</a>
           </div>
          </div>
       </div>
@@ -99,15 +76,70 @@ Or <strong>find help</strong> from your local peers and see what’s up around y
   </div>
 </section>
 </div>
-
-    <!-- <component v-if="story.content.component"
-      :key="story.content._uid"
-      :blok="story.content"
-      :is="story.content.component"></component> -->
 </template>
 
 <script>
+import gql from 'graphql-tag'
+
 export default {
-  // get data from storyblok
-};
+  data () {
+    return {
+      events: null,
+    }
+  },
+  apollo: {
+    events: gql`
+    {
+      events(orderBy: date_ASC) {
+        id
+        date
+        title
+        meetupLink
+        talks {
+          id
+          name
+          speakers {
+            id
+            name
+            bio
+            speakerPicture {
+              url
+              fileName
+            }
+          }
+        }
+        venue {
+          id
+          name
+          when
+        }
+      }
+    }
+
+    `
+  },
+  filters: {
+    date: function (value) {
+      if (!value) return ''
+      const date = new Date(value);
+      var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+
+      return date.toLocaleDateString('en-US', options)
+    }
+  },
+  computed: {
+    nextEvent () {
+      const [head, tail] = this.events
+      return head
+    },
+    pastEvents () {
+      const [head, tail] = this.events
+      return tail
+    }
+  },
+  mounted() {
+    console.log(this.$apollo);
+  }
+}
+
 </script>
