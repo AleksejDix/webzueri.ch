@@ -18,8 +18,12 @@
 
   <div class="p-4">
     <div class="max-w-md mx-auto owl">
-      <nuxt-link :to="{ name: 'talks-id', params: { id: talk.id }}"
-      class="block rounded-lg p-4 md:p-8 bg-indigo-darker text-white md:flex talk no-underline" v-for="talk in talks" :key="talk.id">
+      <nuxt-link
+        :to="{ name: 'talks-id', params: { id: talk.id }}"
+        v-for="talk in talks" :key="talk.id"
+        v-if="talk.event"
+        class="block rounded-lg p-4 md:p-8 bg-indigo-darker text-white md:flex talk no-underline"
+      >
         <div class="md:w-2/3 pb-4 md:pb-0 md:pr-4">
           <h2 class="text-white text-2xl leading-tight font-semibold">{{talk.name}}</h2>
 
