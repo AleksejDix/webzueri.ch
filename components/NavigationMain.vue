@@ -23,6 +23,11 @@
           code of conduct
         </nuxt-link>
       </div>
+      <div class="text-base lg:flex-grow">
+        <nuxt-link to="/talks" class="font-semibold no-underline block lg:inline-block text-indigo-darkest py-4 px-6 hover:bg-white rounded-full">
+          talks
+        </nuxt-link>
+      </div>
     </div>
   </nav>
 </div>

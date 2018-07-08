@@ -1,6 +1,6 @@
 <template>
-  <div>
-
+  <div v-if="$apollo.loading">Loading...</div>
+  <div v-else>
     <section class="py-24 bg-green-lighter">
       <div class="max-w-3xl mx-auto pt-8">
         <div class="px-4">
@@ -19,9 +19,9 @@
       <div class="max-w-2xl mx-auto relative bg-indigo-darker shadow-lg rounded -mt-24 overflow-hidden">
         <div class="flex text-white text-lg">
           <div class="w-3/4 px-8">
-            <h2 class="py-6  text-2xl inkline-block text-base text-grey-lightest font-display font-medium tracking-wide border-b-2">Next Event: <span class="text-white font-bold">{{nextEvent.date | date }}</span></h2>
+            <h2 class="py-6  text-2xl inkline-block text-base text-grey-lightest font-display font-medium tracking-wide border-b-2">Next Event: <span class="text-white font-bold">{{events.date | date }}</span></h2>
              <ol class="list-reset py-4">
-               <li v-for="talk in nextEvent.talks" :key="talk.id">
+               <li v-for="talk in event.talks" :key="talk.id">
                  <div class="flex py-2">
                     <div class=" flex items-center">
                       <time class="text-2xl font-mono text-white pr-4">18:40</time>
@@ -42,14 +42,14 @@
 
             <h3 class="uppercase text-sm py-4 tracking-wide text-pink-darker">Where</h3>
             <div class="leading-normal pb-4">
-              {{nextEvent.venue.name}}
+              {{event.venue.name}}
             </div>
             <h3 class="uppercase text-sm py-4 tracking-wide text-pink-darker">When</h3>
             <div class="leading-normal pb-4">
-               {{nextEvent.venue.when}}
+               {{event.venue}}
             </div>
             </div>
-            <a class="shadow bg-grey-lightest text-indigo-darkest py-4 px-8 rounded font-bold no-underline" v-if="nextEvent.meetupLink" :href="nextEvent.meetupLink">RSVP on Meetup</a>
+            <a class="shadow bg-grey-lightest text-indigo-darkest py-4 px-8 rounded font-bold no-underline" v-if="event.meetupLink" :href="event.meetupLink">RSVP on Meetup</a>
           </div>
          </div>
       </div>
@@ -90,7 +90,7 @@ export default {
   apollo: {
     events: gql`
     {
-      events(orderBy: date_ASC) {
+      events(orderBy: date_DESC, first: 1) {
         id
         date
         title
@@ -107,19 +107,17 @@ export default {
               fileName
             }
           }
-        }
+        },
         venue {
           id
           name
-          when
         }
       }
     }
-
     `
   },
   filters: {
-    date: function (value) {
+    date(value) {
       if (!value) return ''
       const date = new Date(value);
       var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
@@ -128,13 +126,8 @@ export default {
     }
   },
   computed: {
-    nextEvent () {
-      const [head, tail] = this.events
-      return head
-    },
-    pastEvents () {
-      const [head, tail] = this.events
-      return tail
+    event () {
+      return this.events[0]
     }
   },
   mounted() {

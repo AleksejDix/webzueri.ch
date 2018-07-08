@@ -50,6 +50,10 @@ h1,h2,h3,h4,h5,h6 {
   @apply .mt-2;
 }
 
+.owl > * + * {
+  margin-top: 1rem;
+}
+
 /**
 * Here you would add any of your custom component classes; stuff that you'd
 * want loaded *before* the utilities so that the utilities could still
