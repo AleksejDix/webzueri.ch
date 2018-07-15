@@ -21,12 +21,12 @@
           <div class="w-3/4 px-8">
             <h2 class="py-6  text-2xl inkline-block text-base text-grey-lightest font-display font-medium tracking-wide border-b-2">Next Event: <span class="text-white font-bold">{{events.date | date }}</span></h2>
              <ol class="list-reset py-4">
-               <li v-for="talk in event.talks" :key="talk.id">
+               <li v-for="talk in event.talks" v-if="event.talks" :key="talk.id">
                  <div class="flex py-2">
                     <div class=" flex items-center">
                       <time class="text-2xl font-mono text-white pr-4">18:40</time>
-                      <div class="pr-4 flex-no-shrink" v-for="speaker in talk.speakers" :key="speaker.id">
-                        <img  class="rounded-full inline-block w-24 h-24 border-2 border-white" :src="speaker.speakerPicture.url" :alt="speaker.name">
+                      <div class="pr-4 flex-no-shrink" v-for="speaker in talk.speakers" v-if="talk.speakers" :key="speaker.id">
+                        <img  class="rounded-full inline-block w-24 h-24 border-2 border-white" v-if="speaker.speakerPicture" :src="speaker.speakerPicture.url" :alt="speaker.name">
                       </div>
                       <h4 class="text-2xl leading-normal">
                         <div v-for="speaker in talk.speakers" :key="speaker.id"><a class="name font-light text-green-lighter no-underline" href="">{{speaker.name}}</a></div>
@@ -37,7 +37,7 @@
                </li>
              </ol>
           </div>
-          <div class="px-8 bg-pink-dark py-8 text-pink-lightest font-medium flex w-1/4 flex-col">
+          <div class="px-8 bg-pink-dark py-8 text-pink-lightest font-medium flex w-1/4 flex-col" v-if="event.venue">
             <div class="flex-1">
 
             <h3 class="uppercase text-sm py-4 tracking-wide text-pink-darker">Where</h3>

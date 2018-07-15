@@ -17,24 +17,28 @@
 
 
   <div class="p-4">
-    <div class="max-w-md mx-auto owl">
+    <div class="max-w-md mx-auto">
+
+      <template v-for="event in events">
+        <div :key="event.id">
+
       <nuxt-link
         :to="{ name: 'talks-id', params: { id: talk.id }}"
-        v-for="talk in talks" :key="talk.id"
-        v-if="talk.event"
-        class="block rounded-lg p-4 md:p-8 bg-indigo-darker text-white md:flex talk no-underline"
+        v-for="talk in event.talks" :key="talk.id"
+        v-if="talk"
+        class="mt-4 block rounded-lg p-4 md:p-8 bg-indigo-darker text-white md:flex talk no-underline"
       >
         <div class="md:w-2/3 pb-4 md:pb-0 md:pr-4">
           <h2 class="text-white text-2xl leading-tight font-semibold">{{talk.name}}</h2>
 
           <div class="flex items-center justify-between pt-6 text-white">
-            <div class="flex items-center" v-for="speaker in talk.speakers" :key="speaker.id">
-              <div class="rounded-full w-10 h-10 border-2 flex-no-shrink overflow-hidden">
-                <img :src="speaker.speakerPicture.url" alt="">
+            <div class="flex items-center" v-for="speaker in talk.speakers" v-if="talk.speakers" :key="speaker.id">
+              <div class="rounded-full w-10 h-10 mr-4 border-2 flex-no-shrink overflow-hidden" v-if="speaker.speakerPicture">
+                <img :src="speaker.speakerPicture.url" :alt="speaker.name">
               </div>
-              <div class="px-4 flex-1 opacity-75 text-lg">{{speaker.name}}</div>
+              <div class="flex-1 opacity-75 text-lg">{{speaker.name}}</div>
             </div>
-            <div class="opacity-75 text-lg" v-if="talk.event">{{new Date(talk.event.date).toLocaleDateString('de-DE')}}</div>
+            <div class="opacity-75 text-lg" v-if="event.date">{{new Date(event.date).toLocaleDateString('de-DE')}}</div>
           </div>
 
         </div>
@@ -42,6 +46,10 @@
           <span class="inline-flex rounded mr-2 mb-2 leading-none bg-indigo-dark px-2 py-1  font-bold text-xs uppercase whitespace-no-wrap" v-for="n in ['Security', 'JS', 'Ruby', 'Haskel', 'ML', 'Sketch']" :key="n">{{n}}</span>
         </div>
       </nuxt-link>
+
+      </div>
+      </template>
+
     </div>
   </div>
 </div>
@@ -68,7 +76,7 @@ import ButtonDefault from "@/components/ButtonDefault"
 export default {
   components: { Modal, ButtonDefault },
   data: () => ({
-    talks: [],
+    events: [],
     showNewTalkModal: false
   }),
   methods: {
@@ -78,19 +86,23 @@ export default {
     }
   },
   apollo: {
-    talks: gql`
+    events: gql`
     {
-      talks {
+      events(
+        orderBy: date_DESC
+      )
+      {
         id
-        name
-        speakers {
+        date
+        talks {
+          id
           name
-          speakerPicture {
-            url
+          speakers {
+            name
+            speakerPicture {
+              url
+            }
           }
-        }
-        event {
-          date
         }
       }
     }`
