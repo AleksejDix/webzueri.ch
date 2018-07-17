@@ -1,7 +1,7 @@
 <template>
   <div v-if="$apollo.loading">Loading...</div>
   <div v-else>
-    <section class="py-24 bg-green-lighter">
+    <section class="md:py-24 bg-green-lighter">
       <div class="max-w-3xl mx-auto pt-8">
         <div class="px-4">
           <h1 class="mb-4 leading-tight text-3xl md:text-5xl text-base text-indigo-darker font-display font-bold tracking-wide uppercase text-center">People making <br class="md:hidden"> the web in Zürich</h1>
@@ -17,14 +17,14 @@
 
     <section class="px-4">
       <div class="max-w-2xl mx-auto relative bg-indigo-darker shadow-lg rounded -mt-24 overflow-hidden">
-        <div class="flex text-white text-lg">
-          <div class="w-3/4 px-8">
+        <div class="md:flex text-white text-lg">
+          <div class="md:w-3/4 px-8">
             <h2 class="py-6  text-2xl inkline-block text-base text-grey-lightest font-display font-medium tracking-wide border-b-2">Next Event: <span class="text-white font-bold">{{events.date | date }}</span></h2>
              <ol class="list-reset py-4">
                <li v-for="talk in event.talks" v-if="event.talks" :key="talk.id">
                  <div class="flex py-2">
                     <div class=" flex items-center">
-                      <time class="text-2xl font-mono text-white pr-4">18:40</time>
+
                       <div class="pr-4 flex-no-shrink" v-for="speaker in talk.speakers" v-if="talk.speakers" :key="speaker.id">
                         <img  class="rounded-full inline-block w-24 h-24 border-2 border-white" v-if="speaker.speakerPicture" :src="speaker.speakerPicture.url" :alt="speaker.name">
                       </div>
@@ -37,7 +37,7 @@
                </li>
              </ol>
           </div>
-          <div class="px-8 bg-pink-dark py-8 text-pink-lightest font-medium flex w-1/4 flex-col" v-if="event.venue">
+          <div class="px-8 bg-pink-dark py-8 text-pink-lightest font-medium flex md:w-1/4 flex-col" v-if="event.venue">
             <div class="flex-1">
 
             <h3 class="uppercase text-sm py-4 tracking-wide text-pink-darker">Where</h3>
@@ -55,7 +55,7 @@
       </div>
     </section>
 
-<section class="max-w-2xl mx-auto">
+<!-- <section class="max-w-2xl mx-auto">
   <div class="banner min-h-64 shadow-lg mt-4 flex items-center rounded overflow-hidden">
     <figure class="w-1/2 bg-cover bg-center"
       style="clip-path: polygon(0 0, 100% 0, 88% 100%, 0 100%);  background-color: rgba(0,0,0,.45);
@@ -74,7 +74,7 @@ Or <strong>find help</strong> from your local peers and see what’s up around y
       </div>
     </div>
   </div>
-</section>
+</section> -->
 </div>
 </template>
 
