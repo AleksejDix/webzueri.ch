@@ -17,15 +17,31 @@
       </button>
     </div>
 
-    <div class="w-full lg:flex lg:items-center lg:w-auto ml-auto pt-4 md:pt-0" v-show="showNav">
+    <div
+    :class="{
+      'block': showNav,
+      'hidden': !showNav
+    }"
+    class=" w-full lg:flex lg:items-center lg:w-auto ml-auto pt-4 md:pt-0 ">
+
       <div class="text-base lg:flex-grow">
-        <nuxt-link to="/code-of-conduct" class="font-semibold no-underline block lg:inline-block text-indigo-darkest py-4 px-6 hover:bg-white rounded-full">
-          code of conduct
+        <a @click.native="showNav = false" href="https://webzuerich-invite.herokuapp.com/"  target="_blank" rel="noopener" class="font-semibold no-underline block lg:inline-block text-indigo-darkest py-4 px-6 hover:bg-white rounded-full">
+          Slack
+        </a>
+      </div>
+      <div class="text-base lg:flex-grow">
+        <a @click.native="showNav = false" href="https://twitter.com/webzuerich"  target="_blank" rel="noopener" class="font-semibold no-underline block lg:inline-block text-indigo-darkest py-4 px-6 hover:bg-white rounded-full">
+          Twitter
+        </a>
+      </div>
+      <div class="text-base lg:flex-grow">
+        <nuxt-link @click.native="showNav = false" to="/code-of-conduct" class="font-semibold no-underline block lg:inline-block text-indigo-darkest py-4 px-6 hover:bg-white rounded-full">
+          CoC
         </nuxt-link>
       </div>
       <div class="text-base lg:flex-grow">
-        <nuxt-link to="/talks" class="font-semibold no-underline block lg:inline-block text-indigo-darkest py-4 px-6 hover:bg-white rounded-full">
-          talks
+        <nuxt-link @click.native="showNav = false" to="/talks/" class="font-semibold no-underline block lg:inline-block text-indigo-darkest py-4 px-6 hover:bg-white rounded-full">
+          Talks
         </nuxt-link>
       </div>
     </div>
@@ -37,10 +53,23 @@
 export default {
   data() {
     return {
-      showNav: true
+      showNav: false
     }
   }
 }
 </script>
+
+<style scoped>
+
+  .navigation {
+    display: none
+  }
+
+  .navigation--open {
+    display: block
+  }
+
+</style>
+
 
 
