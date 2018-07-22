@@ -63,10 +63,6 @@ export default {
 </script>
 
 <style lang="scss">
-
-
-
-
   .prose {
     font-size: 15px;
 

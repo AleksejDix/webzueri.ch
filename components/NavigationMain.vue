@@ -24,26 +24,18 @@
     }"
     class=" w-full lg:flex lg:items-center lg:w-auto ml-auto pt-4 md:pt-0 ">
 
-      <div class="text-base lg:flex-grow">
-        <a @click.native="showNav = false" href="https://webzuerich-invite.herokuapp.com/"  target="_blank" rel="noopener" class="font-semibold no-underline block lg:inline-block text-indigo-darkest py-4 px-6 hover:bg-white rounded-full">
-          Slack
+      <div class="text-base lg:flex-grow" v-for="link in links" :key="link.text">
+        <a v-if="link.url.includes('https')" :href="link.url" target="_blank" rel="noopener" class="font-semibold no-underline block lg:inline-block text-indigo-darkest py-4 px-6 hover:bg-white rounded-full">
+           {{link.text}}
         </a>
-      </div>
-      <div class="text-base lg:flex-grow">
-        <a @click.native="showNav = false" href="https://twitter.com/webzuerich"  target="_blank" rel="noopener" class="font-semibold no-underline block lg:inline-block text-indigo-darkest py-4 px-6 hover:bg-white rounded-full">
-          Twitter
-        </a>
-      </div>
-      <div class="text-base lg:flex-grow">
-        <nuxt-link @click.native="showNav = false" to="/code-of-conduct" class="font-semibold no-underline block lg:inline-block text-indigo-darkest py-4 px-6 hover:bg-white rounded-full">
-          CoC
+
+        <nuxt-link :to="link.url" v-else  class="font-semibold no-underline block lg:inline-block text-indigo-darkest py-4 px-6 hover:bg-white rounded-full">
+          {{link.text}}
         </nuxt-link>
+
+
       </div>
-      <div class="text-base lg:flex-grow">
-        <nuxt-link @click.native="showNav = false" to="/talks/" class="font-semibold no-underline block lg:inline-block text-indigo-darkest py-4 px-6 hover:bg-white rounded-full">
-          Talks
-        </nuxt-link>
-      </div>
+
     </div>
   </nav>
 </div>
@@ -53,7 +45,29 @@
 export default {
   data() {
     return {
-      showNav: false
+      showNav: false,
+      links: [
+        {
+          text: 'Patreon',
+          url: 'https://www.patreon.com/webzurich'
+        },
+        {
+          text: 'Slack',
+          url: 'https://webzuerich-invite.herokuapp.com/'
+        },
+        {
+          text: 'Twitter',
+          url: 'https://twitter.com/webzuerich'
+        },
+        {
+          text: 'Talks',
+          url: '/talks/1'
+        },
+        {
+          text: "CoC",
+          url: '/code-of-conduct'
+        }
+      ]
     }
   }
 }

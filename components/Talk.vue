@@ -4,14 +4,14 @@
     class="mt-4 block rounded-lg p-4 md:p-8 bg-indigo-darker text-white md:flex talk no-underline"
   >
     <div class="flex-1 pb-4 md:pb-0 md:pr-4">
-      <h2 class="text-white text-2xl leading-tight font-semibold">{{talk.name}}</h2>
+      <h2 class="text-white text-2xl md:text-3xl leading-tight font-semibold">{{talk.name}}</h2>
 
       <div class="flex items-center justify-between pt-6 text-white">
         <div class="flex items-center" v-for="speaker in talk.speakers" v-if="talk.speakers" :key="speaker.id">
           <div class="rounded-full w-10 h-10 mr-4 border-2 flex-no-shrink overflow-hidden" v-if="speaker.speakerPicture">
             <img :src="speaker.speakerPicture.url" :alt="speaker.name">
           </div>
-          <div class="flex-1 opacity-75 text-lg">{{speaker.name}}</div>
+          <div class="flex-1 text-lg">{{speaker.name}}</div>
         </div>
       </div>
     </div>

@@ -1,17 +1,14 @@
 <template>
-  <div>
+  <div class="antialiased">
     <navigation-main></navigation-main>
     <main>
     <nuxt/>
     </main>
-
-
     <modal
       :show="showNewTalkModal"
       @close="showNewTalkModal = false">
       <div slot="header">Submit new talk</div>
     </modal>
-
     <svg-symbols></svg-symbols>
   </div>
 </template>
