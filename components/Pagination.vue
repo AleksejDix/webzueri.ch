@@ -50,7 +50,7 @@ export default {
   .pagination-link.nuxt-link-active,
   .pagination-link:focus,
   .pagination-link:hover {
-    background-color: #f2d024;
+    background-color: #a2f5bf;
     transform: scale(1.05);
   }
 </style>

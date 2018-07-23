@@ -15,7 +15,7 @@
   </section>
 
   <div class="px-4">
-    <div class="max-w-md mx-auto">
+    <div class="max-w-lg mx-auto">
 
       <div v-if="$apollo.loading">
         <div class="spinner">
@@ -27,7 +27,7 @@
       <template v-else>
         <template  v-for="event in events">
           <template v-for="talk in event.talks" v-if="talk">
-            <talk :talk="talk" :key="talk.id"></talk>
+            <talk :talk="talk" :date="event.date" :key="talk.id"></talk>
           </template>
         </template>
 
@@ -86,7 +86,7 @@ const eventsCount = gql`
   }
 `
 
-const POSTS_PER_PAGE = 3
+const POSTS_PER_PAGE = 4
 
 export default {
   scrollToTop: false,

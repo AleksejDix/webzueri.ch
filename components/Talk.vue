@@ -1,11 +1,12 @@
 <template>
   <nuxt-link
     :to="{ name: 'talks-id', params: { id: talk.id }}"
-    class="mt-4 block rounded-lg p-4 md:p-8 bg-indigo-darker text-white md:flex talk no-underline"
+    class="mt-4 block bg-indigo-darker rounded-lg p-4 md:p-8  text-white md:flex talk no-underline whitespace-normal"
   >
     <div class="flex-1 pb-4 md:pb-0 md:pr-4">
+      <div class="rounded-full bg-pink-dark inline-block p-1 px-2 mb-4 leading-none uppercase text-xs tracking-wide font-bold" v-if="isFutureTalk">uppcomming</div>
       <h2 class="text-white text-2xl md:text-3xl leading-tight font-semibold">{{talk.name}}</h2>
-
+      <div v-if="talk.abstract" class="abstract leading-normal py-4 text-lg">{{talk.abstract | shorten }}</div>
       <div class="flex items-center justify-between pt-6 text-white">
         <div class="flex items-center" v-for="speaker in talk.speakers" v-if="talk.speakers" :key="speaker.id">
           <div class="rounded-full w-10 h-10 mr-4 border-2 flex-no-shrink overflow-hidden" v-if="speaker.speakerPicture">
@@ -23,7 +24,22 @@
 
 <script>
 export default {
-  props: ['talk']
+  props: ['talk', 'date'],
+  computed: {
+    isFutureTalk() {
+      return new Date(this.date) > new Date()
+    },
+  },
+  filters: {
+    shorten(value) {
+      if (value.length <= 160) return
+
+      const tokens = value.split(/\.|\?/g).slice(0, 2);
+      const result = tokens.join();
+
+      return result + '…'
+    }
+  }
 }
 </script>
 

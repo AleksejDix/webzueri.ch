@@ -1,8 +1,8 @@
 <template>
 <div class="md:px-4 bg-indigo-darkest pb-8">
-  <div class=" mx-auto">
+  <div class="mx-auto pt-8">
 
-    <div class="px-4 py-8">
+    <div class="px-4 py-4">
       <h1 class="leading-tight text-3xl md:text-5xl text-base text-yellow font-display font-bold tracking-wide uppercase text-center">Code of Conduct</h1>
     </div>
 
