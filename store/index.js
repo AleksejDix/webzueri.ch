@@ -25,22 +25,26 @@ const createStore = () => {
             {
               text: 'Patreon',
               desc: 'Support us with <strong>some money</strong>',
-              url: 'https://www.patreon.com/webzurich'
+              url: 'https://www.patreon.com/webzurich',
+              color: '#f96854'
             },
             {
               text: 'Slack',
               desc: 'Get help from your <strong>local peers</strong>.',
-              url: 'https://webzuerich-invite.herokuapp.com/'
+              url: 'https://webzuerich-invite.herokuapp.com/',
+              color: '#79D4B6'
             },
             {
               text: 'Twitter',
               desc: 'Tell the world about <strong>web zurich</strong>',
-              url: 'https://twitter.com/webzuerich'
+              url: 'https://twitter.com/webzuerich',
+              color: '#1DA1F3'
             },
             {
               text: 'Meetup',
               desc: 'Join the group for <strong>latest updates</strong>',
-              url: 'https://www.meetup.com/Web-Zurich/'
+              url: 'https://www.meetup.com/Web-Zurich/',
+              color: '#F7405F'
             }
           ]
         }

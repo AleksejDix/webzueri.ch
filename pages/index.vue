@@ -14,15 +14,16 @@
             <a :href="item.url" target="_blank" class="w-full sm:w-1/2 p-4 no-underline" v-for="item in menu.social.links" :key="item.url">
               <div class="border border-white rounded-lg py-4 px-6 flex items-center">
                 <div class="icon pr-6">
-                  <div class="bg-pink-lighter rounded-full w-12 h-12 flex items-center justify-center">
-                    <svg class="fill-pink-dark h-6 w-6" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                  <div :style="{borderColor: item.color}" class="border border-white rounded-full w-12 h-12 flex items-center justify-center">
+                    <svg :style="{fill: item.color}" class="fill-indigo-darkest h-6 w-6" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                       <path d="m10 7h-8v6h8v5l8-8-8-8z"/>
                     </svg>
                   </div>
                 </div>
                 <div class="flex-1 text-indigo-darker leading-normal">
                   <h3 class="text-2xl text-white">{{item.text}}</h3>
-                  <div class="w-40 text-lg text-pink-lighter" v-html="item.desc"></div>
+
+                  <div class="w-40 text-lg text-grey" v-html="item.desc"></div>
                 </div>
               </div>
             </a>
