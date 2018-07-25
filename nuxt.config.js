@@ -13,6 +13,9 @@ module.exports = {
   */
   head: {
     title: pkg.name,
+    htmlAttrs: {
+      lang: 'en-US',
+    },
     bodyAttrs: {
       class: 'antialiased bg-indigo-darkest'
     },

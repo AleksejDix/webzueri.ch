@@ -1,6 +1,9 @@
 <template>
 <div class="bg-indigo-darkest">
-  <nav class="max-w-5xl mx-auto flex items-center p-4 relative">
+  <nav class="max-w-5xl mx-auto flex items-center p-4 relative"  role="navigation">
+
+    <a class="bg-green-lightest skip-link fixed pin-t bg-white no-underline uppercase rounded-b text-sm font-bold p-2" href="#content">
+      Skip to content</a>
 
     <nuxt-link to="/" class="flex items-center flex-no-shrink mr-6 no-underline">
       <div class="bg-green-lightest rounded-full w-12 mr-4 h-12 p-2 flex items-center justify-center">
@@ -11,11 +14,13 @@
       <span class="font-bold text-white text-base tracking-wide font-display uppercase">Web Züri</span>
     </nuxt-link>
 
+
+
     <div class="flex-1 flex justify-end w-full">
 
-      <button class="inline-block group hover:bg-green-lightest rounded-full focus:outline-none p-2 m-2" aria-haspopup="true" :aria-expanded="mobileNav" ref="open"  @click="open">
+      <button class="inline-block group hover:bg-green-lightest rounded-full focus:outline-none p-2 m-2" aria-controls="menu" :aria-expanded="mobileNav" ref="open"  @click="open" aria-live="assertive">
         <div class="flex items-center">
-          <span class="uppercase text-white group-hover:text-green-darkest focus-hover:text-red font-bold text-sm ml-2">Menu</span>
+          <span class="uppercase text-white group-hover:text-green-darkest font-bold text-sm ml-2">Menu</span>
           <div class="rounded-full bg-green-lightest group-hover:bg-green-dark  w-6 h-6 ml-2 flex items-center justify-center">
             <svg style="top:.5px" class="fill-green-dark group-hover:fill-green-lightest h-4 w-4 relative" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M4 12a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm6 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm6 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/></svg>
           </div>
@@ -23,8 +28,10 @@
       </button>
 
       <transition name="menu" @after-enter="focusClose" @after-leave="focusOpen">
-      <focus-lock role="menu"
-      class="absolute  z-50 pin-x mx-4 md:m-4 md:pin-none md:w-full md:max-w-sm md:pin-r md:pin-t shadow-lg rounded-lg"  v-show="mobileNav">
+      <focus-lock
+      id="menu"
+      class="absolute  z-50 pin-x mx-4 md:m-4 md:pin-none md:w-full md:max-w-sm md:pin-r md:pin-t shadow-lg rounded-lg"
+      v-show="mobileNav">
         <button class="inline-block absolute group pin-r pin-t rounded-full hover:bg-green-lightest focus:outline-none focus:bg-green-lightest p-2 m-2" @click="close" ref="close">
           <div class="flex items-center">
             <span class="uppercase font-bold text-sm ml-2">close</span>
@@ -33,14 +40,15 @@
             </div>
           </div>
         </button>
+
         <div>
 
           <div class="intern pt-8 pb-4 px-6 rounded-t-lg  bg-white">
-            <h2 class="uppercase text-sm text-grey-darker font-semibold tracking-wide">{{menu.intern.title}}</h2>
+            <h3 class="uppercase text-sm text-grey-darker font-semibold tracking-wide">{{menu.intern.title}}</h3>
              <ul class="list-reset py-2">
               <li class="text-base" v-for="link in menu.intern.links" :key="link.text">
                 <nuxt-link
-                  role="menuitem"
+
                   :to="link.url"
                   class="no-underline py-2 block group">
                   <div class="flex flex-wrap items-center ">
@@ -63,11 +71,11 @@
           </div>
 
           <div class="intern pt-8 pb-4 px-6 bg-indigo-darker border-black border-t rounded-b-lg" v-if="menu.social">
-            <h2 class="uppercase text-sm text-grey-lighter font-semibold tracking-wide">{{menu.social.title}}</h2>
+            <h3 class="uppercase text-sm text-grey-lighter font-semibold tracking-wide">{{menu.social.title}}</h3>
              <ul class="list-reset py-2">
               <li class="text-base" v-for="link in menu.social.links" :key="link.text">
                 <a v-if="link.url.includes('https')"
-                    role="menuitem"
+
                     :href="link.url" target="_blank" rel="noopener"
                     class="no-underline  py-2 block group">
 
@@ -100,50 +108,19 @@
 
 <script>
 import FocusLock from 'vue-focus-lock';
+import {mapState} from 'vuex'
 
 export default {
   components: {FocusLock},
+  computed: {
+    ...mapState([
+      'menu'
+    ])
+  },
   data() {
     return {
       mobileNav: false,
-      showNav: false,
-      menu: {
-        intern: {
-          title: 'Information',
-          links: [
-            {
-              text: 'Talks',
-              desc: 'Speeches given at <strong class="text-grey-darker group-hover:text-blue">web zurich</strong>',
-              url: '/talks/1'
-            },
-            {
-              text: "Code of Conduct",
-              desc: 'Our rules of <strong class="text-grey-darker group-hover:text-blue">good behaviour</strong>',
-              url: '/code-of-conduct'
-            }
-          ]
-        },
-        social: {
-          title: 'community',
-          links: [
-            {
-              text: 'Patreon',
-              desc: 'Support us with <strong class="text-white group-hover:text-green">some money</strong>',
-              url: 'https://www.patreon.com/webzurich'
-            },
-            {
-              text: 'Slack',
-              desc: 'Get help from your <strong class="text-white group-hover:text-green">local peers</strong>.',
-              url: 'https://webzuerich-invite.herokuapp.com/'
-            },
-            {
-              text: 'Twitter',
-              desc: 'Tell the world about <strong class="text-white group-hover:text-green">web zurich</strong>',
-              url: 'https://twitter.com/webzuerich'
-            }
-          ]
-        }
-      }
+      showNav: false
     }
   },
   methods: {
@@ -181,6 +158,17 @@ export default {
     transform-origin: 100% 0%;
     opacity: 0;
     transform: scale(0.7)
+  }
+
+  .skip-link {
+    left: 50%;
+    transform: translate3d(-50%, -100%, 0);
+    transition: transform 200ms ease;
+  }
+
+  .skip-link:focus {
+    left: 50%;
+    transform: translate3d(-50%, 0, 0)
   }
 
 </style>

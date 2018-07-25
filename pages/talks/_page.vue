@@ -1,5 +1,5 @@
 <template>
-<div>
+<div id="content">
   <div class="bg-indigo-darkest">
 
   <section class="pt-12 pb-8 bg-indigo-darkest">
@@ -64,6 +64,7 @@ const events = gql`
       talks {
         id
         name
+        abstract
         speakers {
           name
           speakerPicture {

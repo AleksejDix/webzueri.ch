@@ -1,5 +1,6 @@
 <template>
   <div class="antialiased">
+
     <navigation-main></navigation-main>
     <main>
     <nuxt/>

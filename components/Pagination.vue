@@ -1,10 +1,16 @@
 <template>
-  <nav class="flex py-4 ">
+  <nav class="flex py-4" role="navigation" aria-label="Pagination Navigation">
+
+
+    <div class="text-white"></div>
 
     <router-link
-    :to="`/talks/${index}`"
-    v-for="index in maxPage" :key="index"
-    class="pagination-link antialiased bg-yellow inline-block rounded py-4 px-6 uppercase no-underline text-md font-bold min-w-32 text-black"
+      :to="`/talks/${index}`"
+      v-for="index in maxPage" :key="index"
+      :aria-label="[($route.path === `/talks/${index}`) ? `Current talks Page, Page ${index}` : `Goto Talks Page ${index}`]"
+      :aria-current="$route.path === `/talks/${index}`"
+      :class="[($route.path === `/talks/${index}`) ? 'bg-green-lighter' : ' bg-green']"
+      class="pagination-link antialiased inline-block rounded py-4 px-6 uppercase no-underline text-md font-bold min-w-32 text-black"
     >
       {{index}}
     </router-link>
@@ -47,10 +53,8 @@ export default {
     transition: transform 160ms
   }
 
-  .pagination-link.nuxt-link-active,
   .pagination-link:focus,
   .pagination-link:hover {
-    background-color: #a2f5bf;
     transform: scale(1.05);
   }
 </style>

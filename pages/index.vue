@@ -1,12 +1,34 @@
 <template>
   <div v-if="$apollo.loading">Loading...</div>
-  <div v-else>
+  <div v-else id="content">
     <section class=" bg-indigo-darkest">
-      <div class="max-w-3xl mx-auto pt-12">
+      <div class="sm:max-w-lg lg:max-w-2xl mx-auto pt-12">
 
-      <div class="px-4">
-        <h1 class="mb-4 leading-tight text-3xl md:text-5xl text-base text-yellow font-display font-bold tracking-wide uppercase text-center">People making <br class="md:hidden"> the web in Zürich</h1>
-        <p class="max-w-md mx-auto leading-normal text-center text-xl md:text-2xl text-yellow-lighter">Learn, share and collaborate with your local <strong>web professionals</strong> and enthusiasts!</p>
+      <div class="lg:flex">
+        <div class="lg:w-2/5 p-4">
+          <h1 class="mb-4 leading-tight text-3xl md:text-5xl text-base text-white font-display font-bold tracking-wide uppercase">People making <br class="md:hidden">the web in Zürich</h1>
+          <p class=" leading-normal  text-xl md:text-2xl text-grey-lighter">Learn, share and collaborate with your local <strong>web professionals</strong> and enthusiasts!</p>
+        </div>
+        <div class="lg:w-3/5 p-4 md:p-0">
+          <div class="md:flex md:flex-wrap">
+            <a :href="item.url" target="_blank" class="w-full sm:w-1/2 p-4 no-underline" v-for="item in menu.social.links" :key="item.url">
+              <div class="border border-white rounded-lg py-4 px-6 flex items-center">
+                <div class="icon pr-6">
+                  <div class="bg-pink-lighter rounded-full w-12 h-12 flex items-center justify-center">
+                    <svg class="fill-pink-dark h-6 w-6" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                      <path d="m10 7h-8v6h8v5l8-8-8-8z"/>
+                    </svg>
+                  </div>
+                </div>
+                <div class="flex-1 text-indigo-darker leading-normal">
+                  <h3 class="text-2xl text-white">{{item.text}}</h3>
+                  <div class="w-40 text-lg text-pink-lighter" v-html="item.desc"></div>
+                </div>
+              </div>
+            </a>
+          </div>
+
+        </div>
 
       </div>
 
@@ -67,6 +89,7 @@ Or <strong>find help</strong> from your local peers and see what’s up around y
 <script>
 import gql from 'graphql-tag'
 import Talk from "@/components/Talk"
+import {mapState} from "vuex"
 
 export default {
   components: {Talk},
@@ -115,13 +138,11 @@ export default {
     }
   },
   computed: {
+    ...mapState(['menu']),
     event () {
       return this.events[0]
     }
-  },
-  mounted() {
-    console.log(this.$apollo);
   }
 }
 
-</script>
+</script>Proje

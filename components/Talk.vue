@@ -34,7 +34,7 @@ export default {
     shorten(value) {
       if (value.length <= 160) return
 
-      const tokens = value.split(/\.|\?/g).slice(0, 2);
+      const tokens = value.split(/\.|\?|\!/g).slice(0, 2);
       const result = tokens.join();
 
       return result + '…'
