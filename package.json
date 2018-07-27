@@ -22,7 +22,8 @@
     "graphql-tag": "^2.5.0",
     "nuxt": "^1.4.1",
     "vue-focus-lock": "^1.2.0",
-    "vue-markdown": "^2.2.4"
+    "vue-markdown": "^2.2.4",
+    "vue-youtube": "^1.2.5"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.6",

@@ -30,7 +30,6 @@ module.exports = {
     ]
   },
   loading: { color: 'hsla(214,64%,46%,1.00)' },
-
   /*
   ** Global CSS
   */
@@ -42,8 +41,8 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '~/plugins/components'
-
+    '~/plugins/components',
+    '@/plugins/youtube-player'
   ],
 
   /*

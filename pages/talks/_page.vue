@@ -65,6 +65,7 @@ const events = gql`
         id
         name
         abstract
+        youtubecode
         speakers {
           name
           speakerPicture {
@@ -109,7 +110,8 @@ export default {
   components: { Talk, Modal, ButtonDefault, Pagination },
   computed: {
     page() {
-      return Number(this.$route.params.page) || 1
+      if (this.$route.params.page) return Number(this.$route.params.page) || 1
+
     },
     maxPage() {
       return this.eventsCount / POSTS_PER_PAGE
