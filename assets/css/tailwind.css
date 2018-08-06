@@ -88,6 +88,9 @@ h1,h2,h3,h4,h5,h6 {
     transform: scale(1.0);
   }
 }
+
+@tailwind components;
+
 /**
 * Here you would add any of your custom component classes; stuff that you'd
 * want loaded *before* the utilities so that the utilities could still

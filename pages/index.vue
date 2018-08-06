@@ -1,8 +1,13 @@
 <template>
-  <div v-if="$apollo.loading">Loading...</div>
-  <div v-else id="content">
 
-    <section class=" bg-indigo-darkest">
+  <div v-if="$apollo.loading">Loading...</div>
+
+
+  <div v-else id="content ">
+
+
+
+    <section class="bg-indigo-darkest">
       <div class="sm:max-w-lg lg:max-w-2xl mx-auto pt-12">
 
       <div class="lg:flex">
@@ -49,6 +54,31 @@
         </div>
 
       </div>
+
+
+    <section class="py-8">
+
+      <h2 class="p4 text-center text-white text-4xl font-light mb-8">Our recurring sponsors</h2>
+
+      <div class="container ">
+
+        <div class="flex flex-wrap justify-center text-white rounded-lg overflow-hidden bg-indigo-darker  p-4">
+          <a
+          v-for="(sponsor, index) in sponsors"
+          :class="[(index === 1) ? 'border-l' : 'border-r']"
+          class="flex-1 flex flex-col "
+          :href="sponsor.website" target="_blank" rel="noopener"  :key="sponsor.id">
+            <div class="w-full h-full flex items-center justify-center  py-4 px-8">
+              <img class="w-auto h-20" v-if="sponsor.logo" :src="sponsor.logo.url" :alt="sponsor.name">
+            </div>
+
+          </a>
+        </div>
+
+    </div>
+  </section>
+
+
       <div class="-mt-24 bg-auto bg-center bg-no-repeat opacity-75" >
         <svg viewBox="0 0 1024 197" xmlns="http://www.w3.org/2000/svg">
 
@@ -93,51 +123,66 @@ import gql from 'graphql-tag'
 import Talk from "@/components/Talk"
 import {mapState} from "vuex"
 
+const eventsQuery = gql`
+{
+  events(orderBy: date_DESC, first: 1) {
+    id
+    date
+    title
+    meetupLink
+    talks {
+      id
+      name
+      abstract
+      youtubecode
+      speakers {
+        id
+        name
+        bio
+        speakerPicture {
+          url
+          fileName
+        }
+      }
+    },
+    venue {
+      id
+      name
+    }
+  }
+  sponsors {
+    name
+    website
+    logo {
+      url
+    }
+  }
+}
+`
+
 export default {
   components: {Talk},
   data () {
     return {
       video: false,
       events: null,
+      sponsors: null,
     }
   },
   apollo: {
-    events: gql`
-    {
-      events(orderBy: date_DESC, first: 1) {
-        id
-        date
-        title
-        meetupLink
-        talks {
-          id
-          name
-          abstract
-          youtubecode
-          speakers {
-            id
-            name
-            bio
-            speakerPicture {
-              url
-              fileName
-            }
-          }
-        },
-        venue {
-          id
-          name
-        }
+    page: {
+      query: eventsQuery,
+      result({data}) {
+        this.events = data.events
+        this.sponsors = data.sponsors
       }
     }
-    `
   },
   filters: {
     date(value) {
       if (!value) return ''
       const date = new Date(value);
       var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-
       return date.toLocaleDateString('en-US', options)
     }
   },
