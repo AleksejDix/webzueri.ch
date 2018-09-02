@@ -8,16 +8,11 @@
   </div>
   <div v-else>
     <div class="p-4 bg-indigo-darkest">
-
-
       <section >
         <div class="max-w-xl mx-auto">
           <div class="md:flex items-center relative" style="min-height: 200px;">
             <div class="md:w-1/2 p-4">
-
               <h1 class="leading-tight text-2xl md:text-4xl text-base text-white font-display font-bold tracking-wide uppercase">{{talk.name}}</h1>
-
-
             </div>
             <div class="md:w-1/2 p-4">
               <div
@@ -106,7 +101,6 @@ export default {
 
 
 <style scoped>
-
 .scene3d {
   perspective: 35cm;
 }
@@ -114,7 +108,8 @@ export default {
 @media screen and (min-width: 640px) {
   .video {
     transition: 500ms all ease-in-out;
-    transform: rotate3d(.5, -.866, 0, 15deg) rotate(1deg) scale(.472) translate3d(50%, -70%, 0)
+    transform: rotate3d(0.5, -0.866, 0, 15deg) rotate(1deg) scale(0.472)
+      translate3d(50%, -70%, 0);
   }
 }
 
@@ -131,6 +126,4 @@ export default {
     transition: 5000ms all ease-in-out;
   }
 }
-
-
 </style>

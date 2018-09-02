@@ -32,7 +32,9 @@
         </template>
 
         <pagination :page="page" :maxPage="maxPage"></pagination>
+
       </template>
+       <div class="text-white">{{page}} {{maxPage}}</div>
 
     </div>
   </div>
@@ -91,7 +93,7 @@ const eventsCount = gql`
 const POSTS_PER_PAGE = 4
 
 export default {
-  scrollToTop: false,
+
   apollo: {
     events: {
       query: events,
@@ -111,10 +113,9 @@ export default {
   computed: {
     page() {
       if (this.$route.params.page) return Number(this.$route.params.page) || 1
-
     },
     maxPage() {
-      return this.eventsCount / POSTS_PER_PAGE
+      return Math.ceil(this.eventsCount / POSTS_PER_PAGE)
     },
     skip() {
       return this.page * POSTS_PER_PAGE - POSTS_PER_PAGE
@@ -128,6 +129,7 @@ export default {
     openModal() {
       this.showNewTalkModal = true
     }
-  }
+  },
+  scrollToTop: false
 }
 </script>

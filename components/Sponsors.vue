@@ -1,5 +1,5 @@
 <template>
-  <div v-editable="blok">
+  <div>
     <pre>
       {{ blok }}
     </pre>
@@ -8,6 +8,6 @@
 
 <script>
 export default {
-  props: ['blok']
+
 }
 </script>

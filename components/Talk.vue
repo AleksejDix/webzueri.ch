@@ -1,6 +1,6 @@
 <template>
   <nuxt-link
-    :to="{ name: 'talks-id', params: { id: talk.id }}"
+    :to="{ name: 'talk-id', params: { id: talk.id }}"
     class="mt-4 block bg-indigo-darker rounded-lg p-4 md:p-8 text-white md:flex talk no-underline whitespace-normal"
   >
     <div class="flex-1 pb-4 md:pb-0 md:pr-4">
@@ -48,16 +48,14 @@ export default {
 </script>
 
 <style scoped>
-
 .talk {
-  transition: transform 160ms
+  transition: transform 160ms;
 }
 
 .talk:focus,
 .talk:hover {
   transform: scale(1.05);
 }
-
 </style>
 
 
