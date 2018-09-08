@@ -1,120 +1,68 @@
 <template>
-<div class="md:px-4 bg-indigo-darkest pb-8">
-  <div class="mx-auto pt-8">
+  <div class="md:px-4 bg-indigo-darkest pb-8">
+    <div class="mx-auto pt-8">
+      <div class="px-4 py-4">
+        <h1 class="leading-tight text-3xl md:text-5xl text-base text-yellow font-display font-bold tracking-wide uppercase text-center">Code of Conduct</h1>
+      </div>
 
-    <div class="px-4 py-4">
-      <h1 class="leading-tight text-3xl md:text-5xl text-base text-yellow font-display font-bold tracking-wide uppercase text-center">Code of Conduct</h1>
-    </div>
+      <div class="md:shadow bg-grey-lightest md:rounded-lg md:max-w-5xl md:mx-auto py-8 px-4 md:p-8">
+        <prose class="max-w-lg mx-auto">
+          <h2>Our Pledge</h2>
+          <p>In the interest of fostering an open and welcoming environment, we as the community and organisers pledge to making participation in our community a harassment-free experience for everyone, regardless of age, body size, disability, ethnicity, gender identity and expression, level of experience, nationality, personal appearance, race, religion, or sexual identity and orientation.</p>
+          <h2>Our Standards</h2>
 
-    <div class="md:shadow bg-grey-lightest md:rounded-lg md:max-w-5xl md:mx-auto py-8 px-4 md:p-8">
-      <div class="prose max-w-lg mx-auto">
+          <p>
+            <strong>Examples of behavior that contributes to creating a positive environment include:</strong>
+          </p>
 
-    <h2>Our Pledge</h2>
+          <ol>
+            <li>Using welcoming and inclusive language</li>
+            <li>Being respectful of differing viewpoints and experiences</li>
+            <li>Gracefully accepting constructive criticism</li>
+            <li>Focusing on what is best for the community</li>
+            <li>Showing empathy towards other community members</li>
+          </ol>
 
-    <p>In the interest of fostering an open and welcoming environment, we as the community and organisers pledge to making participation in our community a harassment-free experience for everyone, regardless of age, body size, disability, ethnicity, gender identity and expression, level of experience, nationality, personal appearance, race, religion, or sexual identity and orientation.</p>
+          <p>
+            <strong>Examples of unacceptable behavior by participants include:</strong>
+          </p>
 
-    <h2>Our Standards</h2>
+          <ul>
+            <li>The use of sexualized language or imagery and unwelcome sexual attention or advances</li>
+            <li>Trolling, insulting/derogatory comments, and personal or political attacks</li>
+            <li>Public or private harassment</li>
+            <li>Publishing others' private information, such as a physical or electronic address, without explicit permission</li>
+            <li>Other conduct which could reasonably be considered inappropriate in a professional setting</li>
+            <li>Our Responsibilities</li>
+            <li>Organisers are responsible for clarifying the standards of acceptable behavior and are expected to take appropriate and fair corrective action in response to any instances of unacceptable behavior.</li>
+          </ul>
 
-    <p><strong>Examples of behavior that contributes to creating a positive environment include:</strong></p>
+          <p>Organisers have the right and responsibility to remove, edit, or reject comments, messages, slides, and other contributions that are not aligned to this Code of Conduct, or to ban temporarily or permanently any contributor for other behaviors that they deem inappropriate, threatening, offensive, or harmful.</p>
 
-    <ol>
-      <li>Using welcoming and inclusive language</li>
-      <li>Being respectful of differing viewpoints and experiences</li>
-      <li>Gracefully accepting constructive criticism</li>
-      <li>Focusing on what is best for the community</li>
-      <li>Showing empathy towards other community members</li>
-    </ol>
+          <h2>Scope</h2>
 
-    <p><strong>Examples of unacceptable behavior by participants include:</strong></p>
+          <p>This Code of Conduct applies both within project spaces and in public spaces when an individual is representing the community. Examples of representing the community include using an official community e-mail address, posting via an official social media account, or acting as an appointed representative at an online or offline event. Representation of the community may be further defined and clarified by the organisers.</p>
 
-    <ul>
-      <li>The use of sexualized language or imagery and unwelcome sexual attention or advances</li>
-      <li>Trolling, insulting/derogatory comments, and personal or political attacks</li>
-      <li>Public or private harassment</li>
-      <li>Publishing others' private information, such as a physical or electronic address, without explicit permission</li>
-      <li>Other conduct which could reasonably be considered inappropriate in a professional setting</li>
-      <li>Our Responsibilities</li>
-      <li>Organisers are responsible for clarifying the standards of acceptable behavior and are expected to take appropriate and fair corrective action in response to any instances of unacceptable behavior.</li>
-    </ul>
+          <h2>Enforcement</h2>
+          <p>Instances of abusive, harassing, or otherwise unacceptable behavior may be reported by contacting the organisation team at hello@webzueri.ch. All complaints will be reviewed and investigated and will result in a response that is deemed necessary and appropriate to the circumstances. The organisers team is obligated to maintain confidentiality with regard to the reporter of an incident. Further details of specific enforcement policies may be posted separately.</p>
 
-    <p>Organisers have the right and responsibility to remove, edit, or reject comments, messages, slides, and other contributions that are not aligned to this Code of Conduct, or to ban temporarily or permanently any contributor for other behaviors that they deem inappropriate, threatening, offensive, or harmful.</p>
+          <p>Organisers who do not follow or enforce the Code of Conduct in good faith may face temporary or permanent repercussions as determined by other members of the community's leadership.</p>
 
-    <h2>Scope</h2>
+          <h2>Attribution</h2>
 
-    <p>This Code of Conduct applies both within project spaces and in public spaces when an individual is representing the community. Examples of representing the community include using an official community e-mail address, posting via an official social media account, or acting as an appointed representative at an online or offline event. Representation of the community may be further defined and clarified by the organisers.</p>
-
-    <h2>Enforcement</h2>
-    <p>Instances of abusive, harassing, or otherwise unacceptable behavior may be reported by contacting the organisation team at hello@webzueri.ch. All complaints will be reviewed and investigated and will result in a response that is deemed necessary and appropriate to the circumstances. The organisers team is obligated to maintain confidentiality with regard to the reporter of an incident. Further details of specific enforcement policies may be posted separately.</p>
-
-    <p>Organisers who do not follow or enforce the Code of Conduct in good faith may face temporary or permanent repercussions as determined by other members of the community's leadership.</p>
-
-    <h2>Attribution</h2>
-
-    <p>This Code of Conduct is adapted from the Contributor Covenant, version 1.4, available at <a href="http://contributor-covenant.org/version/1/4">http://contributor-covenant.org/version/1/4</a></p>
-         </div>
+          <p>This Code of Conduct is adapted from the Contributor Covenant, version 1.4, available at
+            <a href="http://contributor-covenant.org/version/1/4">http://contributor-covenant.org/version/1/4</a>
+          </p>
+        </prose>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+
+import Prose from '~/components/Prose'
 export default {
+  components: { Prose }
 }
 </script>
-
-<style lang="scss">
-.prose {
-  font-size: 15px;
-
-  line-height: 1.5;
-
-  > * + * {
-    margin-top: 1.5em;
-  }
-
-  h1,
-  h2,
-  h3 {
-    line-height: 1.25;
-  }
-
-  h1 {
-    font-size: 1.75em;
-  }
-  h2 {
-    font-size: 1.625em;
-  }
-  h3 {
-    font-size: 1.5em;
-  }
-  strong,
-  b {
-    font-weight: bold;
-  }
-
-  i,
-  italic {
-    font-style: oblique;
-  }
-
-  a {
-    position: relative;
-    color: black;
-    font-weight: 600;
-    border-bottom: 3px solid #a2f5bf;
-    transition: background-color 120ms;
-    text-decoration: none;
-  }
-  a:hover {
-    background-color: #a2f5bf;
-  }
-}
-
-@media screen and (min-width: 640px) {
-  .prose {
-    font-size: 19px;
-  }
-}
-</style>
-
-

@@ -1,6 +1,6 @@
 <template>
 
-  <div v-if="$apollo.loading">Loading...</div>
+  <loader v-if="$apollo.loading" />
 
   <div v-else id="content ">
 
@@ -40,86 +40,47 @@
               <talk :talk="talk" :date="event.date"></talk>
             </div>
             <div class="text-center pt-8">
-              <nuxt-link to="/talks/2" class="bg-yellow hover:bg-yellow-dark inline-block rounded py-4 px-6 uppercase no-underline text-md font-bold">past talks</nuxt-link>
+              <nuxt-link to="/events/2" class="bg-yellow hover:bg-yellow-dark inline-block rounded py-4 px-6 uppercase no-underline text-md font-bold">past events</nuxt-link>
             </div>
           </div>
         </div>
       </div>
     </section>
-      <section class="py-8">
-        <h2 class="p4 text-center text-white text-4xl font-light mb-8">Our recurring sponsors</h2>
-        <div class="container">
-          <div class="flex flex-wrap justify-center text-white rounded-lg overflow-hidden bg-indigo-darker  p-4">
-            <a v-for="(sponsor, index) in sponsors" :class="[(index === 1) ? 'border-l' : 'border-r']" class="flex-1 flex flex-col " :href="sponsor.website" target="_blank" rel="noopener" :key="sponsor.id">
-              <div class="w-full h-full flex items-center justify-center  py-4 px-8">
-                <img class="w-auto h-20" v-if="sponsor.logo" :src="sponsor.logo.url" :alt="sponsor.name">
-              </div>
-            </a>
-          </div>
+    <section class="py-8">
+      <h2 class="p4 text-center text-white text-4xl font-light mb-8">Our recurring sponsors</h2>
+      <div class="container">
+        <div class="flex flex-wrap justify-center text-white rounded-lg overflow-hidden bg-indigo-darker  p-4">
+          <a v-for="(sponsor, index) in sponsors" :class="[(index === 1) ? 'border-l' : 'border-r']" class="flex-1 flex flex-col " :href="sponsor.website" target="_blank" rel="noopener" :key="sponsor.id">
+            <div class="w-full h-full flex items-center justify-center  py-4 px-8">
+              <img class="w-auto h-20" v-if="sponsor.logo" :src="sponsor.logo.url" :alt="sponsor.name">
+            </div>
+          </a>
         </div>
+      </div>
 
-      </section>
+    </section>
   </div>
 </template>
 
 <script>
 import gql from 'graphql-tag'
 import Talk from "@/components/Talk"
+import QueryHome from '~/apollo/queries/home'
 import {mapState} from "vuex"
 
-const pageQuery = gql`
-{
-  events(orderBy: date_DESC, first: 1, where: {
-    status: PUBLISHED
-  }) {
-    status
-    id
-    date
-    title
-    meetupLink
-    talks {
-      id
-      name
-      abstract
-      youtubecode
-      speakers {
-        id
-        name
-        bio
-        speakerPicture {
-          url
-          fileName
-        }
-      }
-    },
-    venue {
-      id
-      name
-    }
-  }
-  sponsors {
-    name
-    website
-    logo {
-      url
-    }
-  }
-}
-`
-
 export default {
-  components: {Talk},
+  components: { Talk },
   data () {
     return {
-      events: null,
-      video: false,
+      events: [],
+      sponsors: []
     }
   },
   apollo: {
     events: {
-      query: pageQuery,
+      prefetch: true,
+      query: QueryHome,
       result({data}) {
-        console.log(data)
         this.events = data.events
         this.sponsors = data.sponsors
       }

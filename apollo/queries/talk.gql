@@ -1,0 +1,8 @@
+query talk($id: ID!) {
+  talk(where: {id: $id}) {
+    id
+    name
+    abstract
+    youtubecode
+  }
+}

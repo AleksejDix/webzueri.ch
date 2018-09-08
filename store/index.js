@@ -1,4 +1,4 @@
-import Vuex from 'vuex'
+import Vuex from 'vuex';
 
 const createStore = () => {
   return new Vuex.Store({
@@ -10,7 +10,7 @@ const createStore = () => {
             {
               text: 'Talks',
               desc: 'Speeches given at <strong>web zurich</strong>',
-              url: '/talks/1'
+              url: '/events/1'
             },
             {
               text: "Code of Conduct",
@@ -49,12 +49,6 @@ const createStore = () => {
           ]
         }
       }
-    },
-    getters: {
-    },
-    mutations: {
-    },
-    actions: {
     }
   })
 }

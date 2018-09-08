@@ -1,8 +1,8 @@
 <template>
-  <div class="talks">
+  <div class="events">
     <h1>Future Taks</h1>
-    <ul class="talks-list list-reset">
-      <li v-for="talk in talks" :key="talk.uuid">
+    <ul class="events-list list-reset">
+      <li v-for="talk in events" :key="talk.uuid">
         <talk :talk="talk"></talk>
       </li>
     </ul>
@@ -19,16 +19,16 @@ export default {
     Talk
   },
   computed: {
-    ...mapState(['story', 'talks'])
+    ...mapState(['story', 'events'])
   },
   mounted() {
-    this.$store.dispatch('GET_TALKS')
+    this.$store.dispatch('GET_events')
   }
 }
 </script>
 
 <style>
-.talks-list {
+.events-list {
   display: grid;
   grid-row-gap: 30px;
 }

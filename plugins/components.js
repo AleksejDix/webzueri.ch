@@ -1,6 +1,6 @@
-import Vue from 'vue'
-import Page from '~/components/Page.vue'
-import Talks from '~/components/Talks.vue'
+import Vue from 'vue';
+import Events from '~/components/Events.vue';
+import Loader from '~/components/Loader.vue';
 
-Vue.component('page', Page)
-Vue.component('talks', Talks)
+Vue.component("events", Events);
+Vue.component("loader", Loader);

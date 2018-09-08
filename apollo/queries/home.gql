@@ -1,8 +1,8 @@
-import gql from 'graphql-tag'
-
-export const home = gql`
 {
-  events(orderBy: date_DESC) {
+  events(orderBy: date_DESC, first: 1, where: {
+    status: PUBLISHED
+  }) {
+    status
     id
     date
     title
@@ -10,6 +10,8 @@ export const home = gql`
     talks {
       id
       name
+      abstract
+      youtubecode
       speakers {
         id
         name
@@ -19,13 +21,17 @@ export const home = gql`
           fileName
         }
       }
-    }
+    },
     venue {
       id
       name
-      where
-
+    }
+  }
+  sponsors {
+    name
+    website
+    logo {
+      url
     }
   }
 }
-`

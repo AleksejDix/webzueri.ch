@@ -1,0 +1,18 @@
+query events( $first: Int!, $skip: Int! ) {
+  events (orderBy: date_DESC, first: $first, skip: $skip) {
+    id
+    date
+    talks {
+      id
+      name
+      abstract
+      youtubecode
+      speakers {
+        name
+        speakerPicture {
+          url
+        }
+      }
+    }
+  }
+}

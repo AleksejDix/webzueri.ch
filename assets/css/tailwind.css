@@ -80,6 +80,14 @@ h1,h2,h3,h4,h5,h6 {
   animation-delay: -1.0s;
 }
 
+hr {
+  height: 2px;
+  width: 100%;
+  outline: none;
+  background: black;
+}
+
+
 
 @keyframes bounce {
   0%, 100% {

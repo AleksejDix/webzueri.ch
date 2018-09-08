@@ -1,16 +1,13 @@
 <template>
   <div class="antialiased">
-
     <navigation-main></navigation-main>
     <main>
-    <nuxt/>
+      <nuxt/>
     </main>
-    <modal
-      :show="showNewTalkModal"
-      @close="showNewTalkModal = false">
+    <modal :show="showNewTalkModal" @close="showNewTalkModal = false">
       <div slot="header">Submit new talk</div>
     </modal>
-    <svg-symbols></svg-symbols>
+    <svg-symbols />
   </div>
 </template>
 
@@ -20,10 +17,9 @@ import Modal from "@/components/Modal"
 import NavigationMain from "@/components/NavigationMain"
 import SvgSymbols from "@/components/SvgSymbols"
 import ButtonDefault from '@/components/ButtonDefault'
-import Card from '@/components/Card'
 
 export default {
-  components: { Card, Modal, SvgSymbols, NavigationMain, ButtonDefault },
+  components: { Modal, SvgSymbols, NavigationMain, ButtonDefault },
   data() {
     return {
       showNewTalkModal: false
