@@ -1,5 +1,5 @@
 query talk($id: ID!) {
-  talk(where: {id: $id}) {
+  talk(where: { id: $id }) {
     id
     name
     abstract

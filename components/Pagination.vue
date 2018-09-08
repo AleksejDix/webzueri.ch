@@ -1,19 +1,11 @@
 <template>
   <nav class="flex py-4" role="navigation" aria-label="Pagination Navigation">
 
-
     <div class="text-white"></div>
 
-    <router-link
-      :to="`/events/${index}`"
-      v-for="index in maxPage" :key="index"
-      :aria-label="[($route.path === `/events/${index}`) ? `Current events Page, Page ${index}` : `Goto events Page ${index}`]"
-      :aria-current="$route.path === `/events/${index}`"
-      :class="[($route.path === `/events/${index}`) ? 'bg-green-lighter' : ' bg-green']"
-      class="pagination-link antialiased inline-block rounded py-4 px-6 uppercase no-underline text-md font-bold min-w-32 text-black"
-    >
+    <nuxt-link :to="`/events/${index}`" v-for="index in maxPage" :key="index" :aria-label="[($route.path === `/events/${index}`) ? `Current events Page, Page ${index}` : `Goto events Page ${index}`]" :aria-current="$route.path === `/events/${index}`" :class="[($route.path === `/events/${index}`) ? 'bg-green-lighter' : ' bg-green']" class="pagination-link antialiased inline-block rounded py-4 px-6 uppercase no-underline text-md font-bold min-w-32 text-black">
       {{index}}
-    </router-link>
+    </nuxt-link>
 
     <!-- <span>{{ page }}/{{ maxPage }}</span>
     <div class="flex">
@@ -41,20 +33,21 @@ export default {
     hasMore() {
       return this.page < this.maxPage
     }
-  }
+  },
+  scrollToTop: false
 }
 </script>
 
 <style scoped>
-  .pagination-link + .pagination-link {
-    margin-left: 8px;
-  }
-  .pagination-link {
-    transition: transform 160ms
-  }
+.pagination-link + .pagination-link {
+  margin-left: 8px;
+}
+.pagination-link {
+  transition: transform 160ms;
+}
 
-  .pagination-link:focus,
-  .pagination-link:hover {
-    transform: scale(1.05);
-  }
+.pagination-link:focus,
+.pagination-link:hover {
+  transform: scale(1.05);
+}
 </style>

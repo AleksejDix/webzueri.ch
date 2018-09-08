@@ -10,16 +10,16 @@
       <div v-if="talk.abstract" class="abstract leading-normal py-4 text-lg">{{talk.abstract | shorten }}</div>
       <div class="flex items-center justify-between pt-6 text-white">
         <div class="flex items-center" v-for="speaker in talk.speakers" v-if="talk.speakers" :key="speaker.id">
-          <div class="rounded-full w-10 h-10 mr-4 border-2 flex-no-shrink overflow-hidden" v-if="speaker.speakerPicture">
+          <div class="rounded-full w-12 h-12 mr-4 border-2 flex-no-shrink overflow-hidden" v-if="speaker.speakerPicture">
             <img :src="speaker.speakerPicture.url" :alt="speaker.name">
           </div>
           <div class="flex-1 text-lg">{{speaker.name}}</div>
         </div>
       </div>
     </div>
-    <div class="md:w-1/3 border-t md:border-t-0 md:border-l border-black pt-4 md:pt-0 md:pl-4">
+    <!-- <div class="md:w-1/3 border-t md:border-t-0 md:border-l border-black pt-4 md:pt-0 md:pl-4">
       <span class="inline-flex rounded mr-2 mb-2 leading-none bg-indigo-dark px-2 py-1  font-bold text-xs uppercase whitespace-no-wrap" v-for="n in ['Security', 'JS', 'Ruby', 'Haskel', 'ML', 'Sketch']" :key="n">{{n}}</span>
-    </div>
+    </div> -->
   </nuxt-link>
 </template>
 
@@ -35,8 +35,7 @@ export default {
     shorten(value) {
       if (value.length <= 160) return
 
-      const tokens = value.split(/\.|\?|\!/g).slice(0, 2);
-      const result = tokens.join();
+      const result = value.substring(0, 150)
 
       return result + '…'
     }

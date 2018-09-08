@@ -62,6 +62,12 @@ export default {
     events: [],
     showNewTalkModal: false
   }),
+  head() {
+    return {
+      title: `Events ${this.$route.params.page}`
+    }
+  },
+  scrollToTop: false,
   apollo: {
     events: {
       query: QueryEvents,
@@ -94,7 +100,6 @@ export default {
     openModal() {
       this.showNewTalkModal = true
     }
-  },
-  scrollToTop: false
+  }
 }
 </script>

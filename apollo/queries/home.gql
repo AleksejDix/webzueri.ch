@@ -1,7 +1,5 @@
 {
-  events(orderBy: date_DESC, first: 1, where: {
-    status: PUBLISHED
-  }) {
+  events(orderBy: date_DESC, first: 1, where: { status: PUBLISHED }) {
     status
     id
     date
@@ -21,13 +19,13 @@
           fileName
         }
       }
-    },
+    }
     venue {
       id
       name
     }
   }
-  sponsors {
+  sponsors(where: { status: PUBLISHED }) {
     name
     website
     logo {

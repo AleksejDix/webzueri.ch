@@ -1,0 +1,13 @@
+{
+  speakers(orderBy: name_ASC) {
+    id
+    name
+    speakerPicture {
+      url
+    }
+    talks {
+      id
+      name
+    }
+  }
+}

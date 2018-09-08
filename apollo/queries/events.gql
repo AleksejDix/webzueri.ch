@@ -1,5 +1,10 @@
-query events( $first: Int!, $skip: Int! ) {
-  events (orderBy: date_DESC, first: $first, skip: $skip) {
+query events($first: Int!, $skip: Int!) {
+  events(
+    orderBy: date_DESC
+    first: $first
+    skip: $skip
+    where: { status: PUBLISHED }
+  ) {
     id
     date
     talks {
