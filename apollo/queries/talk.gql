@@ -4,5 +4,12 @@ query talk($id: ID!) {
     name
     abstract
     youtubecode
+    speakers {
+      id
+      name
+      speakerPicture {
+        url
+      }
+    }
   }
 }

@@ -1,5 +1,5 @@
 <template>
-  <nuxt-link :to="{ name: 'talk-id', params: { id: talk.id }}" class=" block bg-indigo-darker rounded-lg p-4 md:p-8 text-white md:flex talk no-underline whitespace-normal">
+  <nuxt-link :to="{ name: 'talk-id', params: { id: talk.id }}" class=" block bg-indigo-darker rounded-lg p-4 md:p-8 text-white md:flex zoom no-underline whitespace-normal">
     <div class="flex flex-col flex-1 pb-4 md:pb-0 md:pr-4">
       <div>
         <div class="inline-flex items-center rounded-full bg-grey-light text-red inline-block p-1 px-2 mb-4 leading-none uppercase text-xs tracking-wide font-bold" v-if="talk.youtubecode">
@@ -14,8 +14,8 @@
       <div class="mt-auto">
         <div class=" flex text-white -mt-4 -ml-4 py-4">
           <div class="inline-block pl-4 pt-4" v-for="speaker in talk.speakers" v-if="talk.speakers" :key="speaker.id">
-            <div class="inline-flex items-center bg-indigo-dark rounded-full">
-              <div class="inline-block rounded-full w-12 h-12 mr-4 border-2 flex-no-shrink overflow-hidden" v-if="speaker.speakerPicture">
+            <div class="inline-flex items-center bg-purple rounded-full p-1">
+              <div class="inline-block rounded-full w-12 h-12 mr-4 flex-no-shrink overflow-hidden" v-if="speaker.speakerPicture">
                 <img class="block w-12 h-12" :src="speaker.speakerPicture.url" :alt="speaker.name">
               </div>
               <div class="flex-1 text-lg pr-8 text-white font-bold">{{speaker.name}}</div>
@@ -48,16 +48,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.talk {
-  transition: transform 160ms;
-}
-
-.talk:focus,
-.talk:hover {
-  transform: scale(1.05);
-}
-</style>
-
-

@@ -4,7 +4,7 @@
 
     <ul class="list-reset md:flex md:flex-wrap justify-center -m-2 md:-m-4">
       <li class="w-full md:w-1/2 xl:w-1/3 pb-2 md:p-2 " v-for="speaker in speakers" :key="speaker.id">
-        <div class="p-2 md:p-4 rounded shadow bg-indigo-darker md:h-full flex align-center  flex-row-reverse">
+        <nuxt-link :to="`/speaker/${speaker.id}`" class="zoom no-underline p-2 md:p-4 rounded shadow bg-indigo-darker md:h-full flex align-center  flex-row-reverse">
 
           <div class="flex-no-shrink flex items-center p-2 md:p-4">
             <div class="overflow-hidden border-2 border-white rounded-full shadow w-12 h-12 md:w-16 md:h-16 xl:w-24 xl:h-24">
@@ -20,7 +20,7 @@
             </div>
           </div>
 
-        </div>
+        </nuxt-link>
       </li>
     </ul>
   </div>

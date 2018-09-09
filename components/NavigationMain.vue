@@ -1,6 +1,6 @@
 <template>
   <div class="bg-indigo-darkest">
-    <nav class="max-w-5xl mx-auto flex items-center p-4 relative" role="navigation">
+    <nav class="container mx-auto flex items-center p-2 relative" role="navigation">
       <a class="bg-green-lightest skip-link fixed pin-t bg-white no-underline uppercase rounded-b text-sm font-bold p-2" href="#content">
         Skip to content</a>
       <nuxt-link to="/" class="flex items-center flex-no-shrink mr-6 no-underline">
@@ -22,8 +22,9 @@
             </div>
           </div>
         </button>
+
         <transition name="menu" @after-enter="focusClose" @after-leave="focusOpen">
-          <focus-lock id="menu" class="absolute pin-t pin-r absolute z-50 m-4 md:w-sm shadow-lg rounded overflow-hidden" v-show="mobileNav">
+          <focus-lock id="menu" class="absolute pin-t pin-r absolute z-50 m-2 md:w-sm shadow-lg rounded overflow-hidden" v-show="mobileNav">
             <button class="inline-block absolute group pin-r pin-t rounded-full hover:bg-green-lightest focus:outline-none focus:bg-green-lightest p-2 m-2" @click="close" ref="close">
               <div class="flex items-center">
                 <span class="uppercase font-bold text-sm ml-2">close</span>

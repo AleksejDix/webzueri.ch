@@ -10,7 +10,7 @@
             <p class="max-w-md mx-auto leading-normal text-center text-xl md:text-2xl text-yellow-lighter">Learn, share and collaborate with your local
               <strong>web professionals</strong> and enthusiasts!</p>
             <div class="text-center pt-8">
-              <button @click="openModal" class="bg-yellow hover:bg-yellow-dark inline-block rounded py-4 px-6 uppercase no-underline text-md font-bold">Submit your talk</button>
+              <a target="_blank" rel="noopener" href="https://docs.google.com/forms/u/1/d/e/1FAIpQLSfTaa-_wOFOQv3dZ7Ord9TJ3vN8wNdzUY5VQqzFiTg_WMQwEw/viewform?c=0&w=1" class="shadow hover:shadow-lg min-w-32 leading-none  no-underline antialiased inline-flex items-center justify-center text-center py-4 px-6 bg-yellow hover:bg-white text-purple-darker font-semibold tracking-small rounded ">Submit your talk</a>
             </div>
           </div>
         </div>

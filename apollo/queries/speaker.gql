@@ -1,0 +1,14 @@
+query speaker($id: ID!) {
+  speaker(where: { id: $id }) {
+    id
+    name
+    speakerPicture {
+      url
+    }
+    talks {
+      id
+      name
+      abstract
+    }
+  }
+}
