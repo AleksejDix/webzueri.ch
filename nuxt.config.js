@@ -1,4 +1,14 @@
+const glob = require("glob-all");
+const path = require("path");
+const PurgecssPlugin = require("purgecss-webpack-plugin");
+
 const pkg = require("./package");
+
+class TailwindExtractor {
+  static extract(content) {
+    return content.match(/[A-z0-9-:/]+/g) || [];
+  }
+}
 
 module.exports = {
   mode: "universal",
@@ -41,24 +51,36 @@ module.exports = {
   /*
   ** Plugins to load before mounting the App
   */
-  plugins: ["~/plugins/components", "@/plugins/youtube-player"],
+  plugins: ["~/plugins/components"],
 
   /*
   ** Build configuration
   */
   build: {
-    /*
-    ** You can extend webpack config here
-    */
-    extend(config, ctx) {
-      // Run ESLint on save
-      if (ctx.isDev && ctx.isClient) {
-        config.module.rules.push({
-          enforce: "pre",
-          test: /\.(js|vue)$/,
-          loader: "eslint-loader",
-          exclude: /(node_modules)/
-        });
+    extractCSS: true,
+    postcss: [require("tailwindcss")("./tailwind.js"), require("autoprefixer")],
+    extend(config, { isDev }) {
+      if (!isDev) {
+        config.plugins.push(
+          new PurgecssPlugin({
+            // purgecss configuration
+            // https://github.com/FullHuman/purgecss
+            paths: glob.sync([
+              path.join(__dirname, "./pages/**/*.vue"),
+              path.join(__dirname, "./layouts/**/*.vue"),
+              path.join(__dirname, "./components/**/*.vue")
+            ]),
+            extractors: [
+              {
+                extractor: TailwindExtractor,
+                extensions: ["vue"]
+              }
+            ],
+            whitelist: ["html", "body", "nuxt-progress"],
+            whitelistPatterns: [/^group-hover/],
+            whitelistPatternsChildren: [/^group-hover/]
+          })
+        );
       }
     }
   },

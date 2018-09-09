@@ -48,7 +48,7 @@
     </section>
     <section class="py-8">
       <h2 class="p4 text-center text-white text-4xl font-light mb-8">Our recurring sponsors</h2>
-      <div class="container">
+      <div class="container mx-auto">
         <div class="flex flex-wrap justify-center text-white rounded-lg overflow-hidden bg-indigo-darker p-4">
           <a v-for="(sponsor, index) in sponsors" :class="[(index === 1) ? 'border-l' : 'border-r']" class="flex-1 flex flex-col " :href="sponsor.website" target="_blank" rel="noopener" :key="sponsor.id">
             <div class="w-full h-full flex items-center justify-center  py-4 px-8">

@@ -33,7 +33,9 @@
     "eslint-plugin-vue": "^4.0.0",
     "node-sass": "^4.9.2",
     "sass-loader": "^7.0.3",
-    "tailwindcss": "^0.6.4"
+    "tailwindcss": "^0.6.5",
+    "glob-all": "^3.1.0",
+    "purgecss-webpack-plugin": "^0.20.1"
   },
   "now": {
     "alias": "webzurich"

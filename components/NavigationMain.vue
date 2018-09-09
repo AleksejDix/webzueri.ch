@@ -23,7 +23,7 @@
           </div>
         </button>
         <transition name="menu" @after-enter="focusClose" @after-leave="focusOpen">
-          <focus-lock id="menu" class="absolute  z-50 pin-x mx-4 md:m-4 md:pin-none md:w-full md:max-w-sm md:pin-r md:pin-t shadow-lg rounded-lg" v-show="mobileNav">
+          <focus-lock id="menu" class="absolute pin-t pin-r absolute z-50 m-4 md:w-sm shadow-lg rounded overflow-hidden" v-show="mobileNav">
             <button class="inline-block absolute group pin-r pin-t rounded-full hover:bg-green-lightest focus:outline-none focus:bg-green-lightest p-2 m-2" @click="close" ref="close">
               <div class="flex items-center">
                 <span class="uppercase font-bold text-sm ml-2">close</span>
