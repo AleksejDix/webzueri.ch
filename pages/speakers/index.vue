@@ -41,6 +41,7 @@ export default {
   },
   apollo: {
     speakers: {
+      prefetch: true,
       query: QuerySpeakers,
     }
   }

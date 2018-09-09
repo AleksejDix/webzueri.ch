@@ -54,11 +54,11 @@ import ButtonDefault from "@/components/ButtonDefault"
 import Pagination from "@/components/Pagination"
 import QueryEvents from "~/apollo/queries/events"
 import QueryEventsCount from "~/apollo/queries/eventsCount"
-
-const POSTS_PER_PAGE = 5
+import { mapState } from 'vuex'
 
 export default {
   data: () => ({
+    postPerPage: 5,
     events: [],
     showNewTalkModal: false
   }),
@@ -67,32 +67,43 @@ export default {
       title: `Events ${this.$route.params.page}`
     }
   },
-  scrollToTop: false,
   apollo: {
     events: {
       query: QueryEvents,
+      prefetch: (context) => {
+        const {page} = context.route.params || 1
+        const {eventsPerPage} = context.store.state
+        const skip = Number(page) * eventsPerPage - eventsPerPage
+        const first = eventsPerPage
+        return {
+          skip,
+          first
+        }
+      },
       variables() {
         return {
           skip: this.skip,
-          first: POSTS_PER_PAGE
+          first: this.eventsPerPage
         }
       }
     },
     eventsCount: {
+      prefetch: true,
       query: QueryEventsCount,
       update: ({ eventsConnection }) => eventsConnection.aggregate.count
     }
   },
   components: { Talk, Modal, ButtonDefault, Pagination },
   computed: {
+    ...mapState(['eventsPerPage']),
     page() {
       if (this.$route.params.page) return Number(this.$route.params.page) || 1
     },
     maxPage() {
-      return Math.ceil(this.eventsCount / POSTS_PER_PAGE)
+      return Math.ceil(this.eventsCount / this.eventsPerPage)
     },
     skip() {
-      return this.page * POSTS_PER_PAGE - POSTS_PER_PAGE
+      return this.page * this.eventsPerPage - this.eventsPerPage
     }
   },
 

@@ -1,4 +1,4 @@
-{
+query speakers {
   speakers(orderBy: name_ASC) {
     id
     name

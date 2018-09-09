@@ -3,6 +3,7 @@ import Vuex from 'vuex';
 const createStore = () => {
   return new Vuex.Store({
     state: {
+      eventsPerPage: 5,
       menu: {
         intern: {
           title: "Information",
