@@ -49,7 +49,7 @@
                         </div>
 
                         <div class="flex-1 flex justify-between leading-normal flex-wrap">
-                          <span class="w-full sm:w-auto text-blue-darkest group-hover:text-blue-dark  font-bold tracking-wide">{{link.text}}</span>
+                          <span class="w-full sm:w-auto text-blue-darkest group-hover:text-blue-dark font-bold tracking-wide pr-8">{{link.text}}</span>
                           <span class="text-grey-darker group-hover:text-grey-darkest inline-block font-base max-w-xs" v-if="link.desc" v-html="link.desc"></span>
                         </div>
 
