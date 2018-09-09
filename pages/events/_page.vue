@@ -2,6 +2,7 @@
   <div id="content">
     <loader v-if="$apollo.loading" />
     <div class="bg-indigo-darkest">
+
       <section class="pt-12 pb-8 bg-indigo-darkest">
         <div class="max-w-3xl mx-auto">
           <div class="px-4">
