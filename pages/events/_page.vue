@@ -27,9 +27,9 @@
 
           <template v-else>
             <template v-for="event in events">
-              <template v-for="talk in event.talks" v-if="talk">
-                <talk :talk="talk" :date="event.date" :key="talk.id"></talk>
-              </template>
+              <div class="p-2" v-for="talk in event.talks" v-if="talk" :key="talk.id">
+                <talk :talk="talk" :date="event.date"></talk>
+              </div>
             </template>
             <pagination :page="page" :maxPage="maxPage"></pagination>
           </template>

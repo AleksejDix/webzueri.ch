@@ -1,19 +1,26 @@
 <template>
-  <nuxt-link :to="{ name: 'talk-id', params: { id: talk.id }}" class="mt-4 block bg-indigo-darker rounded-lg p-4 md:p-8 text-white md:flex talk no-underline whitespace-normal">
-    <div class="flex-1 pb-4 md:pb-0 md:pr-4">
-      <div class="inline-flex items-center rounded-full bg-grey-light text-red inline-block p-1 px-2 mb-4 leading-none uppercase text-xs tracking-wide font-bold" v-if="talk.youtubecode">
-        <span class="inline-block w-2 h-2 bg-red rounded-full mr-1 "></span>
-        <span class="relative" style="bottom: 1px"> recorded</span>
+  <nuxt-link :to="{ name: 'talk-id', params: { id: talk.id }}" class=" block bg-indigo-darker rounded-lg p-4 md:p-8 text-white md:flex talk no-underline whitespace-normal">
+    <div class="flex flex-col flex-1 pb-4 md:pb-0 md:pr-4">
+      <div>
+        <div class="inline-flex items-center rounded-full bg-grey-light text-red inline-block p-1 px-2 mb-4 leading-none uppercase text-xs tracking-wide font-bold" v-if="talk.youtubecode">
+          <span class="inline-block w-2 h-2 bg-red rounded-full mr-1 "></span>
+          <span class="relative" style="bottom: 1px"> recorded</span>
+        </div>
+        <div class="rounded-full bg-pink-dark inline-block p-1 px-2 mb-4 leading-none uppercase text-xs tracking-wide font-bold" v-if="isFutureTalk">uppcomming</div>
+
+        <h2 class="text-white text-2xl md:text-3xl leading-tight font-semibold">{{talk.name}}</h2>
+        <div v-if="talk.abstract" class="abstract leading-normal py-4 text-body">{{talk.abstract | shorten }}</div>
       </div>
-      <div class="rounded-full bg-pink-dark inline-block p-1 px-2 mb-4 leading-none uppercase text-xs tracking-wide font-bold" v-if="isFutureTalk">uppcomming</div>
-      <h2 class="text-white text-2xl md:text-3xl leading-tight font-semibold">{{talk.name}}</h2>
-      <div v-if="talk.abstract" class="abstract leading-normal py-4 text-lg">{{talk.abstract | shorten }}</div>
-      <div class="flex items-center justify-between pt-6 text-white">
-        <div class="flex items-center" v-for="speaker in talk.speakers" v-if="talk.speakers" :key="speaker.id">
-          <div class="rounded-full w-12 h-12 mr-4 border-2 flex-no-shrink overflow-hidden" v-if="speaker.speakerPicture">
-            <img :src="speaker.speakerPicture.url" :alt="speaker.name">
+      <div class="mt-auto">
+        <div class=" flex text-white -mt-4 -ml-4 py-4">
+          <div class="inline-block pl-4 pt-4" v-for="speaker in talk.speakers" v-if="talk.speakers" :key="speaker.id">
+            <div class="inline-flex items-center bg-indigo-dark rounded-full">
+              <div class="inline-block rounded-full w-12 h-12 mr-4 border-2 flex-no-shrink overflow-hidden" v-if="speaker.speakerPicture">
+                <img class="block w-12 h-12" :src="speaker.speakerPicture.url" :alt="speaker.name">
+              </div>
+              <div class="flex-1 text-lg pr-8 text-white font-bold">{{speaker.name}}</div>
+            </div>
           </div>
-          <div class="flex-1 text-lg">{{speaker.name}}</div>
         </div>
       </div>
     </div>
@@ -33,11 +40,10 @@ export default {
   },
   filters: {
     shorten(value) {
-      if (value.length <= 160) return
-
-      const result = value.substring(0, 150)
-
-      return result + '…'
+      return value
+      // if (value.length <= 160) return value
+      // const result = value.substring(0, 160)
+      // return result + '…'
     }
   }
 }

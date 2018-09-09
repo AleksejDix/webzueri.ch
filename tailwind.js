@@ -261,6 +261,7 @@ module.exports = {
   textSizes: {
     xs: ".75rem", // 12px
     sm: ".875rem", // 14px
+    body: "0.9375rem", // 15px
     base: "1rem", // 16px
     lg: "1.125rem", // 18px
     xl: "1.25rem", // 20px
@@ -330,6 +331,7 @@ module.exports = {
   tracking: {
     tight: "-0.05em",
     normal: "0",
+    small: "0.0125em",
     wide: "0.05em"
   },
 
@@ -473,6 +475,7 @@ module.exports = {
     "2": "0.5rem",
     "3": "0.75rem",
     "4": "1rem",
+    "5": "1.25rem",
     "6": "1.5rem",
     "8": "2rem",
     "10": "2.5rem",
@@ -520,6 +523,7 @@ module.exports = {
     "2": "0.5rem",
     "3": "0.75rem",
     "4": "1rem",
+    "5": "1.25rem",
     "6": "1.5rem",
     "8": "2rem",
     "10": "2.5rem",

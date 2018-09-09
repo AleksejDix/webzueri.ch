@@ -5,6 +5,14 @@
     date
     title
     meetupLink
+    sponsors {
+      id
+      name
+      website
+      logo {
+        url
+      }
+    }
     talks {
       id
       name
@@ -23,13 +31,6 @@
     venue {
       id
       name
-    }
-  }
-  sponsors(where: { status: PUBLISHED }) {
-    name
-    website
-    logo {
-      url
     }
   }
 }
