@@ -31,18 +31,18 @@ import gql from 'graphql-tag'
 import QuerySpeakers from "~/apollo/queries/speakers"
 
 export default {
+  apollo: {
+    speakers: {
+      prefetch: true,
+      query: QuerySpeakers,
+    }
+  },
   data: () => ({
     speakers: []
   }),
   head() {
     return {
       title: "Speakers"
-    }
-  },
-  apollo: {
-    speakers: {
-      prefetch: true,
-      query: QuerySpeakers,
     }
   }
 }
