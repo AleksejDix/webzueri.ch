@@ -21,7 +21,7 @@
         <div class="md:flex items-center relative">
           <div class="md:w-full p-4 owl">
             <div v-if="talks[0].youtubecode" class="relative rounded-lg overflow-hidden shadow-lg" style="width: 100%; padding-top: calc(100% * 9 / 16 )">
-              <iframe class="absolute pin w-full h-full" type="text/html" :src="`http://www.youtube.com/embed/${talks[0].youtubecode}`" frameborder="0" />
+              <iframe class="absolute pin w-full h-full" type="text/html" :src="`https://www.youtube.com/embed/${talks[0].youtubecode}`" frameborder="0" />
             </div>
           </div>
         </div>
