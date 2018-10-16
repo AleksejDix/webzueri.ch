@@ -1,0 +1,5 @@
+{
+  "env": {
+    "GRAPHCMS_API": "@GRAPHCMS_API"
+  }
+}
