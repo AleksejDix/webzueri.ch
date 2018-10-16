@@ -1,6 +1,6 @@
-const glob = require("glob-all");
-const path = require("path");
-const PurgecssPlugin = require("purgecss-webpack-plugin");
+import glob from 'glob-all';
+import path from 'path';
+import PurgecssPlugin from 'purgecss-webpack-plugin';
 
 const pkg = require("./package");
 
@@ -10,7 +10,7 @@ class TailwindExtractor {
   }
 }
 
-module.exports = {
+export default {
   mode: "universal",
   router: {
     base: "/"
@@ -87,7 +87,9 @@ module.exports = {
   modules: ["@nuxtjs/apollo"],
   apollo: {
     clientConfigs: {
-      default: "~/apollo/client-configs/default.js"
+      default: {
+        httpEndpoint: "https://api-euwest.graphcms.com/v1/cjiqbztau0hjj01i2nukb5bjt/master",
+      }
     }
   }
 };
