@@ -12,3 +12,6 @@ yarn.lock
 
 # Nuxt generate
 dist
+
+# firebase
+firebase.js

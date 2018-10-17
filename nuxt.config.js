@@ -14,8 +14,7 @@ class TailwindExtractor {
 export default {
   mode: "universal",
   router: {
-    base: '/',
-    middleware: 'router-auth'
+    base: '/'
   },
   env: {
     baseUrl: process.env.BASE_URL || "http://localhost:3000"
@@ -56,7 +55,7 @@ export default {
   */
   plugins: [
     '~/plugins/components',
-    '~/plugins/fireauth.js'
+    '~/plugins/firebase-plugin'
   ],
   /*
   ** Nuxt.js modules

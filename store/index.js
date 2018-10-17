@@ -1,9 +1,17 @@
+import { fb } from '@/plugins/firebase-plugin';
 import Vuex from 'vuex';
+
+const firebase = fb;
+const db = firebase.firestore();
+db.settings({timestampsInSnapshots: true});
+
+firebase.auth().useDeviceLanguage()
 
 const createStore = () => {
   return new Vuex.Store({
     state: {
-      authUser: null,
+      user: null,
+      account: null,
       eventsPerPage: 5,
       menu: {
         intern: {
@@ -57,21 +65,76 @@ const createStore = () => {
         }
       }
     },
-    mutations: {
-      SET_TALKS (state, payload) {
-        state.talks = payload
-      },
-
-      SET_STORY (state, payload) {
-        state.story = payload.story
-      },
-
-      SET_AUTH_USER (state, payload) {
-        state.authUser = payload
-        console.log(state.authUser)
+    getters: {
+      isAuthenticated (state) {
+        return !!state.user
       }
+    },
+    actions: {
+      createNewAccount ({commit}, payload) {
+        console.log(payload)
+        const { uid, displayName, email, photoURL } = payload
+        db.collection("users").doc(uid).set({displayName , email, photoURL})
+        .then(docRef => {
+          console.log("Document written with ID: ", docRef);
+        })
+        .catch(function(error) {
+          console.error("Error adding document: ", error);
+        });
+      },
+
+      async userGoogleLogin ({ dispatch, commit }) {
+        const { user } = await firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider())
+        dispatch('createNewAccount', user)
+        commit('setUser', user)
+      },
+
+      async userGithubLogin ({ dispatch, commit }) {
+        console.log('github')
+        const { user } = await firebase.auth().signInWithPopup(new firebase.auth.GithubAuthProvider())
+        dispatch('createNewAccount', user)
+        commit('setUser', user)
+      },
+
+      async userRegister ({ dispatch }, { email, password }) {
+        const { user } = await firebase.auth().createUserWithEmailAndPassword(email, password)
+        dispatch('createNewAccount', user)
+      },
+
+      async userLogin ({commit}, {email, password}) {
+        const user = await firebase.auth().signInWithEmailAndPassword(email, password)
+        console.log('Username Password Login:', user)
+        commit('setUser', user)
+      },
+
+      async userLogout ({commit}) {
+        await firebase.auth().signOut()
+        commit('resetUser')
+      },
+
+      // userNameUpdate ({ state }, name) {
+      //   firebase.database().ref(`accounts/${state.user.uid}`).update({displayName: name})
+      // },
+
+      // userUpdateImage ({ state }, image) {
+      //   firebase.database().ref(`accounts/${state.user.uid}`).update({image: image})
+      // },
+
+      // async userImageUpload ({state, commit}, file) {
+      //   const snapshot = await firebase.storage().ref(`accounts/profile/${state.user.uid}`).put(files[0])
+      //   const downloadURL = await snapshot.ref.getDownloadURL()
+      //   commit('userUpdateImage', downloadURL)
+      // },
+    },
+    mutations: {
+      setUser (state, user) {
+        state.user = user
+      },
+      resetUser (state) {
+        state.user = null
+      },
     }
-  });
+  })
 }
 
-export default createStore;
+export default createStore

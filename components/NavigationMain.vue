@@ -11,7 +11,9 @@
         </div>
         <span class="font-bold text-white text-base tracking-wide font-display uppercase">Web Züri</span>
       </nuxt-link>
+
       <div class="flex-1 flex justify-end w-full">
+
         <button class="inline-block group hover:bg-green-lightest rounded-full focus:outline-none p-2 m-2" aria-controls="menu" :aria-expanded="mobileNav" ref="open" @click="open" aria-live="assertive">
           <div class="flex items-center">
             <span class="uppercase text-white group-hover:text-green-darkest font-bold text-sm ml-2">Menu</span>
@@ -22,6 +24,13 @@
             </div>
           </div>
         </button>
+
+        <nuxt-link
+          class="inline-block group hover:bg-green-lightest rounded-full focus:outline-none p-2 m-2"
+          v-if="user" to="/account"><img class="w-8 h-8 rounded-full" :src="user.photoURL"/></nuxt-link>
+        <nuxt-link
+          class="inline-block group hover:bg-green-lightest rounded-full focus:outline-none p-2 m-2"
+          v-else to="/account/login">Login</nuxt-link>
 
         <transition name="menu" @after-enter="focusClose" @after-leave="focusOpen">
           <focus-lock id="menu" class="absolute pin-t pin-r absolute z-50 m-2 md:w-sm shadow-lg rounded overflow-hidden" v-show="mobileNav">
@@ -98,10 +107,13 @@ import FocusLock from 'vue-focus-lock';
 import {mapState} from 'vuex'
 
 export default {
-  components: {FocusLock},
+  components: {
+    FocusLock
+  },
   computed: {
     ...mapState([
-      'menu'
+      'menu',
+      'user'
     ])
   },
   data() {
