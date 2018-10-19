@@ -17,6 +17,7 @@
   "dependencies": {
     "@nuxtjs/apollo": "^4.0.0-rc2.3",
     "cookie-parser": "^1.4.3",
+    "dotenv": "^6.1.0",
     "firebase": "^5.5.4",
     "firebase-admin": "^6.0.0",
     "graphql": "^14.0.2",
@@ -39,5 +40,9 @@
     "purgecss-webpack-plugin": "^1.3.0",
     "sass-loader": "^7.0.3",
     "tailwindcss": "^0.6.6"
+  },
+  "node": {
+    "fs": "empty",
+    "child_process": "empty"
   }
 }

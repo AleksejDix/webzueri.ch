@@ -140,9 +140,6 @@ export default {
     }
   },
   methods: {
-    handleClick(e) {
-      console.log('clicked', e)
-    },
     handleKey(e) {
       if (event.keyCode !== 27) return
       this.close()

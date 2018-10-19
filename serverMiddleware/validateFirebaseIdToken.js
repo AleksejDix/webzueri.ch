@@ -1,4 +1,4 @@
-const admin = require('../services/firebase-admin-init.js')
+import admin from '../services/firebase-admin-init.js'
 const cookieParser = require('cookie-parser')();
 global.XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest
 const db = admin.firestore()

@@ -1,16 +1,17 @@
 import 'firebase/auth';
 import 'firebase/firestore';
 import 'firebase/storage';
-
 import * as firebase from 'firebase/app';
 
-var config = {
-  apiKey: "AIzaSyCUj0VrsmXrSBJINseBT86G6514Emg3GCU",
-  authDomain: "web-zuri.firebaseapp.com",
-  databaseURL: "https://web-zuri.firebaseio.com",
-  projectId: "web-zuri",
-  storageBucket: "web-zuri.appspot.com",
-  messagingSenderId: "265864207852"
+
+
+const config = {
+  "apiKey": "AIzaSyCUj0VrsmXrSBJINseBT86G6514Emg3GCU",
+  "authDomain": "web-zuri.firebaseapp.com",
+  "databaseURL": "https://web-zuri.firebaseio.com",
+  "projectId": "web-zuri",
+  "storageBucket": "web-zuri.appspot.com",
+  "messagingSenderId": "265864207852"
 }
 
 export default !firebase.apps.length ? firebase.initializeApp(config) : firebase.app()

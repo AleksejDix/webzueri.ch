@@ -1,7 +1,7 @@
+require('dotenv').config()
 import glob from 'glob-all';
 import path from 'path';
 import PurgecssPlugin from 'purgecss-webpack-plugin';
-
 const pkg = require("./package");
 
 class TailwindExtractor {

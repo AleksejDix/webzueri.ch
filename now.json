@@ -1,6 +1,8 @@
 {
   "env": {
-    "graphcms_token": "@graphcms_token"
+    "graphcms_token": "@graphcms_token",
+    "firebase_api_key": "@firebase_api_key",
+    "firebase_admin_private_key" : "@firebase_admin_private_key"
   },
   "alias": "webzurich"
 }

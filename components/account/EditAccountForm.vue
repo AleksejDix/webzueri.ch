@@ -27,7 +27,6 @@ export default {
     async handleUpload(e) {
 
       const file = e.target.files[0];
-      console.log(file)
       this.userImageUpload(file)
     }
   }
