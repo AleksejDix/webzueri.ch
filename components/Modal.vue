@@ -4,7 +4,6 @@
     style="background-color: rgba(47,54,95,.82)"
     class="model-mask  fixed pin overflow-auto p-4"
     v-if="show" @close.self="show = false"
-
     >
 
     <section
@@ -69,11 +68,6 @@
       </footer>
 
       </form>
-
-
-
-
-
       </focus-lock>
 
     </section>
@@ -84,7 +78,7 @@
 
 <script>
 import FocusLock from 'vue-focus-lock';
-import ButtonDefault from '@/components/ButtonDefault';
+import ButtonDefault from '~/components/button-default';
 
 export default {
   components: { FocusLock, ButtonDefault },

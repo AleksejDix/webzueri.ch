@@ -1,17 +1,12 @@
-import { fb } from '@/plugins/firebase-plugin';
 import Vuex from 'vuex';
-
-const firebase = fb;
-const db = firebase.firestore();
-db.settings({timestampsInSnapshots: true});
-
-firebase.auth().useDeviceLanguage()
+import { Auth, DB, Storage, GithubAuthProvider, GoogleAuthProvider } from '~/plugins/firebase-client-init.js';
 
 const createStore = () => {
   return new Vuex.Store({
     state: {
+      loading: false,
       user: null,
-      account: null,
+      profile: '',
       eventsPerPage: 5,
       menu: {
         intern: {
@@ -68,47 +63,56 @@ const createStore = () => {
     getters: {
       isAuthenticated (state) {
         return !!state.user
+      },
+      activeUser: (state) => {
+        return state.user
+      },
+      isLoading: (state) => {
+        return state.loading
       }
     },
     actions: {
-      createNewAccount ({commit}, payload) {
-        console.log(payload)
-        const { uid, displayName, email, photoURL } = payload
-        db.collection("users").doc(uid).set({displayName , email, photoURL})
-        .then(docRef => {
-          console.log("Document written with ID: ", docRef);
-        })
-        .catch(function(error) {
-          console.error("Error adding document: ", error);
-        });
+      // seed store with the userdata from serverMiddleware
+      nuxtServerInit ({ commit }, { req }) {
+        if (req.user) {
+          commit('setUser', req.user)
+        }
+        if (req.profile) {
+          commit('setProfile', req.profile)
+        }
       },
 
-      async userGoogleLogin ({ dispatch, commit }) {
-        const { user } = await firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider())
-        dispatch('createNewAccount', user)
-        commit('setUser', user)
+      async createNewAccount ({commit}, {email, displayName: name, uid, photoURL: picture}) {
+        await DB.collection("users").doc(uid).set({email, name, uid, picture})
+        commit('setUser', {email, name, uid, picture})
+        const docRef = await DB.collection("users").doc(uid)
+        const doc = await docRef.get()
+        commit('setProfile', doc.data())
+        this.app.router.push('/profile/')
       },
 
-      async userGithubLogin ({ dispatch, commit }) {
-        console.log('github')
-        const { user } = await firebase.auth().signInWithPopup(new firebase.auth.GithubAuthProvider())
+      async userGoogleLogin ({ dispatch }) {
+        const authData = await Auth.signInWithPopup(GoogleAuthProvider)
+        dispatch('createNewAccount', authData.user)
+      },
+
+      async userGithubLogin ({ dispatch }) {
+        const { user } = await Auth.signInWithPopup(GithubAuthProvider)
         dispatch('createNewAccount', user)
-        commit('setUser', user)
       },
 
       async userRegister ({ dispatch }, { email, password }) {
-        const { user } = await firebase.auth().createUserWithEmailAndPassword(email, password)
+        const { user } = await Auth.createUserWithEmailAndPassword(email, password)
         dispatch('createNewAccount', user)
       },
 
       async userLogin ({commit}, {email, password}) {
-        const user = await firebase.auth().signInWithEmailAndPassword(email, password)
-        console.log('Username Password Login:', user)
+        const user = await Auth.signInWithEmailAndPassword(email, password)
         commit('setUser', user)
       },
 
       async userLogout ({commit}) {
-        await firebase.auth().signOut()
+        await Auth.signOut()
         commit('resetUser')
       },
 
@@ -116,23 +120,33 @@ const createStore = () => {
       //   firebase.database().ref(`accounts/${state.user.uid}`).update({displayName: name})
       // },
 
-      // userUpdateImage ({ state }, image) {
-      //   firebase.database().ref(`accounts/${state.user.uid}`).update({image: image})
-      // },
+      async userImageUpload ({state, commit}, payload) {
+        const snapshot = await Storage.ref(`/profiles/${state.profile.uid}`).put(payload)
+        const picture = await snapshot.ref.getDownloadURL()
+        commit('updateUserImage', picture)
+        DB.collection('users').doc(state.profile.uid).update({picture})
 
-      // async userImageUpload ({state, commit}, file) {
-      //   const snapshot = await firebase.storage().ref(`accounts/profile/${state.user.uid}`).put(files[0])
-      //   const downloadURL = await snapshot.ref.getDownloadURL()
-      //   commit('userUpdateImage', downloadURL)
-      // },
+
+      },
     },
     mutations: {
-      setUser (state, user) {
-        state.user = user
+      updateUserImage(state, payload) {
+        state.profile.picture = payload
+      },
+      setUser (state, payload) {
+        state.user = payload
+      },
+      setProfile (state, payload) {
+        state.profile = payload
       },
       resetUser (state) {
         state.user = null
+        state.profile = null
+        this.app.router.push('/')
       },
+      setLoading (state, payload) {
+        state.loading = payload
+      }
     }
   })
 }

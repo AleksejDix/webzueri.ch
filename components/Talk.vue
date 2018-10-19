@@ -1,5 +1,5 @@
 <template>
-  <nuxt-link :to="{ name: 'talk-id', params: { id: talk.id }}" class=" block bg-indigo-darker rounded-lg p-4 md:p-8 text-white md:flex zoom no-underline whitespace-normal">
+  <nuxt-link :to="{ name: 'talk-id', params: { id: talk.id }}" class=" block bg-primary rounded-lg p-4 md:p-8 text-white md:flex zoom no-underline whitespace-normal">
     <div class="flex flex-col flex-1 pb-4 md:pb-0 md:pr-4">
       <div>
         <div class="inline-flex items-center rounded-full bg-grey-light text-red inline-block p-1 px-2 mb-4 leading-none uppercase text-xs tracking-wide font-bold" v-if="talk.youtubecode">

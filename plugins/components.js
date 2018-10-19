@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import Chip from '~/components/Chip.vue';
+import Chip from '~/components/chip.vue';
 import Events from '~/components/Events.vue';
 import Loader from '~/components/Loader.vue';
 

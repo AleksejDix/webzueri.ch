@@ -55,7 +55,11 @@ export default {
   */
   plugins: [
     '~/plugins/components',
-    '~/plugins/firebase-plugin'
+    { src: '~/plugins/firebase-client-init.js', ssr: false },
+    { src: '~/plugins/auth-cookie.js', ssr: false }
+  ],
+  serverMiddleware: [
+    '~/serverMiddleware/validateFirebaseIdToken'
   ],
   /*
   ** Nuxt.js modules
@@ -66,7 +70,11 @@ export default {
   */
   build: {
     extractCSS: true,
-    postcss: [require("tailwindcss")("./tailwind.js"), require("autoprefixer")],
+    postcss: [
+      require('postcss-import')(),
+      require("tailwindcss")("./tailwind.js"),
+      require("autoprefixer")
+    ],
     extend(config, { isDev }) {
       if (!isDev) {
         config.plugins.push(

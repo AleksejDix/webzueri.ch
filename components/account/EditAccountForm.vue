@@ -1,13 +1,8 @@
 <template>
   <div>
-    <label>
-      <span>Username</span>
-      <input v-model.lazy="name">
-    </label>
-    <label>
-      <span>Image</span>
-      <input @change="handleUpload" type="file" accept="image/*">
-    </label>
+    <img v-if="picture" :src="picture" alt="">
+    <input v-model.lazy="name"/>
+    <input @change="handleUpload" type="file" accept="image/*"/>
   </div>
 </template>
 
@@ -20,15 +15,20 @@ export default {
       get () { return ''},
       set (value) { this.userNameUpdate(value) }
     },
-    image () {
-      return this.$store.state.account.image
+    picture () {
+      if (this.$store.state.profile) {
+        return this.$store.state.profile.picture
+      }
+
     }
   },
   methods: {
     ...mapActions(['userNameUpdate', 'userImageUpload']),
     async handleUpload(e) {
-      const files = e.target.files || e.dataTransfer.files;
-      this.userImageUpload(files[0])
+
+      const file = e.target.files[0];
+      console.log(file)
+      this.userImageUpload(file)
     }
   }
 }

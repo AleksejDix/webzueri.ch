@@ -13,10 +13,11 @@
 
 <script>
 
+
 import Modal from "@/components/Modal"
 import NavigationMain from "@/components/NavigationMain"
 import SvgSymbols from "@/components/SvgSymbols"
-import ButtonDefault from '@/components/ButtonDefault'
+import ButtonDefault from '~/components/button-default'
 
 export default {
   components: { Modal, SvgSymbols, NavigationMain, ButtonDefault },
