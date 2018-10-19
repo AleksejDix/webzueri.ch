@@ -13,13 +13,13 @@
 
 <script>
 
+
 import Modal from "@/components/Modal"
 import NavigationMain from "@/components/NavigationMain"
 import SvgSymbols from "@/components/SvgSymbols"
-import ButtonDefault from '@/components/ButtonDefault'
 
 export default {
-  components: { Modal, SvgSymbols, NavigationMain, ButtonDefault },
+  components: { Modal, SvgSymbols, NavigationMain },
   data() {
     return {
       showNewTalkModal: false

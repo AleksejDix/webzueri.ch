@@ -1,7 +1,7 @@
+require('dotenv').config()
 import glob from 'glob-all';
 import path from 'path';
 import PurgecssPlugin from 'purgecss-webpack-plugin';
-
 const pkg = require("./package");
 
 class TailwindExtractor {
@@ -14,8 +14,7 @@ class TailwindExtractor {
 export default {
   mode: "universal",
   router: {
-    base: '/',
-    middleware: 'router-auth'
+    base: '/'
   },
   env: {
     baseUrl: process.env.NOW_URL || "http://localhost:3000"
@@ -29,7 +28,7 @@ export default {
       lang: "en-US"
     },
     bodyAttrs: {
-      class: "antialiased bg-indigo-darkest"
+      class: "antialiased"
     },
     meta: [
       { charset: "utf-8" },
@@ -56,7 +55,11 @@ export default {
   */
   plugins: [
     '~/plugins/components',
-    '~/plugins/fireauth.js'
+    { src: '~/plugins/firebase-client-init.js', ssr: false },
+    { src: '~/plugins/auth-cookie.js', ssr: false }
+  ],
+  serverMiddleware: [
+    '~/serverMiddleware/validateFirebaseIdToken'
   ],
   /*
   ** Nuxt.js modules
@@ -67,7 +70,11 @@ export default {
   */
   build: {
     extractCSS: true,
-    postcss: [require("tailwindcss")("./tailwind.js"), require("autoprefixer")],
+    postcss: [
+      require('postcss-import')(),
+      require("tailwindcss")("./tailwind.js"),
+      require("autoprefixer")
+    ],
     extend(config, { isDev }) {
       if (!isDev) {
         config.plugins.push(

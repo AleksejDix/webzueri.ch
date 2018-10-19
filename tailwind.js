@@ -45,11 +45,26 @@ View the full documentation at https://tailwindcss.com.
 let colors = {
   transparent: "transparent",
 
+  "surface": "#E8E1E1",
+  "text": "#442C2E",
+
+  "on-light-primary":   "hsla(0,0%,0%,.87)",
+  "on-light-secondary": "hsla(0,0%,0%,.54)",
+  "on-light-muted":     "hsla(0,0%,0%,.38)",
+
+  "on-dark-primary":   "hsla(0,0%,100%,1)",
+  "on-dark-secondary": "hsla(0,0%,100%,.7)",
+  "on-dark-muted":     "hsla(0,0%,100%,.5)",
+
+  "primary-light": "#534bae",
+  "primary": "#1a237e",
+  "primary-dark": "#000051",
+
   black: "#22292f",
   "grey-darkest": "#3d4852",
   "grey-darker": "#606f7b",
   "grey-dark": "#8795a1",
-  grey: "#b8c2cc",
+  grey: "#e0e0e0",
   "grey-light": "#dae1e7",
   "grey-lighter": "#f1f5f8",
   "grey-lightest": "#f8fafc",
@@ -575,6 +590,7 @@ module.exports = {
   minHeight: {
     "0": "0",
     "4": "1rem",
+    "28" : "7rem",
     "64": "16rem",
     full: "100%",
     screen: "100vh"
@@ -778,9 +794,9 @@ module.exports = {
 
   opacity: {
     "0": "0",
-    "25": ".25",
-    "50": ".5",
-    "75": ".75",
+    "8": ".08",
+    "24": ".24",
+    "32": ".32",
     "100": "1"
   },
 
@@ -866,7 +882,7 @@ module.exports = {
     minHeight: ["responsive"],
     minWidth: ["responsive"],
     negativeMargin: ["responsive"],
-    opacity: ["responsive"],
+    opacity: ["responsive", "group-hover"],
     overflow: ["responsive"],
     outline: ["hover", "focus"],
     padding: ["responsive"],
@@ -917,5 +933,11 @@ module.exports = {
     prefix: "",
     important: false,
     separator: ":"
-  }
+  },
+
+  experiments: {
+    shadowLookup: true
+  },
+
+  shadowLookup: true
 };

@@ -1,8 +1,9 @@
 <template>
-  <div class="bg-indigo-darkest">
+  <div class="bg-primary-dark">
     <nav class="container mx-auto flex items-center p-2 relative" role="navigation">
       <a class="bg-green-lightest skip-link fixed pin-t bg-white no-underline uppercase rounded-b text-sm font-bold p-2" href="#content">
         Skip to content</a>
+
       <nuxt-link to="/" class="flex items-center flex-no-shrink mr-6 no-underline">
         <div class="bg-green-lightest rounded-full w-12 mr-4 h-12 p-2 flex items-center justify-center">
           <svg class="w-6 h-6 fill-teal-dark">
@@ -11,21 +12,45 @@
         </div>
         <span class="font-bold text-white text-base tracking-wide font-display uppercase">Web Züri</span>
       </nuxt-link>
-      <div class="flex-1 flex justify-end w-full">
-        <button class="inline-block group hover:bg-green-lightest rounded-full focus:outline-none p-2 m-2" aria-controls="menu" :aria-expanded="mobileNav" ref="open" @click="open" aria-live="assertive">
+
+      <chip :dropdown="true" :user="user"/>
+
+      <div class="flex-1 flex justify-end w-full items-center">
+
+        <nuxt-link
+          class="no-underline inline-block group hover:bg-green-lightest rounded-full focus:outline-none p-1 m-1"
+          v-if="user" to="/profile">
           <div class="flex items-center">
-            <span class="uppercase text-white group-hover:text-green-darkest font-bold text-sm ml-2">Menu</span>
-            <div class="rounded-full bg-green-lightest group-hover:bg-green-dark  w-6 h-6 ml-2 flex items-center justify-center">
-              <svg style="top:.5px" class="fill-green-dark group-hover:fill-green-lightest h-4 w-4 relative" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                <path d="M4 12a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm6 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm6 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4z" />
-              </svg>
-            </div>
+            <span v-if="user.name" class="uppercase text-white group-hover:text-green-darkest font-bold text-sm ml-2">{{user.name}}</span>
+              <img v-if="user.picture" class="block w-6 h-6 rounded-full ml-2" :src="user.picture" alt="">
+            <svg v-else class="fill-green-dark group-hover:fill-green-lightest h-4 w-4 relative" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>
+          </div>
+        </nuxt-link>
+
+        <nuxt-link
+          class="no-underline leading-none inline-block group hover:bg-green-lightest rounded-full flex items-center justify-center p-1 m-1"
+          v-else to="/login">
+          <div class="flex items-center">
+            <span class="uppercase text-white group-hover:text-green-darkest font-bold text-sm mx-2">join</span>
+            <svg class=" group-hover:fill-green-lightest h-6 w-6 relative" viewBox="0 0 24 24">
+              <path fill="white" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+            </svg>
+         </div>
+        </nuxt-link>
+
+        <button class="inline-block group hover:bg-green-lightest rounded-full focus:outline-none p-1 m-1" aria-controls="menu" :aria-expanded="mobileNav" ref="open" @click="open" aria-live="assertive">
+          <div class="flex items-center">
+            <span class="uppercase text-white group-hover:text-green-darkest font-bold text-sm mx-2">Menu</span>
+            <svg  class="fill-green-dark group-hover:fill-green-lightest h-6 w-6 relative" viewBox="0 0 24 24">
+              <path fill="none" d="M0 0h24v24H0V0z"/>
+              <path fill="white" d="M4 18h16c.55 0 1-.45 1-1s-.45-1-1-1H4c-.55 0-1 .45-1 1s.45 1 1 1zm0-5h16c.55 0 1-.45 1-1s-.45-1-1-1H4c-.55 0-1 .45-1 1s.45 1 1 1zM3 7c0 .55.45 1 1 1h16c.55 0 1-.45 1-1s-.45-1-1-1H4c-.55 0-1 .45-1 1z"/>
+            </svg>
           </div>
         </button>
 
         <transition name="menu" @after-enter="focusClose" @after-leave="focusOpen">
           <focus-lock id="menu" class="absolute pin-t pin-r absolute z-50 m-2 md:w-sm shadow-lg rounded overflow-hidden" v-show="mobileNav">
-            <button class="inline-block absolute group pin-r pin-t rounded-full hover:bg-green-lightest focus:outline-none focus:bg-green-lightest p-2 m-2" @click="close" ref="close">
+            <button class="inline-block absolute group pin-r pin-t rounded-full hover:bg-green-lightest focus:outline-none focus:bg-green-lightest p-1 m-1" @click="close" ref="close">
               <div class="flex items-center">
                 <span class="uppercase font-bold text-sm ml-2">close</span>
                 <div class="rounded-full bg-green-lightest w-6 h-6 ml-2 flex items-center justify-center group-hover:bg-green-dark">
@@ -95,13 +120,18 @@
 
 <script>
 import FocusLock from 'vue-focus-lock';
+import Chip from '~/components/chip'
 import {mapState} from 'vuex'
 
 export default {
-  components: {FocusLock},
+  components: {
+    FocusLock,
+    Chip
+  },
   computed: {
     ...mapState([
-      'menu'
+      'menu',
+      'user'
     ])
   },
   data() {
@@ -133,19 +163,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-.menu-enter-active,
-.menu-leave-active {
-  transform-origin: 100% 0%;
-  transition: transform 0.2s, opacity 0.2s;
-  transform: scale(1);
-  opacity: 1;
-}
-.menu-enter, .menu-leave-to /* .fade-leave-active below version 2.1.8 */ {
-  transform-origin: 100% 0%;
-  opacity: 0;
-  transform: scale(0.7);
-}
+<style>
 
 .skip-link {
   left: 50%;

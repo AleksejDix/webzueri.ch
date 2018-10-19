@@ -1,6 +1,6 @@
 <template>
   <div id="content">
-    <loader v-if="$apollo.loading" />
+    <wz-loader v-if="$apollo.loading" />
     <div class="bg-indigo-darkest">
 
       <section class="pt-12 pb-8 bg-indigo-darkest">
@@ -51,7 +51,6 @@
 import gql from 'graphql-tag'
 import Modal from "@/components/Modal"
 import Talk from "@/components/Talk"
-import ButtonDefault from "@/components/ButtonDefault"
 import Pagination from "@/components/Pagination"
 import QueryEvents from "~/apollo/queries/events"
 import QueryEventsCount from "~/apollo/queries/eventsCount"
@@ -94,7 +93,7 @@ export default {
       update: ({ eventsConnection }) => eventsConnection.aggregate.count
     }
   },
-  components: { Talk, Modal, ButtonDefault, Pagination },
+  components: { Talk, Modal, Pagination },
   computed: {
     ...mapState(['eventsPerPage']),
     page() {

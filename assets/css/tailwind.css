@@ -11,7 +11,7 @@
 *
 * See: https://github.com/tailwindcss/tailwindcss/issues/53#issuecomment-341413622
 */
-@tailwind preflight;
+@import 'preflight.css';
 
 .fade-enter-active,
 .fade-leave-active {
@@ -37,9 +37,6 @@ h6 {
   @apply list-reset;
 }
 
-:focus {
-  outline-color: #9561e2;
-}
 
 .list-bullets li {
   @apply pl-8 text-base bg-no-repeat leading-normal;
@@ -54,6 +51,14 @@ h6 {
 
 .owl > * + * {
   margin-top: 1rem;
+}
+
+*, :after, :before {
+  transition-duration: .25s;
+  transition-property: ease-in-out;
+}
+.trans {
+  transition-property: all;
 }
 
 .spinner {
@@ -84,7 +89,6 @@ h6 {
 hr {
   height: 2px;
   width: 100%;
-  outline: none;
   background: black;
 }
 
@@ -118,6 +122,26 @@ hr {
 
 @tailwind components;
 
+
+.body-2 {
+  @apply text-sm font-medium font-display
+}
+
+
+.menu-enter-active,
+.menu-leave-active {
+  transform-origin: 100% 0%;
+  transition: transform 0.2s, opacity 0.2s;
+  transform: scale(1);
+  opacity: 1;
+}
+.menu-enter, .menu-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  transform-origin: 100% 0%;
+  opacity: 0;
+  transform: scale(0.7);
+}
+
+
 /**
 * Here you would add any of your custom component classes; stuff that you'd
 * want loaded *before* the utilities so that the utilities could still
@@ -144,7 +168,7 @@ hr {
 *
 * See: https://github.com/tailwindcss/tailwindcss/issues/53#issuecomment-341413622
 */
-@tailwind utilities;
+@import 'utilities.css';
 
 /**
 * Here you would add any custom utilities you need that don't come out of the

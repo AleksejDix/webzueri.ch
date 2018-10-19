@@ -1,9 +1,9 @@
 <template>
-  <loader v-if="$apollo.loading" />
+  <wz-loader v-if="$apollo.loading" />
 
   <div v-else id="content">
 
-    <section class="bg-indigo-darkest shadow-lg py-12">
+    <section class="bg-primary-dark shadow-lg py-12">
       <div class="container mx-auto px-2">
 
         <div class="lg:flex">
@@ -38,27 +38,15 @@
       </div>
     </section>
 
-    <div class="pattern bg-purple-dark">
+    <div class="pattern bg-primary-light">
       <section class="container mx-auto p-2 rounded">
 
         <header class="py-8 flex justify-around px-2">
           <h2 class="leading-tight text-3xl md:text-4xl text-base text-white font-display font-bold tracking-wide uppercase">Next Event: {{ event.date | date }}</h2>
-          <a :href="event.meetupLink" rel="noopener" target="_blank" class="
-            transition
-            text-md
-            shadow
-            min-w-32
-            bg-yellow
-            no-underline antialiased
-            leading-none text-center
-            flex items-center justify-center
-            py-4 px-6 text-purple-darker
-            hover:bg-white
-            hover:shadow-lg
-            font-semibold rounded tracking-small">Secure a seat</a>
+          <a :href="event.meetupLink" rel="noopener" target="_blank" class="transition text-md shadow min-w-32 bg-yellow no-underline antialiased leading-none text-center flex items-center justify-center py-4 px-6 text-purple-darker hover:bg-white hover:shadow-lg font-semibold rounded tracking-small">Secure a seat</a>
         </header>
 
-        <div class="p-2 bg-purple-darkest rounded-lg">
+        <div class="p-2 bg-primary-dark rounded-lg">
 
           <div class="xl:flex">
             <div class="flex-1 p-2" v-for="talk in event.talks" v-if="talk" :key="talk.id">
@@ -136,9 +124,6 @@ export default {
     event () {
       return this.events[0]
     }
-  },
-  mounted() {
-    console.log(process.env.graphcms_token)
   }
 }
 

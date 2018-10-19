@@ -1,8 +1,8 @@
 <template>
   <div class="bg-indigo-darkest">
-    <loader v-if="$apollo.loading" />
+    <wz-loader v-if="$apollo.loading" />
     <section v-else>
-      <header class="pattern bg-purple-dark py-24">
+      <header class="pattern bg-primary-light py-24">
         <div class="container mx-auto p-2">
           <h1 class="text-shadow max-w-xl mx-auto text-center p-8 text-center leading-tight text-2xl md:text-5xl text-base text-white font-display font-bold tracking-wide " v-if="talk.name">{{talk.name}}</h1>
 

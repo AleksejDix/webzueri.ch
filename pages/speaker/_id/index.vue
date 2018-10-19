@@ -1,6 +1,6 @@
 <template>
   <div class="bg-indigo-darkest">
-    <loader v-if="$apollo.loading" />
+    <wz-loader v-if="$apollo.loading" />
 
     <section v-else class="pattern bg-purple-dark ">
       <header class=" py-24">

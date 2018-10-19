@@ -12,3 +12,5 @@ yarn.lock
 
 # Nuxt generate
 dist
+
+.env

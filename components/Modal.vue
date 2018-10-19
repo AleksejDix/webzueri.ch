@@ -4,7 +4,6 @@
     style="background-color: rgba(47,54,95,.82)"
     class="model-mask  fixed pin overflow-auto p-4"
     v-if="show" @close.self="show = false"
-
     >
 
     <section
@@ -61,19 +60,14 @@
 
         <footer class="modal-actions flex justify-end -m-2 py-4">
         <div class="p-2">
-          <button-default @click="close">Cancel</button-default>
+          <wz-button @click="close">Cancel</wz-button>
         </div>
         <div class="p-2">
-          <button class="min-w-32 no-underline bg-purple hover:bg-purple-dark leading-tight antialiased uppercase flex items-center justify-center text-center  py-4 px-6 text-white text-grey-darkest rounded font-semibold text-sm tracking-wide shadow hover:shadow-xl">Submit</button>
+          <wz-button >Submit</wz-button>
         </div>
       </footer>
 
       </form>
-
-
-
-
-
       </focus-lock>
 
     </section>
@@ -84,10 +78,9 @@
 
 <script>
 import FocusLock from 'vue-focus-lock';
-import ButtonDefault from '@/components/ButtonDefault';
 
 export default {
-  components: { FocusLock, ButtonDefault },
+  components: { FocusLock },
   props: {
     show: {
       type: Boolean,
