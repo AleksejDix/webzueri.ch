@@ -28,7 +28,7 @@ export default {
       lang: "en-US"
     },
     bodyAttrs: {
-      class: "antialiased"
+      class: "antialiased bg-primary-dark text-on-dark-primary"
     },
     meta: [
       { charset: "utf-8" },

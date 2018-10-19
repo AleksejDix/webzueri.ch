@@ -13,7 +13,7 @@
         <span class="font-bold text-white text-base tracking-wide font-display uppercase">Web Züri</span>
       </nuxt-link>
 
-      <chip :dropdown="true" :user="user"/>
+      <wz-chip :dropdown="true" :user="user"/>
 
       <div class="flex-1 flex justify-end w-full items-center">
 
@@ -120,13 +120,11 @@
 
 <script>
 import FocusLock from 'vue-focus-lock';
-import Chip from '~/components/chip'
 import {mapState} from 'vuex'
 
 export default {
   components: {
     FocusLock,
-    Chip
   },
   computed: {
     ...mapState([
