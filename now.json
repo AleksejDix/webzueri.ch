@@ -1,6 +1,6 @@
 {
   "env": {
-    "GRAPHCMS_TOKEN": "@graphcms_token"
+    "graphcms_token": "@graphcms_token"
   },
   "alias": "webzurich"
 }

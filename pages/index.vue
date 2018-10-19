@@ -136,6 +136,9 @@ export default {
     event () {
       return this.events[0]
     }
+  },
+  mounted() {
+    console.log(process.env.graphcms_token)
   }
 }
 
