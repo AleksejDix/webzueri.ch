@@ -1,6 +1,5 @@
 <template>
-  <button @click="handleClick"
-    class="button">
+  <button @click="handleClick" class="button">
     <slot></slot>
   </button>
 </template>
@@ -17,7 +16,7 @@ export default {
 
 <style>
   .button {
-    @apply tracking-wide no-underline leading-tight uppercase flex items-center justify-center text-center py-4 px-6  font-semibold rounded text-sm
+    @apply bg-primary tracking-wide no-underline leading-tight uppercase flex items-center justify-center text-center py-4 px-6  font-semibold rounded text-sm
   }
 </style>
 
