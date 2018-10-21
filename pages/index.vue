@@ -60,9 +60,9 @@
 
         <div class="p-2 bg-purple-darkest rounded-lg">
 
-          <div class="flex flex-wrap">
-            <div class="w-full xl:w-1/3 p-2" v-for="talk in event.talks" v-if="talk" :key="talk.id">
-              <talk class="h-full" :talk="talk" :date="event.date"></talk>
+          <div class="xl:flex">
+            <div class="flex-1 p-2" v-for="talk in event.talks" v-if="talk" :key="talk.id">
+              <talk :talk="talk" :date="event.date"></talk>
             </div>
           </div>
 

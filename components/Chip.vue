@@ -8,13 +8,3 @@
     <span class="text-grey-darker font-base">Add to the speakers list</span>
   </div>
 </template>
-
-<script>
-export default {
-  // 3 x 16 32 48
-  //8px
-  //16
-  //16
-}
-</script>
-
