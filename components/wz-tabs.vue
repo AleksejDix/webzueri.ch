@@ -3,7 +3,7 @@
       <div :style="indicator" class="absolute bg-red h-16 w-16 transition z-index"></div>
       <ul class="list-reset flex">
         <wz-tab v-for="(item,index) of ['2019-09-09', '2019-09-10']" :key="index" @hover="handleTabHover">
-          <wz-button>asd</wz-button>
+          <nuxt-link :to="`/schedule/${item}`">{{item}}</nuxt-link>
         </wz-tab>
       </ul>
     <pre> {{indicator}}</pre>

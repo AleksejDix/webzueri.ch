@@ -10,7 +10,7 @@
 
       </wz-tabs>
 
-    <nuxt-child :key="$route.params.day" />
+      <nuxt-child />
   </div>
 </div>
 </template>
@@ -19,9 +19,9 @@
 import format from 'date-fns/format'
 
 export default {
-  fetch({ redirect }) {
-    redirect("/schedule/2019-09-09")
-  },
+  // fetch({ redirect }) {
+  //   redirect("/schedule/2019-09-09")
+  // },
   filters: {
     humanDate(value) {
       if (!value) return

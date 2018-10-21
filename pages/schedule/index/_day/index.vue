@@ -1,5 +1,6 @@
 <template>
 <div>
+  {{$route.params.day}}
   <ol class="list-reset p-2 bg-primary-dark rounded-lg">
     <li class="flex" v-for="timeslot in timeslots" :key="timeslot.id">
       <div class="m-4 text-white">
@@ -13,13 +14,15 @@
           v-for="(session,index) in timeslot.sessions"
           :key="index">
           <div class="min-h-28 block bg-primary rounded-lg p-4 md:p-8 text-white md:flex zoom no-underline whitespace-normal h-full">
-            <h2>Session</h2>
+            <h2><nuxt-link :to="`/schedule/${$route.params.day}/${session.items[0]}`" >{{session.items[0]}}</nuxt-link></h2>
           </div>
         </li>
       </ol>
-
     </li>
   </ol>
+
+  <nuxt-child />
+
   </div>
 </template>
 
