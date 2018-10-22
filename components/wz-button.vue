@@ -16,7 +16,11 @@ export default {
 
 <style>
   .button {
-    @apply bg-primary tracking-wide no-underline leading-tight uppercase flex items-center justify-center text-center py-4 px-6  font-semibold rounded text-sm
+    @apply shadow bg-secondary tracking-wide no-underline leading-none uppercase inline-block items-center justify-center text-center py-4 px-6  font-semibold rounded text-sm
+  }
+
+  .button.nuxt-link-active {
+    @apply bg-secondary-light text-on-light-primary
   }
 </style>
 

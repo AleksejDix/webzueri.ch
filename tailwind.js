@@ -60,6 +60,10 @@ let colors = {
   "primary": "#1a237e",
   "primary-dark": "#000051",
 
+  "secondary-light": "#ffff72",
+  "secondary": "#ffeb3b",
+  "secondary-dark": "#c8b900",
+
   black: "#22292f",
   "grey-darkest": "#3d4852",
   "grey-darker": "#606f7b",

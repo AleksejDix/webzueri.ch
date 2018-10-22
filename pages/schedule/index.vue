@@ -6,11 +6,11 @@
         <h1 class="mb-4 leading-tight text-3xl md:text-4xl text-base text-white font-display font-bold tracking-wide uppercase">Conference Schedule</h1>
       </div>
 
-      <wz-tabs>
+      <wz-tabs></wz-tabs>
 
-      </wz-tabs>
-
-      <nuxt-child />
+      <div class="border border-red">
+        <nuxt-child />
+      </div>
   </div>
 </div>
 </template>

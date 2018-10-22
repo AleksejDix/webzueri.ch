@@ -1,5 +1,6 @@
 <template>
   <li
+    class="p-2"
     @mouseleave="handleMouseLeave"
     @mouseenter="handleMouseEnter">
     <slot></slot>
