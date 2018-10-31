@@ -1,4 +1,4 @@
-import admin from '../services/firebase-admin-init.js'
+import admin from '../services/firebase/admin-init.js'
 const cookieParser = require('cookie-parser')();
 global.XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest
 const db = admin.firestore()
@@ -20,10 +20,10 @@ function getIdTokenFromRequest(req, res) {
   }
   return new Promise(function(resolve) {
     cookieParser(req, res, () => {
-      if (req.cookies && req.cookies.__session) {
-        console.log('Found "__session" cookie');
+      if (req.cookies && req.cookies.__webzurich) {
+        console.log('Found "__webzurich" cookie');
         // Read the ID Token from cookie.
-        resolve(req.cookies.__session);
+        resolve(req.cookies.__webzurich);
       } else {
         resolve();
       }

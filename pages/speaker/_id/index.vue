@@ -1,8 +1,8 @@
 <template>
-  <div class="bg-indigo-darkest">
-    <wz-loader v-if="$apollo.loading" />
+  <div class="bg-primary-dark">
+    <Spinner v-if="$apollo.loading" :active="$apollo.loading" />
 
-    <section v-else class="pattern bg-purple-dark ">
+    <section v-else class="pattern bg-primary-light ">
       <header class=" py-24">
         <div class="container mx-auto p-4 text-center">
           <h1 class="text-shadow max-w-xl mx-auto text-center p-8 text-center leading-tight text-2xl md:text-5xl text-base text-white font-display font-bold tracking-wide uppercase">{{speaker.name}}</h1>
@@ -31,7 +31,7 @@
 
 <script>
 import gql from 'graphql-tag'
-import QuerySpeaker from '~/apollo/queries/speaker'
+import QuerySpeaker from '~/services/apollo/queries/speaker'
 
 export default {
   data() {

@@ -8,15 +8,15 @@
           {{$route.params.session}}
         </h1>
 
-        </header>
+      </header>
 
-        <footer class="modal-actions flex justify-end -m-2 p-4">
+      <footer class="modal-actions flex justify-end -m-2 p-4">
         <div class="p-2">
-          <wz-button @click="$router.go(-1)">Cancel</wz-button>
+          <Button @click="$router.go(-1)">Cancel</Button>
         </div>
       </footer>
     </div>
-   </div>
+  </div>
 </template>
 
 <script>

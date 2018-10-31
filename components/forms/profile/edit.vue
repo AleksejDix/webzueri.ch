@@ -1,8 +1,12 @@
 <template>
   <div>
     <img v-if="picture" :src="picture" alt="">
-    <input v-model.lazy="name"/>
-    <input @change="handleUpload" type="file" accept="image/*"/>
+    <input v-model.lazy="name" />
+
+    <input @change="handleUpload" type="file" accept="image/*" />
+
+    <Button type="button" @click="$store.dispatch('signOut')">Sign Out</Button>
+
   </div>
 </template>
 

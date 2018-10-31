@@ -28,7 +28,7 @@ export default {
       lang: "en-US"
     },
     bodyAttrs: {
-      class: "antialiased bg-primary-dark text-on-dark-primary"
+      class: "antialiased bg-grey-lighter"
     },
     meta: [
       { charset: "utf-8" },
@@ -55,16 +55,12 @@ export default {
   */
   plugins: [
     '~/plugins/components',
-    { src: '~/plugins/firebase-client-init.js', ssr: false },
+    { src: '~plugins/ga.js', ssr: false },
     { src: '~/plugins/auth-cookie.js', ssr: false }
   ],
   serverMiddleware: [
     '~/serverMiddleware/validateFirebaseIdToken'
   ],
-  /*
-  ** Nuxt.js modules
-  */
-  modules: [],
   /*
   ** Build configuration
   */
@@ -100,7 +96,9 @@ export default {
       }
     }
   },
-  modules: ["@nuxtjs/apollo"],
+  modules: [
+    "@nuxtjs/apollo"
+  ],
   apollo: {
     clientConfigs: {
       default: {

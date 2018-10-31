@@ -1,57 +1,73 @@
 <template>
-  <div v-if="user" @click="open = true" class="relative chip m-2 inline-flex items-center rounded-full bg-surface h-8 p-1 pr-3 cursor-pointer focus:outline-none" tabindex="0">
 
-    <img v-if="user.picture" class="w-6 h-6 rounded-full mr-2" :src="user.picture" :alt="user.name">
+  <div class="relative">
 
-    <div v-else class="w-6 h-6 bg-grey-light rounded-full mr-2 flex items-center justify-center">
-      <svg class="w-4 h-4" viewBox="-2 -3 30 30">
-        <path fill="none" stroke="black" d="M1.73,12.91 8.1,19.28 22.79,4.59" />
-      </svg>
-    </div>
+    <Button v-if="profile" @click="open = true">
+      {{profile.name}}
+      <img slot="end" class="w-6 h-6 rounded-full mr-2" :src="profile.picture" :alt="profile.name">
+    </Button>
 
-    <div v-if="dropdown" class="no-underline body-2 text-on-light-primary">
+    <<<<<<< HEAD <div v-if="dropdown" class="no-underline body-2 text-on-light-primary">
       {{user.name}}
-    </div>
-    <nuxt-link v-else to="/profile/" class="no-underline body-2 text-on-light-primary">
-      {{user.name}}
-    </nuxt-link>
-
-    <transition name="menu" v-if="dropdown">
-      <section v-show="open" name="dropdown" class="shadow absolute bg-yellow rounded-lg pin-r pin-t w-full" style="min-width: 300px">
-        <div class="bg-indigo-darker px-3 py-4 rounded-lg flex">
-          <div class="pr-4">
-            <img class="rounded-full w-12 h-12 block" :src="user.picture" :alt="user.name">
-          </div>
-          <div class="leading-normal flex-1">
-            <div class="text-on-dark-primary font-display weight-medium text-base leading-normal">{{user.name}}</div>
-            <div class="body-2 text-on-dark-secondary">{{user.email}}</div>
-          </div>
-          <div class="flex items-center">
-            <icon-button small @click.stop="open = false"></icon-button>
-          </div>
-        </div>
-      </section>
-    </transition>
-
   </div>
+  <nuxt-link v-else to="/profile/" class="no-underline body-2 text-on-light-primary">
+    {{user.name}}
+  </nuxt-link>
+
+  <transition name="menu" v-if="dropdown">
+    <section v-show="open" name="dropdown" class="shadow absolute bg-yellow rounded-lg pin-r pin-t w-full" style="min-width: 300px">
+      <div class="bg-indigo-darker px-3 py-4 rounded-lg flex">
+        =======
+        <transition slot="dropdown" name="menu" v-if="dropdown">
+          <section v-if="profile" v-show="open" name="dropdown" class="bg-primary border border-black z-10 shadow absolute rounded-lg  pin-r pin-t w-full" style="min-width: 300px">
+            <div class=" px-3 py-4 rounded-t-lg flex">
+              >>>>>>> WIP
+              <div class="pr-4">
+                <img class="rounded-full w-12 h-12 block" :src="profile.picture" :alt="profile.name">
+              </div>
+              <div class="leading-normal flex-1">
+                <div class="text-on-dark-primary font-display weight-medium text-base leading-normal">{{profile.name}}</div>
+                <div class="body-2 text-on-dark-secondary">{{profile.email}}</div>
+              </div>
+              <div class="flex items-center self-start">
+                <icon-button small @click.stop="open = false"></icon-button>
+              </div>
+            </div>
+
+            <ul class="list-reset py-2 bg-grey-lighter rounded-b-lg">
+              <li class="">
+                <nuxt-link class="rounded text-on-light-secondary no-underline transition px-6 flex items-center min-h-12 hover:bg-grey-light  hover:text-on-light-primary" to="/user/">Profile</nuxt-link>
+              </li>
+              <li class="">
+                <a class="rounded text-on-light-secondary no-underline transition px-6 flex items-center min-h-12 hover:bg-grey-light hover:text-on-light-primary" target="_blank" href="https://docs.google.com/forms/u/1/d/e/1FAIpQLSfTaa-_wOFOQv3dZ7Ord9TJ3vN8wNdzUY5VQqzFiTg_WMQwEw/viewform?c=0&w=1">Submit a talk</a>
+              </li>
+            </ul>
+
+          </section>
+        </transition>
+
+      </div>
 </template>
 
 
 <script>
+import Button from '~/components/general/Button'
 import IconButton from "~/components/icon-button"
+import {mapState} from 'vuex'
+
 
 export default {
-  props: ['user', 'dropdown'],
   components: {
-    IconButton
+    IconButton, Button
+  },
+  computed: {
+    ...mapState(['profile'])
   },
   data () {
     return {
+      dropdown: true,
       open: false
     }
   }
 }
 </script>
-
-<style>
-</style>

@@ -1,5 +1,5 @@
 <template>
-  <nuxt-link :to="{ name: 'talk-id', params: { id: talk.id }}" class=" block bg-primary rounded-lg p-4 md:p-8 text-white md:flex zoom no-underline whitespace-normal">
+  <nuxt-link :to="{ name: 'talk-id', params: { id: talk.id }}" :class="{'bg-indigo':isMine}" class=" block bg-primary rounded-lg p-4 text-white md:flex zoom no-underline whitespace-normal">
     <div class="flex flex-col flex-1 pb-4 md:pb-0 md:pr-4">
       <div>
         <div class="inline-flex items-center rounded-full bg-grey-light text-red inline-block p-1 px-2 mb-4 leading-none uppercase text-xs tracking-wide font-bold" v-if="talk.youtubecode">
@@ -16,7 +16,7 @@
           <div class="inline-block pl-4 pt-4" v-for="speaker in talk.speakers" v-if="talk.speakers" :key="speaker.id">
             <div class="inline-flex items-center bg-purple rounded-full p-1">
               <div class="inline-block rounded-full w-12 h-12 mr-4 flex-no-shrink overflow-hidden" v-if="speaker.speakerPicture">
-                <img class="block w-12 h-12" :src="speaker.speakerPicture.url" :alt="speaker.name">
+                <img class="block w-12 h-12 rounded-full" :src="speaker.speakerPicture.url" :alt="speaker.name">
               </div>
               <div class="flex-1 text-lg pr-8 text-white font-bold">{{speaker.name}}</div>
             </div>
@@ -24,9 +24,6 @@
         </div>
       </div>
     </div>
-    <!-- <div class="md:w-1/3 border-t md:border-t-0 md:border-l border-black pt-4 md:pt-0 md:pl-4">
-      <span class="inline-flex rounded mr-2 mb-2 leading-none bg-indigo-dark px-2 py-1  font-bold text-xs uppercase whitespace-no-wrap" v-for="n in ['Security', 'JS', 'Ruby', 'Haskel', 'ML', 'Sketch']" :key="n">{{n}}</span>
-    </div> -->
   </nuxt-link>
 </template>
 
@@ -37,6 +34,10 @@ export default {
     isFutureTalk() {
       return new Date(this.date) > new Date()
     },
+    isMine () {
+      if (!this.talk) return
+      return false //this.talk.speakers.some(item => item.id === this.$store.state.profile.speaker_id)
+    }
   },
   filters: {
     shorten(value) {

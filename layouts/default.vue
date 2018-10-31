@@ -1,34 +1,12 @@
 <template>
-  <div class="antialiased">
-    <navigation-main></navigation-main>
-    <main>
-      <nuxt/>
-    </main>
-    <modal :show="showNewTalkModal" @close="showNewTalkModal = false">
-      <div slot="header">Submit new talk</div>
-    </modal>
-    <svg-symbols />
-  </div>
+  <base-layout>
+    <nuxt />
+  </base-layout>
 </template>
 
 <script>
-
-
-import Modal from "@/components/Modal"
-import NavigationMain from "@/components/NavigationMain"
-import SvgSymbols from "@/components/SvgSymbols"
-
+import BaseLayout from "@/layouts/base-layout"
 export default {
-  components: { Modal, SvgSymbols, NavigationMain },
-  data() {
-    return {
-      showNewTalkModal: false
-    }
-  },
-  methods: {
-    openModal() {
-      this.showNewTalkModal = true
-    }
-  }
+  components: { BaseLayout }
 }
 </script>

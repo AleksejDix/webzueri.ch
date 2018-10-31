@@ -1,10 +1,10 @@
 <template>
   <div class="bg-indigo-darkest">
-    <wz-loader v-if="$apollo.loading" />
+    <Spinner v-if="$apollo.loading" :active="$apollo.loading" />
     <section v-else>
       <header class="pattern bg-primary-light py-24">
         <div class="container mx-auto p-2">
-          <h1 class="text-shadow max-w-xl mx-auto text-center p-8 text-center leading-tight text-2xl md:text-5xl text-base text-white font-display font-bold tracking-wide " v-if="talk.name">{{talk.name}}</h1>
+          <h1 class="text-shadow max-w-xl mx-auto text-center p-8 text-center leading-tight text-2xl md:text-5xl text-base text-white font-display font-bold tracking-wide" v-if="talk.name">{{talk.name}}</h1>
 
           <ul class="flex justify-center list-reset">
             <li class="text-center" v-for="speaker in talk.speakers" :key="speaker.id">
@@ -35,7 +35,7 @@
 
 <script>
 
-import QueryTalk from '~/apollo/queries/talk'
+import QueryTalk from '~/services/apollo/queries/talk'
 
 export default {
   apollo: {

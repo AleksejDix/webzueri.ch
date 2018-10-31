@@ -280,14 +280,28 @@ module.exports = {
   textSizes: {
     xs: ".75rem", // 12px
     sm: ".875rem", // 14px
-    body: "0.9375rem", // 15px
+    body: "15pt", // 15px
     base: "1rem", // 16px
-    lg: "1.125rem", // 18px
-    xl: "1.25rem", // 20px
+    lg: "18px", // 18px
+    xl: "20px", // 20px
     "2xl": "1.5rem", // 24px
     "3xl": "1.875rem", // 30px
     "4xl": "2.25rem", // 36px
-    "5xl": "3rem" // 48px
+    "5xl": "3rem", // 48px
+    "8": "8pt",
+    "9": "9pt",
+    "10": "10pt",
+    "11": "11pt",
+    "12": "12pt",
+    "14": "14pt",
+    "16": "16pt",
+    "18": "18pt",
+    "21": "21pt",
+    "24": "24pt",
+    "36": "36pt",
+    "48": "48pt",
+    "60": "60pt",
+    "72": "72pt"
   },
 
   /*
@@ -574,6 +588,7 @@ module.exports = {
   minWidth: {
     "0": "0",
     "12": "3rem",
+    "36": "9rem",
     full: "100%"
   },
 
@@ -594,7 +609,8 @@ module.exports = {
   minHeight: {
     "0": "0",
     "4": "1rem",
-    "28" : "7rem",
+    "8" : "2rem",
+    "12" : "3rem",
     "64": "16rem",
     full: "100%",
     screen: "100vh"
@@ -702,7 +718,9 @@ module.exports = {
     "4": "1rem",
     "6": "1.5rem",
     "8": "2rem",
-    "12": "3rem"
+    "12": "3rem",
+    "24": "6rem",
+    "36": "9rem"
   },
 
   /*
@@ -732,7 +750,10 @@ module.exports = {
     "8": "2rem",
     "12": "3rem",
     "16": "4rem",
-    "24": "6rem"
+    "24": "6rem",
+    "28": "7rem",
+    "32": "8rem",
+    "36": "9rem"
   },
 
   /*
@@ -757,6 +778,7 @@ module.exports = {
     lg: "0 15px 30px 0 rgba(0,0,0,0.11), 0 5px 15px 0 rgba(0,0,0,0.08)",
     inner: "inset 0 2px 4px 0 rgba(0,0,0,0.06)",
     outline: "0 0 0 3px rgba(52,144,220,0.5)",
+    focus: "inset 0 0 0 2px #534bae",
     none: "none"
   },
 

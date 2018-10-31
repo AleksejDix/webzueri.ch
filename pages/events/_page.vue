@@ -1,41 +1,33 @@
 <template>
   <div id="content">
-    <wz-loader v-if="$apollo.loading" />
-    <div class="bg-indigo-darkest">
 
-      <section class="pt-12 pb-8 bg-indigo-darkest">
+    <div class="bg-primary-light pattern">
+      <section class="pt-12 pb-8">
         <div class="max-w-3xl mx-auto">
           <div class="px-4">
-            <h1 class="mb-4 leading-tight text-3xl md:text-5xl text-base text-yellow font-display font-bold tracking-wide uppercase text-center">Talks given at Web Zürich</h1>
-            <p class="max-w-md mx-auto leading-normal text-center text-xl md:text-2xl text-yellow-lighter">Learn, share and collaborate with your local
+            <h1 class="text-shadow mb-4 leading-tight text-3xl md:text-5xl text-base text-on-dark-primary font-display font-bold tracking-wide  text-center">Talks given at webzürich</h1>
+            <p class="max-w-md mx-auto leading-normal text-center text-xl md:text-2xl text-on-dark-secondary">Learn, share and collaborate with your local
               <strong>web professionals</strong> and enthusiasts!</p>
             <div class="text-center pt-8">
-              <a target="_blank" rel="noopener" href="https://docs.google.com/forms/u/1/d/e/1FAIpQLSfTaa-_wOFOQv3dZ7Ord9TJ3vN8wNdzUY5VQqzFiTg_WMQwEw/viewform?c=0&w=1" class="shadow hover:shadow-lg min-w-32 leading-none  no-underline antialiased inline-flex items-center justify-center text-center py-4 px-6 bg-yellow hover:bg-white text-purple-darker font-semibold tracking-small rounded ">Submit your talk</a>
+              <Button target="_blank" rel="noopener" href="https://docs.google.com/forms/u/1/d/e/1FAIpQLSfTaa-_wOFOQv3dZ7Ord9TJ3vN8wNdzUY5VQqzFiTg_WMQwEw/viewform?c=0&w=1">Submit your talk</Button>
             </div>
           </div>
         </div>
       </section>
 
       <div class="px-4">
-        <div class="max-w-lg mx-auto">
 
-          <div v-if="$apollo.loading">
-            <div class="spinner">
-              <div class="double-bounce1"></div>
-              <div class="double-bounce2"></div>
+        <Spinner v-if="$apollo.loading" :active="$apollo.loading" />
+        <div v-else class="owl">
+
+          <div class="xl:flex xl:flex-wrap max-w-xl mx-auto bg-primary-dark rounded-lg p-2" v-for="event in events" :key="event.id" v-if="event.talks.length > 0">
+            <div class="p-2 xl:w-full" v-for="talk in event.talks" v-if="talk" :key="talk.id">
+              <talk class="h-full" :talk="talk" :date="event.date"></talk>
             </div>
           </div>
-
-          <template v-else>
-            <template v-for="event in events">
-              <div class="p-2" v-for="talk in event.talks" v-if="talk" :key="talk.id">
-                <talk :talk="talk" :date="event.date"></talk>
-              </div>
-            </template>
-            <pagination :page="page" :maxPage="maxPage"></pagination>
-          </template>
-
+          <pagination :page="page" :maxPage="maxPage"></pagination>
         </div>
+
       </div>
     </div>
 
@@ -52,8 +44,8 @@ import gql from 'graphql-tag'
 import Modal from "@/components/Modal"
 import Talk from "@/components/Talk"
 import Pagination from "@/components/Pagination"
-import QueryEvents from "~/apollo/queries/events"
-import QueryEventsCount from "~/apollo/queries/eventsCount"
+import QueryEvents from "~/services/apollo/queries/events"
+import QueryEventsCount from "~/services/apollo/queries/eventsCount"
 import { mapState } from 'vuex'
 
 export default {

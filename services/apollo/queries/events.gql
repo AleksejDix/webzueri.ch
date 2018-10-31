@@ -13,6 +13,7 @@ query events($first: Int!, $skip: Int!) {
       abstract
       youtubecode
       speakers {
+        id
         name
         speakerPicture {
           url
