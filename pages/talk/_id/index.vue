@@ -4,7 +4,7 @@
     <section v-else>
       <header class="pattern bg-purple-dark py-24">
         <div class="container mx-auto p-2">
-          <h1 class="text-shadow max-w-xl mx-auto text-center p-8 text-center leading-tight text-2xl md:text-5xl text-base text-white font-display font-bold tracking-wide uppercase" v-if="talk.name">{{talk.name}}</h1>
+          <h1 class="text-shadow max-w-xl mx-auto text-center p-8 text-center leading-tight text-2xl md:text-5xl text-base text-white font-display font-bold tracking-wide " v-if="talk.name">{{talk.name}}</h1>
 
           <ul class="flex justify-center list-reset">
             <li class="text-center" v-for="speaker in talk.speakers" :key="speaker.id">
@@ -57,7 +57,14 @@ export default {
       title: this.talk.name,
       meta: [
         { hid: 'description', name: 'description', content: this.talk.abstract },
-        { hid: 'og-image', property: 'og-image', content: `https://us-central1-webzuerich-talk-image-gen.cloudfunctions.net/generateImage?id=xYXhOJZttRpkqxERH8MD&name=${this.talk.speakers[0].name}&title=${this.talk.name}&userImg=${this.talk.speakers[0].speakerPicture.url}` }
+        { hid: 'twitter:card', name: "twitter:card", content: "summary_large_image"},
+        { hid: 'twitter:site', name: "twitter:site", content: "@webzuerich"},
+        { hid: 'twitter:creator', name: "twitter:creator", content: "@aleksejdix"},
+        { hid: 'twitter:url', name: "twitter:url", content: process.env.baseUrl + this.$route.path },
+        { hid: 'twitter:title', name: "twitter:title", content: this.talk.name},
+        { hid: 'twitter:description', name: "twitter:description", content: this.talk.abstract},
+        { hid: 'twitter:image', name: "twitter:image", content: `https://us-central1-webzuerich-talk-image-gen.cloudfunctions.net/generateImage?id=xYXhOJZttRpkqxERH8MD&name=${this.talk.speakers[0].name}&title=${this.talk.name}&userImg=${this.talk.speakers[0].speakerPicture.url}`},
+        { hid: 'og-image', property: 'og-image', content: `https://us-central1-webzuerich-talk-image-gen.cloudfunctions.net/generateImage?id=xYXhOJZttRpkqxERH8MD&name=${this.talk.speakers[0].name}&title=${this.talk.name}&userImg=${this.talk.speakers[0].speakerPicture.url}`}
       ]
     }
   }
