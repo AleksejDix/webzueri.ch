@@ -7,8 +7,12 @@
 
       <div class="relative container mx-auto md:-mt-32">
 
-        <div class="py-4 px-8 ">
-          <img class="w-full md:w-48 rounded-lg shadow-lg" :src="user.photoURL">
+        <div class="py-4 px-8">
+          <div class="w-full md:w-48">
+            <div class="relative" style="padding-top: 100%">
+              <img class="w-full md:w-48 absolute pin rounded-lg shadow-lg bg-white" :src="user.photoURL">
+            </div>
+          </div>
         </div>
 
         <div class="relative block bg-primary-dark rounded-lg p-4 owl md:owl-md -mt-4 md:-mt-8">
@@ -71,7 +75,9 @@ import { mapState } from 'vuex'
 export default {
   components: { Talk },
   computed: {
-    ...mapState(['user'])
+    ...mapState({
+      user: state => state.user
+    })
   },
   data() {
     return {
@@ -99,9 +105,3 @@ export default {
   // }
 }
 </script>
-
-<style >
-  /* * {
-                                                                                                                                                                                                                                                                                                                                                                                                          outline: 1px solid magenta;
-                                                                                                                                                                                                                                                                                                                                                                                                        } */
-</style>

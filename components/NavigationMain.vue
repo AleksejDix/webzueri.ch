@@ -50,15 +50,15 @@
 
                     <nuxt-link @click.native="close" :to="link.url" class="no-underline py-2 block group">
                       <div class="flex flex-wrap items-center ">
-                        <div class="rounded-full bg-indigo-lightest group-hover:bg-blue w-6 h-6 mr-4 flex items-center justify-center">
-                          <svg class="fill-indigo-dark group-hover:fill-blue-lighter h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <div class="transition rounded-full bg-green-light group-hover:bg-green w-6 h-6 mr-4 flex items-center justify-center">
+                          <svg class="transition fill-green-dark group-hover:fill-green-light h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                             <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" />
                           </svg>
                         </div>
 
                         <div class="flex-1 flex justify-between leading-normal flex-wrap">
-                          <span class="w-full sm:w-auto text-blue-darkest group-hover:text-blue-dark font-bold tracking-wide pr-8">{{link.text}}</span>
-                          <span class="text-grey-darker group-hover:text-grey-darkest inline-block font-base max-w-xs" v-if="link.desc" v-html="link.desc"></span>
+                          <span class="transition w-full sm:w-auto text-on-light-secondary group-hover:text-on-light-primary font-bold tracking-wide pr-8">{{link.text}}</span>
+                          <span class="transition text-on-light-muted group-hover:text-green-dark inline-block font-base max-w-xs" v-if="link.desc" v-html="link.desc"></span>
                         </div>
 
                       </div>
@@ -67,7 +67,7 @@
                 </ul>
               </div>
 
-              <div v-if="menu && menu.social" class="intern p-6 bg-grey-lightest border-t border-b">
+              <!-- <div v-if="menu && menu.social" class="intern p-6 bg-grey-lightest border-t border-b">
                 <Overline>{{menu.social.title}}</Overline>
                 <ul class="list-reset py-2">
                   <li class="text-base" v-if="menu && menu.social.links" v-for="link in menu.social.links" :key="link.text">
@@ -89,13 +89,13 @@
                     </a>
                   </li>
                 </ul>
-              </div>
+              </div> -->
 
-              <div :class="[user ? 'justify-between' : 'justify-end']" class="flex items-center border-b-lg py-4 px-6 bg-white owl-x">
+              <div :class="[user ? 'justify-between' : 'justify-end']" class="border-t flex items-center border-b-lg py-4 px-6 bg-white owl-x">
 
                 <nuxt-link @click.native="close" to="/user/" class="inline-block flex-1 flex no-underline items-center" v-if="user">
                   <div class="pr-4 flex-no-shrink">
-                    <img class="rounded-full w-12 h-12 block" :src="user.photoURL" :alt="user.displayName">
+                    <img class="rounded-full w-10 h-10 block" :src="user.photoURL" :alt="user.displayName">
                   </div>
                   <div class="leading-normal flex-1">
                     <div class="text-on-light-primary font-display weight-medium text-12 leading-tight">{{user.displayName}}</div>
@@ -107,8 +107,6 @@
                   <Button to="/signup/">sign up</Button>
                   <Button to="/signin/">login</Button>
                 </template>
-
-                <Button v-else @click="$store.dispatch('signOut')">sign out</Button>
 
               </div>
             </div>

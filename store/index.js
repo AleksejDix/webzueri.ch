@@ -145,7 +145,7 @@ export const actions = {
   },
 
   async userImageUpload ({state, commit}, payload) {
-    const snapshot = await firebase.storage.ref(`/profiles/${state.user.uid}`).put(payload)
+    const snapshot = await firebase.storage.ref(`/profiles/${state.user.uid}/wz-avatar-${state.user.uid}`).put(payload)
     return await snapshot.ref.getDownloadURL()
   }
 }

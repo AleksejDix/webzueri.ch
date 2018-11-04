@@ -47,6 +47,8 @@ let colors = {
 
   "text": "#442C2E",
 
+  "surface": "#f7f7f8",
+
   "on-light-primary":   "hsla(0,0%,0%,.87)",
   "on-light-secondary": "hsla(0,0%,0%,.54)",
   "on-light-muted":     "hsla(0,0%,0%,.38)",
@@ -63,8 +65,6 @@ let colors = {
   "secondary": "#ffeb3b",
   "secondary-dark": "#c8b900",
 
-  "surface": "#f7f7f8",
-
   black: "#22292f",
   "grey-darkest": "#3d4852",
   "grey-darker": "#606f7b",
@@ -78,11 +78,12 @@ let colors = {
   "red-darkest": "#3b0d0c",
   "red-darker": "#621b18",
   "red-dark": "#cc1f1a",
-  red: "#e3342f",
+  red: "#fa755a",
   "red-light": "#ef5753",
   "red-lighter": "#f9acaa",
   "red-lightest": "#fcebea",
 
+  "orange-light": '#FFCBA5',
   "orange": "#FDEEBE",
   "orange-dark": "#FA755A",
 
@@ -106,13 +107,9 @@ let colors = {
   "teal-lighter": "#a0f0ed",
   "teal-lightest": "#e8fffe",
 
-  "blue-darkest": "#12283a",
-  "blue-darker": "#1c3d5a",
-  "blue-dark": "#2779bd",
-  blue: "#3490dc",
-  "blue-light": "#6cb2eb",
-  "blue-lighter": "#bcdefa",
-  "blue-lightest": "#eff8ff",
+  "blue-dark": "#47B0E8",
+  blue: "#92DDF6",
+  "blue-light": "#D4F3FD",
 
   "indigo-darkest": "#191e38",
   "indigo-darker": "#2f365f",
@@ -130,13 +127,9 @@ let colors = {
   "purple-lighter": "#d6bbfc",
   "purple-lightest": "#f3ebff",
 
-  "pink-darkest": "#451225",
-  "pink-darker": "#6f213f",
-  "pink-dark": "#eb5286",
-  pink: "#f66d9b",
-  "pink-light": "#fa7ea8",
-  "pink-lighter": "#ffbbca",
-  "pink-lightest": "#ffebef"
+  "pink-dark": "#F6A4EB",
+  pink: "#FFC7EE",
+  "pink-light": "#FFE0F5",
 };
 
 module.exports = {
@@ -776,7 +769,7 @@ module.exports = {
   shadows: {
     default: "0 2px 4px 0 rgba(0,0,0,0.2), 0 2px 4px 0 rgba(0,0,0,0.2)",
     md: "0 4px 8px 0 rgba(0,0,0,0.12), 0 2px 4px 0 rgba(0,0,0,0.08)",
-    lg: "0 15px 30px 0 rgba(0,0,0,0.11), 0 5px 15px 0 rgba(0,0,0,0.08)",
+    lg: "0 7px 14px rgba(50,50,93,.1), 0 3px 6px rgba(0,0,0,.08)",
     inner: "inset 0 2px 4px 0 rgba(0,0,0,0.06)",
     outline: "0 0 0 3px rgba(52,144,220,0.5)",
     focus: "inset 0 0 0 2px #534bae",

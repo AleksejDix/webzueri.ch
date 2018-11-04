@@ -76,6 +76,9 @@ export default {
   .button {
     @apply text-9 inline-flex text-on-light-primary no-underline bg-secondary tracking-wide no-underline uppercase font-semibold rounded-full h-10 cursor-pointer;
   }
+  .button:focus {
+    @apply outline-none bg-secondary-dark;
+  }
 
   .button--small {
     @apply h-8 text-8;
@@ -86,7 +89,7 @@ export default {
   }
 
   .button:hover {
-    @apply bg-yellow;
+    @apply bg-yellow shadow;
   }
 
   .button.nuxt-link-active {

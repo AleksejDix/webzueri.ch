@@ -1,7 +1,7 @@
 <template>
-  <div id="content">
+  <div id="content ">
 
-    <div class="bg-primary-light pattern">
+    <div class="bg-primary-light pattern min-h-screen">
       <section class="pt-12 pb-8">
         <div class="max-w-3xl mx-auto">
           <div class="px-4">
@@ -9,7 +9,7 @@
             <p class="max-w-md mx-auto leading-normal text-center text-xl md:text-2xl text-on-dark-secondary">Learn, share and collaborate with your local
               <strong>web professionals</strong> and enthusiasts!</p>
             <div class="text-center pt-8">
-              <Button to="/user/talks/?redirect=user-index-talks">Submit your talk</Button>
+              <Button :to="{ name: 'user-index-talks', query: { redirect: 'user-index-talks' }}">Submit your talk</Button>
             </div>
           </div>
         </div>
@@ -17,9 +17,10 @@
 
       <div class="px-4">
 
-        <Spinner v-if="$apollo.loading" :active="$apollo.loading" />
+        <div v-if="$apollo.loading" class="container mx-auto bg-primary-dark rounded-lg p-2">
+          <Spinner :active="$apollo.loading" />
+        </div>
         <div v-else class="owl">
-
           <div class="xl:flex xl:flex-wrap max-w-xl mx-auto bg-primary-dark rounded-lg p-2" v-for="event in events" :key="event.id" v-if="event.talks.length > 0">
             <div class="p-2 xl:w-full" v-for="talk in event.talks" v-if="talk" :key="talk.id">
               <talk class="h-full" :talk="talk" :date="event.date"></talk>

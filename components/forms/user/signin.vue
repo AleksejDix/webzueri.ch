@@ -19,7 +19,6 @@
         <Button type="submit">Sign in</Button>
       </div>
     </form>
-    <Button @click="$store.dispatch('sendSignInLinkToEmail', 'privat@aleksejdix.com')">with mail</Button>
   </div>
 </template>
 
