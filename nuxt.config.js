@@ -14,7 +14,8 @@ class TailwindExtractor {
 export default {
   mode: "universal",
   router: {
-    base: '/'
+    base: '/',
+    middleware: 'pages'
   },
   env: {
     baseUrl: process.env.NOW_URL || "http://localhost:3000"

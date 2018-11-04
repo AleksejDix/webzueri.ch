@@ -72,7 +72,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style >
   .button {
     @apply text-9 inline-flex text-on-light-primary no-underline bg-secondary tracking-wide no-underline uppercase font-semibold rounded-full h-10 cursor-pointer;
   }

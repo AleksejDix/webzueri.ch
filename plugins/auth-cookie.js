@@ -1,5 +1,4 @@
-import firebase from '../services/firebase/client-init.js';
-
+import firebase, {db} from '../services/firebase/client-init.js';
 
 function setCookie (token) {
   const today = new Date()
@@ -12,17 +11,20 @@ function deleteCookie () {
   document.cookie = "__webzurich=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 }
 
-export default (context) => {
+export default async (context) => {
 
   firebase.auth.onAuthStateChanged(async (user) => {
     if (user) {
-      const token = await user.getIdToken(true)
-      setCookie(token)
-      context.store.commit('setCurrentUser', user.uid)
-      context.store.dispatch('getUserProfile')
+
+      setCookie(await user.getIdToken(true))
+
+      context.store.dispatch('createProfile', user)
+
     } else {
-      console.log('no user')
       deleteCookie()
     }
   })
+
 }
+
+

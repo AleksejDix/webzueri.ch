@@ -1,12 +1,14 @@
 <template>
-  <form class="p-8 w-full owl" @submit.prevent="register">
-    <Input v-model="form.name" label="name" type="text" />
-    <Input v-model="form.email" label="email" type="email" />
-    <Input v-model="form.password" label="password" type="password" />
+  <form class="w-full owl-md" @submit.prevent="register">
+    <Input v-model="form.email" label="Email" type="email" />
+    <Input v-model="form.password" label="Password" type="password" />
     <div v-if="error" class="border-2 border-red-light rounded p-4 text-red-light bg-red-lightest font-bold text-sm">
       {{error}}
     </div>
-    <div class="flex owl-x justify-end">
+    <div class="flex owl-x justify-between items-center">
+      <p>
+        <nuxt-link to="/signin/" class="link">I already have an account</nuxt-link>
+      </p>
       <Button primary type="submit">Sign Up</Button>
     </div>
   </form>
@@ -24,7 +26,11 @@ export default {
   }),
   methods: {
     async register() {
-      this.error = await this.$store.dispatch('createUser', form)
+      try {
+        await this.$store.dispatch('createUser', this.form)
+      } catch (error) {
+        this.error = '🤔' + error.message
+      }
     }
   }
 }

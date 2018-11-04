@@ -1,18 +1,32 @@
 import firebase from '../services/firebase/client-init.js';
+import { startOfHour } from 'date-fns';
+
 export const strict = false
 
 export const state = () => ({
+  page: 'index',
   eventsPerPage: 10,
-  currentUser: '',
-  profile: '',
+  user: '',
 })
 
 export const getters = {
-  profile(state) {
-    return state.profile
+  hasUser (state) {
+    return !!state.user
   },
-  isAuthenticated (state) {
-    return !!state.currentUser
+  isAdmin(state) {
+    if (!state.user) return false
+    return state.user.role === 'admin'
+  },
+  isConnectedWithGoogle () {
+    //console.log(firebase)
+    // if (!firebase.currentUser.providerData) return
+    // return !!firebase.currentUser.providerData.find(x => x.providerId === 'google.com')
+  },
+  isConnectedWithTwitter () {
+    //return !!firebase.currentUser.providerData.find(x => x.providerId === 'twitter.com')
+  },
+  isConnectedWithGithub () {
+   // return !!firebase.currentUser.providerData.find(x => x.providerId === 'github.com')
   }
 }
 
@@ -20,42 +34,109 @@ export const actions = {
   // seed store with the userdata from serverMiddleware
   nuxtServerInit ({ commit }, { req }) {
     if (req.user) {
-      commit('setCurrentUser', req.user)
+      commit('setUser', req.user)
     }
-    if (req.profile) {
-      commit('setUserProfile', req.profile)
+  },
+
+  async createProfile ({commit}, user) {
+    const userRef = await firebase.firestore.collection('users').doc(user.uid)
+
+    const profile = {
+      displayName : user.displayName,
+      email: user.email,
+      emailVerified: user.emailVerified,
+      photoURL: user.photoURL,
+      isAnonymous: user.isAnonymous,
+      uid: user.uid
     }
+
+    userRef.set(profile, { merge: true })
+
+    const doc = await userRef.get()
+
+    if (doc.exists) {
+      commit('setUser', doc.data())
+    } else {
+      commit('setUser', profile)
+    }
+  },
+
+  async sendPasswordReset(context, {email}) {
+    await firebase.auth.sendPasswordResetEmail(email)
   },
 
   async getUserProfile({ commit, state }) {
-    const ref = await firebase.firestore.collection("users").doc(state.currentUser)
+    const ref = await firebase.firestore.collection("users").doc(state.user.uid)
     const doc = await ref.get()
-    commit('setUserProfile', doc.data())
+    commit('setUser', doc.data())
   },
 
-  async createNewAccount ({commit}, user) {
-    const {email, displayName: name, uid, photoURL: picture} = user;
-    await firebase.firestore.collection("users").doc(uid).set({email, name, uid, picture})
-    // commit('setUser', {email, name, uid, picture})
+  async userGoogleLogin () {
+    await firebase.auth.signInWithPopup(firebase.provider.google)
   },
 
-  async userGoogleLogin ({ dispatch }) {
-    const { user } = await firebase.auth.signInWithPopup(firebase.provider.google)
-    dispatch('createNewAccount', user)
+  async linkGoogle ({state}) {
+    await firebase.auth.currentUser.linkWithPopup(firebase.provider.google)
   },
 
-  async userGithubLogin ({ dispatch }) {
-    const { user } = await firebase.auth.signInWithPopup(firebase.provider.github)
-    dispatch('createNewAccount', user)
+  async unlinkGoogle ({state}) {
+    await firebase.auth.currentUser.unlink('google.com')
+  },
+
+  async userGithubLogin () {
+    await firebase.auth.signInWithPopup(firebase.provider.github)
+  },
+
+  async linkGithub ({state}) {
+    await firebase.auth.currentUser.linkWithPopup(firebase.provider.github)
+  },
+
+  async unlinkGithub ({state}) {
+    await firebase.auth.currentUser.unlink('github.com')
+  },
+
+  async userTwitterLogin () {
+    await firebase.auth.signInWithPopup(firebase.provider.twitter)
+  },
+
+  async linkTwitter ({state}) {
+    await firebase.auth.currentUser.linkWithPopup(firebase.provider.twitter)
+  },
+
+  async unlinkTwitter ({state}) {
+    await firebase.auth.currentUser.unlink('twitter.com')
   },
 
   async createUser ({ dispatch }, { email, password }) {
-    const { user } = await firebase.auth.createUserWithEmailAndPassword(email, password)
-    dispatch('createNewAccount', user)
+    await firebase.auth.createUserWithEmailAndPassword(email, password)
   },
 
-  async signIn (state, {email, password}) {
+  async updateProfile ({state, commit}, payload) {
+    await firebase.auth.currentUser.updateProfile(payload)
+    const usersRef = await firebase.firestore.collection('users')
+    const userRef = await usersRef.doc(state.user.uid)
+    await userRef.set(payload, { merge: true })
+    commit('setUser', payload)
+  },
+
+  async updateEmail (state, payload) {
+    await firebase.auth.currentUser.updateEmail(payload)
+  },
+
+  async updatePassword (state, payload) {
+    await firebase.auth.currentUser.updatePassword(payload)
+  },
+
+  async signIn ({dispatch}, {email, password}) {
     await firebase.auth.signInWithEmailAndPassword(email, password)
+  },
+
+  async sendSignInLinkToEmail({dispatch}, email) {
+    await firebase.auth.sendSignInLinkToEmail(email, {
+      'url': window.location.href,
+      'handleCodeInApp': true
+     })
+    alert('An email was sent to ' + email + '. Please use the link in the email to sign-in.');
   },
 
   async signOut ({commit}) {
@@ -63,36 +144,23 @@ export const actions = {
     commit('signOut')
   },
 
-  // userNameUpdate ({ state }, name) {
-  //   firebase.database().ref(`accounts/${state.user.uid}`).update({displayName: name})
-  // },
-
-  // async userImageUpload ({state, commit}, payload) {
-  //   const snapshot = await Storage.ref(`/profiles/${state.profile.uid}`).put(payload)
-  //   const picture = await snapshot.ref.getDownloadURL()
-  //   commit('updateUserImage', picture)
-  //   store.collection('users').doc(state.profile.uid).update({picture})
-  // }
+  async userImageUpload ({state, commit}, payload) {
+    const snapshot = await firebase.storage.ref(`/profiles/${state.user.uid}`).put(payload)
+    return await snapshot.ref.getDownloadURL()
+  }
 }
 
-
 export const mutations = {
-
-  setCurrentUser(state, payload) {
-    state.currentUser = payload
-  },
-
-  setUserProfile(state, payload) {
-    state.profile = payload
+  setUser(state, payload) {
+    state.user = {...state.user, ...payload }
   },
 
   signOut (state) {
-    state.currentUser = null
-    state.profile = null
+    state.user = null
+    this.$router.push({name: 'index'})
   },
 
+  updatePage(state, pageName) {
+    state.page = pageName
+  },
 }
-
-  // updateUserImage(state, payload) {
-  //   state.profile.picture = payload
-  // },

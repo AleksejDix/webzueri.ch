@@ -1,7 +1,6 @@
 <template>
-  <Spinner v-if="$apollo.loading" :active="$apollo.loading" />
 
-  <div v-else id="content">
+  <div id="content">
 
     <section class="bg-primary-dark shadow-lg py-12">
       <div class="container mx-auto px-2">
@@ -41,31 +40,38 @@
     <div class="pattern bg-primary-light">
       <section class="container mx-auto p-2 rounded">
 
-        <header class="py-8 flex justify-between px-2">
-          <h2 class="leading-tight text-3xl md:text-4xl text-base text-on-dark-primary text-shadow font-display font-bold tracking-wide ">Next Event: {{ event.date | date }}</h2>
-          <Button :href="event.meetupLink" rel="noopener" target="_blank">Secure a seat</Button>
+        <header class="py-8 flex flex-col md:flex-row items-start md:justify-between md:items-center px-2 owl md:owl-none" v-if="event">
+          <h2 class="leading-tight text-21  md:text-4xl  text-on-dark-primary text-shadow font-display font-bold tracking-wide ">Next Event: {{ event.date | date }}</h2>
+          <div class="flex-no-shrink">
+            <Button :href="event.meetupLink" rel="noopener" target="_blank">Secure a seat</Button>
+          </div>
         </header>
 
         <div class="p-2 bg-primary-dark rounded-lg">
 
-          <div class="xl:flex">
-            <div class="flex-1 p-2" v-for="talk in event.talks" v-if="talk" :key="talk.id">
-              <talk :talk="talk" :date="event.date"></talk>
-            </div>
-          </div>
+          <Spinner v-if="$apollo.loading" :active="$apollo.loading" />
+          <div v-else>
 
-          <section>
-            <header>
-              <h3 class="text-white p-4 text-base font-display font-bold tracking-wide uppercase">sponsored by:</h3>
-            </header>
-            <ul class="flex flex-wrap list-reset">
-              <li class="p2 flex-no-grow" v-for="sponsor in event.sponsors" :key="sponsor.id">
-                <a class="p-4 rounded-lg block mr-8" :href="sponsor.website">
-                  <img class="w-auto h-20" :src="sponsor.logo.url" :alt="sponsor.name">
-                </a>
-              </li>
-            </ul>
-          </section>
+            <div class="flex flex-wrap">
+              <div class="w-full flex-1 xl:w-1/3 p-2" v-for="talk in event.talks" v-if="talk" :key="talk.id">
+                <talk class="h-full" :talk="talk" :date="event.date"></talk>
+              </div>
+
+            </div>
+
+            <section>
+              <header>
+                <h3 class="text-white p-4 text-12 font-display font-bold tracking-wide uppercase">sponsored by:</h3>
+              </header>
+              <ul class="flex flex-wrap list-reset">
+                <li class="p2 flex-no-grow" v-for="sponsor in event.sponsors" :key="sponsor.id">
+                  <a class="p-4 rounded-lg block mr-8" :href="sponsor.website">
+                    <img class="w-auto h-20" :src="sponsor.logo.url" :alt="sponsor.name">
+                  </a>
+                </li>
+              </ul>
+            </section>
+          </div>
 
         </div>
 
@@ -74,22 +80,29 @@
         </div>
 
       </section>
+
     </div>
+
+    <section-feedbacks />
   </div>
+
 </template>
 
 <script>
 import gql from 'graphql-tag'
 import Talk from "@/components/Talk"
 import Spinner from "@/components/feedback/Spinner"
+import SectionFeedbacks from "@/components/sections/feedbacks/"
 import QueryHome from '~/services/apollo/queries/home'
 import {mapState} from "vuex"
 
 export default {
-  components: { Talk, Spinner },
+  components: { Talk, Spinner, SectionFeedbacks },
   data () {
     return {
+      users: [],
       events: [],
+
       active: false
     }
   },
@@ -119,7 +132,7 @@ export default {
     event () {
       return this.events[0]
     }
-  }
+  },
 }
 
 </script>

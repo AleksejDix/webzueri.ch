@@ -1,42 +1,53 @@
 <template>
-  <div class="p-8 bg-primary-light pattern h-screen">
-    <div class="shadow-lg bg-white max-w-md mx-auto rounded-lg overflow-hidden">
-      <header class="modal-header bg-primary-dark flex">
-        <nuxt-link to="/signin/" class="relative tab flex-1 text-on-dark-secondary tracking-wide no-underline leading-none uppercase inline-block items-center justify-center text-center py-6 px-6  font-semibold text-sm">
-          Sign In
-        </nuxt-link>
-        <nuxt-link to="/signup/" class="relative tab flex-1 text-on-dark-secondary tracking-wide no-underline leading-none uppercase inline-block items-center justify-center text-center py-6 px-6  font-semibold text-sm">
-          Sign Up
-        </nuxt-link>
+
+  <div class="w-full max-w-sm mx-auto">
+
+    <section class="shadow md:rounded-lg bg-grey-lightest ">
+      <header class="py-4 px-6 border-b owl-lg">
+        <h1 class="text-on-light-primary text-14 font-display leading-tight text-center">Register</h1>
+        <!-- <p class="text-on-light-secondary text-12 leading-normal">Sign in by entering your information below.</p> -->
       </header>
-      <div>
-        <Signup />
 
-        <Button type="submit">
-          <nuxt-link to="/signin" class="no-underline text-primary">I already have an account</nuxt-link>
-        </Button>
+      <div class="flex flex-col  owl">
+        <div class="py-4 px-6">
 
+          <Signup />
+
+        </div>
+
+        <div class="flex flex-col owl-sm  py-4 px-6 rounded-b-lg border-t">
+          <Button type="button" @click.prevent="$store.dispatch('userGoogleLogin')">
+            <svg slot="start" class="w-6 h-6 p-1">
+              <use xlink:href="#google" /></svg>
+            use google
+          </Button>
+
+          <Button type="button" @click.prevent="$store.dispatch('userGithubLogin')">
+            <svg slot="start" class="w-6 h-6 p-1">
+              <use xlink:href="#github" /></svg>
+            use github
+          </Button>
+
+          <Button type="button" @click.prevent="$store.dispatch('userTwitterLogin')">
+            <svg slot="start" class="w-6 h-6 p-1">
+              <use xlink:href="#twitter" /></svg>
+            use twitter
+          </Button>
+        </div>
       </div>
-    </div>
+
+    </section>
+
   </div>
+
 </template>
 
 <script>
 import Signup from "@/components/forms/user/signup"
 export default {
+  layout: 'tunnel',
   components: {
     Signup
   }
 }
 </script>
-
-
-<style scoped>
-  .nuxt-link-active {
-    @apply text-secondary;
-  }
-  .nuxt-link-active::after {
-    content: '';
-    @apply absolute pin-x pin-b bg-secondary h-1;
-  }
-</style>

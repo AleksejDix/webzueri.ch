@@ -1,7 +1,7 @@
 <template>
   <nav class="flex justify-center py-4" role="navigation" aria-label="Pagination Navigation">
 
-    <nuxt-link :to="`/events/${index}`" v-for="index in maxPage" :key="index" :aria-label="[($route.path === `/events/${index}`) ? `Current events Page, Page ${index}` : `Goto events Page ${index}`]" :aria-current="$route.path === `/events/${index}`" :class="[($route.path === `/events/${index}`) ? 'bg-green-lighter' : ' bg-green']" class="flex items-center justify-center pagination-link shadow hover:shadow-lg antialiased inline-block rounded-full px-3 h-12 min-w-12 no-underline text-md font-bold text-black m-1">
+    <nuxt-link :to="`/events/${index}`" v-for="index in maxPage" :key="index" :aria-label="[($route.path === `/events/${index}`) ? `Current events Page, Page ${index}` : `Goto events Page ${index}`]" :aria-current="$route.path === `/events/${index}`" :class="[($route.path === `/events/${index}`) ? 'bg-green-light' : ' bg-green']" class="flex items-center justify-center pagination-link shadow hover:shadow-lg antialiased inline-block rounded-full px-3 h-12 min-w-12 no-underline text-md font-bold text-black m-1">
       {{index}}
     </nuxt-link>
 
@@ -36,8 +36,8 @@ export default {
 </script>
 
 <style scoped>
-.pagination-link:focus,
-.pagination-link:hover {
-  transform: scale(1.05);
-}
+  .pagination-link:focus,
+  .pagination-link:hover {
+    transform: scale(1.05);
+  }
 </style>

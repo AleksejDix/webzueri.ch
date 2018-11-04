@@ -9,7 +9,7 @@
             <p class="max-w-md mx-auto leading-normal text-center text-xl md:text-2xl text-on-dark-secondary">Learn, share and collaborate with your local
               <strong>web professionals</strong> and enthusiasts!</p>
             <div class="text-center pt-8">
-              <Button target="_blank" rel="noopener" href="https://docs.google.com/forms/u/1/d/e/1FAIpQLSfTaa-_wOFOQv3dZ7Ord9TJ3vN8wNdzUY5VQqzFiTg_WMQwEw/viewform?c=0&w=1">Submit your talk</Button>
+              <Button to="/user/talks/?redirect=user-index-talks">Submit your talk</Button>
             </div>
           </div>
         </div>

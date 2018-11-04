@@ -1,15 +1,16 @@
 <template>
-  <nuxt-link :to="{ name: 'talk-id', params: { id: talk.id }}" :class="{'bg-indigo':isMine}" class=" block bg-primary rounded-lg p-4 text-white md:flex zoom no-underline whitespace-normal">
+  <nuxt-link :to="{ name: 'talk-id', params: { id: talk.id }}" class=" block bg-primary rounded-lg p-4 text-white md:flex zoom no-underline whitespace-normal">
     <div class="flex flex-col flex-1 pb-4 md:pb-0 md:pr-4">
-      <div>
-        <div class="inline-flex items-center rounded-full bg-grey-light text-red inline-block p-1 px-2 mb-4 leading-none uppercase text-xs tracking-wide font-bold" v-if="talk.youtubecode">
-          <span class="inline-block w-2 h-2 bg-red rounded-full mr-1 "></span>
-          <span class="relative" style="bottom: 1px"> recorded</span>
-        </div>
-        <div class="rounded-full bg-pink-dark inline-block p-1 px-2 mb-4 leading-none uppercase text-xs tracking-wide font-bold" v-if="isFutureTalk">upcoming</div>
+      <div class="owl-md">
 
-        <h2 class="text-white text-2xl md:text-3xl leading-tight font-semibold">{{talk.name}}</h2>
-        <div v-if="talk.abstract" class="abstract leading-normal py-4 text-body">{{talk.abstract | shorten }}</div>
+        <h2 class="text-on-dark-primary text-2xl md:text-3xl leading-tight font-semibold ">{{talk.name}}</h2>
+
+        <div>
+          <Badge color="red" v-if="talk.youtubecode">recorded</Badge>
+          <Badge color="green" v-if="isFutureTalk">upcoming</Badge>
+        </div>
+
+        <div v-if="talk.abstract" class="abstract leading-normal text-14 text-on-dark-secondary tracking-small">{{talk.abstract }}</div>
       </div>
       <div class="mt-auto">
         <div class=" flex text-white -mt-4 -ml-4 py-4">
@@ -28,23 +29,13 @@
 </template>
 
 <script>
+import Badge from '@/components/Badge'
 export default {
+  components: {Badge},
   props: ['talk', 'date'],
   computed: {
     isFutureTalk() {
       return new Date(this.date) > new Date()
-    },
-    isMine () {
-      if (!this.talk) return
-      return false //this.talk.speakers.some(item => item.id === this.$store.state.profile.speaker_id)
-    }
-  },
-  filters: {
-    shorten(value) {
-      return value
-      // if (value.length <= 160) return value
-      // const result = value.substring(0, 160)
-      // return result + '…'
     }
   }
 }

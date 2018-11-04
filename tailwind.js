@@ -45,7 +45,6 @@ View the full documentation at https://tailwindcss.com.
 let colors = {
   transparent: "transparent",
 
-  "surface": "#E8E1E1",
   "text": "#442C2E",
 
   "on-light-primary":   "hsla(0,0%,0%,.87)",
@@ -53,7 +52,7 @@ let colors = {
   "on-light-muted":     "hsla(0,0%,0%,.38)",
 
   "on-dark-primary":   "hsla(0,0%,100%,1)",
-  "on-dark-secondary": "hsla(0,0%,100%,.7)",
+  "on-dark-secondary": "hsla(0,0%,100%,.8)",
   "on-dark-muted":     "hsla(0,0%,100%,.5)",
 
   "primary-light": "#534bae",
@@ -63,6 +62,8 @@ let colors = {
   "secondary-light": "#ffff72",
   "secondary": "#ffeb3b",
   "secondary-dark": "#c8b900",
+
+  "surface": "#f7f7f8",
 
   black: "#22292f",
   "grey-darkest": "#3d4852",
@@ -82,13 +83,8 @@ let colors = {
   "red-lighter": "#f9acaa",
   "red-lightest": "#fcebea",
 
-  "orange-darkest": "#462a16",
-  "orange-darker": "#613b1f",
-  "orange-dark": "#de751f",
-  orange: "#f6993f",
-  "orange-light": "#faad63",
-  "orange-lighter": "#fcd9b6",
-  "orange-lightest": "#fff5eb",
+  "orange": "#FDEEBE",
+  "orange-dark": "#FA755A",
 
   "yellow-darkest": "#453411",
   "yellow-darker": "#684f1d",
@@ -98,13 +94,9 @@ let colors = {
   "yellow-lighter": "#fff9c2",
   "yellow-lightest": "#fcfbeb",
 
-  "green-darkest": "#0f2f21",
-  "green-darker": "#1a4731",
-  "green-dark": "#1f9d55",
-  "green": "#38c172",
-  "green-light": "#51d88a",
-  "green-lighter": "#a2f5bf",
-  "green-lightest": "#e3fcec",
+  "green-dark": "#22B47E",
+  "green": "#22B47E",
+  "green-light": "#D6F9CE",
 
   "teal-darkest": "#0d3331",
   "teal-darker": "#20504f",
@@ -478,6 +470,7 @@ module.exports = {
     sm: ".125rem",
     default: ".25rem",
     lg: ".5rem",
+    xl: "1.125rem",
     full: "9999px"
   },
 
@@ -588,7 +581,10 @@ module.exports = {
   minWidth: {
     "0": "0",
     "12": "3rem",
+    "24": "6rem",
     "36": "9rem",
+    "48": "12rem",
+    "60": "15rem",
     full: "100%"
   },
 
@@ -611,6 +607,7 @@ module.exports = {
     "4": "1rem",
     "8" : "2rem",
     "12" : "3rem",
+    "32": "8rem",
     "64": "16rem",
     full: "100%",
     screen: "100vh"
@@ -690,7 +687,8 @@ module.exports = {
     "12": "3rem",
     "16": "4rem",
     "24": "6rem",
-    "32": "8rem"
+    "32": "8rem",
+    "64": "16rem"
   },
 
   /*
@@ -720,7 +718,8 @@ module.exports = {
     "8": "2rem",
     "12": "3rem",
     "24": "6rem",
-    "36": "9rem"
+    "36": "9rem",
+    "64": "16rem"
   },
 
   /*
@@ -739,6 +738,7 @@ module.exports = {
   */
 
   negativeMargin: {
+    '1/2': "50%",
     px: "1px",
     "2px": "2px",
     "0": "0",
@@ -753,7 +753,8 @@ module.exports = {
     "24": "6rem",
     "28": "7rem",
     "32": "8rem",
-    "36": "9rem"
+    "36": "9rem",
+    "60": "15rem"
   },
 
   /*

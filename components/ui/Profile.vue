@@ -1,61 +1,62 @@
 <template>
-  <div class=" min-h-screen">
-    <div class="h-64 bg-primary-light pattern">
+  <div class="bg-primary-dark min-h-screen">
 
-    </div>
+    <div class="hidden md:block bg-primary-dark min-h-32 pl-64"></div>
 
-    <div class="container mx-auto -mt-32 px-4 pb-8" v-if="profile">
+    <div class="bg-primary-light pattern py-4 md:py-1">
 
-      <div class="md:flex md:items-end">
-        <div class="profile w-48 h-48 rounded mr-6 p-8">
-          <div class="spin-container">
-            <div class="shape">
-              <div class="bd">
-                <img :src="profile.picture">
-              </div>
+      <div class="relative container mx-auto md:-mt-32">
+
+        <div class="py-4 px-8 ">
+          <img class="w-full md:w-48 rounded-lg shadow-lg" :src="user.photoURL">
+        </div>
+
+        <div class="relative block bg-primary-dark rounded-lg p-4 owl md:owl-md -mt-4 md:-mt-8">
+
+          <div class="rounded-lg shadow-lg md:shadow-none relative -mt-12 bg-white md:bg-transparent p-6 owl md:-mt-24">
+            <div class="flex flex-wrap owl-x items-center md:pl-24 md:ml-24">
+              <h1 class="md:pl-4 text-on-light-primary md:text-on-dark-primary font-display font-bold text-16 md:text-21 leading-normal">{{user.displayName}}</h1>
+              <Badge color="pink">speaker</Badge>
             </div>
           </div>
 
-        </div>
+          <div class="owl">
 
-        <div class="flex flex-1 justify-between">
-          <h1 class="leading-tight text-4xl text-primary font-display">{{profile.name}}</h1>
-          <Button @click="$store.dispatch('signOut')">Sign Out</Button>
-        </div>
-      </div>
+            <ul class="list-reset owl-x flex md:mt-0">
 
-      <div class="py-12 text-on-dark-secondary" v-if="speaker">
-        <Talk v-if="speaker.talks" :talk="talk" v-for="talk in speaker.talks" :key="talk.id" />
-      </div>
+              <li>
+                <nuxt-link class="transition tracking-wide border-2 font-bold text-11 hover:bg-secondary hover:border-secondary hover:text-on-light-primary text-on-dark-secondary no-underline  h-10  px-3 flex items-center rounded-xl leading-none " exact-active-class="text-on-light-primary border-secondary" to="/user/talks/">Talks</nuxt-link>
+              </li>
+              <li>
+                <nuxt-link class="transition tracking-wide border-2 font-bold text-11 hover:bg-secondary hover:border-secondary hover:text-on-light-primary text-on-dark-secondary no-underline  h-10  px-3 flex items-center rounded-xl leading-none " exact-active-class="text-secondary border-secondary" to="/user/settings/">Settings</nuxt-link>
+              </li>
+            </ul>
 
-    </div>
-
-    <div class="bg-primary-light pattern min-h-screen">
-
-      <div class="container mx-auto p-2">
-
-        <section class="bg-primary-dark rounded-lg p-2">
-          <div class="flex flex-wrap">
-
-            <aside class="w-48 p-2">
-              <ul class="list-reset owl-sm">
-                <li>
-                  <nuxt-link class="hover:bg-primary-light hover:text-on-dark-primary text-on-dark-secondary no-underline min-h-8 px-4 py-3 flex items-center rounded-lg " active-class="bg-primary-light text-on-dark-primary" to="/user/stories/">stories</nuxt-link>
-                </li>
-                <li>
-                  <nuxt-link class="hover:bg-primary-light hover:text-on-dark-primary text-on-dark-secondary no-underline min-h-8 px-4 py-3 flex items-center rounded-lg " active-class="bg-primary-light text-on-light-primary" to="/user/talks/">talks</nuxt-link>
-                </li>
-              </ul>
-            </aside>
-
-            <div class="flex-1 p-2">
+            <div class="content">
               <nuxt-child />
             </div>
-
           </div>
-        </section>
+
+        </div>
+
+        <div class="xl:flex flex-wrap xl:owl-none" v-if="user">
+
+          <div class="xl:w-1/5 xl:p-4">
+            <!-- <Overline>stories</Overline>
+        <div class="py-4">
+          <div class="flex flex-wrap -m-2">
+            <div class="w-1/2 p-2" v-for="n in 3" :key="n">
+              <div class="shadow rounded-lg h-32 bg-primary-light gradient-dark bg-cover"> </div>
+            </div>
+          </div>
+        </div> -->
+          </div>
+
+        </div>
+
       </div>
     </div>
+
   </div>
 </template>
 
@@ -65,12 +66,12 @@
 import gql from 'graphql-tag'
 import QuerySpeaker from '~/services/apollo/queries/speaker'
 import Talk from '~/components/Talk'
-import { mapGetters } from 'vuex'
+import { mapState } from 'vuex'
 
 export default {
   components: { Talk },
   computed: {
-    ...mapGetters(['profile'])
+    ...mapState(['user'])
   },
   data() {
     return {
@@ -86,12 +87,12 @@ export default {
   //   speaker: {
   //     query: QuerySpeaker,
   //     prefetch: (context) => {
-  //       if (!context.store.state.profile && !context.store.state.profile.speaker_id) return
-  //       return { id: context.store.state.profile.speaker_id }
+  //       if (!context.store.state.user && !context.store.state.user.speaker_id) return
+  //       return { id: context.store.state.user.speaker_id }
   //     },
   //     variables () {
   //       return {
-  //         id: this.profile.speaker_id
+  //         id: this.user.speaker_id
   //       }
   //     }
   //   }
@@ -99,54 +100,8 @@ export default {
 }
 </script>
 
-<style lang="scss">
-  .spin-container {
-    width: 100%;
-    height: 100%;
-    animation: spin 12s linear infinite;
-    position: relative;
-  }
-
-  .shape {
-    width: 100%;
-    height: 100%;
-    transition: border-radius 1s ease-out;
-    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-    animation: morph 8s ease-in-out infinite both alternate;
-    position: absolute;
-    overflow: hidden;
-    z-index: 5;
-  }
-
-  .bd {
-    border: 1px solid red;
-    width: 150%;
-    height: 150%;
-    position: absolute;
-    left: -25%;
-    top: -25%;
-    animation: spin 12s linear infinite reverse;
-    opacity: 1;
-    z-index: 2;
-  }
-
-  @keyframes morph {
-    0% {
-      border-radius: 40% 60% 60% 40% / 60% 30% 70% 40%;
-    }
-    100% {
-      border-radius: 40% 60%;
-    }
-  }
-
-  @keyframes spin {
-    to {
-      transform: rotate(1turn);
-    }
-  }
-
-  img {
-    width: 100%;
-    transform: scale(0.75);
-  }
+<style >
+  /* * {
+                                                                                                                                                                                                                                                                                                                                                                                                          outline: 1px solid magenta;
+                                                                                                                                                                                                                                                                                                                                                                                                        } */
 </style>

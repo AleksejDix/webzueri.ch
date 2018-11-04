@@ -12,6 +12,11 @@
 * See: https://github.com/tailwindcss/tailwindcss/issues/53#issuecomment-341413622
 */
 @import 'preflight.css';
+html {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
 .fade-enter-active,
 .fade-leave-active {
@@ -49,13 +54,38 @@ h6 {
   @apply .mt-2;
 }
 
-.owl > * + * {
-  margin-top: 1.5rem;
-}
 
-.owl-sm > * + * {
-  margin-top: 0.75rem;
-}
+@responsive {
+  .owl-xs > * + * {
+    margin-top: 0.25rem;
+  }
+
+  .owl-sm > * + * {
+    margin-top: 0.5rem;
+  }
+
+  .owl-md > * + * {
+    margin-top: 0.75rem;
+  }
+
+  .owl-lg > * + * {
+    margin-top: 1rem;
+  }
+
+  .owl-xl > * + * {
+    margin-top: 1.25rem;
+  }
+
+  .owl > * + * {
+    margin-top: 1.5rem;
+  }
+
+  .owl-none > * + * {
+    margin-top: 0;
+  }
+  }
+
+
 
 .owl-x > * + * {
   margin-left: 0.5rem;
@@ -124,6 +154,11 @@ hr {
 }
 
 
+.gradient-dark {
+  background-image: linear-gradient(transparent, rgba(0,0,0,.25));
+}
+
+
 /**
 * Here you would add any of your custom component classes; stuff that you'd
 * want loaded *before* the utilities so that the utilities could still
@@ -151,6 +186,7 @@ hr {
 * See: https://github.com/tailwindcss/tailwindcss/issues/53#issuecomment-341413622
 */
 @import 'utilities.css';
+@import 'screens.css';
 
 /**
 * Here you would add any custom utilities you need that don't come out of the
@@ -166,3 +202,16 @@ hr {
 * @import "utilities/background-patterns";
 * @import "utilities/skew-transforms";
 */
+
+  a.link {
+    @apply relative font-normal ;
+    border-bottom: 3px solid #ffeb3b;
+    transition: background-color 120ms;
+    text-decoration: none;
+    color: currentColor;
+  }
+
+  a.link:hover {
+    color: black;
+    background-color: #ffeb3b;
+  }
