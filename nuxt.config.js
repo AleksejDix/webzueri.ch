@@ -89,7 +89,7 @@ export default {
   apollo: {
     clientConfigs: {
       default: {
-        httpEndpoint: `https://api-euwest.graphcms.com/v1/${process.env.graphcms_token}/master`,
+        httpEndpoint: `https://api-euwest.graphcms.com/v1/cjiqbztau0hjj01i2nukb5bjt/master`,
       }
     }
   }

@@ -56,7 +56,8 @@ export default {
     return {
       title: this.talk.name,
       meta: [
-        { hid: 'description', name: 'description', content: this.talk.abstract }
+        { hid: 'description', name: 'description', content: this.talk.abstract },
+        { hid: 'og-image', property: 'og-image', content: `https://us-central1-webzuerich-talk-image-gen.cloudfunctions.net/generateImage?id=xYXhOJZttRpkqxERH8MD&name=${this.talk.speakers[0].name}&title=${this.talk.name}&userImg=${this.talk.speakers[0].speakerPicture.url}` }
       ]
     }
   }
