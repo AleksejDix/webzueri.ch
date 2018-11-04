@@ -63,9 +63,9 @@ export default {
         { hid: 'twitter:url', name: "twitter:url", content: process.env.baseUrl + this.$route.path },
         { hid: 'twitter:title', name: "twitter:title", content: this.talk.name},
         { hid: 'twitter:description', name: "twitter:description", content: this.talk.abstract},
-        { hid: 'twitter:image', name: "twitter:image", content: `https://us-central1-webzuerich-talk-image-gen.cloudfunctions.net/generateImage?id=xYXhOJZttRpkqxERH8MD&name=${this.talk.speakers[0].name}&title=${this.talk.name}&userImg=${this.talk.speakers[0].speakerPicture.url}`},
-        { hid: 'og-image', property: 'og-image', content: `https://us-central1-webzuerich-talk-image-gen.cloudfunctions.net/generateImage?id=xYXhOJZttRpkqxERH8MD&name=${this.talk.speakers[0].name}&title=${this.talk.name}&userImg=${this.talk.speakers[0].speakerPicture.url}`}
-      ]
+        { hid: 'twitter:image', name: "twitter:image", content: `https://us-central1-webzuerich-talk-image-gen.cloudfunctions.net/generateImage?id=xYXhOJZttRpkqxERH8MD&name=${this.talk.speakers && this.talk.speakers[0].name}&title=${this.talk.name}&userImg=${this.talk && this.talk.speakers[0].speakerPicture.url}`},
+      ],
+      __dangerouslyDisableSanitizersByTagID: { 'twitter:image': ['content'] }
     }
   }
 }
