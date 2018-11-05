@@ -3,6 +3,20 @@ import { startOfHour } from 'date-fns';
 
 export const strict = false
 
+class User {
+  constructor(user) {
+    this.displayName = user.displayName,
+    this.email = user.email,
+    this.emailVerified = user.emailVerified,
+    this.photoURL = user.photoURL,
+    this.isAnonymous = user.isAnonymous,
+    this.uid = user.uid
+    this.roles = {
+      guest: true
+    }
+  }
+}
+
 export const state = () => ({
   page: 'index',
   eventsPerPage: 10,
@@ -16,17 +30,6 @@ export const getters = {
   isAdmin(state) {
     if (!state.user) return false
     return state.user.role === 'admin'
-  },
-  isConnectedWithGoogle () {
-    //console.log(firebase)
-    // if (!firebase.currentUser.providerData) return
-    // return !!firebase.currentUser.providerData.find(x => x.providerId === 'google.com')
-  },
-  isConnectedWithTwitter () {
-    //return !!firebase.currentUser.providerData.find(x => x.providerId === 'twitter.com')
-  },
-  isConnectedWithGithub () {
-   // return !!firebase.currentUser.providerData.find(x => x.providerId === 'github.com')
   }
 }
 
@@ -39,25 +42,17 @@ export const actions = {
   },
 
   async createProfile ({commit}, user) {
+    const newUserData = new User(user)
     const userRef = await firebase.firestore.collection('users').doc(user.uid)
-
-    const profile = {
-      displayName : user.displayName,
-      email: user.email,
-      emailVerified: user.emailVerified,
-      photoURL: user.photoURL,
-      isAnonymous: user.isAnonymous,
-      uid: user.uid
-    }
-
-    userRef.set(profile, { merge: true })
-
     const doc = await userRef.get()
+    const oldUserData = doc.data()
 
     if (doc.exists) {
+      const userData = {...oldUserData, ...newUserData}
+      userRef.set(userData, { merge: true })
       commit('setUser', doc.data())
     } else {
-      commit('setUser', profile)
+      commit('setUser', {...newUserData})
     }
   },
 
