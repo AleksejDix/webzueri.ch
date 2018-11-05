@@ -57,7 +57,8 @@ export default {
   plugins: [
     '~/plugins/components',
     { src: '~plugins/ga.js', ssr: false },
-    { src: '~/plugins/auth-cookie.js', ssr: false }
+    { src: '~/plugins/auth-cookie.js', ssr: false },
+    { src: '~/plugins/vue-kindergarten' }
   ],
   serverMiddleware: [
     '~/serverMiddleware/validateFirebaseIdToken'
