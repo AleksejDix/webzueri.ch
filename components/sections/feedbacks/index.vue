@@ -12,7 +12,7 @@
             <header class="bg-primary px-6 pt-12 pb-2 rounded-lg shadow relative z-10">
               <h3 class="font-display leading-normal text-on-dark-primary" v-if="feedback.speaker.name">{{feedback.speaker.name}}</h3>
               <img class=" absolute pin-t pin-l -mt-8 ml-6 block w-16 shadow rounded-full" v-if="feedback.speaker" :src="feedback.speaker.speakerPicture.url" />
-              <img class="absolute pin-r pin-t w-auto h-6 mt-4 mr-4" :src="feedback.sponsor.logo.url" alt="">
+              <img v-if="feedback.sponsor.logo" class="absolute pin-r pin-t w-auto h-6 mt-4 mr-4" :src="feedback.sponsor.logo.url" alt="">
             </header>
             <div class="px-2">
               <blockquote class="shadow-lg bg-white px-6 py-4 text-on-light-secondary rounded-b  italic text-10 leading-normal">
