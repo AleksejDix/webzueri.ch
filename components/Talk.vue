@@ -6,7 +6,7 @@
           <span class="inline-block w-2 h-2 bg-red rounded-full mr-1 "></span>
           <span class="relative" style="bottom: 1px"> recorded</span>
         </div>
-        <div class="rounded-full bg-pink-dark inline-block p-1 px-2 mb-4 leading-none uppercase text-xs tracking-wide font-bold" v-if="isFutureTalk">uppcomming</div>
+        <div class="rounded-full bg-pink-dark inline-block p-1 px-2 mb-4 leading-none uppercase text-xs tracking-wide font-bold" v-if="isFutureTalk">upcoming</div>
 
         <h2 class="text-white text-2xl md:text-3xl leading-tight font-semibold">{{talk.name}}</h2>
         <div v-if="talk.abstract" class="abstract leading-normal py-4 text-body">{{talk.abstract | shorten }}</div>
