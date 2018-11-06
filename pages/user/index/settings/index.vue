@@ -3,7 +3,13 @@
   <Card>
     <h1 slot="title">Settings</h1>
 
-    <div class="owl">
+    <ul>
+      <li>can delete {{canDelete}}</li>
+      <li>can read {{canRead}}</li>
+      <li>can update {{canUpdate}}</li>
+    </ul>
+
+    <div class="owl p-6">
 
       <div>
 
@@ -63,8 +69,17 @@ import UpdateProfile from '@/components/forms/updateProfile'
 import UpdateEmail from '@/components/forms/updateEmail'
 import UpdatePassword from '@/components/forms/updatePassword'
 import Card from '@/components/Card'
+import {mapGetters} from 'vuex'
 export default {
   components: { UpdateProfile, UpdateEmail, UpdatePassword, Card },
+  computed: {
+    ...mapGetters({
+      userRoles: 'userRoles',
+      canDelete: 'talks/canDelete',
+      canUpdate: 'talks/canUpdate',
+      canRead: 'talks/canRead',
+    })
+  }
 }
 </script>
 

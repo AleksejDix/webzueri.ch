@@ -45,6 +45,8 @@ View the full documentation at https://tailwindcss.com.
 let colors = {
   transparent: "transparent",
 
+  "current-color": "currentColor",
+
   "text": "#442C2E",
 
   "surface": "#f7f7f8",
@@ -87,17 +89,15 @@ let colors = {
   "orange": "#FDEEBE",
   "orange-dark": "#FA755A",
 
-  "yellow-darkest": "#453411",
-  "yellow-darker": "#684f1d",
-  "yellow-dark": "#f2d024",
-  "yellow": "#F6DF66",
-  "yellow-light": "#fff382",
-  "yellow-lighter": "#fff9c2",
-  "yellow-lightest": "#fcfbeb",
+  "yellow-dark": "hsla(60, 85%, 30%, 1.00)",
+  "yellow": "hsla(60, 91%, 73%, 1.00)",
+  "yellow-light": "hsla(60, 85%, 40%, 1.00)",
+  "yellow-lighter": "hsla(60, 50%, 85%, 1)",
 
-  "green-dark": "#22B47E",
-  "green": "#22B47E",
-  "green-light": "#D6F9CE",
+  "green-dark": "hsla(163, 85%, 30%, 1.00)",
+  "green": "hsla(160, 85%, 35%, 1.00)",
+  "green-light": "hsla(157, 85%, 40%, 1.00)",
+  "green-lighter": "hsla(157, 50%, 85%, 1)",
 
   "teal-darkest": "#0d3331",
   "teal-darker": "#20504f",
@@ -107,9 +107,10 @@ let colors = {
   "teal-lighter": "#a0f0ed",
   "teal-lightest": "#e8fffe",
 
-  "blue-dark": "#47B0E8",
-  blue: "#92DDF6",
-  "blue-light": "#D4F3FD",
+  "blue-darker": "hsla(203, 100%, 35%, 1)",
+  "blue-dark": "hsla(203, 100%, 67%, 1)",
+  blue: "hsla(200, 100%, 70%, 1)",
+  "blue-light": "hsla(197, 100%, 73%, 1)",
 
   "indigo-darkest": "#191e38",
   "indigo-darker": "#2f365f",
@@ -420,7 +421,8 @@ module.exports = {
     "0": "0",
     "2": "2px",
     "4": "4px",
-    "8": "8px"
+    "8": "8px",
+    "16": "16px"
   },
 
   /*
@@ -505,6 +507,7 @@ module.exports = {
     "40": "10rem",
     "48": "12rem",
     "64": "16rem",
+    "96": "24rem",
     "1/2": "50%",
     "1/3": "33.33333%",
     "2/3": "66.66667%",
@@ -767,12 +770,12 @@ module.exports = {
   */
 
   shadows: {
-    default: "0 2px 4px 0 rgba(0,0,0,0.2), 0 2px 4px 0 rgba(0,0,0,0.2)",
+    default: "0 4px 6px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08)",
     md: "0 4px 8px 0 rgba(0,0,0,0.12), 0 2px 4px 0 rgba(0,0,0,0.08)",
     lg: "0 7px 14px rgba(50,50,93,.1), 0 3px 6px rgba(0,0,0,.08)",
     inner: "inset 0 2px 4px 0 rgba(0,0,0,0.06)",
     outline: "0 0 0 3px rgba(52,144,220,0.5)",
-    focus: "inset 0 0 0 2px #534bae",
+    focus: "inset 0 0 0 2px hsla(200, 100%, 70%, 1)",
     none: "none"
   },
 
@@ -817,6 +820,7 @@ module.exports = {
     "8": ".08",
     "24": ".24",
     "32": ".32",
+    "64": ".64",
     "100": "1"
   },
 
@@ -884,7 +888,7 @@ module.exports = {
     backgroundRepeat: ["responsive"],
     backgroundSize: ["responsive"],
     borderColors: ["responsive", "hover", "focus"],
-    borderRadius: ["responsive"],
+    borderRadius: ["responsive", "group-hover"],
     borderStyle: ["responsive"],
     borderWidths: ["responsive"],
     cursor: ["responsive"],
@@ -902,7 +906,7 @@ module.exports = {
     minHeight: ["responsive"],
     minWidth: ["responsive"],
     negativeMargin: ["responsive"],
-    opacity: ["responsive", "group-hover"],
+    opacity: ["responsive", "group-hover", "hover"],
     overflow: ["responsive"],
     outline: ["hover", "focus"],
     padding: ["responsive"],

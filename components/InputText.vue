@@ -24,6 +24,7 @@ export default {
       }
     },
     charLimit() {
+      if(!this._value) return 0
       return this._value.length
     }
   }

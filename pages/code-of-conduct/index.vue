@@ -6,7 +6,7 @@
       </div>
 
       <div class="md:shadow bg-grey-lightest md:rounded-lg md:max-w-5xl md:mx-auto py-8 px-4 md:p-8">
-        <prose class="max-w-lg mx-auto">
+        <prose class="max-w-lg mx-auto owl">
           <h2>Our Pledge</h2>
           <p>In the interest of fostering an open and welcoming environment, we as the community and organisers pledge to making participation in our community a harassment-free experience for everyone, regardless of age, body size, disability, ethnicity, gender identity and expression, level of experience, nationality, personal appearance, race, religion, or sexual identity and orientation.</p>
           <h2>Our Standards</h2>

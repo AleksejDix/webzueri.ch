@@ -17,11 +17,10 @@
     <transition name="menu" v-if="dropdown">
       <section v-show="open" name="dropdown" class="shadow absolute bg-yellow rounded-lg pin-r pin-t w-full" style="min-width: 300px">
         <div class="bg-indigo-darker px-3 py-4 rounded-lg flex">
-          =======
           <transition slot="dropdown" name="menu" v-if="dropdown">
             <section v-if="profile" v-show="open" name="dropdown" class="bg-primary border border-black z-10 shadow absolute rounded-lg  pin-r pin-t w-full" style="min-width: 300px">
               <div class=" px-3 py-4 rounded-t-lg flex">
-                >>>>>>> WIP
+
                 <div class="pr-4">
                   <img class="rounded-full w-12 h-12 block" :src="profile.picture" :alt="profile.name">
                 </div>
@@ -47,6 +46,9 @@
           </transition>
 
         </div>
+      </section>
+    </transition>
+  </div>
 </template>
 
 

@@ -5,8 +5,8 @@
         Skip to content</a>
 
       <nuxt-link to="/" class="flex items-center flex-no-shrink mr-6 no-underline">
-        <div class="bg-green-light rounded-full w-12 mr-4 h-12 p-2 flex items-center justify-center">
-          <svg class="w-6 h-6 fill-green-dark">
+        <div class="bg-blue-darker rounded-full w-12 mr-4 h-12 p-2 flex items-center justify-center">
+          <svg class="w-6 h-6 fill-white">
             <use xlink:href="#keyboard" />
           </svg>
         </div>
@@ -40,7 +40,8 @@
           <focus-lock id="menu" class="absolute pin-t pin-r absolute z-50 m-2 md:w-sm shadow-lg rounded overflow-hidden" v-show="mobileNav">
 
             <Button class="absolute pin-r m-2" @click="close">close
-              <Icon slot="end" type="close" /></Button>
+              <svg slot="end" class="w-6 h-6 p-1">
+                <use xlink:href="#icon-close" /></svg></Button>
 
             <div v-if="menu && menu.intern">
               <div class="intern pt-8 pb-4 px-6 rounded-t-lg  bg-white">
@@ -50,7 +51,7 @@
 
                     <nuxt-link @click.native="close" :to="link.url" class="no-underline py-2 block group">
                       <div class="flex flex-wrap items-center ">
-                        <div class="transition rounded-full bg-green-light group-hover:bg-green w-6 h-6 mr-4 flex items-center justify-center">
+                        <div class="transition rounded-full bg-green-lighter group-hover:bg-green w-6 h-6 mr-4 flex items-center justify-center">
                           <svg class="transition fill-green-dark group-hover:fill-green-light h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                             <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" />
                           </svg>

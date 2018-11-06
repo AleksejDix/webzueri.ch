@@ -1,4 +1,4 @@
-import firebase, {db} from '../services/firebase/client-init.js';
+import firebase  from '../services/firebase/client-init.js';
 
 function setCookie (token) {
   const today = new Date()

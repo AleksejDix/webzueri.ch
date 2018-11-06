@@ -1,5 +1,10 @@
 import {db} from '../services/firebase/client-init.js';
 
+function isAllowed(allowedRoles = [], userRoles = []) {
+  const hasEveryRule = x => userRoles.includes(x)
+  return allowedRoles.some(hasEveryRule)
+}
+
 export const state = () => ({
   list: []
 })
@@ -7,51 +12,28 @@ export const state = () => ({
 export const getters = {
   list(state) {
     return state.list
-  }
+  },
+  canCreate(state, getters, rootState, rootGetters) {
+    return isAllowed(['admin', 'speaker'], rootGetters.userRoles)
+  },
+  canRead(state, getters, rootState, rootGetters) {
+    return isAllowed(['admin', 'guest', 'speaker'], rootGetters.userRoles)
+  },
+  canUpdate(state, getters, rootState, rootGetters) {
+    return isAllowed(['admin', 'speaker'], rootGetters.userRoles)
+  },
+  canDelete(state, getters, rootState, rootGetters) {
+    return isAllowed(['admin'], rootGetters.userRoles)
+  },
 }
 
 export const actions = {
-  async submitTalk({rootState}, payload) {
 
-    try {
-      await db
-        .collection('talks')
-        .add({
-          ...payload,
-          authorUID: rootState.user.uid,
-          authorDisplayName: rootState.user.displayName,
-          authorPhotoURL: rootState.user.photoURL,
-          submittedAt: new Date(),
-          status: 'pending'
-        })
-    } catch (error) {
-      console.log(error)
-    }
-  },
-
-  async realTimeListener ({state, commit, rootState}) {
-    const ref = await db.collection("talks").where("authorUID", "==", rootState.user.uid)
-
-    ref.onSnapshot(snapshot => {
-      snapshot.docChanges().forEach(change => {
-        if(change.type === 'added' && !state.list.some(e => e.id === change.doc.id)) {
-          commit('addTalk', {id: change.doc.id, ...change.doc.data() })
-        }
-        if(change.type === 'modified') {
-          console.log("updated talk: ", change.doc.data());
-        }
-        if(change.type === 'removed') {
-          console.log("removed talk: ", change.doc.data());
-        }
-      })
-    })
-  },
 
   async getTalksByUser({commit, rootState}) {
     try {
       const snapshot = await db
         .collection("talks")
-        .where("authorUID", "==", rootState.user.uid)
         .orderBy("submittedAt", "asc")
         .get()
 
@@ -71,8 +53,5 @@ export const actions = {
 export const mutations = {
   setTalks(state, payload) {
     state.list = payload
-  },
-  addTalk(state, payload) {
-    state.list.push(payload)
   }
 }

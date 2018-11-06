@@ -1,5 +1,4 @@
-import firebase from '../services/firebase/client-init.js';
-import { startOfHour } from 'date-fns';
+import firebase, {db} from '../services/firebase/client-init.js';
 
 export const strict = false
 
@@ -12,7 +11,7 @@ class User {
     this.isAnonymous = user.isAnonymous,
     this.uid = user.uid
     this.roles = {
-      guest: true
+      guest: true,
     }
   }
 }
@@ -24,12 +23,12 @@ export const state = () => ({
 })
 
 export const getters = {
+  userRoles (state) {
+    const { user : { roles = {}}} = state
+    return Object.keys(roles).filter(key => roles[key])
+  },
   hasUser (state) {
     return !!state.user
-  },
-  isAdmin(state) {
-    if (!state.user) return false
-    return state.user.role === 'admin'
   }
 }
 
@@ -43,17 +42,19 @@ export const actions = {
 
   async createProfile ({commit}, user) {
     const newUserData = new User(user)
-    const userRef = await firebase.firestore.collection('users').doc(user.uid)
+    const userRef = await db.collection('users').doc(user.uid)
     const doc = await userRef.get()
     const oldUserData = doc.data()
+    const userData = {...oldUserData, ...newUserData}
+    userRef.set(userData, { merge: true })
 
     if (doc.exists) {
-      const userData = {...oldUserData, ...newUserData}
-      userRef.set(userData, { merge: true })
       commit('setUser', doc.data())
     } else {
       commit('setUser', {...newUserData})
     }
+
+
   },
 
   async sendPasswordReset(context, {email}) {
@@ -61,7 +62,7 @@ export const actions = {
   },
 
   async getUserProfile({ commit, state }) {
-    const ref = await firebase.firestore.collection("users").doc(state.user.uid)
+    const ref = await db.collection("users").doc(state.user.uid)
     const doc = await ref.get()
     commit('setUser', doc.data())
   },
@@ -108,7 +109,7 @@ export const actions = {
 
   async updateProfile ({state, commit}, payload) {
     await firebase.auth.currentUser.updateProfile(payload)
-    const usersRef = await firebase.firestore.collection('users')
+    const usersRef = await db.collection('users')
     const userRef = await usersRef.doc(state.user.uid)
     await userRef.set(payload, { merge: true })
     commit('setUser', payload)
@@ -142,6 +143,17 @@ export const actions = {
   async userImageUpload ({state, commit}, payload) {
     const snapshot = await firebase.storage.ref(`/profiles/${state.user.uid}/wz-avatar-${state.user.uid}`).put(payload)
     return await snapshot.ref.getDownloadURL()
+  },
+
+  async changeRole ({state, commit}, payload) {
+    try {
+      const userRef = await db.collection('users').doc(state.user.uid)
+      const success = await userRef.update({ role: payload })
+      console.log('userole was updated', success)
+      commit('changeRole', payload)
+    } catch (error) {
+      console.log('failed to change the role')
+    }
   }
 }
 
@@ -155,7 +167,12 @@ export const mutations = {
     this.$router.push({name: 'index'})
   },
 
+
   updatePage(state, pageName) {
     state.page = pageName
   },
+
+  changeRole(state, role) {
+    state.user.role = role
+  }
 }

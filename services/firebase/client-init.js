@@ -1,11 +1,9 @@
 import Vue from 'vue'
-import VueFire from 'vuefire'
 import firebase from 'firebase/app'
 import 'firebase/auth';
 import 'firebase/storage';
 import 'firebase/firestore';
 
-Vue.use(VueFire)
 const config = {
   "apiKey": "AIzaSyCUj0VrsmXrSBJINseBT86G6514Emg3GCU",
   "authDomain": "web-zuri.firebaseapp.com",
@@ -18,6 +16,8 @@ const config = {
 if (!firebase.apps.length) {
   firebase.initializeApp(config)
 }
+
+export const timestamp = () => firebase.firestore.FieldValue.serverTimestamp()
 
 export const db = firebase.firestore()
 db.settings({timestampsInSnapshots: true})

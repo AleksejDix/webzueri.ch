@@ -1,66 +1,80 @@
-<template>
-  <div class="prose">
+<template functional>
+  <div :class="[
+      { 'prose--on-light' : props.color === 'on-light'},
+       { 'prose--on-dark' : props.color === 'on-dark'}
+    ]" class="prose">
     <slot></slot>
   </div>
 </template>
 
-<script>
-export default {
-  props: ['text']
-}
-</script>
-
-<style lang="scss" scoped>
+<style>
   .prose {
-    font-size: 15px;
+    @apply text-11 leading-normal text-current-color;
+  }
+  .prose--on-dark {
+    @apply text-on-dark-secondary;
+  }
+  .prose--on-light {
+    @apply text-on-light-secondary;
+  }
 
-    line-height: 1.5;
+  .prose strong,
+  .prose b {
+    font-weight: bold;
+  }
 
-    > * + * {
-      margin-top: 1.5em;
-    }
+  .prose i,
+  .prose italic {
+    font-style: oblique;
+  }
 
-    h1,
-    h2,
-    h3 {
-      line-height: 1.25;
-    }
+  .prose a {
+    transition: background-color 120ms;
+    text-decoration: none;
+    @apply border-b border-2 border-secondary text-current-color relative;
+  }
 
-    h1 {
-      font-size: 1.75em;
-    }
-    h2 {
-      font-size: 1.625em;
-    }
-    h3 {
-      font-size: 1.5em;
-    }
-    strong,
-    b {
-      font-weight: bold;
-    }
+  .prose a:hover {
+    @apply bg-secondary;
+  }
 
-    i,
-    italic {
-      font-style: oblique;
-    }
+  .prose h1 {
+    @apply text-24;
+  }
 
-    a {
-      position: relative;
-      color: black;
-      font-weight: 600;
-      border-bottom: 3px solid #ffeb3b;
-      transition: background-color 120ms;
-      text-decoration: none;
-    }
-    a:hover {
-      background-color: #ffeb3b;
-    }
+  .prose h2 {
+    @apply text-21;
+  }
+
+  .prose h3 {
+    @apply text-18;
+  }
+
+  .prose h4 {
+    @apply text-16;
+  }
+
+  .prose--on-dark h1,
+  .prose--on-dark h2,
+  .prose--on-dark h3,
+  .prose--on-dark h4,
+  .prose--on-dark h5,
+  .prose--on-dark h6 {
+    @apply text-on-dark-primary;
+  }
+
+  .prose--on-light h1,
+  .prose--on-light h2,
+  .prose--on-light h3,
+  .prose--on-light h4,
+  .prose--on-light h5,
+  .prose--on-light h6 {
+    @apply text-on-light-primary;
   }
 
   @media screen and (min-width: 640px) {
     .prose {
-      font-size: 19px;
+      @apply text-14;
     }
   }
 </style>

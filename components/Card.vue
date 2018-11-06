@@ -1,10 +1,9 @@
 <template>
-  <article class="border bg-white rounded-lg">
-    <header class="py-4 px-6 text-on-light-primary">
+  <article class="flex flex-col border bg-white rounded-lg">
+    <header v-if="$slots['title'] || $slots['title']" class="border-b flex justify-between items-center px-6 h-16">
       <slot name="title"></slot>
+      <slot name="actions"></slot>
     </header>
-    <div class="py-4 px-6 border-t">
-      <slot></slot>
-    </div>
+    <slot></slot>
   </article>
 </template>

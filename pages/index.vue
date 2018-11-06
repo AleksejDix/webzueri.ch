@@ -53,12 +53,12 @@
           <div v-else>
 
             <div class="flex flex-wrap">
-              <div class="w-full flex-1 xl:w-1/3 p-2" v-for="talk in event.talks" v-if="talk" :key="talk.id">
+              <div class="w-full flex-1 xl:w-1/3 p-4" v-for="talk in event.talks" v-if="talk" :key="talk.id">
                 <talk class="h-full" :talk="talk" :date="event.date"></talk>
               </div>
 
-              <article class="w-full flex-1 xl:w-1/3 p-2" v-if="event.talks.length < 3">
-                <div class="p-4 h-full  border-secondary border-2 border-dashed  owl items-center justify-center rounded-lg bg-primary">
+              <article class="w-full flex-1 xl:w-1/3 p-4" v-if="event.talks.length < 3">
+                <div class="p-4 h-full  border-blue-dark border-2 border-dashed  owl items-center justify-center rounded-lg bg-primary">
                   <h3 class="text-on-dark-primary text-2xl md:text-3xl leading-tight font-semibold ">{{3 - event.talks.length }} Spot left</h3>
 
                   <p class="text-on-dark-primary leading-normal">Sharing is caring! Why not talk about your latest project, the great tool you found or the problem you just solved recently?</p>
@@ -67,7 +67,7 @@
                     <li>Talks are 15 minutes without Q&A</li>
                     <li>We have HDMI & Thunderbolt available and the resolution is 1080p (1920x1080)</li>
                   </ul>
-                  <Button :to="{ name: 'user-index-talks', query: { redirect: 'user-index-talks' }}">Submit your talk</Button>
+                  <Button :to="{ name: 'user-index-talks-index-create', query: { redirect: 'user-index-talks-index-create' }}">Submit your talk</Button>
                 </div>
               </article>
 
@@ -78,9 +78,9 @@
                 <h3 class="text-white p-4 text-12 font-display font-bold tracking-wide uppercase">sponsored by:</h3>
               </header>
               <ul class="flex flex-wrap list-reset">
-                <li class="p2 flex-no-grow" v-for="sponsor in event.sponsors" :key="sponsor.id">
+                <li class="p-2 flex-no-grow" v-for="sponsor in event.sponsors" :key="sponsor.id">
                   <a class="p-4 rounded-lg block mr-8" :href="sponsor.website">
-                    <img class="w-auto h-20" :src="sponsor.logo.url" :alt="sponsor.name">
+                    <img class="transition w-auto h-20 opacity-64 hover:opacity-100" :src="sponsor.logo.url" :alt="sponsor.name">
                   </a>
                 </li>
               </ul>

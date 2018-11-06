@@ -20,17 +20,16 @@ export default {
     }
   },
   methods: {
-    ...mapActions('talks', ['submitTalk']),
+    ...mapActions('userTalks', ['create']),
     async handleSubmit() {
       try {
-        const answer = await this.submitTalk(this.form);
-        this.form.title = '',
-        this.form.abstract = ''
+        await this.create(this.form);
+        this.$router.push({name: 'user-index-talks-index'})
       } catch (error) {
-        console.log(error)
+        console.trace(error)
       }
+
     }
   }
 }
 </script>
-

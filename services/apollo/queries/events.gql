@@ -20,5 +20,13 @@ query events($first: Int!, $skip: Int!) {
         }
       }
     }
+    sponsors {
+      id
+      name
+      website
+      logo {
+        url
+      }
+    }
   }
 }
