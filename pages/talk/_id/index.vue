@@ -58,6 +58,7 @@ export default {
         return [{ hid: 'twitter:card', name: "twitter:card", content: "summary_large_image"}]
       }
       return [
+        { hid: 'og:type', name: "og:type", content: "video.movie"},
         { hid: 'twitter:card', name: "twitter:card", content: "player"},
         { hid: 'og:video', name: "og:video", content: `https://www.youtube.com/embed/${this.talk.youtubecode}`},
         { hid: 'og:video:type', name:"og:video:type", content:"video/mp4" },
