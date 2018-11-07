@@ -52,6 +52,23 @@ export default {
   data: () => ({
     talk: '',
   }),
+  computed: {
+    video() {
+      return [
+        { hid: 'og:video', name: "og:video", content: `https://www.youtube.com/embed/${this.talk.youtubecode}`},
+        { hid: 'og:video:type', name:"og:video:type", content:"video/mp4" },
+        { hid: 'og:video:width', name:"og:video:width", content:"1600" },
+        { hid: 'og:video:height', name:"og:video:height", content:"900" },
+        { hid: 'og:site_name', name:"og:site_name", content:"web züri" },
+      ]
+    },
+    cardType() {
+      if (!this.talk.youtubecode) {
+        return [{ hid: 'twitter:card', name: "twitter:card", content: "summary_large_image"}]
+      }
+      return [{ hid: 'twitter:card', name: "twitter:card", content: "player"}]
+    }
+  },
   head() {
     return {
       title: this.talk.name,
