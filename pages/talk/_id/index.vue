@@ -61,11 +61,11 @@ export default {
         { hid: 'twitter:card', name: "twitter:card", content: "player"},
         { hid: 'og:video', name: "og:video", content: `https://www.youtube.com/embed/${this.talk.youtubecode}`},
         { hid: 'og:video:type', name:"og:video:type", content:"video/mp4" },
-        { hid: 'og:video:width', name:"og:video:width", content:"1600" },
-        { hid: 'og:video:height', name:"og:video:height", content:"900" },
-
-        { hid: 'twitter:player:width', name:"", content:"1600" },
-        { hid: 'twitter:player:height', name:"twitter:player:height", content:"900" },
+        { hid: 'og:video:width', name:"og:video:width", content:"720" },
+        { hid: 'og:video:height', name:"og:video:height", content:"720" },
+        { hid: 'twitter:player', name:"twitter:player", content: `https://www.youtube.com/embed/${this.talk.youtubecode}` },
+        { hid: 'twitter:player:width', name:"twitter:player:width", content:"720" },
+        { hid: 'twitter:player:height', name:"twitter:player:height", content:"720" },
       ]
     }
   },
@@ -84,6 +84,7 @@ export default {
         { hid: 'og:image', name: "og:image", content: `https://us-central1-webzuerich-talk-image-gen.cloudfunctions.net/generateImage?id=xYXhOJZttRpkqxERH8MD&name=${this.talk.speakers && this.talk.speakers[0].name}&title=${this.talk.name}&userImg=${this.talk && this.talk.speakers[0].speakerPicture.url}`},
       ],
       __dangerouslyDisableSanitizersByTagID: {
+        'twitter:player': ['content'],
         'og:image': ['content'],
         'og:video': ['content'],
       }
