@@ -3,7 +3,7 @@
     <h1 class="py-12 text-center leading-tight text-3xl md:text-5xl text-base text-white font-display font-bold tracking-wide uppercase">web zurich speaker</h1>
 
     <ul class="list-reset md:flex md:flex-wrap justify-center -m-2 md:-m-4">
-      <li class="w-full md:w-1/2 xl:w-1/3 pb-2 md:p-2 " v-for="speaker in speakers" :key="speaker.id">
+      <li class="w-full md:w-1/2 xl:w-1/3 pb-2 md:p-2 " v-for="speaker in speakers" :key="speaker.id" v-if="speaker.talks.length > 0">
         <nuxt-link :to="`/speaker/${speaker.id}`" class="zoom no-underline p-2 md:p-4 rounded shadow bg-indigo-darker md:h-full flex align-center  flex-row-reverse">
 
           <div class="flex-no-shrink flex items-center p-2 md:p-4">
