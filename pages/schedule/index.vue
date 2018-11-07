@@ -1,6 +1,22 @@
 <template>
-<div class="pattern bg-primary-light">
-  <div class="container mx-auto">
+  <div class="pattern bg-primary-light">
+
+    <ul class="list-reset max-w-md">
+      <li class="" v-for="color in ['red', 'orange', 'yellow', 'green', 'blue', 'violet', 'fuchsia', 'pink' ]" :key="color">
+        <div class="flex space-between">
+          <div class="flex-1 p-1" v-for="(shade, index) in shades" :key="shade">
+            <div class="rounded p-2 shadow transition" :class="[
+                    `bg-${color}${shade ? `-${shade}` : ``}`,
+                    `hover:bg-${color}-light`
+                  ]">
+            </div>
+
+          </div>
+        </div>
+      </li>
+    </ul>
+
+    <div class="container mx-auto">
 
       <div class="lg:w-2/5 p-2 pb-8">
         <h1 class="mb-4 leading-tight text-3xl md:text-4xl text-base text-white font-display font-bold tracking-wide uppercase">Conference Schedule</h1>
@@ -11,8 +27,8 @@
       <div class="border border-red">
         <nuxt-child />
       </div>
+    </div>
   </div>
-</div>
 </template>
 
 <script>
@@ -37,5 +53,4 @@ export default {
 </script>
 
 <style>
-
 </style>

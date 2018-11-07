@@ -11,7 +11,7 @@
             </div>
             <div class="flex-1 text-12 ">
               <div class="border-b pt-1 pb-2">
-                <span class="text-blue-darker">{{talk.authorDisplayName}}</span>
+                <span class="text-blue-dark">{{talk.authorDisplayName}}</span>
                 <time class=" text-on-light-muted leading-normal font-12">{{ talk.submittedAt | humanDate }}</time>
               </div>
 

@@ -5,9 +5,9 @@
       <section role="dialog" class="modal max-w-sm bg-white rounded-lg mx-auto shadow-lg overflow-hidden">
         <focus-lock :disabled="!show">
 
-          <header class="modal-header px-12 py-6 bg-yellow border-b border-yellow-dark">
+          <header class="modal-header px-12 py-6 bg-blue-dark">
 
-            <h1 class="text-xl text-base text-indigo-darker font-display font-bold tracking-wide uppercase text-center">
+            <h1 class="text-xl text-base font-display font-bold tracking-wide uppercase text-center">
               <slot name="header"></slot>
             </h1>
 

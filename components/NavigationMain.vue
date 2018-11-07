@@ -5,7 +5,7 @@
         Skip to content</a>
 
       <nuxt-link to="/" class="flex items-center flex-no-shrink mr-6 no-underline">
-        <div class="bg-blue-darker rounded-full w-12 mr-4 h-12 p-2 flex items-center justify-center">
+        <div class="bg-blue-dark rounded-full w-12 mr-4 h-12 p-2 flex items-center justify-center">
           <svg class="w-6 h-6 fill-white">
             <use xlink:href="#keyboard" />
           </svg>
@@ -51,8 +51,8 @@
 
                     <nuxt-link @click.native="close" :to="link.url" class="no-underline py-2 block group">
                       <div class="flex flex-wrap items-center ">
-                        <div class="transition rounded-full bg-green-lighter group-hover:bg-green w-6 h-6 mr-4 flex items-center justify-center">
-                          <svg class="transition fill-green-dark group-hover:fill-green-light h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <div class="transition rounded-full bg-green-lightest group-hover:bg-green-dark w-6 h-6 mr-4 flex items-center justify-center">
+                          <svg class="transition fill-green-dark group-hover:fill-green-lightest h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                             <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" />
                           </svg>
                         </div>
@@ -123,12 +123,10 @@
 <script>
 import FocusLock from 'vue-focus-lock';
 import {mapState, mapGetters} from 'vuex'
-import UserChip from '~/components/Chip'
 
 export default {
   components: {
     FocusLock,
-    UserChip
   },
   computed: {
     ...mapGetters([

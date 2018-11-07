@@ -1,3 +1,16 @@
+import hsluv from 'hsluv'
+
+function hsl (hue, saturation, light) {
+
+  function floatToInt(f) {
+    return Math.round(f * 255);
+  }
+
+  const [h, s, l] = hsluv.hsluvToRgb([hue, saturation, light])
+
+  return `rgb(${floatToInt(h)}, ${floatToInt(s)}, ${floatToInt(l)})`
+}
+
 /*
 
 Tailwind - The Utility-First CSS Framework
@@ -59,13 +72,54 @@ let colors = {
   "on-dark-secondary": "hsla(0,0%,100%,.8)",
   "on-dark-muted":     "hsla(0,0%,100%,.5)",
 
-  "primary-light": "#534bae",
-  "primary": "#1a237e",
-  "primary-dark": "#000051",
+  "primary-light": hsl(275, 100, 30),
+  "primary": hsl(275, 100, 20),
+  "primary-dark": hsl(275, 100, 10),
 
   "secondary-light": "#ffff72",
   "secondary": "#ffeb3b",
   "secondary-dark": "#c8b900",
+
+  "red-lightest": hsl(10, 100, 80),
+  "red-light": hsl(10, 100, 43),
+  "red": hsl(10, 100, 38),
+  "red-dark": hsl(10, 100, 33),
+
+  "orange-lightest": hsl(30, 100, 80),
+  "orange-light": hsl(30, 100, 60),
+  "orange": hsl(30, 100, 55),
+  "orange-dark": hsl(30, 100, 50),
+
+  "yellow-lightest": hsl(60, 100, 90),
+  "yellow-light": hsl(60, 100, 85),
+  "yellow": hsl(60, 100, 80),
+  "yellow-dark": hsl(60, 100, 75),
+
+  "green-lightest": hsl(120, 100, 95),
+  "green-light": hsl(120, 100, 70),
+  "green": hsl(120, 100, 60),
+  "green-dark": hsl(120, 100, 50),
+
+  "blue-lightest": hsl(253,100,80),
+  "blue-light": hsl(253,100,70),
+  "blue": hsl(253,100,60),
+  "blue-dark": hsl(253,100,50),
+
+  "violet-lightest": hsl(275,100,90),
+  "violet-light": hsl(275,100,70),
+  "violet": hsl(275,100,60),
+  "violet-dark": hsl(275,100,50),
+
+  "fuchsia-lightest": hsl(300,100,86),
+
+  "fuchsia-light": hsl(300,100,64),
+  "fuchsia": hsl(300,100,53),
+  "fuchsia-dark": hsl(300,100,42),
+
+  "pink-lightest": hsl(330,100,80),
+  "pink-light": hsl(330,100,70),
+  "pink": hsl(330,100,60),
+  "pink-dark": hsl(330,100,50),
 
   black: "#22292f",
   "grey-darkest": "#3d4852",
@@ -76,61 +130,6 @@ let colors = {
   "grey-lighter": "#f1f5f8",
   "grey-lightest": "#f8fafc",
   white: "#ffffff",
-
-  "red-darkest": "#3b0d0c",
-  "red-darker": "#621b18",
-  "red-dark": "#cc1f1a",
-  red: "#fa755a",
-  "red-light": "#ef5753",
-  "red-lighter": "#f9acaa",
-  "red-lightest": "#fcebea",
-
-  "orange-light": '#FFCBA5',
-  "orange": "#FDEEBE",
-  "orange-dark": "#FA755A",
-
-  "yellow-dark": "hsla(60, 85%, 30%, 1.00)",
-  "yellow": "hsla(60, 91%, 73%, 1.00)",
-  "yellow-light": "hsla(60, 85%, 40%, 1.00)",
-  "yellow-lighter": "hsla(60, 50%, 85%, 1)",
-
-  "green-dark": "hsla(163, 85%, 30%, 1.00)",
-  "green": "hsla(160, 85%, 35%, 1.00)",
-  "green-light": "hsla(157, 85%, 40%, 1.00)",
-  "green-lighter": "hsla(157, 50%, 85%, 1)",
-
-  "teal-darkest": "#0d3331",
-  "teal-darker": "#20504f",
-  "teal-dark": "#38a89d",
-  teal: "#4dc0b5",
-  "teal-light": "#64d5ca",
-  "teal-lighter": "#a0f0ed",
-  "teal-lightest": "#e8fffe",
-
-  "blue-darker": "hsla(203, 100%, 35%, 1)",
-  "blue-dark": "hsla(203, 100%, 67%, 1)",
-  blue: "hsla(200, 100%, 70%, 1)",
-  "blue-light": "hsla(197, 100%, 73%, 1)",
-
-  "indigo-darkest": "#191e38",
-  "indigo-darker": "#2f365f",
-  "indigo-dark": "#5661b3",
-  indigo: "#6574cd",
-  "indigo-light": "#7886d7",
-  "indigo-lighter": "#b2b7ff",
-  "indigo-lightest": "#e6e8ff",
-
-  "purple-darkest": "#21183c",
-  "purple-darker": "#382b5f",
-  "purple-dark": "#794acf",
-  purple: "#9561e2",
-  "purple-light": "#a779e9",
-  "purple-lighter": "#d6bbfc",
-  "purple-lightest": "#f3ebff",
-
-  "pink-dark": "#F6A4EB",
-  pink: "#FFC7EE",
-  "pink-light": "#FFE0F5",
 };
 
 module.exports = {
@@ -775,7 +774,7 @@ module.exports = {
     lg: "0 7px 14px rgba(50,50,93,.1), 0 3px 6px rgba(0,0,0,.08)",
     inner: "inset 0 2px 4px 0 rgba(0,0,0,0.06)",
     outline: "0 0 0 3px rgba(52,144,220,0.5)",
-    focus: "inset 0 0 0 2px hsla(200, 100%, 70%, 1)",
+    focus: `inset 0 0 0 2px ${hsl(253,100,60)}`,
     none: "none"
   },
 

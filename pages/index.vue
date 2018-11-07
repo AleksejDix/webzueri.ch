@@ -1,7 +1,6 @@
 <template>
 
   <div id="content">
-
     <section class="bg-primary-dark shadow-lg py-12">
       <div class="container mx-auto px-2">
 
@@ -19,12 +18,12 @@
                 <div class="w-full border border-white rounded-lg py-4 px-6 flex items-center">
                   <div class="icon pr-4 md:pr-6">
                     <div :style="{borderColor: item.color}" class="border border-white rounded-full w-12 h-12 flex items-center justify-center">
-                      <svg :style="{fill: item.color}" class="fill-indigo-darkest h-6 w-6" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                      <svg :style="{fill: item.color}" class=" h-6 w-6" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                         <path d="m10 7h-8v6h8v5l8-8-8-8z" />
                       </svg>
                     </div>
                   </div>
-                  <div class="flex-1 text-indigo-darker leading-normal">
+                  <div class="flex-1  leading-normal">
                     <h3 class="text-2xl text-white">{{item.text}}</h3>
                     <div class="md:w-40 text-lg text-grey" v-html="item.desc"></div>
                   </div>
@@ -116,7 +115,7 @@ export default {
     return {
       users: [],
       events: [],
-
+      shades: ['darkest', 'darker', 'dark', '', 'light', 'lighter', 'lightest'],
       active: false
     }
   },

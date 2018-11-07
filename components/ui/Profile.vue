@@ -12,6 +12,10 @@
           <ul class="list-reset owl-x flex md:mt-0">
 
             <li>
+              <nuxt-link class="transition tracking-wide border-2 font-bold text-11 hover:bg-secondary hover:border-secondary hover:text-on-light-primary text-on-dark-secondary no-underline  h-10  px-3 flex items-center rounded-xl leading-none " exact-active-class="text-on-light-primary border-secondary" to="/user/proposals/">Proposals</nuxt-link>
+            </li>
+
+            <li>
               <nuxt-link class="transition tracking-wide border-2 font-bold text-11 hover:bg-secondary hover:border-secondary hover:text-on-light-primary text-on-dark-secondary no-underline  h-10  px-3 flex items-center rounded-xl leading-none " exact-active-class="text-on-light-primary border-secondary" to="/user/talks/">Talks</nuxt-link>
             </li>
             <li>

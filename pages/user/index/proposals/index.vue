@@ -12,12 +12,12 @@ import {mapGetters} from 'vuex'
 
 export default {
   components: {TalkList, TalkInbox},
-  scrollTop: true,
   computed: {
-    ...mapGetters('userTalks', ['count'])
+    ...mapGetters('proposals', ['count', 'list'])
   },
   fetch ({ store, params }) {
-    return store.dispatch('userTalks/list')
+    console.log('asd')
+    return store.dispatch('proposals/list')
   }
 }
 </script>

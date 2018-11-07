@@ -17,7 +17,7 @@
 
       <ul class="flex flex-wrap list-reset -m-2">
         <li class="w-full md:w-1/2 p-2" v-for="talk in speaker.talks" :key="talk.id">
-          <nuxt-link :to="`/talk/${talk.id}`" class="block no-underline zoom transition p-2 md:p-8 rounded shadow bg-indigo-darker md:h-full">
+          <nuxt-link :to="`/talk/${talk.id}`" class="block no-underline zoom transition p-2 md:p-8 rounded shadow md:h-full">
             <h3 class="text-white text-xl xl:text-2xl font-display font-bold tracking-wide mb-2 leading-tight">{{ talk.name }}</h3>
             <div v-if="talk.abstract" class="abstract leading-normal py-4 text-body text-white">{{ talk.abstract }}</div>
           </nuxt-link>

@@ -84,13 +84,16 @@ export default {
 
 <style >
   .button {
-    @apply shadow text-9 inline-flex text-on-light-secondary no-underline bg-blue tracking-wide no-underline uppercase font-semibold rounded h-10 cursor-pointer;
+    @apply shadow text-9 inline-flex text-on-dark-primary no-underline bg-blue-dark tracking-wide no-underline uppercase font-semibold rounded h-10 cursor-pointer;
   }
 
   .button:hover,
-  .button:active,
   .button:focus {
-    @apply outline-none bg-blue-dark text-on-light-primary;
+    @apply outline-none bg-blue;
+  }
+
+  .button:active {
+    @apply outline-none bg-blue;
   }
 
   .button--small {
@@ -98,7 +101,7 @@ export default {
   }
 
   .button--danger {
-    @apply bg-red text-on-dark-secondary;
+    @apply bg-red;
   }
 
   .button--danger:hover,

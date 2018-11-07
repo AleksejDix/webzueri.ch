@@ -13,9 +13,9 @@
     </nuxt-link>
 
     <nuxt-link :to="{ name: 'talk-id', params: { id: talk.id }}" class="flex-1 relative block bg-primary rounded-lg p-4 text-white md:flex zoom no-underline whitespace-normal">
-      <div style="border-bottom-color: #1a237e" class="border-solid border-r-8 border-b-8 border-l-8 absolute pin-t pin-l -mt-2 ml-4 border-transparent">
-
-      </div>
+      <svg viewBox="0 0 24 24" class="w-8 h-8 absolute pin-l ml-2 -mt-6">
+        <path class="fill-primary" d="M 12,0 L24 12 L0 12 Z" />
+      </svg>
       <div class="flex flex-col flex-1 pb-4 md:pb-0 md:pr-4">
         <div class="owl-md">
 

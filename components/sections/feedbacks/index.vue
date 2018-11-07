@@ -4,10 +4,10 @@
       <header class="text-center pt-8 md:pt-24 md:pb-12 px-4">
         <h2 class="leading-normal max-w-md mx-auto text-on-dark-primary font-display text-16 md:text-21">Unlock your community's peer-to-peer sharing potential</h2>
       </header>
-      <div class="flex justify-center overflow-hidden py-12">
-        <div class="min-w-60 md:max-w-sm p-2" v-for="feedback in feedbacks" :key="feedback.id">
+      <div class="flex md:justify-center overflow-auto py-12 px-2">
+        <div class="flex-no-shrink w-64 p-2" v-for="feedback in feedbacks" :key="feedback.id">
 
-          <article class="shadow-lg relative">
+          <article class="relative">
 
             <header class="bg-primary px-6 pt-12 pb-2 rounded-lg shadow relative z-10">
               <h3 class="font-display leading-normal text-on-dark-primary" v-if="feedback.speaker.name">{{feedback.speaker.name}}</h3>

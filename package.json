@@ -27,6 +27,7 @@
     "firebase-admin": "^6.0.0",
     "graphql": "^14.0.2",
     "graphql-tag": "^2.10.0",
+    "hsluv": "^0.0.3",
     "npm": "^5.8.0",
     "nuxt": "^2.2.0",
     "vue-filepond": "^4.0.0",
