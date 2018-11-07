@@ -52,20 +52,41 @@ export default {
   data: () => ({
     talk: '',
   }),
+  computed: {
+    cardType() {
+      if (!this.talk.youtubecode) {
+        return [{ hid: 'twitter:card', name: "twitter:card", content: "summary_large_image"}]
+      }
+      return [
+        { hid: 'twitter:card', name: "twitter:card", content: "player"},
+        { hid: 'og:video', name: "og:video", content: `https://www.youtube.com/embed/${this.talk.youtubecode}`},
+        { hid: 'og:video:type', name:"og:video:type", content:"video/mp4" },
+        { hid: 'og:video:width', name:"og:video:width", content:"1600" },
+        { hid: 'og:video:height', name:"og:video:height", content:"900" },
+
+        { hid: 'twitter:player:width', name:"", content:"1600" },
+        { hid: 'twitter:player:height', name:"twitter:player:height", content:"900" },
+      ]
+    }
+  },
   head() {
     return {
       title: this.talk.name,
       meta: [
-        { hid: 'description', name: 'description', content: this.talk.abstract },
-        { hid: 'twitter:card', name: "twitter:card", content: "summary_large_image"},
+        ...this.cardType,
+        { hid: 'og:site_name', name:"og:site_name", content:"web zürich" },
         { hid: 'twitter:site', name: "twitter:site", content: "@webzuerich"},
         { hid: 'twitter:creator', name: "twitter:creator", content: "@aleksejdix"},
-        { hid: 'twitter:url', name: "twitter:url", content: process.env.baseUrl + this.$route.path },
-        { hid: 'twitter:title', name: "twitter:title", content: this.talk.name},
-        { hid: 'twitter:description', name: "twitter:description", content: this.talk.abstract},
-        { hid: 'twitter:image', name: "twitter:image", content: `https://us-central1-webzuerich-talk-image-gen.cloudfunctions.net/generateImage?id=xYXhOJZttRpkqxERH8MD&name=${this.talk.speakers && this.talk.speakers[0].name}&title=${this.talk.name}&userImg=${this.talk && this.talk.speakers[0].speakerPicture.url}`},
+        { hid: 'og:url', name: "og:url", content: process.env.baseUrl + this.$route.path },
+        { hid: 'og:title', name: "og:title", content: this.talk.name},
+        { hid: 'description', name: 'description', content: this.talk.abstract },
+        { hid: 'og:description', name: "og:description", content: this.talk.abstract},
+        { hid: 'og:image', name: "og:image", content: `https://us-central1-webzuerich-talk-image-gen.cloudfunctions.net/generateImage?id=xYXhOJZttRpkqxERH8MD&name=${this.talk.speakers && this.talk.speakers[0].name}&title=${this.talk.name}&userImg=${this.talk && this.talk.speakers[0].speakerPicture.url}`},
       ],
-      __dangerouslyDisableSanitizersByTagID: { 'twitter:image': ['content'] }
+      __dangerouslyDisableSanitizersByTagID: {
+        'og:image': ['content'],
+        'og:video': ['content'],
+      }
     }
   }
 }
