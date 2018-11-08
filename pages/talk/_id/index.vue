@@ -55,7 +55,10 @@ export default {
   computed: {
     cardType() {
       if (!this.talk.youtubecode) {
-        return [{ hid: 'twitter:card', name: "twitter:card", content: "summary_large_image"}]
+        return [
+          { hid: 'twitter:card', name: "twitter:card", content: "summary_large_image"},
+          { hid: 'og:image', name: "og:image", content: `https://us-central1-webzuerich-talk-image-gen.cloudfunctions.net/generateImage?id=xYXhOJZttRpkqxERH8MD&name=${this.talk.speakers && this.talk.speakers[0].name}&title=${this.talk.name}&userImg=${this.talk && this.talk.speakers[0].speakerPicture.url}`},
+        ]
       }
       return [
         { hid: 'og:type', name: "og:type", content: "video.movie"},
@@ -67,6 +70,7 @@ export default {
         { hid: 'twitter:player', name:"twitter:player", content: `https://www.youtube.com/embed/${this.talk.youtubecode}` },
         { hid: 'twitter:player:width', name:"twitter:player:width", content:"720" },
         { hid: 'twitter:player:height', name:"twitter:player:height", content:"720" },
+        this.speaker && { hid: 'og:image', name: "og:image", content: this.speaker.speakerPicture.url }
       ]
     }
   },
@@ -82,7 +86,6 @@ export default {
         { hid: 'og:title', name: "og:title", content: this.talk.name},
         { hid: 'description', name: 'description', content: this.talk.abstract },
         { hid: 'og:description', name: "og:description", content: this.talk.abstract},
-        { hid: 'og:image', name: "og:image", content: `https://us-central1-webzuerich-talk-image-gen.cloudfunctions.net/generateImage?id=xYXhOJZttRpkqxERH8MD&name=${this.talk.speakers && this.talk.speakers[0].name}&title=${this.talk.name}&userImg=${this.talk && this.talk.speakers[0].speakerPicture.url}`},
       ],
       __dangerouslyDisableSanitizersByTagID: {
         'twitter:player': ['content'],
