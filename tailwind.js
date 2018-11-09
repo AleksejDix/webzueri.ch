@@ -1,5 +1,6 @@
 import hsluv from 'hsluv'
 
+
 function hsl (hue, saturation, light) {
 
   function floatToInt(f) {
@@ -64,28 +65,28 @@ let colors = {
 
   "surface": "#f7f7f8",
 
-  "on-light-primary":   "hsla(0,0%,0%,.87)",
-  "on-light-secondary": "hsla(0,0%,0%,.54)",
   "on-light-muted":     "hsla(0,0%,0%,.38)",
+  "on-light-secondary": "hsla(0,0%,0%,.54)",
+  "on-light-primary":   "hsla(0,0%,0%,.87)",
 
-  "on-dark-primary":   "hsla(0,0%,100%,1)",
-  "on-dark-secondary": "hsla(0,0%,100%,.8)",
   "on-dark-muted":     "hsla(0,0%,100%,.5)",
+  "on-dark-secondary": "hsla(0,0%,100%,.8)",
+  "on-dark-primary":   "hsla(0,0%,100%,1)",
 
-  "primary-light": hsl(275, 100, 30),
-  "primary": hsl(275, 100, 20),
   "primary-dark": hsl(275, 100, 10),
+  "primary": hsl(275, 100, 20),
+  "primary-light": hsl(275, 100, 30),
 
-  "secondary-light": "#ffff72",
-  "secondary": "#ffeb3b",
   "secondary-dark": "#c8b900",
+  "secondary": "#ffeb3b",
+  "secondary-light": "#ffff72",
 
-  "red-lightest": hsl(10, 100, 80),
+  "red-lightest": hsl(10, 100, 90),
   "red-light": hsl(10, 100, 43),
   "red": hsl(10, 100, 38),
   "red-dark": hsl(10, 100, 33),
 
-  "orange-lightest": hsl(30, 100, 80),
+  "orange-lightest": hsl(30, 100, 90),
   "orange-light": hsl(30, 100, 60),
   "orange": hsl(30, 100, 55),
   "orange-dark": hsl(30, 100, 50),
@@ -100,23 +101,22 @@ let colors = {
   "green": hsl(120, 100, 60),
   "green-dark": hsl(120, 100, 50),
 
-  "blue-lightest": hsl(253,100,80),
-  "blue-light": hsl(253,100,70),
-  "blue": hsl(253,100,60),
-  "blue-dark": hsl(253,100,50),
+  "blue-lightest": hsl(250,100,90),
+  "blue-light": hsl(250,100,70),
+  "blue": hsl(250,100,60),
+  "blue-dark": hsl(250,100,50),
 
   "violet-lightest": hsl(275,100,90),
   "violet-light": hsl(275,100,70),
   "violet": hsl(275,100,60),
   "violet-dark": hsl(275,100,50),
 
-  "fuchsia-lightest": hsl(300,100,86),
-
+  "fuchsia-lightest": hsl(300,100,90),
   "fuchsia-light": hsl(300,100,64),
   "fuchsia": hsl(300,100,53),
   "fuchsia-dark": hsl(300,100,42),
 
-  "pink-lightest": hsl(330,100,80),
+  "pink-lightest": hsl(330,100,90),
   "pink-light": hsl(330,100,70),
   "pink": hsl(330,100,60),
   "pink-dark": hsl(330,100,50),
@@ -709,6 +709,7 @@ module.exports = {
     "2": "0.5rem",
     "3": "0.75rem",
     "4": "1rem",
+    "5": "1.25rem",
     "6": "1.5rem",
     "8": "2rem",
     "12": "3rem",

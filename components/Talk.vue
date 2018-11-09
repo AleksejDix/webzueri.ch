@@ -1,20 +1,13 @@
 <template>
   <div class="owl-lg flex flex-col">
 
-    <nuxt-link :to="{name: 'speaker-id', params: {id: speaker.id}}" class="group no-underline inline-block" v-for="speaker in talk.speakers" v-if="talk.speakers" :key="speaker.id">
-      <div class="inline-flex items-center">
-        <div class="inline-block rounded-full w-12 h-12 mr-4 flex-no-shrink overflow-hidden" v-if="speaker.speakerPicture">
-          <img class=" block w-12 h-12 rounded-full" :src="speaker.speakerPicture.url" :alt="speaker.name">
-        </div>
-        <div class="flex-1 text-14 pr-8 text-on-dark-secondary group-hover:text-white font-bold tracking-wide">
-          <div>{{speaker.name}}</div>
-        </div>
-      </div>
+    <nuxt-link :to="{name: 'speaker-id', params: {id: speaker.id}}" class="group no-underline inline-block text-on-dark-secondary hover:text-yellow-light transition" v-for="speaker in talk.speakers" v-if="talk.speakers" :key="speaker.id">
+      <user-card :photo="speaker.speakerPicture.url" :name="speaker.name" />
     </nuxt-link>
 
     <nuxt-link :to="{ name: 'talk-id', params: { id: talk.id }}" class="flex-1 relative block bg-primary rounded-lg p-4 text-white md:flex zoom no-underline whitespace-normal">
-      <svg viewBox="0 0 24 24" class="w-8 h-8 absolute pin-l ml-2 -mt-6">
-        <path class="fill-primary" d="M 12,0 L24 12 L0 12 Z" />
+      <svg viewBox="0 0 24 24" class="w-4 h-4 absolute pin-l ml-4" style="bottom: 100%">
+        <path class="fill-primary" d="M 12,12 L24 24 L0 24 Z" />
       </svg>
       <div class="flex flex-col flex-1 pb-4 md:pb-0 md:pr-4">
         <div class="owl-md">
@@ -42,13 +35,6 @@ export default {
   computed: {
     isFutureTalk() {
       return new Date(this.date) > new Date()
-    }
-  },
-  filters: {
-    shorten (value, limit) {
-      if (!value) return ''
-      value = value.toString()
-      return (value.length > limit) ? value.substr(0, limit-1) + '…' : value;
     }
   }
 }

@@ -9,7 +9,15 @@
             <p class="max-w-md mx-auto leading-normal text-center text-xl md:text-2xl text-on-dark-secondary">Learn, share and collaborate with your local
               <strong>web professionals</strong> and enthusiasts!</p>
             <div class="text-center pt-8">
-              <Button :to="{ name: 'user-index-talks-index-create', query: { redirect: 'user-index-talks-index-create' }}">Submit your talk</Button>
+              <Button :to="{
+                name: 'user-index-status-index-create',
+                  query: {
+                    redirect: 'user-index-status-index-create'
+                  },
+                  params: {
+                    status: 'talk'
+                  }
+                }">Submit your talk</Button>
             </div>
           </div>
         </div>

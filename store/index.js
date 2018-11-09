@@ -17,15 +17,14 @@ class User {
 }
 
 export const state = () => ({
-  page: 'index',
   eventsPerPage: 10,
   user: '',
 })
 
 export const getters = {
-  userRoles (state) {
-    const { user : { roles = {}}} = state
-    return Object.keys(roles).filter(key => roles[key])
+  userRoles ({user}) {
+    if (!user.roles) return []
+    return Object.keys(user.roles).filter(key => user.roles[key])
   },
   hasUser (state) {
     return !!state.user
@@ -165,11 +164,6 @@ export const mutations = {
   signOut (state) {
     state.user = null
     this.$router.push({name: 'index'})
-  },
-
-
-  updatePage(state, pageName) {
-    state.page = pageName
   },
 
   changeRole(state, role) {

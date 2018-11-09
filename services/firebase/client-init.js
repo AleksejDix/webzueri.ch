@@ -22,7 +22,7 @@ export const timestamp = () => firebase.firestore.FieldValue.serverTimestamp()
 export const db = firebase.firestore()
 db.settings({timestampsInSnapshots: true})
 
-const storage = firebase.storage()
+export const storage = firebase.storage()
 const auth = firebase.auth()
 const currentUser = firebase.auth().currentUser
 

@@ -5,7 +5,7 @@
         <h2 class="leading-normal max-w-md mx-auto text-on-dark-primary font-display text-16 md:text-21">Unlock your community's peer-to-peer sharing potential</h2>
       </header>
       <div class="flex md:justify-center overflow-auto py-12 px-2">
-        <div class="flex-no-shrink w-64 p-2" v-for="feedback in feedbacks" :key="feedback.id">
+        <div class="flex-no-shrink w-64 md:w-96 p-2" v-for="feedback in feedbacks" :key="feedback.id">
 
           <article class="relative">
 

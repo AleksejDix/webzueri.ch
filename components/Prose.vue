@@ -1,11 +1,18 @@
-<template functional>
+<template>
   <div :class="[
-      { 'prose--on-light' : props.color === 'on-light'},
-       { 'prose--on-dark' : props.color === 'on-dark'}
+      { 'prose--on-light' : color === 'on-light'},
+      { 'prose--on-dark' : color === 'on-dark'}
     ]" class="prose">
     <slot></slot>
   </div>
 </template>
+
+<script>
+export default {
+  props: ['color']
+}
+</script>
+
 
 <style>
   .prose {

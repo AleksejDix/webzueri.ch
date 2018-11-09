@@ -1,4 +1,5 @@
-export default function(context) {
-  // go tell the store to update the page
-  context.store.commit('updatePage', context.route.name)
+export default function({store, route}) {
+  const {commit} = store
+  const {path, params, query, name} = route
+  commit('page/set', {path, params, query, name})
 }

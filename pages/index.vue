@@ -6,7 +6,7 @@
 
         <div class="lg:flex">
           <div class="lg:w-2/5 px-2 pb-8">
-            <h1 class="mb-4 leading-tight text-3xl md:text-4xl text-base text-on-dark-primary text-shadow font-display font-bold tracking-wide ">People making <br>the web in Zürich</h1>
+            <h1 class="mb-4 leading-tight text-3xl md:text-4xl text-base text-on-dark-primary text-shadow font-display font-bold tracking-wide uppercase">People making <br>the web in Zürich</h1>
             <p class="leading-normal  text-xl xl:text-2xl text-grey-lighter">
               Learn, share and collaborate <br> with your local
               <strong>web professionals</strong> <br> and enthusiasts!</p>
@@ -51,8 +51,8 @@
           <Spinner v-if="$apollo.loading" :active="$apollo.loading" />
           <div v-else>
 
-            <div class="flex flex-wrap">
-              <div class="w-full flex-1 xl:w-1/3 p-4" v-for="talk in event.talks" v-if="talk" :key="talk.id">
+            <div class="xl:flex">
+              <div class="xl:flex-1 xl:w-1/3 p-4" v-for="talk in event.talks" v-if="talk" :key="talk.id">
                 <talk class="h-full" :talk="talk" :date="event.date"></talk>
               </div>
 
@@ -66,7 +66,15 @@
                     <li>Talks are 15 minutes without Q&A</li>
                     <li>We have HDMI & Thunderbolt available and the resolution is 1080p (1920x1080)</li>
                   </ul>
-                  <Button :to="{ name: 'user-index-talks-index-create', query: { redirect: 'user-index-talks-index-create' }}">Submit your talk</Button>
+                  <Button :to="{
+                    name: 'user-index-status-index-create',
+                      query: {
+                        redirect: 'user-index-status-index-create'
+                      },
+                      params: {
+                        status: 'talk'
+                      }
+                    }">Submit your talk</Button>
                 </div>
               </article>
 
@@ -115,7 +123,6 @@ export default {
     return {
       users: [],
       events: [],
-      shades: ['darkest', 'darker', 'dark', '', 'light', 'lighter', 'lightest'],
       active: false
     }
   },

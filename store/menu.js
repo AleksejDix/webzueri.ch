@@ -5,18 +5,23 @@ export const state = () => ({
       title: "Information",
       links: [
         {
+          text: "News",
+          desc: "latest <strong>community stories</strong>",
+          url: "/news"
+        },
+        {
           text: "Talks",
-          desc: "Speeches given at <strong>web zurich</strong>",
+          desc: "speeches given at <strong>webzurich</strong>",
           url: "/events/1"
         },
         {
           text: "Speakers",
-          desc: "People who <strong>care and share</strong>",
+          desc: "people who <strong>care and share</strong>",
           url: "/speakers"
         },
         {
           text: "Code of Conduct",
-          desc: "Our rules of <strong>good behaviour</strong>",
+          desc: "our rules of <strong>good behaviour</strong>",
           url: "/code-of-conduct"
         }
       ]

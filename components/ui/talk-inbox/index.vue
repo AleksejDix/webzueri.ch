@@ -1,16 +1,16 @@
 <template functional>
-  <div class="bg-white rounded-lg overflow-hidden flex full-h-full overflow-hidden" style="height: 700px">
-    <div class="w-96 border-r flex flex-col bg-grey-light shadow-inner" v-if="slots().sidebar">
-      <div class="flex items-center justify-between p-2">
-        <h3 class="text-14 px-2 flex items-center owl-x">
-          <span>Proposals</span>
-        </h3>
-        <Button size="small" to="/user/talks/create">new</Button>
-      </div>
+  <div class=" flex full-h-full -m-4 p-2">
+
+    <div class="w-96 flex flex-col p-2" v-if="slots().sidebar">
+      <slot name="sidebar-header"></slot>
       <slot name="sidebar"></slot>
     </div>
-    <div class="flex-1">
-      <slot></slot>
+
+    <div class="flex-1 p-2">
+      <div class="bg-grey-lightest rounded-lg">
+        <slot></slot>
+      </div>
+
     </div>
   </div>
 </template>

@@ -92,6 +92,7 @@ export default {
     @apply outline-none bg-blue;
   }
 
+  .button.nuxt-link-active,
   .button:active {
     @apply outline-none bg-blue;
   }
@@ -112,10 +113,6 @@ export default {
 
   .button--big {
     @apply h-12 text-10;
-  }
-
-  .button.nuxt-link-active {
-    @apply bg-secondary-light text-on-light-secondary;
   }
 </style>
 

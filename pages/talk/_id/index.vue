@@ -8,20 +8,14 @@
 
       <div class="owl-lg flex flex-col">
 
-        <nuxt-link :to="{name: 'speaker-id', params: {id: speaker.id}}" class="group no-underline inline-block" v-for="speaker in talk.speakers" v-if="talk.speakers" :key="speaker.id">
-          <div class="inline-flex items-center">
-            <div class="inline-block rounded-full w-24 h-24 mr-4 flex-no-shrink shadow" v-if="speaker.speakerPicture">
-              <img class=" block w-full rounded-full" :src="speaker.speakerPicture.url" :alt="speaker.name">
-            </div>
-            <div class="flex-1 text-16 pr-8 text-on-dark-secondary group-hover:text-white font-bold tracking-wide">
-              <div>{{speaker.name}}</div>
-            </div>
-          </div>
+        <nuxt-link :to="{name: 'speaker-id', params: {id: speaker.id}}" class="text-on-dark-primary hover:text-yellow-light group no-underline inline-block" v-for="speaker in talk.speakers" v-if="talk.speakers" :key="speaker.id">
+          <user-card :big="true" v-if="speaker.speakerPicture" :name="speaker.name" :photo="speaker.speakerPicture.url" />
         </nuxt-link>
 
         <nuxt-link :to="{ name: 'talk-id', params: { id: talk.id }}" class="flex-1 relative block bg-primary rounded-lg p-4 text-white md:flex no-underline whitespace-normal">
-          <div style="border-bottom-color: #1a237e" class="border-solid border-r-16 border-b-16 border-l-16 absolute pin-t pin-l -mt-3 ml-8 border-transparent">
-          </div>
+          <svg viewBox="0 0 24 24" class="w-6 h-6 absolute pin-l ml-5" style="bottom: 100%">
+            <path class="fill-primary" d="M 12,12 L24 24 0 24 Z" />
+          </svg>
           <div class="flex flex-col flex-1 pb-4 md:pb-0 md:pr-4">
             <div class="owl-md">
 
@@ -47,11 +41,10 @@
 <script>
 
 import QueryTalk from '~/services/apollo/queries/talk'
-import Ratio from '@/components/layout/Ratio'
 import Prose from '@/components/Prose'
 
 export default {
-  components: {Ratio, Prose},
+  components: {Prose},
   apollo: {
     talk: {
       query: QueryTalk,
