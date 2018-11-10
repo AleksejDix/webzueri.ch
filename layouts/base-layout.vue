@@ -8,9 +8,6 @@
       <div slot="header">Submit new talk</div>
     </modal>
     <svg-symbols />
-    <div class="bg-primary-dark text-center p-4 text-on-dark-secondary">
-      made with 💚 by <a class="link" target="_blank" rel="noopener" href="https://twitter.com/aleksejdix">Aleksej Dix</a>
-    </div>
   </div>
 </template>
 

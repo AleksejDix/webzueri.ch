@@ -45,10 +45,10 @@
                 <user-card :photo="user.photoURL" :name="user.displayName" meta="Hallo, how are you today?" />
               </nuxt-link>
 
-              <template v-if="!hasUser">
+              <div v-if="!hasUser">
                 <Button to="/signup/">sign up</Button>
                 <Button to="/signin/">login</Button>
-              </template>
+              </div>
 
               <Button class=" m-2" @click="close">close
                 <svg slot="end" class="w-6 h-6 p-1">

@@ -3,7 +3,7 @@
     <form @submit.prevent="handleUpdate" class="owl">
       <Input label="Title" placeholder="Short Title of your speech" v-model="form.title" />
       <Input-text label="Abstract" placeholder="Description of yout talk" v-model="form.abstract" limit="480" />
-      <input-select v-if="$store.getters['dashboard/proposal/can'].update" label="Status" :options="['pending', 'approved', 'rejected']" :value="form.status" v-model="form.status"></input-select>
+      <input-select v-if="$store.getters['dashboard/talk-proposal/can'].update" label="Status" :options="['pending', 'approved', 'rejected']" :value="form.status" v-model="form.status"></input-select>
       <div class="flex justify-between owl-x">
         <Button type="button" danger="true" @click="handleDelete(current.id)">delete</Button>
         <Button type="submit">update</Button>

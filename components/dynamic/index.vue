@@ -1,5 +1,7 @@
 <template>
-  <component @submit="(payload) => $emit('submit', payload)" :is=" component" :data="data" />
+  <div>
+    <component @close="$emit('close')" @submit="(payload) => $emit('submit', payload)" :is=" component" :data="data" />
+  </div>
 </template>
 
 

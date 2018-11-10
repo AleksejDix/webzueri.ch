@@ -18,13 +18,6 @@
           path: 'forms-create',
           type: $route.params.status
         }" />
-        <!-- <form @submit.prevent="handleSubmit" class="owl">
-          <Input label="Title" placeholder="Short Title of your speech" v-model="form.title" />
-          <InputText label="Abstract" placeholder="Description of yout talk" v-model="form.abstract" limit="480" />
-          <div class="flex justify-end">
-            <Button>send</Button>
-          </div>
-        </form> -->
       </div>
     </div>
   </section>

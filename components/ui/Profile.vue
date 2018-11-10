@@ -1,37 +1,41 @@
 <template>
-  <div class="bg-primary-light pattern  min-h-screen">
+  <div class="bg-primary-light pattern min-h-screen">
 
-    <div class="container mx-auto p-2">
+    <div class="md:p-2">
 
-      <h1 class="py-12 text-center leading-tight text-3xl md:text-5xl text-base text-white text-shadow font-display font-bold tracking-wide">Dashboard</h1>
+      <h1 class="hidden py-12 text-center leading-tight text-3xl md:text-5xl text-base text-white text-shadow font-display font-bold tracking-wide">Dashboard</h1>
 
-      <div class="block bg-primary-dark rounded-lg p-4 owl md:owl-md ">
+      <div class="block bg-primary-dark sm:rounded-lg p-4 owl md:owl-md ">
 
         <div class="owl">
 
-          <ul class="list-reset owl-x flex md:mt-0">
-            <li v-if="$store.getters['dashboard/proposal/can'].list">
-              <nuxt-link class="transition tracking-wide border-2 font-bold text-11 hover:bg-secondary hover:border-secondary hover:text-on-light-primary text-on-dark-secondary no-underline  h-10  px-3 flex items-center rounded-xl leading-none " exact-active-class="text-on-light-primary border-secondary" :to="{
+          <div class="overflow-auto">
+
+            <ul class="list-reset owl-x flex md:mt-0">
+              <li v-if="$store.getters['dashboard/talk-proposal/can'].list">
+                <nuxt-link class="transition tracking-wide border-2 font-bold text-11 hover:bg-secondary hover:border-secondary hover:text-on-light-primary text-on-dark-secondary no-underline  h-10  px-3 flex items-center rounded-xl leading-none " exact-active-class="text-on-light-primary border-secondary" :to="{
                 name: 'user-index-status-index',
-                params: { status: 'proposal'}
+                params: { status: 'talk-proposal'}
               }">Proposals</nuxt-link>
-            </li>
-            <li>
-              <nuxt-link class="transition tracking-wide border-2 font-bold text-11 hover:bg-secondary hover:border-secondary hover:text-on-light-primary text-on-dark-secondary no-underline  h-10  px-3 flex items-center rounded-xl leading-none " exact-active-class="text-on-light-primary border-secondary" :to="{
+              </li>
+              <li>
+                <nuxt-link class="transition tracking-wide border-2 font-bold text-11 hover:bg-secondary hover:border-secondary hover:text-on-light-primary text-on-dark-secondary no-underline  h-10  px-3 flex items-center rounded-xl leading-none " exact-active-class="text-on-light-primary border-secondary" :to="{
                 name: 'user-index-status-index',
                 params: { status: 'story'}
               }">Stories</nuxt-link>
-            </li>
-            <li>
-              <nuxt-link class="transition tracking-wide border-2 font-bold text-11 hover:bg-secondary hover:border-secondary hover:text-on-light-primary text-on-dark-secondary no-underline  h-10  px-3 flex items-center rounded-xl leading-none " exact-active-class="text-on-light-primary border-secondary" :to="{
+              </li>
+              <li>
+                <nuxt-link class="transition tracking-wide border-2 font-bold text-11 hover:bg-secondary hover:border-secondary hover:text-on-light-primary text-on-dark-secondary no-underline  h-10  px-3 flex items-center rounded-xl leading-none " exact-active-class="text-on-light-primary border-secondary" :to="{
                 name: 'user-index-status-index',
                 params: { status: 'talk'}
               }">Talks</nuxt-link>
-            </li>
-            <li>
-              <nuxt-link class="transition tracking-wide border-2 font-bold text-11 hover:bg-secondary hover:border-secondary hover:text-on-light-primary text-on-dark-secondary no-underline  h-10  px-3 flex items-center rounded-xl leading-none " exact-active-class="text-secondary border-secondary" to="/user/settings/">Settings</nuxt-link>
-            </li>
-          </ul>
+              </li>
+              <li>
+                <nuxt-link class="transition tracking-wide border-2 font-bold text-11 hover:bg-secondary hover:border-secondary hover:text-on-light-primary text-on-dark-secondary no-underline  h-10  px-3 flex items-center rounded-xl leading-none " exact-active-class="text-secondary border-secondary" to="/user/settings/">Settings</nuxt-link>
+              </li>
+            </ul>
+
+          </div>
 
           <div class="content">
             <nuxt-child />

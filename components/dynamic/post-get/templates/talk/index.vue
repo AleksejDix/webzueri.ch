@@ -4,13 +4,9 @@
       <Button @click="$emit('close')">close</Button>
     </div>
     <Prose class="owl">
-      <Ratio width="16" height="9">
-        <img class="absolute pin shadow-lg rounded-lg" :src="data.coverPhotoURL" alt="">
-      </Ratio>
-
       <h1><a class="link" rel="noopener" target="_blank" :href="data.url">{{data.title}}</a></h1>
       <div>
-        {{data.excerpt}}
+        {{data.abstract}}
       </div>
     </Prose>
   </div>

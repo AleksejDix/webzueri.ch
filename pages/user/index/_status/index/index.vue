@@ -10,7 +10,7 @@
 <script>
 import DynamicComponent from "@/components/dynamic/"
 export default {
-  components: {DynamicComponent},
+  components: {DynamicComponent}
 }
 </script>
 

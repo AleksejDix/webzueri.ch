@@ -1,44 +1,59 @@
 <template>
-  <talk-inbox>
-    <div slot="sidebar-header" class="flex items-center justify-between">
-      <h3 class="text-14 px-2 flex items-center owl-x">
-        <span class="text-on-dark-secondary">{{$route.params.status | capitalize}}</span>
-      </h3>
-      <Button size="small" :to="{name: 'user-index-status-index-create'}">new</Button>
-    </div>
+  <div class="overflow-hidden">
 
-    <talk-list :list="list" slot="sidebar" v-if="count > 0">
-      <div class="py-2" slot-scope="{item : talk}">
+    <div class="transition relative flex h-full -m-4 " :class="{'open': open}">
 
-        <nuxt-link active-class="text-on-dark-primary bg-primary-light" :to="{name: `user-index-status-index-id`, params: { id: talk.id } }" class="text-on-dark-muted transition no-underline block bg-primary hover:bg-primary-light hover:text-on-dark-primary transition px-3 py-2 rounded-lg shadow owl-sm">
+      <div class="w-1/2 md:w-96 flex flex-col p-4" v-if="count > 0">
+        <div class="flex items-center justify-between">
+          <h3 class="text-14 px-2 flex items-center owl-x">
+            <span class="text-on-dark-secondary">{{$route.params.status | capitalize}}</span>
+          </h3>
+          <Button size="small" :to="{name: 'user-index-status-index-create'}">new</Button>
+        </div>
 
-          <user-card :photo="talk.authorPhotoURL" :name="talk.authorDisplayName" :meta="talk.submittedAt | humanDate" />
+        <talk-list :list="list">
+          <div class="py-2" slot-scope="{item : talk}">
 
-          <div class="border-t border-primary-dark pt-2 flex flex-start">
-            <div class="flex-1">
-              <h3 class="text-current-color leading-normal font-12">{{talk.title}}</h3>
-              <div class="w-64 text-current-color truncate leading-normal font-12">
-                {{talk.abstract}}
+            <nuxt-link @click.native="open = true" active-class="text-on-dark-primary bg-primary-light" :to="{name: `user-index-status-index-id`, params: { id: talk.id } }" class="text-on-dark-muted transition no-underline block bg-primary hover:bg-primary-light hover:text-on-dark-primary transition px-3 py-2 rounded-lg shadow owl-sm">
+
+              <user-card :photo="talk.authorPhotoURL" :name="talk.authorDisplayName" :meta="talk.submittedAt | humanDate" />
+
+              <div class="border-t border-primary-dark pt-2 flex flex-start">
+                <div class="flex-1">
+                  <h3 class="text-current-color leading-normal font-12">{{talk.title}}</h3>
+                  <div class=" text-current-color truncate leading-normal font-12">
+                    {{talk.abstract}}
+                  </div>
+                </div>
+                <div>
+                  <Badge :color="statusColor(talk.status)">{{talk.status}}</Badge>
+                </div>
               </div>
-            </div>
-            <div>
-              <Badge :color="statusColor(talk.status)">{{talk.status}}</Badge>
-            </div>
+            </nuxt-link>
           </div>
-        </nuxt-link>
+        </talk-list>
       </div>
-    </talk-list>
 
-    <nuxt-child />
-  </talk-inbox>
+      <div class="w-1/2 md:flex-1  p-2">
+        <div class="bg-grey-lightest rounded-lg">
+          <nuxt-child @close="open = false" />
+        </div>
+      </div>
+
+    </div>
+  </div>
 </template>
 
 <script>
-import TalkInbox from '@/components/ui/talk-inbox/'
 import TalkList from '@/components/Lister'
 
 export default {
-  components: {TalkList, TalkInbox},
+  components: {TalkList},
+  data() {
+    return {
+      open: false
+    }
+  },
   computed: {
     can() {
       return this.$store.getters[`dashboard/${this.$route.params.status}/can`]
@@ -51,6 +66,9 @@ export default {
     }
   },
   methods: {
+    handleClick(){
+      console.log('close')
+    },
     statusColor(status) {
       switch (status) {
         case 'rejected':
@@ -67,15 +85,21 @@ export default {
     return store.dispatch(`dashboard/${params.status}/list`)
   },
   created() {
-    if (process.browser) {
-      this.$store.dispatch(`dashboard/${this.$route.params.status}/sync`)
-    }
+    this.$store.dispatch(`dashboard/${this.$route.params.status}/sync`)
   }
 }
 </script>
 
-
-
+<style scoped>
+  .open {
+    transform: translateX(-50%);
+  }
+  /* @media screen and (min-width: 20rem) {
+                                                                .open {
+                                                                  transform: translateX(-0rem);
+                                                                }
+                                                              } */
+</style>
 
 
 

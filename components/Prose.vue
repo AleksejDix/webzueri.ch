@@ -37,12 +37,15 @@ export default {
 
   .prose a {
     transition: background-color 120ms;
-    text-decoration: none;
-    @apply border-b border-2 border-secondary text-current-color relative;
+    @apply border-b border-blue text-blue relative no-underline;
   }
 
   .prose a:hover {
-    @apply bg-secondary;
+    @apply border-blue-light text-blue-dark;
+  }
+
+  .prose a:visited {
+    @apply border-fuchsia-light text-fuchsia-dark;
   }
 
   .prose h1 {
