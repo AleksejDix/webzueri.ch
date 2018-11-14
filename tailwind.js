@@ -101,10 +101,21 @@ let colors = {
   "green": hsl(120, 100, 60),
   "green-dark": hsl(120, 100, 50),
 
-  "blue-lightest": hsl(250,100,90),
+  "mint-lightest": hsl(131,100,95),
+  "mint-light": hsl(131,100,70),
+  "mint": hsl(131,100,85),
+  "mint-dark": hsl(131,100,50),
+  "mint-darker": hsl(131,100,40),
+  "mint-darkest": hsl(131,100,30),
+
+
+  "blue-lightest": hsl(250,100,95),
   "blue-light": hsl(250,100,70),
   "blue": hsl(250,100,60),
   "blue-dark": hsl(250,100,50),
+  "blue-darker": hsl(250,100,40),
+  "blue-darkest": hsl(250,100,30),
+
 
   "violet-lightest": hsl(275,100,90),
   "violet-light": hsl(275,100,70),
@@ -125,10 +136,10 @@ let colors = {
   "grey-darkest": "#3d4852",
   "grey-darker": "#606f7b",
   "grey-dark": "#8795a1",
-  grey: "#e0e0e0",
-  "grey-light": "#dae1e7",
-  "grey-lighter": "#f1f5f8",
-  "grey-lightest": "#f8fafc",
+  grey: hsl(250, 17, 90),
+  "grey-light": hsl(250, 17, 93),
+  "grey-lighter": hsl(250, 17, 95),
+  "grey-lightest": hsl(250, 17, 98),
   white: "#ffffff",
 };
 
@@ -208,6 +219,7 @@ module.exports = {
       "sans-serif"
     ],
     sans: [
+      "Rubik",
       "system-ui",
       "BlinkMacSystemFont",
       "-apple-system",
@@ -441,7 +453,7 @@ module.exports = {
   |
   */
 
-  borderColors: global.Object.assign({ default: colors["grey-light"] }, colors),
+  borderColors: global.Object.assign({ default: colors["grey-lighter"] }, colors),
 
   /*
   |-----------------------------------------------------------------------------
@@ -521,7 +533,8 @@ module.exports = {
     "5/6": "83.33333%",
     full: "100%",
     screen: "100vw",
-    screen2: "200vw"
+    'screen-3/4': "75vw",
+    'screen-3/5': "60vw"
   },
 
   /*
@@ -773,8 +786,8 @@ module.exports = {
 
   shadows: {
     default: "0 4px 6px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08)",
-    md: "0 4px 8px 0 rgba(0,0,0,0.12), 0 2px 4px 0 rgba(0,0,0,0.08)",
-    lg: "0 7px 14px rgba(50,50,93,.1), 0 3px 6px rgba(0,0,0,.08)",
+    md: "0 7px 14px rgba(50,50,93,.1), 0 3px 6px rgba(0,0,0,.08)",
+    lg: "0 15px 35px rgba(50,50,93,.1), 0 5px 15px rgba(0,0,0,.07)",
     inner: "inset 0 2px 4px 0 rgba(0,0,0,0.06)",
     outline: "0 0 0 3px rgba(52,144,220,0.5)",
     focus: `inset 0 0 0 2px ${hsl(253,100,60)}`,
@@ -928,7 +941,7 @@ module.exports = {
     visibility: ["responsive"],
     whitespace: ["responsive"],
     width: ["responsive"],
-    zIndex: ["responsive"]
+    zIndex: ["responsive", "hover"]
   },
 
   /*

@@ -1,11 +1,33 @@
 <template>
   <form @submit.prevent="$emit('submit', form)" class="owl">
-    <Input label="URL of the Blogpost you wrote" placeholder="https://yoururl.com" v-model="form.url" />
-    <Input label="Blogpost Title" placeholder="Short Title of your speech" v-model="form.title" />
-    <InputText label="Blogpost Excerpt" placeholder="Description of yout talk" v-model="form.excerpt" limit="480" />
+    <Input-simple
+      label="URL of the Blogpost you wrote"
+      placeholder="https://yoururl.com"
+      v-model="form.url"
+    />
+    <Input-simple
+      label="Blogpost Title"
+      placeholder="Short Title of your speech"
+      v-model="form.title"
+    />
+    <InputText
+      label="Blogpost Excerpt"
+      placeholder="Description of yout talk"
+      v-model="form.excerpt"
+      limit="480"
+    />
     <div>
-      <div class="pl-1 pb-1 text-on-light-secondary text-10 tracking-wide font-medium">Cover Image, Ratio 16:9, max 2mb</div>
-      <file-pond name="photoURL" :instantUpload="false" ref="pond" accepted-file-types="image/jpeg, image/png" @init="handleFilePondInit" @addfile="handleAdd" />
+      <div
+        class="pl-1 pb-1 text-on-light-secondary text-10 tracking-wide font-medium"
+      >Cover Image, Ratio 16:9, max 2mb</div>
+      <file-pond
+        name="photoURL"
+        :instantUpload="false"
+        ref="pond"
+        accepted-file-types="image/jpeg, image/png"
+        @init="handleFilePondInit"
+        @addfile="handleAdd"
+      />
     </div>
     <div class="flex justify-end">
       <Button :disabled="loading">send</Button>

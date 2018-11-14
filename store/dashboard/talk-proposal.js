@@ -1,48 +1,68 @@
 import {db, timestamp} from '../../services/firebase/client-init.js';
 import Vue from 'vue';
-import isAllowed from '@/utils'
+import {isAllowed, isInTheList} from '@/utils'
+
+
+function getTimeStamp (data) {
+  if(!data.submittedAt) {
+    return {
+      updatedAt: timestamp(),
+      submittedAt: timestamp()
+    }
+  }
+}
+
+const getQuery = (user) => {
+  if(user.roles.admin) {
+    return db
+      .collection("talks")
+      .where("status", "==", "proposal")
+      .orderBy("submittedAt", "asc")
+  } else {
+    return db
+      .collection("talks")
+      .where("status", "==", "proposal")
+      .orderBy("submittedAt", "asc")
+      .where("authorUID", "==", user.uid)
+  }
+}
 
 export const state = () => ({
   list: [],
-  current: '',
 })
 
 export const getters = {
-  count(state) {
-    return state.list.length
-  },
-  list(state) {
-    return state.list
-  },
   can(state, getters, rootState, rootGetters) {
     const can = (roles) => (isAllowed(roles, rootGetters.userRoles))
     return {
-      list: can(['admin']),
-      get: can(['admin']),
-      set: can(['admin']),
-      update: can(['admin']),
-      delete: can(['admin']),
+      list: can(['admin', 'guest']),
+      get: can(['admin','guest']),
+      set: can(['admin', 'guest']),
+      update: can(['admin', 'guest']),
+      delete: can(['admin', 'guest']),
     }
   }
 }
 
 export const actions = {
   async sync ({state, commit, getters, rootState}) {
-    const ref = await db.collection("talks")
+    const ref = await getQuery(rootState.user)
 
     ref.onSnapshot(snapshot => {
       snapshot.docChanges().forEach(change => {
-        if ( change.type === 'added'
-          && getters.can.set
-          && !state.list.some(e => e.id === change.doc.id)) {
+        if ( change.type === 'added') {
+          if (isInTheList(state, change)) {
+            commit('update', {id: change.doc.id, ...change.doc.data() })
+            return
+          }
           commit('set', {id: change.doc.id, ...change.doc.data() })
         }
-        if (change.type === 'modified'
-          && getters.can.update) {
+
+        if (change.type === 'modified') {
           commit('update', {id: change.doc.id, ...change.doc.data() })
         }
-        if (change.type === 'removed'
-          && getters.can.delete) {
+
+        if (change.type === 'removed') {
           commit('destroy', change.doc.id)
         }
       })
@@ -50,16 +70,12 @@ export const actions = {
   },
 
 
-  async list({commit, getters}) {
+  async list({commit, getters, rootState}) {
     try {
       if (!getters.can.list) {
-        console.log(getters.can.list)
         throw new Error(`You don't have the rights to list this ressource`)
       }
-      const snapshot = await db
-        .collection("talks")
-        .orderBy("submittedAt", "asc")
-        .get()
+      const snapshot = await getQuery(rootState.user).get()
 
       const docs = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data()}))
 
@@ -69,31 +85,19 @@ export const actions = {
     }
   },
 
-  async get ({commit, getters}, id) {
+  async set({rootState}, payload) {
+
     try {
-      if (!getters.can.get) throw new Error(`You don't have the rights to get this ressource`)
-
-      const docRef = db.collection("talks").doc(id);
-      const doc = await docRef.get()
-
-      if (doc.exists) {
-        commit('get',  {id: doc.id, ...doc.data() })
-      }
-    } catch (error) {
-      console.log(error)
-    }
-  },
-
-
-  async set({getters}, payload) {
-    try {
-      if (!getters.can.set) throw new Error(`You don't have the rights to set this ressource`)
-
-      await db
-        .collection('talks')
+      await  db.collection("talks")
         .add({
           ...payload,
-          status: 'approved'
+          authorUID: rootState.user.uid,
+          authorDisplayName: rootState.user.displayName,
+          authorPhotoURL: rootState.user.photoURL,
+          createdAt: timestamp(),
+          updatedAt: timestamp(),
+          submittedAt: timestamp(),
+          status: 'proposal'
         })
 
     } catch (error) {
@@ -102,28 +106,30 @@ export const actions = {
   },
 
 
-  async update({state, getters}, payload) {
+  async update({getters, rootState}, payload) {
+    const {data} = payload
     try {
       if (!getters.can.update) throw new Error(`You don't have the rights to update this ressource`)
 
-      const docRef = db.collection("talks").doc(state.current.id);
+      const docRef = db
+        .collection("talks")
+        .doc(payload.id);
+
       const doc = await docRef.get()
       if (doc.exists) {
-        docRef.update(payload)
+
+        await docRef.update(
+          {
+            ...doc.data(),
+            ...data,
+            ...getTimeStamp(doc.data())
+
+          }
+        )
+        return 'data was updated'
       }
     } catch (error) {
       console.log(error)
-    }
-  },
-
-  async destroy ({getters}, id) {
-    if (!getters.can.update) throw new Error(`You don't have the rights to update this ressource`)
-
-    try {
-      await db.collection("talks").doc(id).delete()
-      console.log('Talk with ID', id, 'was successfully deleted!')
-    } catch (error) {
-      console.error("Error removing document: ", error);
     }
   }
 }
@@ -131,10 +137,6 @@ export const actions = {
 export const mutations = {
   list(state, payload) {
     state.list = payload
-  },
-
-  get(state, payload) {
-    state.current = payload
   },
 
   set(state, payload) {

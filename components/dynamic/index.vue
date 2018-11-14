@@ -1,14 +1,11 @@
 <template>
-  <div>
-    <component @close="$emit('close')" @submit="(payload) => $emit('submit', payload)" :is=" component" :data="data" />
-  </div>
+  <component v-bind="$attrs" :is="component" :data="data"/>
 </template>
-
 
 <script>
 const getComponent = (componentType, templateName) => {
   return {
-    component: import(`@/components/dynamic/${componentType}/templates/${templateName}/`)
+    component: import(`@/components/dynamic/${componentType}/${templateName}/`)
     .then(component => component)
     .catch(err => import(`@/components/dynamic/default/`))
   }

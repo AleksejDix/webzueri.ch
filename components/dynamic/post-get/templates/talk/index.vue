@@ -4,13 +4,12 @@
       <Button @click="$emit('close')">close</Button>
     </div>
     <Prose class="owl">
-      <h1><a class="link" rel="noopener" target="_blank" :href="data.url">{{data.title}}</a></h1>
-      <div>
-        {{data.abstract}}
-      </div>
+      <h1>
+        <a class="link" rel="noopener" target="_blank" :href="data.url">{{data.title}}</a>
+      </h1>
+      <div>{{data.description}}</div>
     </Prose>
   </div>
-
 </template>
 
 <script>

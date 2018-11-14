@@ -1,6 +1,6 @@
 <template>
   <form @submit.prevent="handleSubmit" class="owl">
-    <Input label="new email" v-model="email" type="email" />
+    <input-simple label="new email" v-model="email" type="email"></input-simple>
     <div class="flex justify-end">
       <Button>save</Button>
     </div>

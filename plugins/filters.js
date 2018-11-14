@@ -1,11 +1,22 @@
 import Vue from 'vue'
 import fromUnixTime from 'date-fns/fromUnixTime'
 import formatDistance from 'date-fns/formatDistance'
+import format from 'date-fns/format'
 
 
 Vue.filter( 'humanDate', (value) => {
   if(!value) return 'just now'
   return formatDistance(fromUnixTime(value.seconds), new Date()) + ' ago'
+})
+
+Vue.filter( 'date', (value) => {
+  if(!value) return ''
+  return format(fromUnixTime(value.seconds), `eee. d MMM. yyyy`)
+})
+
+Vue.filter( 'time', (value) => {
+  if(!value) return ''
+  return format(fromUnixTime(value.seconds), `hh:mm:ss`)
 })
 
 

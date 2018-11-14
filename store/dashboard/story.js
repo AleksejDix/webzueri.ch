@@ -1,6 +1,6 @@
 import {db, timestamp} from '../../services/firebase/client-init.js';
 import Vue from 'vue';
-import isAllowed from '@/utils'
+import {isAllowed} from '@/utils'
 
 export const state = () => ({
   list: [],

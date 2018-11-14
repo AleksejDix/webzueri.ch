@@ -1,11 +1,40 @@
 <template functional>
   <article class="flex items-center">
-    <div class="flex-no-shrink w-12 h-12 mr-4" :class="[props.big ? 'w-16 h-16' : 'w-12 h-12']">
-      <img class="rounded-full w-full shadow-lg" :src="props.photo" :alt="props.name">
+    <div
+      class="flex-no-shrink"
+      :class="{
+        'w-16 h-16' : props.size === 'xl',
+        'w-12 h-12' : props.size === 'lg',
+        'w-10 h-10' : props.size === 'md',
+        'w-8 h-8' : props.size === 'sm',
+        'w-6 h-6' : props.size === 'xs'
+      }"
+    >
+      <img class="rounded-full w-full" :src="props.photo" :alt="props.name">
     </div>
     <div class="flex-1">
-      <h3 class="leading-none text-current-color" :class="[props.big ? 'text-16' : 'text-12']">{{props.name}}</h3>
-      <aside class="text-current-color leading-normal text-11">{{ props.meta }}</aside>
+      <h3
+        class="leading-none text-current-color font-normal"
+        style="padding-left: 0.5em;"
+        :class="{
+          'text-16' : props.size === 'xl',
+          'text-14' : props.size === 'lg',
+          'text-12' : props.size === 'md',
+          'text-12' : props.size === 'sm',
+          'text-12' : props.size === 'xs'
+        }"
+      >{{props.name}}</h3>
+      <aside
+        style="padding-left: 0.5em;"
+        class="text-current-color leading-normal"
+        :class="{
+          'text-16' : props.size === 'xl',
+          'text-14' : props.size === 'lg',
+          'text-12' : props.size === 'md',
+          'text-12' : props.size === 'sm',
+          'text-12' : props.size === 'xs'
+        }"
+      >{{ props.meta }}</aside>
     </div>
   </article>
 </template>

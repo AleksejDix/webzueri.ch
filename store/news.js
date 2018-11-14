@@ -13,7 +13,6 @@ export const getters = {
 
 export const actions = {
   async list({commit}) {
-    console.log('list me')
     try {
       const snapshot = await db
         .collection("stories")

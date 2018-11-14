@@ -28,7 +28,7 @@ export default {
       lang: "en-US"
     },
     bodyAttrs: {
-      class: "antialiased bg-grey-lighter"
+      class: "antialiased bg-grey-lightest"
     },
     meta: [
       { charset: "utf-8" },
@@ -39,7 +39,7 @@ export default {
       { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css?family=Rubik:400,700,900"
+        href: "https://fonts.googleapis.com/css?family=Rubik:400,500,600,700,900"
       }
     ]
   },
@@ -56,6 +56,7 @@ export default {
   plugins: [
     '~/plugins/components',
     '~/plugins/filters.js',
+    '~/plugins/portal-vue.js',
     { src: '~/plugins/ga.js', ssr: false },
     { src: '~/plugins/auth-cookie.js', ssr: false }
   ],
@@ -90,7 +91,7 @@ export default {
                 extensions: ["vue"]
               }
             ],
-            whitelist: ["html", "body", "nuxt-progress"],
+            whitelist: ["html", "body", "nuxt-progress", '__nuxt' ,'__layout'],
             whitelistPatterns: [/^group-hover/],
             whitelistPatternsChildren: [/^group-hover/]
           })

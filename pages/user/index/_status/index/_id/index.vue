@@ -1,22 +1,25 @@
 <template>
-  <div class="p-12 owl" v-if="current">
-
-    <dynamic-component @close="$emit('close')" :data="current" :settings="{
+  <modal-window @close="$router.go(-1)">
+    <div slot="title">{{$route.params.status | capitalize }}</div>
+    <div class="flex-1 px-8 owl overflow-scroll" v-if="current">
+      <dynamic-component
+        :data="current"
+        :settings="{
         path: 'post-get',
         type: $route.params.status
-    }" />
-
-    <div class="flex justify-end">
-      <Button :to="{name: 'user-index-status-index-id-edit'}">edit</Button>
+    }"
+      />
     </div>
-  </div>
+  </modal-window>
 </template>
 
 <script>
 
 import DynamicComponent from "@/components/dynamic/"
+
+import ModalWindow from '@/components/ModalWindow'
 export default {
-  components: {DynamicComponent},
+  components: {DynamicComponent, IconClose, ModalWindow},
   computed: {
     current() {
       return this.$store.state.dashboard[this.$route.params.status].current

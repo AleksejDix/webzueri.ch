@@ -1,5 +1,5 @@
 <template>
-  <h6 class="uppercase text-on-light-secondary text-10 tracking-wide">
+  <h6 class="text-on-light-muted text-12 leading-normal tracking-wide font-normal">
     <slot></slot>
   </h6>
 </template>

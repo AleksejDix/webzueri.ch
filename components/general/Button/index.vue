@@ -1,9 +1,13 @@
 <template>
-
-  <a v-if="href" class="button transition" v-bind="$props" :class="[
+  <a
+    v-if="href"
+    class="button transition"
+    v-bind="$props"
+    :class="[
     size === 'small' ? 'button--small' : '',
     danger ? 'button--danger' : '',
-    getPadding]">
+    getPadding]"
+  >
     <div class="inline-flex items-center owl-x">
       <div v-if="$slots['start']" class="w-6 h-6 rounded-full overflow-hidden bg-on-dark-secondary">
         <slot name="start"></slot>
@@ -16,44 +20,48 @@
       </div>
     </div>
   </a>
-
-  <nuxt-link v-else-if="to" class="button transition" v-bind="$props" :class="[
+  <nuxt-link
+    v-else-if="to"
+    class="button transition"
+    v-bind="$props"
+    :class="[
     size === 'small' ? 'button--small' : '',
     danger ? 'button--danger' : '',
-    getPadding]">
+    getPadding]"
+  >
     <div class="inline-flex items-center owl-x">
       <div v-if="$slots['start']" class="w-6 h-6 rounded-full overflow-hidden bg-on-dark-secondary">
         <slot name="start"></slot>
       </div>
-
       <span>
         <slot></slot>
       </span>
-
       <div v-if="$slots['end']" class="w-6 h-6 rounded-full overflow-hidden bg-on-dark-secondary">
         <slot name="end"></slot>
       </div>
     </div>
   </nuxt-link>
-
-  <button v-else @click="handleClick" class="button transition" :class="[
-    size === 'small' ? 'button--small' : '',
-    danger ? 'button--danger' : '',
-    getPadding]">
+  <button
+    v-else
+    @click="handleClick"
+    class="button transition"
+    :class="[{
+      'button--small' : size === 'small',
+      'button--danger' : danger,
+      'button--muted' : muted,
+    },
+    getPadding]"
+  >
     <div class="inline-flex items-center owl-x">
-
       <div v-if="$slots['start']" class="w-6 h-6 rounded-full overflow-hidden bg-on-dark-secondary">
         <slot name="start"></slot>
       </div>
-
       <span>
         <slot></slot>
       </span>
-
       <div v-if="$slots['end']" class="w-6 h-6 rounded-full overflow-hidden bg-on-dark-secondary">
         <slot name="end"></slot>
       </div>
-
     </div>
   </button>
 </template>
@@ -61,7 +69,7 @@
 <script>
 
 export default {
-  props: ['to', 'size', 'href', 'danger'],
+  props: ['to', 'size', 'href', 'danger', 'muted'],
   computed: {
     getSize() {
       if (!this.size) return
@@ -84,17 +92,17 @@ export default {
 
 <style >
   .button {
-    @apply shadow text-9 inline-flex text-on-dark-primary no-underline bg-blue-dark tracking-wide no-underline uppercase font-semibold rounded h-10 cursor-pointer;
+    @apply shadow text-9 inline-flex text-on-dark-primary no-underline bg-blue tracking-wide no-underline uppercase font-semibold rounded h-10 cursor-pointer;
   }
 
   .button:hover,
   .button:focus {
-    @apply outline-none bg-blue;
+    @apply outline-none bg-blue-light;
   }
 
   .button.nuxt-link-active,
   .button:active {
-    @apply outline-none bg-blue;
+    @apply outline-none bg-blue-light;
   }
 
   .button--small {
@@ -109,6 +117,16 @@ export default {
   .button--danger:active,
   .button--danger:focus {
     @apply bg-red-dark text-on-dark-primary;
+  }
+
+  .button--muted {
+    @apply bg-transparent shadow-none text-on-light-secondary;
+  }
+
+  .button--muted:hover,
+  .button--muted:active,
+  .button--muted:focus {
+    @apply bg-grey text-on-light-primary;
   }
 
   .button--big {

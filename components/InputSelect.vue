@@ -1,11 +1,17 @@
 <template>
-  <label class="min-w-36 block" for="grid-first-name">
-    <div class="pl-1 pb-1 text-on-light-secondary text-10 tracking-wide font-medium" v-if="label">{{label}}</div>
+  <label class="min-w-36 block owl-xs" for="grid-first-name">
+    <Overline v-if="label">{{label}}</Overline>
     <div class="">{{hint}}</div>
-    <div class="shadow-inner flex relative w-full h-10 bg-grey-light tracking-wide no-underline leading-none inline-block font-semibold rounded text-sm">
-      <select class="appearance-none w-full bg-transparent px-4 py-3 text-12 absolute h-full pin w-full leading-none" v-model="selected">
-        <option v-for="option in options" :key="option" :value="option" v-text="option" />
-        <option v-if="disabledOption" disabled value="" v-text="disabledOption" />
+    <div
+      class="flex relative w-full h-10 bg-grey-lighter tracking-wide no-underline leading-none inline-block font-semibold rounded text-sm"
+    >
+      <select
+        v-bind="$attrs"
+        class="focus:outline-none focus:shadow-focus appearance-none rounded focus:bg-white w-full bg-transparent px-4 py-3 text-12 absolute h-full pin w-full leading-none"
+        v-model="selected"
+      >
+        <option v-for="option in options" :key="option" :value="option" v-text="option"/>
+        <option v-if="disabledOption" disabled value="" v-text="disabledOption"/>
       </select>
     </div>
   </label>

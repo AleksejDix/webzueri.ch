@@ -1,14 +1,10 @@
-
 <template>
-  <Profile />
+  <nuxt-child/>
 </template>
 
 <script>
-import Profile from '~/components/ui/Profile'
-
 export default {
   middleware: ['auth-check', 'profile-default'],
-  components: { Profile },
+  layout: 'dashboard'
 }
 </script>
-

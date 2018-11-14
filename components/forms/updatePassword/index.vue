@@ -1,6 +1,6 @@
 <template>
   <form @submit.prevent="handleSubmit" class="owl">
-    <Input label="new password" v-model="newPassword" type="password" />
+    <Input-simple label="new password" v-model="newPassword" type="password"/>
     <div class="flex justify-end">
       <Button>save</Button>
     </div>

@@ -1,6 +1,6 @@
 <template>
   <form class="w-full owl-md" @submit.prevent="handleSubmit">
-    <Input v-model="form.email" label="Email" type="email" placeholder="user@conf.couch" />
+    <Input-simple v-model="form.email" label="Email" type="email" placeholder="user@conf.couch"/>
     <div class="flex items-center justify-between owl-x">
       <p>
         <nuxt-link class="link" to="/signin/">I remember my password</nuxt-link>

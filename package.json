@@ -13,7 +13,7 @@
     "generate": "nuxt generate",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "precommit": "npm run lint",
-    "deploy": "now --public && now alias",
+    "deploy": "now --local-config=now.staging.json",
     "analyze": "NODE_ENV=development nuxt build --analyze"
   },
   "dependencies": {
@@ -21,6 +21,7 @@
     "cookie-parser": "^1.4.3",
     "date-fns": "^v2.0.0-alpha.25",
     "dotenv": "^6.1.0",
+    "element-resize-detector": "^1.1.14",
     "filepond-plugin-file-validate-type": "^1.2.0",
     "filepond-plugin-image-preview": "^3.1.3",
     "firebase": "^5.5.4",
@@ -30,6 +31,7 @@
     "hsluv": "^0.0.3",
     "npm": "^5.8.0",
     "nuxt": "^2.2.0",
+    "portal-vue": "^1.4.0",
     "vue-filepond": "^4.0.0",
     "vue-focus-lock": "^1.2.0",
     "vue2-medium-editor": "^1.1.6",

@@ -1,32 +1,26 @@
 <template>
   <div>
-    <navigation-main></navigation-main>
+    <div class="bg-primary-dark">
+      <div class="container mx-auto">
+        <navigation-main>
+          <logo slot="logo" class="text-on-dark-secondary hover:text-on-dark-primary"/>
+        </navigation-main>
+      </div>
+    </div>
     <main>
-      <slot />
+      <slot/>
     </main>
-    <modal :show="showNewTalkModal" @close="showNewTalkModal = false">
-      <div slot="header">Submit new talk</div>
-    </modal>
-    <svg-symbols />
+    <svg-symbols/>
   </div>
 </template>
 
 <script>
-import Modal from "@/components/Modal"
+
 import NavigationMain from "@/components/NavigationMain"
 import SvgSymbols from "@/components/SvgSymbols"
+import Logo from "@/components/Logo"
 
 export default {
-  components: { Modal, SvgSymbols, NavigationMain },
-  data() {
-    return {
-      showNewTalkModal: false
-    }
-  },
-  methods: {
-    openModal() {
-      this.showNewTalkModal = true
-    }
-  }
+  components: { SvgSymbols, NavigationMain, Logo }
 }
 </script>

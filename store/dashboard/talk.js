@@ -1,6 +1,6 @@
 import {db, timestamp} from '../../services/firebase/client-init.js';
 import Vue from 'vue';
-import isAllowed from '@/utils'
+import {isAllowed} from '@/utils'
 
 export const state = () => ({
   list: [],
@@ -19,10 +19,10 @@ export const getters = {
   can(state, getters, rootState, rootGetters) {
     const can = (roles) => (isAllowed(roles, rootGetters.userRoles))
     return {
-      list: can(['admin', 'speaker']),
-      get: can(['admin', 'guest', 'speaker']),
-      set: can(['admin', 'speaker']),
-      update: can(['admin', 'speaker']),
+      list: can(['admin', 'guest']),
+      get: can(['admin', 'guest']),
+      set: can(['admin', 'guest']),
+      update: can(['admin', 'guest']),
       delete: can(['admin']),
     }
   }
@@ -31,7 +31,7 @@ export const getters = {
 export const actions = {
 
   async sync ({state, commit, rootState}) {
-    const ref = await db.collection("talks").where("authorUID", "==", rootState.user.uid)
+    const ref = await db.collection("talks")
 
     ref.onSnapshot(snapshot => {
       snapshot.docChanges().forEach(change => {
@@ -87,7 +87,7 @@ export const actions = {
           authorDisplayName: rootState.user.displayName,
           authorPhotoURL: rootState.user.photoURL,
           submittedAt: timestamp(),
-          status: 'pending'
+          status: 'draft'
         })
 
     } catch (error) {
@@ -96,8 +96,9 @@ export const actions = {
   },
 
   async update ({state, commit}, payload) {
+
     try {
-      const docRef = db.collection("talks").doc(state.current.id);
+      const docRef = db.collection("talks").doc(payload.id);
       const doc = await docRef.get()
       if (doc.exists) {
         docRef.update(payload)

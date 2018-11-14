@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Spinner from '~/components/feedback/Spinner';
-import Input from '~/components/Input';
+import InputSimple from '~/components/InputSimple';
 import Button from '~/components/general/Button';
 import Icon from '~/components/general/Icon';
 import InputText from '~/components/InputText';
@@ -18,7 +18,7 @@ Vue.component("Ratio", Ratio);
 Vue.component("Spinner", Spinner);
 Vue.component("Icon", Icon);
 Vue.component("Button", Button);
-Vue.component("Input", Input);
+Vue.component("InputSimple", InputSimple);
 Vue.component("InputText", InputText);
 Vue.component("InputSelect", InputSelect);
 Vue.component("Overline", Overline);

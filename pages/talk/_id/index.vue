@@ -1,40 +1,29 @@
 <template>
-
   <div class="pattern bg-primary-dark min-h-screen">
-
     <Spinner v-if="$apollo.loading" :active="$apollo.loading" />
-
-    <div class="max-w-lg  rounded-lg p-4 mx-auto">
-
+    <div class="max-w-lg rounded-lg p-4 mx-auto">
       <div class="owl-lg flex flex-col">
-
         <nuxt-link :to="{name: 'speaker-id', params: {id: speaker.id}}" class="text-on-dark-primary hover:text-yellow-light group no-underline inline-block" v-for="speaker in talk.speakers" v-if="talk.speakers" :key="speaker.id">
-          <user-card :big="true" v-if="speaker.speakerPicture" :name="speaker.name" :photo="speaker.speakerPicture.url" />
+          <user-card size="xl" v-if="speaker.speakerPicture" :name="speaker.name" :photo="speaker.speakerPicture.url" />
         </nuxt-link>
-
         <nuxt-link :to="{ name: 'talk-id', params: { id: talk.id }}" class="flex-1 relative block bg-primary rounded-lg p-4 text-white md:flex no-underline whitespace-normal">
           <svg viewBox="0 0 24 24" class="w-6 h-6 absolute pin-l ml-5" style="bottom: 100%">
-            <path class="fill-primary" d="M 12,12 L24 24 0 24 Z" />
+            <path class="fill-primary" d="M 12,12 L24 24 0 24 Z"></path>
           </svg>
           <div class="flex flex-col flex-1 pb-4 md:pb-0 md:pr-4">
             <div class="owl-md">
-
               <Prose color="on-dark" class="owl">
                 <h1>{{talk.name}}</h1>
-                {{talk.abstract}}
+                {{talk.description}}
               </Prose>
-
               <Ratio v-if="talk.youtubecode" class="rounded-lg shadow-lg" width="16" height="9">
                 <iframe class="w-full h-full" type="text/html" :src="`https://www.youtube.com/embed/${talk.youtubecode}`" frameborder="0" />
               </Ratio>
             </div>
-
           </div>
         </nuxt-link>
       </div>
-
     </div>
-
   </div>
 </template>
 
