@@ -31,7 +31,7 @@ export const state = () => ({
       links: [
         {
           text: "Sponsor",
-          desc: "support us on <strong>parteon.com</strong>",
+          desc: "support us on <strong>patreon.com</strong>",
           url: "https://www.patreon.com/webzurich",
           color: "#f96854",
           icon: "patreon"
@@ -52,7 +52,7 @@ export const state = () => ({
         },
         {
           text: "Meet",
-          desc: "subscrube at <strong>meetup.com</strong>",
+          desc: "subscribe at <strong>meetup.com</strong>",
           url: "https://www.meetup.com/Web-Zurich/",
           color: "#F7405F",
           icon: "meetup"
