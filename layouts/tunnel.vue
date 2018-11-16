@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="md:p-4 md:py-6 bg-primary-light pattern h-screen">
+    <div class="md:p-4 md:py-6 pattern min-h-screen">
       <nuxt />
     </div>
     <svg-symbols />

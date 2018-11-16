@@ -1,12 +1,9 @@
 <template>
   <div>
     <form class="w-full owl-md" @submit.prevent="handleSubmit">
-      <Input-simple v-model="form.email" label="Email" type="email" placeholder="user@conf.couch"></Input-simple>
+      <Input-simple v-model="form.email" label="Email" type="email"></Input-simple>
       <Input-simple v-model="form.password" label="Password" type="password"></Input-simple>
-      <div
-        v-if="error"
-        class="border-2 border-red-light rounded p-4 text-red-light bg-red-lightest font-bold text-sm"
-      >{{error}}</div>
+      <div v-if="error" class="border-2 border-red-light rounded p-4 text-red-light bg-red-lightest font-bold text-sm">{{error}}</div>
       <div class="flex items-center justify-between owl-x">
         <ul class="list-reset owl-sm">
           <li>

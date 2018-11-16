@@ -20,14 +20,6 @@
       <div
         class="pl-1 pb-1 text-on-light-secondary text-10 tracking-wide font-medium"
       >Cover Image, Ratio 16:9, max 2mb</div>
-      <file-pond
-        name="photoURL"
-        :instantUpload="false"
-        ref="pond"
-        accepted-file-types="image/jpeg, image/png"
-        @init="handleFilePondInit"
-        @addfile="handleAdd"
-      />
     </div>
     <div class="flex justify-end">
       <Button :disabled="loading">send</Button>
@@ -36,16 +28,9 @@
 </template>
 
 <script>
-import vueFilePond from 'vue-filepond';
-
-// Import image preview and file type validation plugins
-import FilePondPluginFileValidateType from 'filepond-plugin-file-validate-type';
-import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
-const FilePond = vueFilePond(FilePondPluginFileValidateType, FilePondPluginImagePreview);
 import { mapActions } from 'vuex'
 
 export default {
-  compoennts: {FilePond},
   data() {
     return {
       loading: false,
@@ -67,10 +52,6 @@ export default {
         console.log(error)
       }
     },
-
-    handleFilePondInit(e) {
-      this.$refs.pond.getFile();
-    }
   }
 }
 </script>

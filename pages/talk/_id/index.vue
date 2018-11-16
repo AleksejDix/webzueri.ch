@@ -1,20 +1,22 @@
 <template>
-  <div class="pattern bg-primary-dark min-h-screen">
+
+  <div class="pattern  min-h-screen">
     <Spinner v-if="$apollo.loading" :active="$apollo.loading" />
     <div class="max-w-lg rounded-lg p-4 mx-auto">
       <div class="owl-lg flex flex-col">
-        <nuxt-link :to="{name: 'speaker-id', params: {id: speaker.id}}" class="text-on-dark-primary hover:text-yellow-light group no-underline inline-block" v-for="speaker in talk.speakers" v-if="talk.speakers" :key="speaker.id">
+        <nuxt-link :to="{name: 'speaker-id', params: {id: speaker.id}}" class="text-on-dark-primary hover:text-blue-light no-underline inline-block" v-for="speaker in talk.speakers" v-if="talk.speakers" :key="speaker.id">
           <user-card size="xl" v-if="speaker.speakerPicture" :name="speaker.name" :photo="speaker.speakerPicture.url" />
         </nuxt-link>
-        <nuxt-link :to="{ name: 'talk-id', params: { id: talk.id }}" class="flex-1 relative block bg-primary rounded-lg p-4 text-white md:flex no-underline whitespace-normal">
-          <svg viewBox="0 0 24 24" class="w-6 h-6 absolute pin-l ml-5" style="bottom: 100%">
-            <path class="fill-primary" d="M 12,12 L24 24 0 24 Z"></path>
+        <nuxt-link :to="{ name: 'talk-id', params: { id: talk.id }}" class="flex-1 relative block bg-primary rounded-lg p-4 text-white md:flex no-underline whitespace-normal shadow-blue">
+          <svg viewBox="0 0 24 8" class="w-8 h-8 absolute pin-l ml-4" style="bottom: 100%">
+            <path transform="translate(0,7.3)" class="fill-blue " d="M3 8s2.021-.015 5.253-4.218C9.584 2.051 10.797 1.007 12 1c1.203-.007 2.416 1.035 3.761 2.782C19.012 8.005 21 8 21 8H3z" />
+            <path transform="translate(0,8.2)" class="transition fill-primary group-hover:fill-primary-dark " d="M3 8s2.021-.015 5.253-4.218C9.584 2.051 10.797 1.007 12 1c1.203-.007 2.416 1.035 3.761 2.782C19.012 8.005 21 8 21 8H3z" />
           </svg>
           <div class="flex flex-col flex-1 pb-4 md:pb-0 md:pr-4">
             <div class="owl-md">
               <Prose color="on-dark" class="owl">
                 <h1>{{talk.name}}</h1>
-                {{talk.description}}
+                {{talk.abstract}}
               </Prose>
               <Ratio v-if="talk.youtubecode" class="rounded-lg shadow-lg" width="16" height="9">
                 <iframe class="w-full h-full" type="text/html" :src="`https://www.youtube.com/embed/${talk.youtubecode}`" frameborder="0" />

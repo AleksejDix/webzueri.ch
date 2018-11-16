@@ -20,7 +20,7 @@ export const state = () => ({
           url: "/speakers"
         },
         {
-          text: "Code of Conduct",
+          text: "CoC",
           desc: "our rules of <strong>good behaviour</strong>",
           url: "/code-of-conduct"
         }
@@ -30,28 +30,32 @@ export const state = () => ({
       title: "community",
       links: [
         {
-          text: "Patreon",
-          desc: "Support us with <strong>some money</strong>",
+          text: "Sponsor",
+          desc: "support us on <strong>parteon.com</strong>",
           url: "https://www.patreon.com/webzurich",
-          color: "#f96854"
+          color: "#f96854",
+          icon: "patreon"
         },
         {
-          text: "Slack",
-          desc: "Get help from your <strong>local peers</strong>.",
+          text: "Talk",
+          desc: "join our <strong>slack chat</strong>.",
           url: "https://webzuerich-invite.herokuapp.com/",
-          color: "#79D4B6"
+          color: "#79D4B6",
+          icon: "slack"
         },
         {
-          text: "Twitter",
-          desc: "Tell the world about <strong>web zurich</strong>",
+          text: "Share",
+          desc: "tweet about <strong>webzueri.ch</strong>",
           url: "https://twitter.com/webzuerich",
-          color: "#1DA1F3"
+          color: "#1DA1F3",
+          icon: "twitter"
         },
         {
-          text: "Meetup",
-          desc: "Join the group for <strong>latest updates</strong>",
+          text: "Meet",
+          desc: "subscrube at <strong>meetup.com</strong>",
           url: "https://www.meetup.com/Web-Zurich/",
-          color: "#F7405F"
+          color: "#F7405F",
+          icon: "meetup"
         }
       ]
     }

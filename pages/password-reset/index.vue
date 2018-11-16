@@ -1,6 +1,6 @@
 <template>
   <div class="w-full md:max-w-sm mx-auto">
-    <section class="shadow md:rounded-lg bg-primary-dark">
+    <section class="shadow-blue md:rounded-lg bg-primary-dark">
 
       <header class="px-6 py-8 owl-sm rounded-t-lg">
         <h1 class="text-16 text-on-dark-primary leading-tight">Reset password</h1>
@@ -9,7 +9,7 @@
       </header>
 
       <div class="px-4 translate-y-4 -mt-4">
-        <div class="flex flex-col owl bg-white shadow-lg rounded-lg py-4 px-6">
+        <div class="flex flex-col owl rounded-lg py-4 px-6 shadow-blue">
           <PasswordReset />
         </div>
       </div>

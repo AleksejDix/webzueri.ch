@@ -3,14 +3,14 @@
     <div class="bg-primary-dark">
       <div class="container mx-auto">
         <navigation-main>
-          <logo slot="logo" class="text-on-dark-secondary hover:text-on-dark-primary"/>
+          <logo slot="logo" class="text-on-dark-secondary hover:text-on-dark-primary" />
         </navigation-main>
       </div>
     </div>
     <main>
-      <slot/>
+      <slot />
     </main>
-    <svg-symbols/>
+    <svg-symbols />
   </div>
 </template>
 

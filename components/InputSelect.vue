@@ -3,7 +3,7 @@
     <Overline v-if="label">{{label}}</Overline>
     <div class="">{{hint}}</div>
     <div
-      class="flex relative w-full h-10 bg-grey-lighter tracking-wide no-underline leading-none inline-block font-semibold rounded text-sm"
+      class="flex relative w-full h-10 bg-grey-light tracking-wide no-underline leading-none inline-block font-semibold rounded text-sm"
     >
       <select
         v-bind="$attrs"

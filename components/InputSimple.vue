@@ -3,7 +3,7 @@
     <Overline v-if="label">{{label}}</Overline>
     <div class="">{{hint}}</div>
     <div
-      class="flex relative w-full h-10 bg-grey-lighter tracking-wide no-underline leading-none inline-block font-semibold rounded text-sm"
+      class="flex relative w-full h-10 bg-grey-light tracking-wide no-underline leading-none inline-block font-semibold rounded text-sm"
     >
       <input
         v-bind="$attrs"
@@ -15,7 +15,7 @@
       <Button
         size="small"
         v-if="type === 'password'"
-        class="absolute pin-r pin-y m-1 bg-grey-light hover:bg-grey px-3 rounded text-on-light-secondary hover:text-on-light-primary"
+        class="absolute pin-r pin-y m-1"
         type="button"
         @click="isVisible = !isVisible"
       >{{isVisible ? 'hide' : 'show' }}</Button>

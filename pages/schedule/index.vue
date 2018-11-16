@@ -5,7 +5,7 @@
         <ul class="list-reset max-w-md">
           <li
             class=""
-            v-for="color in ['red', 'orange', 'yellow', 'green', 'mint', 'blue', 'violet', 'fuchsia', 'pink' ]"
+            v-for="color in ['red', 'orange', 'yellow', 'green', 'blue', 'violet', 'fuchsia', 'pink' ]"
             :key="color"
           >
             <div class="flex space-between">
@@ -26,7 +26,7 @@
         <ul class="list-reset max-w-md">
           <li
             class=""
-            v-for="color in ['red', 'orange', 'yellow', 'green', 'mint', 'blue', 'violet', 'fuchsia', 'pink' ]"
+            v-for="color in ['red', 'orange', 'yellow', 'green', 'blue', 'violet', 'fuchsia', 'pink' ]"
             :key="color"
           >
             <div class="flex space-between">

@@ -27,7 +27,7 @@ export default {
 
   .prose strong,
   .prose b {
-    font-weight: bold;
+    font-weight: 600;
   }
 
   .prose i,
@@ -49,19 +49,19 @@ export default {
   }
 
   .prose h1 {
-    @apply text-24;
+    @apply text-24 font-medium;
   }
 
   .prose h2 {
-    @apply text-21;
+    @apply text-21 font-medium;
   }
 
   .prose h3 {
-    @apply text-18;
+    @apply text-18 font-medium;
   }
 
   .prose h4 {
-    @apply text-16;
+    @apply text-16 font-medium;
   }
 
   .prose--on-dark h1,

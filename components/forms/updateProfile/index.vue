@@ -1,15 +1,16 @@
 <template>
   <form @submit.prevent="handleSubmit" class="owl">
-
-    <div>
-      <div class="pl-1 pb-1 text-on-light-secondary text-10 tracking-wide font-medium">new picture</div>
-
-      <file-pond name="photoURL" :instantUpload="false" ref="pond" accepted-file-types="image/jpeg, image/png" @init="handleFilePondInit" @addfile="handleAdd" />
-    </div>
-
-    <Input label="new name" v-model.lazy="name" />
-    <div class="flex justify-end">
-      <Button>save</Button>
+    <div class="owl">
+      <input-image label="profile picture" hint @loaded="handleLoaded">
+        <div slot="hint">
+          Max. file size 2MB. Aspect ratio 1:1 are required.
+          This image is required if you want to make any talk suggestion.
+        </div>
+      </input-image>
+      <input-simple label="public name" v-model="form.displayName"></input-simple>
+      <div class="flex justify-end">
+        <Button>save</Button>
+      </div>
     </div>
   </form>
 </template>
@@ -17,52 +18,35 @@
 <script>
 import { mapActions } from 'vuex'
 import InputToggle from '@/components/input/toggle'
-import vueFilePond from 'vue-filepond';
-
-// Import image preview and file type validation plugins
-import FilePondPluginFileValidateType from 'filepond-plugin-file-validate-type';
-import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
-const FilePond = vueFilePond(FilePondPluginFileValidateType, FilePondPluginImagePreview);
-
+import InputImage from '@/components/InputImage'
 
 export default {
-  components: { FilePond, InputToggle },
-  data: () => ({
-    form: {
-      displayName: null,
-      photoURL: null
-    }
-  }),
-  computed: {
-    name: {
-      get () { return this.$store.state.user.displayName},
-      set (value) { this.form.displayName = value }
-    },
-    photo () {
-      return this.$store.state.user.photoURL
+  components: { InputToggle, InputImage },
+  props: ['data'],
+  data() {
+    return {
+      form: {
+        displayName: this.data.displayName,
+        photoURL: this.data.photoURL
+      }
     }
   },
   methods: {
     ...mapActions(['updateProfile', 'userImageUpload']),
-    handleSubmit(e) {
+    handleLoaded(file){
+      this.file = file
+    },
+    async handleSubmit(e) {
+
+      const uploadURL = await this.userImageUpload(this.file)
+      console.log(uploadURL)
+
       const profile = {
         displayName: this.form.displayName || this.$store.state.user.displayName,
-        photoURL: this.form.photoURL || this.$store.state.user.photoURL
+        photoURL: uploadURL || this.$store.state.user.photoURL
       }
       this.updateProfile(profile)
-    },
-
-    async handleAdd(error, file) {
-      try {
-        this.form.photoURL = await this.userImageUpload(file.file)
-      } catch (error) {
-        console.log(error)
-      }
-    },
-
-    handleFilePondInit(e) {
-      this.$refs.pond.getFile();
-    },
+    }
   }
 }
 </script>
