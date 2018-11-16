@@ -1,0 +1,32 @@
+query events($first: Int!, $skip: Int!) {
+  events(
+    orderBy: date_DESC
+    first: $first
+    skip: $skip
+    where: { status: PUBLISHED }
+  ) {
+    id
+    date
+    talks {
+      id
+      name
+      abstract
+      youtubecode
+      speakers {
+        id
+        name
+        speakerPicture {
+          url
+        }
+      }
+    }
+    sponsors {
+      id
+      name
+      website
+      logo {
+        url
+      }
+    }
+  }
+}

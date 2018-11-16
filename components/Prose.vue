@@ -1,68 +1,92 @@
 <template>
-  <div class="prose">
+  <div :class="[
+      { 'prose--on-light' : color === 'on-light'},
+      { 'prose--on-dark' : color === 'on-dark'}
+    ]" class="prose">
     <slot></slot>
   </div>
 </template>
 
 <script>
 export default {
-  props: ['text']
+  props: ['color']
 }
 </script>
 
-<style lang="scss" scoped>
-.prose {
-  font-size: 15px;
 
-  line-height: 1.5;
-
-  > * + * {
-    margin-top: 1.5em;
+<style>
+  .prose {
+    @apply text-11 leading-normal text-current-color;
   }
-
-  h1,
-  h2,
-  h3 {
-    line-height: 1.25;
+  .prose--on-dark {
+    @apply text-on-dark-secondary;
+  }
+  .prose--on-light {
+    @apply text-on-light-secondary;
   }
 
-  h1 {
-    font-size: 1.75em;
-  }
-  h2 {
-    font-size: 1.625em;
-  }
-  h3 {
-    font-size: 1.5em;
-  }
-  strong,
-  b {
-    font-weight: bold;
+  .prose strong,
+  .prose b {
+    font-weight: 600;
   }
 
-  i,
-  italic {
+  .prose i,
+  .prose italic {
     font-style: oblique;
   }
 
-  a {
-    position: relative;
-    color: black;
-    font-weight: 600;
-    border-bottom: 3px solid #a2f5bf;
+  .prose a {
     transition: background-color 120ms;
-    text-decoration: none;
+    @apply border-b border-blue text-blue relative no-underline;
   }
-  a:hover {
-    background-color: #a2f5bf;
-  }
-}
 
-@media screen and (min-width: 640px) {
-  .prose {
-    font-size: 19px;
+  .prose a:hover {
+    @apply border-blue-light text-blue-dark;
   }
-}
+
+  .prose a:visited {
+    @apply border-fuchsia-light text-fuchsia-dark;
+  }
+
+  .prose h1 {
+    @apply text-24 font-medium;
+  }
+
+  .prose h2 {
+    @apply text-21 font-medium;
+  }
+
+  .prose h3 {
+    @apply text-18 font-medium;
+  }
+
+  .prose h4 {
+    @apply text-16 font-medium;
+  }
+
+  .prose--on-dark h1,
+  .prose--on-dark h2,
+  .prose--on-dark h3,
+  .prose--on-dark h4,
+  .prose--on-dark h5,
+  .prose--on-dark h6 {
+    @apply text-on-dark-primary;
+  }
+
+  .prose--on-light h1,
+  .prose--on-light h2,
+  .prose--on-light h3,
+  .prose--on-light h4,
+  .prose--on-light h5,
+  .prose--on-light h6 {
+    @apply text-on-light-primary;
+  }
+
+  @media screen and (min-width: 640px) {
+    .prose {
+      @apply text-14;
+    }
+  }
 </style>
 
 

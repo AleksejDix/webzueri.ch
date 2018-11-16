@@ -1,49 +1,38 @@
 <template>
-  <nuxt-link :to="{ name: 'talk-id', params: { id: talk.id }}" class=" block bg-indigo-darker rounded-lg p-4 md:p-8 text-white md:flex zoom no-underline whitespace-normal">
-    <div class="flex flex-col flex-1 pb-4 md:pb-0 md:pr-4">
-      <div>
-        <div class="inline-flex items-center rounded-full bg-grey-light text-red inline-block p-1 px-2 mb-4 leading-none uppercase text-xs tracking-wide font-bold" v-if="talk.youtubecode">
-          <span class="inline-block w-2 h-2 bg-red rounded-full mr-1 "></span>
-          <span class="relative" style="bottom: 1px"> recorded</span>
-        </div>
-        <div class="rounded-full bg-pink-dark inline-block p-1 px-2 mb-4 leading-none uppercase text-xs tracking-wide font-bold" v-if="isFutureTalk">upcoming</div>
+  <div class="owl-lg">
+    <nuxt-link :to="{name: 'speaker-id', params: {id: speaker.id}}" class="group no-underline inline-block text-on-dark-secondary hover:text-blue-light transition" v-for="speaker in talk.speakers" v-if="talk.speakers" :key="speaker.id">
+      <user-card size="lg" :photo="speaker.speakerPicture.url" :name="speaker.name" />
+    </nuxt-link>
+    <nuxt-link :to="{ name: 'talk-id', params: { id: talk.id }}" class="group transition flex-1 relative block bg-primary hover:bg-primary-dark rounded-lg p-4 text-white hover:text-blue-light md:flex no-underline whitespace-normal shadow-blue">
+      <svg viewBox="0 0 24 8" class="w-8 h-8 absolute pin-l ml-2" style="bottom: 100%">
+        <path transform="translate(0,7.3)" class="fill-blue " d="M3 8s2.021-.015 5.253-4.218C9.584 2.051 10.797 1.007 12 1c1.203-.007 2.416 1.035 3.761 2.782C19.012 8.005 21 8 21 8H3z" />
+        <path transform="translate(0,8.2)" class="transition fill-primary group-hover:fill-primary-dark " d="M3 8s2.021-.015 5.253-4.218C9.584 2.051 10.797 1.007 12 1c1.203-.007 2.416 1.035 3.761 2.782C19.012 8.005 21 8 21 8H3z" />
 
-        <h2 class="text-white text-2xl md:text-3xl leading-tight font-semibold">{{talk.name}}</h2>
-        <div v-if="talk.abstract" class="abstract leading-normal py-4 text-body">{{talk.abstract | shorten }}</div>
-      </div>
-      <div class="mt-auto">
-        <div class=" flex text-white -mt-4 -ml-4 py-4">
-          <div class="inline-block pl-4 pt-4" v-for="speaker in talk.speakers" v-if="talk.speakers" :key="speaker.id">
-            <div class="inline-flex items-center bg-purple rounded-full p-1">
-              <div class="inline-block rounded-full w-12 h-12 mr-4 flex-no-shrink overflow-hidden" v-if="speaker.speakerPicture">
-                <img class="block w-12 h-12" :src="speaker.speakerPicture.url" :alt="speaker.name">
-              </div>
-              <div class="flex-1 text-lg pr-8 text-white font-bold">{{speaker.name}}</div>
-            </div>
+      </svg>
+      <div class="flex flex-col flex-1 pb-4 md:pb-0 md:pr-4">
+        <div class="owl-md">
+          <h2 class="text-current-color text-14 md:text-18 leading-tight font-medium">{{talk.name}}</h2>
+          <div>
+            <Badge color="red" v-if="talk.youtubecode">recorded</Badge>
+            <Badge color="blue" v-if="isFutureTalk">upcoming</Badge>
           </div>
+          <div v-if="talk.abstract" class="leading-normal text-14 text-on-dark-secondary">{{talk.abstract | shorten(100) }}</div>
         </div>
       </div>
-    </div>
-    <!-- <div class="md:w-1/3 border-t md:border-t-0 md:border-l border-black pt-4 md:pt-0 md:pl-4">
-      <span class="inline-flex rounded mr-2 mb-2 leading-none bg-indigo-dark px-2 py-1  font-bold text-xs uppercase whitespace-no-wrap" v-for="n in ['Security', 'JS', 'Ruby', 'Haskel', 'ML', 'Sketch']" :key="n">{{n}}</span>
-    </div> -->
-  </nuxt-link>
+    </nuxt-link>
+  </div>
 </template>
 
 <script>
+import Badge from '@/components/Badge'
 export default {
+  components: {Badge},
   props: ['talk', 'date'],
   computed: {
     isFutureTalk() {
-      return new Date(this.date) > new Date()
-    },
-  },
-  filters: {
-    shorten(value) {
-      return value
-      // if (value.length <= 160) return value
-      // const result = value.substring(0, 160)
-      // return result + '…'
+      const today = new Date();
+      const tomorrow = (today.setDate(today.getDate() - 1));
+      return new Date(this.date) > new Date(tomorrow)
     }
   }
 }

@@ -1,43 +1,41 @@
 <template>
-  <div class="bg-indigo-darkest">
-    <loader v-if="$apollo.loading" />
-    <section v-else>
-      <header class="pattern bg-purple-dark py-24">
-        <div class="container mx-auto p-2">
-          <h1 class="text-shadow max-w-xl mx-auto text-center p-8 text-center leading-tight text-2xl md:text-5xl text-base text-white font-display font-bold tracking-wide " v-if="talk.name">{{talk.name}}</h1>
 
-          <ul class="flex justify-center list-reset">
-            <li class="text-center" v-for="speaker in talk.speakers" :key="speaker.id">
-              <nuxt-link :to="`/speaker/${speaker.id}`" class="no-underline">
-                <img class="border-2 border-white shadow rounded-full inline-block w-32 h-32" v-if="speaker" :src="speaker.speakerPicture.url" :alt="speaker.name">
-                <h2 class="text-shadow py-4 text-center text-white text-xl" v-if="speaker.name">{{speaker.name}}</h2>
-              </nuxt-link>
-            </li>
-          </ul>
-
-        </div>
-      </header>
-      <div class="max-w-xl mx-auto">
-        <div class="md:flex items-center relative">
-          <div class="md:w-full p-4 owl">
-            <div v-if="talk.youtubecode" class="relative rounded-lg overflow-hidden shadow-lg" style="width: 100%; padding-top: calc(100% * 9 / 16 )">
-              <iframe class="absolute pin w-full h-full" type="text/html" :src="`https://www.youtube.com/embed/${talk.youtubecode}`" frameborder="0" />
+  <div class="pattern  min-h-screen">
+    <Spinner v-if="$apollo.loading" :active="$apollo.loading" />
+    <div class="max-w-lg rounded-lg p-4 mx-auto">
+      <div class="owl-lg flex flex-col">
+        <nuxt-link :to="{name: 'speaker-id', params: {id: speaker.id}}" class="text-on-dark-primary hover:text-blue-light no-underline inline-block" v-for="speaker in talk.speakers" v-if="talk.speakers" :key="speaker.id">
+          <user-card size="xl" v-if="speaker.speakerPicture" :name="speaker.name" :photo="speaker.speakerPicture.url" />
+        </nuxt-link>
+        <nuxt-link :to="{ name: 'talk-id', params: { id: talk.id }}" class="flex-1 relative block bg-primary rounded-lg p-4 text-white md:flex no-underline whitespace-normal shadow-blue">
+          <svg viewBox="0 0 24 8" class="w-8 h-8 absolute pin-l ml-4" style="bottom: 100%">
+            <path transform="translate(0,7.3)" class="fill-blue " d="M3 8s2.021-.015 5.253-4.218C9.584 2.051 10.797 1.007 12 1c1.203-.007 2.416 1.035 3.761 2.782C19.012 8.005 21 8 21 8H3z" />
+            <path transform="translate(0,8.2)" class="transition fill-primary group-hover:fill-primary-dark " d="M3 8s2.021-.015 5.253-4.218C9.584 2.051 10.797 1.007 12 1c1.203-.007 2.416 1.035 3.761 2.782C19.012 8.005 21 8 21 8H3z" />
+          </svg>
+          <div class="flex flex-col flex-1 pb-4 md:pb-0 md:pr-4">
+            <div class="owl-md">
+              <Prose color="on-dark" class="owl">
+                <h1>{{talk.name}}</h1>
+                {{talk.abstract}}
+              </Prose>
+              <Ratio v-if="talk.youtubecode" class="rounded-lg shadow-lg" width="16" height="9">
+                <iframe class="w-full h-full" type="text/html" :src="`https://www.youtube.com/embed/${talk.youtubecode}`" frameborder="0" />
+              </Ratio>
             </div>
           </div>
-        </div>
+        </nuxt-link>
       </div>
-      <div class="mx-auto max-w-xl p-4">
-        <div class="font-sans text-xl  leading-normal text-white text-xl font-light" v-html="talk.abstract"></div>
-      </div>
-    </section>
+    </div>
   </div>
 </template>
 
 <script>
 
-import QueryTalk from '~/apollo/queries/talk'
+import QueryTalk from '~/services/apollo/queries/talk'
+import Prose from '@/components/Prose'
 
 export default {
+  components: {Prose},
   apollo: {
     talk: {
       query: QueryTalk,
@@ -52,6 +50,23 @@ export default {
   data: () => ({
     talk: '',
   }),
+  computed: {
+    video() {
+      return [
+        { hid: 'og:video', name: "og:video", content: `https://www.youtube.com/embed/${this.talk.youtubecode}`},
+        { hid: 'og:video:type', name:"og:video:type", content:"video/mp4" },
+        { hid: 'og:video:width', name:"og:video:width", content:"1600" },
+        { hid: 'og:video:height', name:"og:video:height", content:"900" },
+        { hid: 'og:site_name', name:"og:site_name", content:"web züri" },
+      ]
+    },
+    cardType() {
+      if (!this.talk.youtubecode) {
+        return [{ hid: 'twitter:card', name: "twitter:card", content: "summary_large_image"}]
+      }
+      return [{ hid: 'twitter:card', name: "twitter:card", content: "player"}]
+    }
+  },
   head() {
     return {
       title: this.talk.name,

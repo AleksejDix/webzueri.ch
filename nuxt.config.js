@@ -1,7 +1,7 @@
+require('dotenv').config()
 import glob from 'glob-all';
 import path from 'path';
 import PurgecssPlugin from 'purgecss-webpack-plugin';
-
 const pkg = require("./package");
 
 class TailwindExtractor {
@@ -10,11 +10,11 @@ class TailwindExtractor {
   }
 }
 
-
 export default {
   mode: "universal",
   router: {
-    base: "/"
+    base: '/',
+    middleware: 'pages'
   },
   env: {
     baseUrl: process.env.NOW_URL || "http://localhost:3000"
@@ -28,7 +28,7 @@ export default {
       lang: "en-US"
     },
     bodyAttrs: {
-      class: "antialiased bg-indigo-darkest"
+      class: "antialiased bg-primary-dark"
     },
     meta: [
       { charset: "utf-8" },
@@ -39,7 +39,7 @@ export default {
       { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css?family=Rubik:400,700,900"
+        href: "https://fonts.googleapis.com/css?family=Rubik:400,500,600,700,900"
       }
     ]
   },
@@ -47,20 +47,34 @@ export default {
   /*
   ** Global CSS
   */
-  css: ["~/assets/css/tailwind.css"],
-
+  css: [
+    '~/assets/css/tailwind.css'
+  ],
   /*
   ** Plugins to load before mounting the App
   */
-  plugins: ["~/plugins/components"],
-
+  plugins: [
+    '~/plugins/components',
+    '~/plugins/filters.js',
+    '~/plugins/portal-vue.js',
+    { src: '~/plugins/ga.js', ssr: false },
+    { src: '~/plugins/auth-cookie.js', ssr: false }
+  ],
+  serverMiddleware: [
+    '~/serverMiddleware/validateFirebaseIdToken'
+  ],
   /*
   ** Build configuration
   */
   build: {
     extractCSS: true,
-    postcss: [require("tailwindcss")("./tailwind.js"), require("autoprefixer")],
-    extend(config, { isDev }) {
+    postcss: [
+      require('postcss-import')(),
+      require("tailwindcss")("./tailwind.js"),
+      require("autoprefixer")
+    ],
+    extend(config, { isDev, isClient }) {
+
       if (!isDev) {
         config.plugins.push(
           new PurgecssPlugin({
@@ -77,7 +91,7 @@ export default {
                 extensions: ["vue"]
               }
             ],
-            whitelist: ["html", "body", "nuxt-progress"],
+            whitelist: ["html", "body", "nuxt-progress", '__nuxt' ,'__layout'],
             whitelistPatterns: [/^group-hover/],
             whitelistPatternsChildren: [/^group-hover/]
           })
@@ -85,7 +99,9 @@ export default {
       }
     }
   },
-  modules: ["@nuxtjs/apollo"],
+  modules: [
+    "@nuxtjs/apollo"
+  ],
   apollo: {
     clientConfigs: {
       default: {

@@ -1,39 +1,47 @@
+
+
 <template>
-  <div class="bg-indigo-darkest">
-    <loader v-if="$apollo.loading" />
-
-    <section v-else class="pattern bg-purple-dark ">
-      <header class=" py-24">
-        <div class="container mx-auto p-4 text-center">
-          <h1 class="text-shadow max-w-xl mx-auto text-center p-8 text-center leading-tight text-2xl md:text-5xl text-base text-white font-display font-bold tracking-wide uppercase">{{speaker.name}}</h1>
-          <img class="border-2 border-white shadow rounded-full inline-block w-32 h-32" v-if="speaker.speakerPicture" :src="speaker.speakerPicture.url" :alt="speaker.name">
+  <div class="pattern  min-h-screen">
+    <Spinner v-if="$apollo.loading" :active="$apollo.loading" />
+    <div class="max-w-lg rounded-lg p-4 mx-auto">
+      <div class="owl-lg flex flex-col">
+        <div class="text-on-dark-primary hover:text-blue-light no-underline">
+          <user-card size="xl" v-if="speaker.speakerPicture" :name="speaker.name" :photo="speaker.speakerPicture.url" />
         </div>
-      </header>
-    </section>
 
-    <div class="container mx-auto rounded-lg p-4 ">
+        <nuxt-link :to="{ name: 'talk-id', params: { id: talk.id }}" v-for="talk in speaker.talks" :key="talk.id" class="flex-1 relative block bg-primary rounded-lg p-4 text-white md:flex no-underline whitespace-normal shadow-blue">
+          <svg viewBox="0 0 24 8" class="w-8 h-8 absolute pin-l ml-4" style="bottom: 100%">
+            <path transform="translate(0,7.3)" class="fill-blue " d="M3 8s2.021-.015 5.253-4.218C9.584 2.051 10.797 1.007 12 1c1.203-.007 2.416 1.035 3.761 2.782C19.012 8.005 21 8 21 8H3z" />
+            <path transform="translate(0,8.2)" class="transition fill-primary group-hover:fill-primary-dark " d="M3 8s2.021-.015 5.253-4.218C9.584 2.051 10.797 1.007 12 1c1.203-.007 2.416 1.035 3.761 2.782C19.012 8.005 21 8 21 8H3z" />
 
-      <h2 class="py-12 text-center leading-tight text-3xl md:text-5xl text-base text-white font-display font-bold tracking-wide uppercase">Talks</h2>
+          </svg>
+          <div class="flex flex-col flex-1 pb-4 md:pb-0 md:pr-4">
+            <div class="owl-md">
+              <Prose color="on-dark" class="owl">
+                <h1>{{talk.name}}</h1>
 
-      <ul class="flex flex-wrap list-reset -m-2">
-        <li class="w-full md:w-1/2 p-2" v-for="talk in speaker.talks" :key="talk.id">
-          <nuxt-link :to="`/talk/${talk.id}`" class="block no-underline zoom transition p-2 md:p-8 rounded shadow bg-indigo-darker md:h-full">
-            <h3 class="text-white text-xl xl:text-2xl font-display font-bold tracking-wide mb-2 leading-tight">{{ talk.name }}</h3>
-            <div v-if="talk.abstract" class="abstract leading-normal py-4 text-body text-white">{{ talk.abstract }}</div>
-          </nuxt-link>
-        </li>
-      </ul>
-
+              </Prose>
+              <Ratio v-if="talk.youtubecode" class="rounded-lg shadow-lg" width="16" height="9">
+                <iframe class="w-full h-full" type="text/html" :src="`https://www.youtube.com/embed/${talk.youtubecode}`" frameborder="0" />
+              </Ratio>
+            </div>
+          </div>
+        </nuxt-link>
+      </div>
     </div>
-
   </div>
 </template>
 
+
+
+
 <script>
+import Prose from '@/components/Prose'
 import gql from 'graphql-tag'
-import QuerySpeaker from '~/apollo/queries/speaker'
+import QuerySpeaker from '~/services/apollo/queries/speaker'
 
 export default {
+  components: {Prose},
   data() {
     return {
       speaker: '',

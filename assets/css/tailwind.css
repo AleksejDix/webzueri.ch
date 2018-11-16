@@ -11,7 +11,36 @@
 *
 * See: https://github.com/tailwindcss/tailwindcss/issues/53#issuecomment-341413622
 */
-@tailwind preflight;
+
+@import 'preflight.css';
+
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  min-height: 100%;
+}
+
+#__layout,
+#__nuxt {
+  height: 100%
+}
+
+html {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  @apply font-sans
+}
+
+
+strong,
+b {
+  @apply font-semibold
+}
+
 
 .fade-enter-active,
 .fade-leave-active {
@@ -37,9 +66,6 @@ h6 {
   @apply list-reset;
 }
 
-:focus {
-  outline-color: #9561e2;
-}
 
 .list-bullets li {
   @apply pl-8 text-base bg-no-repeat leading-normal;
@@ -52,59 +78,75 @@ h6 {
   @apply .mt-2;
 }
 
-.owl > * + * {
-  margin-top: 1rem;
+.stack {
+  @apply flex flex-wrap -mb-2 -ml-2
 }
 
-.spinner {
-  width: 40px;
-  height: 40px;
-
-  position: relative;
-  margin: 100px auto;
+.stack > * {
+  @apply pl-2 pb-2
 }
 
-.double-bounce1,
-.double-bounce2 {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  background-color: #333;
-  opacity: 0.6;
-  position: absolute;
-  top: 0;
-  left: 0;
-  animation: bounce 2s infinite ease-in-out;
+
+@responsive {
+  .owl-xs > * + * {
+    margin-top: 0.25rem;
+  }
+
+  .owl-sm > * + * {
+    margin-top: 0.5rem;
+  }
+
+  .owl-md > * + * {
+    margin-top: 0.75rem;
+  }
+
+  .owl-lg > * + * {
+    margin-top: 1rem;
+  }
+
+  .owl-xl > * + * {
+    margin-top: 1.25rem;
+  }
+
+  .owl > * + * {
+    margin-top: 1.5rem;
+  }
+
+  .owl-none > * + * {
+    margin-top: 0;
+  }
+  }
+
+
+
+.owl-x > * + * {
+  margin-left: 0.5rem;
 }
 
-.double-bounce2 {
-  animation-delay: -1s;
+*, :after, :before {
+  transition-duration: .25s;
+  transition-property: ease-in-out;
 }
+.trans {
+  transition-property: all;
+}
+
 
 hr {
   height: 2px;
   width: 100%;
-  outline: none;
   background: black;
 }
 
-@keyframes bounce {
-  0%,
-  100% {
-    transform: scale(0);
-  }
-  50% {
-    transform: scale(1);
-  }
-}
-
-.pattern {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='453' height='226.5' viewBox='0 0 1600 800'%3E%3Cpath fill='%23FF7' d='M1102.5 734.8c2.5-1.2 24.8-8.6 25.6-7.5.5.7-3.9 23.8-4.6 24.5C1123.3 752.1 1107.5 739.5 1102.5 734.8zM1226.3 229.1c0-.1-4.9-9.4-7-14.2-.1-.3-.3-1.1-.4-1.6-.1-.4-.3-.7-.6-.9-.3-.2-.6-.1-.8.1l-13.1 12.3c0 0 0 0 0 0-.2.2-.3.5-.4.8 0 .3 0 .7.2 1 .1.1 1.4 2.5 2.1 3.6 2.4 3.7 6.5 12.1 6.5 12.2.2.3.4.5.7.6.3 0 .5-.1.7-.3 0 0 1.8-2.5 2.7-3.6 1.5-1.6 3-3.2 4.6-4.7 1.2-1.2 1.6-1.4 2.1-1.6.5-.3 1.1-.5 2.5-1.9C1226.5 230.4 1226.6 229.6 1226.3 229.1zM33 770.3C33 770.3 33 770.3 33 770.3c0-.7-.5-1.2-1.2-1.2-.1 0-.3 0-.4.1-1.6.2-14.3.1-22.2 0-.3 0-.6.1-.9.4-.2.2-.4.5-.4.9 0 .2 0 4.9.1 5.9l.4 13.6c0 .3.2.6.4.9.2.2.5.3.8.3 0 0 .1 0 .1 0 7.3-.7 14.7-.9 22-.6.3 0 .7-.1.9-.3.2-.2.4-.6.4-.9C32.9 783.3 32.9 776.2 33 770.3z'/%3E%3Cpath fill='%235ff' d='M171.1 383.4c1.3-2.5 14.3-22 15.6-21.6.8.3 11.5 21.2 11.5 22.1C198.1 384.2 177.9 384 171.1 383.4zM596.4 711.8c-.1-.1-6.7-8.2-9.7-12.5-.2-.3-.5-1-.7-1.5-.2-.4-.4-.7-.7-.8-.3-.1-.6 0-.8.3L574 712c0 0 0 0 0 0-.2.2-.2.5-.2.9 0 .3.2.7.4.9.1.1 1.8 2.2 2.8 3.1 3.1 3.1 8.8 10.5 8.9 10.6.2.3.5.4.8.4.3 0 .5-.2.6-.5 0 0 1.2-2.8 2-4.1 1.1-1.9 2.3-3.7 3.5-5.5.9-1.4 1.3-1.7 1.7-2 .5-.4 1-.7 2.1-2.4C596.9 713.1 596.8 712.3 596.4 711.8zM727.5 179.9C727.5 179.9 727.5 179.9 727.5 179.9c.6.2 1.3-.2 1.4-.8 0-.1 0-.2 0-.4.2-1.4 2.8-12.6 4.5-19.5.1-.3 0-.6-.2-.8-.2-.3-.5-.4-.8-.5-.2 0-4.7-1.1-5.7-1.3l-13.4-2.7c-.3-.1-.7 0-.9.2-.2.2-.4.4-.5.6 0 0 0 .1 0 .1-.8 6.5-2.2 13.1-3.9 19.4-.1.3 0 .6.2.9.2.3.5.4.8.5C714.8 176.9 721.7 178.5 727.5 179.9zM728.5 178.1c-.1-.1-.2-.2-.4-.2C728.3 177.9 728.4 178 728.5 178.1z'/%3E%3Cg fill-opacity='0.45' fill='%23FFF'%3E%3Cpath d='M699.6 472.7c-1.5 0-2.8-.8-3.5-2.3-.8-1.9 0-4.2 1.9-5 3.7-1.6 6.8-4.7 8.4-8.5 1.6-3.8 1.7-8.1.2-11.9-.3-.9-.8-1.8-1.2-2.8-.8-1.7-1.8-3.7-2.3-5.9-.9-4.1-.2-8.6 2-12.8 1.7-3.1 4.1-6.1 7.6-9.1 1.6-1.4 4-1.2 5.3.4 1.4 1.6 1.2 4-.4 5.3-2.8 2.5-4.7 4.7-5.9 7-1.4 2.6-1.9 5.3-1.3 7.6.3 1.4 1 2.8 1.7 4.3.5 1.1 1 2.2 1.5 3.3 2.1 5.6 2 12-.3 17.6-2.3 5.5-6.8 10.1-12.3 12.5C700.6 472.6 700.1 472.7 699.6 472.7zM740.4 421.4c1.5-.2 3 .5 3.8 1.9 1.1 1.8.4 4.2-1.4 5.3-3.7 2.1-6.4 5.6-7.6 9.5-1.2 4-.8 8.4 1.1 12.1.4.9 1 1.7 1.6 2.7 1 1.7 2.2 3.5 3 5.7 1.4 4 1.2 8.7-.6 13.2-1.4 3.4-3.5 6.6-6.8 10.1-1.5 1.6-3.9 1.7-5.5.2-1.6-1.4-1.7-3.9-.2-5.4 2.6-2.8 4.3-5.3 5.3-7.7 1.1-2.8 1.3-5.6.5-7.9-.5-1.3-1.3-2.7-2.2-4.1-.6-1-1.3-2.1-1.9-3.2-2.8-5.4-3.4-11.9-1.7-17.8 1.8-5.9 5.8-11 11.2-14C739.4 421.6 739.9 421.4 740.4 421.4zM261.3 590.9c5.7 6.8 9 15.7 9.4 22.4.5 7.3-2.4 16.4-10.2 20.4-3 1.5-6.7 2.2-11.2 2.2-7.9-.1-12.9-2.9-15.4-8.4-2.1-4.7-2.3-11.4 1.8-15.9 3.2-3.5 7.8-4.1 11.2-1.6 1.2.9 1.5 2.7.6 3.9-.9 1.2-2.7 1.5-3.9.6-1.8-1.3-3.6.6-3.8.8-2.4 2.6-2.1 7-.8 9.9 1.5 3.4 4.7 5 10.4 5.1 3.6 0 6.4-.5 8.6-1.6 4.7-2.4 7.7-8.6 7.2-15-.5-7.3-5.3-18.2-13-23.9-4.2-3.1-8.5-4.1-12.9-3.1-3.1.7-6.2 2.4-9.7 5-6.6 5.1-11.7 11.8-14.2 19-2.7 7.7-2.1 15.8 1.9 23.9.7 1.4.1 3.1-1.3 3.7-1.4.7-3.1.1-3.7-1.3-4.6-9.4-5.4-19.2-2.2-28.2 2.9-8.2 8.6-15.9 16.1-21.6 4.1-3.1 8-5.1 11.8-6 6-1.4 12 0 17.5 4C257.6 586.9 259.6 588.8 261.3 590.9z'/%3E%3Ccircle cx='1013.7' cy='153.9' r='7.1'/%3E%3Ccircle cx='1024.3' cy='132.1' r='7.1'/%3E%3Ccircle cx='1037.3' cy='148.9' r='7.1'/%3E%3Cpath d='M1508.7 297.2c-4.8-5.4-9.7-10.8-14.8-16.2 5.6-5.6 11.1-11.5 15.6-18.2 1.2-1.7.7-4.1-1-5.2-1.7-1.2-4.1-.7-5.2 1-4.2 6.2-9.1 11.6-14.5 16.9-4.8-5-9.7-10-14.7-14.9-1.5-1.5-3.9-1.5-5.3 0-1.5 1.5-1.5 3.9 0 5.3 4.9 4.8 9.7 9.8 14.5 14.8-1.1 1.1-2.3 2.2-3.5 3.2-4.1 3.8-8.4 7.8-12.4 12-1.4 1.5-1.4 3.8 0 5.3 0 0 0 0 0 0 1.5 1.4 3.9 1.4 5.3-.1 3.9-4 8.1-7.9 12.1-11.7 1.2-1.1 2.3-2.2 3.5-3.3 4.9 5.3 9.8 10.6 14.6 15.9.1.1.1.1.2.2 1.4 1.4 3.7 1.5 5.2.2C1510 301.2 1510.1 298.8 1508.7 297.2zM327.6 248.6l-.4-2.6c-1.5-11.1-2.2-23.2-2.3-37 0-5.5 0-11.5.2-18.5 0-.7 0-1.5 0-2.3 0-5 0-11.2 3.9-13.5 2.2-1.3 5.1-1 8.5.9 5.7 3.1 13.2 8.7 17.5 14.9 5.5 7.8 7.3 16.9 5 25.7-3.2 12.3-15 31-30 32.1L327.6 248.6zM332.1 179.2c-.2 0-.3 0-.4.1-.1.1-.7.5-1.1 2.7-.3 1.9-.3 4.2-.3 6.3 0 .8 0 1.7 0 2.4-.2 6.9-.2 12.8-.2 18.3.1 12.5.7 23.5 2 33.7 11-2.7 20.4-18.1 23-27.8 1.9-7.2.4-14.8-4.2-21.3l0 0C347 188.1 340 183 335 180.3 333.6 179.5 332.6 179.2 332.1 179.2zM516.3 60.8c-.1 0-.2 0-.4-.1-2.4-.7-4-.9-6.7-.7-.7 0-1.3-.5-1.4-1.2 0-.7.5-1.3 1.2-1.4 3.1-.2 4.9 0 7.6.8.7.2 1.1.9.9 1.6C517.3 60.4 516.8 60.8 516.3 60.8zM506.1 70.5c-.5 0-1-.3-1.2-.8-.8-2.1-1.2-4.3-1.3-6.6 0-.7.5-1.3 1.2-1.3.7 0 1.3.5 1.3 1.2.1 2 .5 3.9 1.1 5.8.2.7-.1 1.4-.8 1.6C506.4 70.5 506.2 70.5 506.1 70.5zM494.1 64.4c-.4 0-.8-.2-1-.5-.4-.6-.3-1.4.2-1.8 1.8-1.4 3.7-2.6 5.8-3.6.6-.3 1.4 0 1.7.6.3.6 0 1.4-.6 1.7-1.9.9-3.7 2-5.3 3.3C494.7 64.3 494.4 64.4 494.1 64.4zM500.5 55.3c-.5 0-.9-.3-1.2-.7-.5-1-1.2-1.9-2.4-3.4-.3-.4-.7-.9-1.1-1.4-.4-.6-.3-1.4.2-1.8.6-.4 1.4-.3 1.8.2.4.5.8 1 1.1 1.4 1.3 1.6 2.1 2.6 2.7 3.9.3.6 0 1.4-.6 1.7C500.9 55.3 500.7 55.3 500.5 55.3zM506.7 55c-.3 0-.5-.1-.8-.2-.6-.4-.7-1.2-.3-1.8 1.2-1.7 2.3-3.4 3.3-5.2.3-.6 1.1-.9 1.7-.5.6.3.9 1.1.5 1.7-1 1.9-2.2 3.8-3.5 5.6C507.4 54.8 507.1 55 506.7 55zM1029.3 382.8c-.1 0-.2 0-.4-.1-2.4-.7-4-.9-6.7-.7-.7 0-1.3-.5-1.4-1.2 0-.7.5-1.3 1.2-1.4 3.1-.2 4.9 0 7.6.8.7.2 1.1.9.9 1.6C1030.3 382.4 1029.8 382.8 1029.3 382.8zM1019.1 392.5c-.5 0-1-.3-1.2-.8-.8-2.1-1.2-4.3-1.3-6.6 0-.7.5-1.3 1.2-1.3.7 0 1.3.5 1.3 1.2.1 2 .5 3.9 1.1 5.8.2.7-.1 1.4-.8 1.6C1019.4 392.5 1019.2 392.5 1019.1 392.5zM1007.1 386.4c-.4 0-.8-.2-1-.5-.4-.6-.3-1.4.2-1.8 1.8-1.4 3.7-2.6 5.8-3.6.6-.3 1.4 0 1.7.6.3.6 0 1.4-.6 1.7-1.9.9-3.7 2-5.3 3.3C1007.7 386.3 1007.4 386.4 1007.1 386.4zM1013.5 377.3c-.5 0-.9-.3-1.2-.7-.5-1-1.2-1.9-2.4-3.4-.3-.4-.7-.9-1.1-1.4-.4-.6-.3-1.4.2-1.8.6-.4 1.4-.3 1.8.2.4.5.8 1 1.1 1.4 1.3 1.6 2.1 2.6 2.7 3.9.3.6 0 1.4-.6 1.7C1013.9 377.3 1013.7 377.3 1013.5 377.3zM1019.7 377c-.3 0-.5-.1-.8-.2-.6-.4-.7-1.2-.3-1.8 1.2-1.7 2.3-3.4 3.3-5.2.3-.6 1.1-.9 1.7-.5.6.3.9 1.1.5 1.7-1 1.9-2.2 3.8-3.5 5.6C1020.4 376.8 1020.1 377 1019.7 377zM1329.7 573.4c-1.4 0-2.9-.2-4.5-.7-8.4-2.7-16.6-12.7-18.7-20-.4-1.4-.7-2.9-.9-4.4-8.1 3.3-15.5 10.6-15.4 21 0 1.5-1.2 2.7-2.7 2.8 0 0 0 0 0 0-1.5 0-2.7-1.2-2.7-2.7-.1-6.7 2.4-12.9 7-18 3.6-4 8.4-7.1 13.7-8.8.5-6.5 3.1-12.9 7.4-17.4 7-7.4 18.2-8.9 27.3-10.1l.7-.1c1.5-.2 2.9.9 3.1 2.3.2 1.5-.9 2.9-2.3 3.1l-.7.1c-8.6 1.2-18.4 2.5-24 8.4-3 3.2-5 7.7-5.7 12.4 7.9-1 17.7 1.3 24.3 5.7 4.3 2.9 7.1 7.8 7.2 12.7.2 4.3-1.7 8.3-5.2 11.1C1335.2 572.4 1332.6 573.4 1329.7 573.4zM1311 546.7c.1 1.5.4 3 .8 4.4 1.7 5.8 8.7 14.2 15.1 16.3 2.8.9 5.1.5 7.2-1.1 2.7-2.1 3.2-4.8 3.1-6.6-.1-3.2-2-6.4-4.8-8.3C1326.7 547.5 1317.7 545.6 1311 546.7z'/%3E%3C/g%3E%3C/svg%3E");
-  background-attachment: fixed;
-}
 
 .text-shadow {
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+
+}
+
+.drop-shadow {
+  -webkit-filter: drop-shadow(0 0 2px 2px hsla(206,99%,33%,1.00));
+  transform: translateZ(0);
 }
 
 .zoom {
@@ -117,6 +159,31 @@ hr {
 }
 
 @tailwind components;
+
+
+.body-2 {
+  @apply text-sm font-medium font-display
+}
+
+
+.page-enter-active, .page-leave-active {
+  transition: opacity .2s
+}
+.page-enter, .page-leave-active {
+  opacity: 0
+}
+
+
+.gradient-dark {
+  background-image: linear-gradient(transparent, rgba(0,0,0,.25));
+}
+
+
+.text-shadow-black {
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5), 0 0 8px rgba(0, 0, 0, 0.5);
+}
+
+
 
 /**
 * Here you would add any of your custom component classes; stuff that you'd
@@ -144,7 +211,9 @@ hr {
 *
 * See: https://github.com/tailwindcss/tailwindcss/issues/53#issuecomment-341413622
 */
-@tailwind utilities;
+@import 'utilities.css';
+
+@import 'screens.css';
 
 /**
 * Here you would add any custom utilities you need that don't come out of the
@@ -160,3 +229,1057 @@ hr {
 * @import "utilities/background-patterns";
 * @import "utilities/skew-transforms";
 */
+
+  a.link {
+    transition: background-color 120ms;
+    @apply border-b border-blue text-current-color text-blue no-underline;
+  }
+
+  a.link:hover {
+    @apply border-blue-light text-blue-light
+  }
+
+
+
+.pattern {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='453' height='226.5' viewBox='0 0 1600 800'%3E%3Cpath fill='%23FF7' d='M1102.5 734.8c2.5-1.2 24.8-8.6 25.6-7.5.5.7-3.9 23.8-4.6 24.5C1123.3 752.1 1107.5 739.5 1102.5 734.8zM1226.3 229.1c0-.1-4.9-9.4-7-14.2-.1-.3-.3-1.1-.4-1.6-.1-.4-.3-.7-.6-.9-.3-.2-.6-.1-.8.1l-13.1 12.3c0 0 0 0 0 0-.2.2-.3.5-.4.8 0 .3 0 .7.2 1 .1.1 1.4 2.5 2.1 3.6 2.4 3.7 6.5 12.1 6.5 12.2.2.3.4.5.7.6.3 0 .5-.1.7-.3 0 0 1.8-2.5 2.7-3.6 1.5-1.6 3-3.2 4.6-4.7 1.2-1.2 1.6-1.4 2.1-1.6.5-.3 1.1-.5 2.5-1.9C1226.5 230.4 1226.6 229.6 1226.3 229.1zM33 770.3C33 770.3 33 770.3 33 770.3c0-.7-.5-1.2-1.2-1.2-.1 0-.3 0-.4.1-1.6.2-14.3.1-22.2 0-.3 0-.6.1-.9.4-.2.2-.4.5-.4.9 0 .2 0 4.9.1 5.9l.4 13.6c0 .3.2.6.4.9.2.2.5.3.8.3 0 0 .1 0 .1 0 7.3-.7 14.7-.9 22-.6.3 0 .7-.1.9-.3.2-.2.4-.6.4-.9C32.9 783.3 32.9 776.2 33 770.3z'/%3E%3Cpath fill='%235ff' d='M171.1 383.4c1.3-2.5 14.3-22 15.6-21.6.8.3 11.5 21.2 11.5 22.1C198.1 384.2 177.9 384 171.1 383.4zM596.4 711.8c-.1-.1-6.7-8.2-9.7-12.5-.2-.3-.5-1-.7-1.5-.2-.4-.4-.7-.7-.8-.3-.1-.6 0-.8.3L574 712c0 0 0 0 0 0-.2.2-.2.5-.2.9 0 .3.2.7.4.9.1.1 1.8 2.2 2.8 3.1 3.1 3.1 8.8 10.5 8.9 10.6.2.3.5.4.8.4.3 0 .5-.2.6-.5 0 0 1.2-2.8 2-4.1 1.1-1.9 2.3-3.7 3.5-5.5.9-1.4 1.3-1.7 1.7-2 .5-.4 1-.7 2.1-2.4C596.9 713.1 596.8 712.3 596.4 711.8zM727.5 179.9C727.5 179.9 727.5 179.9 727.5 179.9c.6.2 1.3-.2 1.4-.8 0-.1 0-.2 0-.4.2-1.4 2.8-12.6 4.5-19.5.1-.3 0-.6-.2-.8-.2-.3-.5-.4-.8-.5-.2 0-4.7-1.1-5.7-1.3l-13.4-2.7c-.3-.1-.7 0-.9.2-.2.2-.4.4-.5.6 0 0 0 .1 0 .1-.8 6.5-2.2 13.1-3.9 19.4-.1.3 0 .6.2.9.2.3.5.4.8.5C714.8 176.9 721.7 178.5 727.5 179.9zM728.5 178.1c-.1-.1-.2-.2-.4-.2C728.3 177.9 728.4 178 728.5 178.1z'/%3E%3Cg fill-opacity='0.45' fill='%23FFF'%3E%3Cpath d='M699.6 472.7c-1.5 0-2.8-.8-3.5-2.3-.8-1.9 0-4.2 1.9-5 3.7-1.6 6.8-4.7 8.4-8.5 1.6-3.8 1.7-8.1.2-11.9-.3-.9-.8-1.8-1.2-2.8-.8-1.7-1.8-3.7-2.3-5.9-.9-4.1-.2-8.6 2-12.8 1.7-3.1 4.1-6.1 7.6-9.1 1.6-1.4 4-1.2 5.3.4 1.4 1.6 1.2 4-.4 5.3-2.8 2.5-4.7 4.7-5.9 7-1.4 2.6-1.9 5.3-1.3 7.6.3 1.4 1 2.8 1.7 4.3.5 1.1 1 2.2 1.5 3.3 2.1 5.6 2 12-.3 17.6-2.3 5.5-6.8 10.1-12.3 12.5C700.6 472.6 700.1 472.7 699.6 472.7zM740.4 421.4c1.5-.2 3 .5 3.8 1.9 1.1 1.8.4 4.2-1.4 5.3-3.7 2.1-6.4 5.6-7.6 9.5-1.2 4-.8 8.4 1.1 12.1.4.9 1 1.7 1.6 2.7 1 1.7 2.2 3.5 3 5.7 1.4 4 1.2 8.7-.6 13.2-1.4 3.4-3.5 6.6-6.8 10.1-1.5 1.6-3.9 1.7-5.5.2-1.6-1.4-1.7-3.9-.2-5.4 2.6-2.8 4.3-5.3 5.3-7.7 1.1-2.8 1.3-5.6.5-7.9-.5-1.3-1.3-2.7-2.2-4.1-.6-1-1.3-2.1-1.9-3.2-2.8-5.4-3.4-11.9-1.7-17.8 1.8-5.9 5.8-11 11.2-14C739.4 421.6 739.9 421.4 740.4 421.4zM261.3 590.9c5.7 6.8 9 15.7 9.4 22.4.5 7.3-2.4 16.4-10.2 20.4-3 1.5-6.7 2.2-11.2 2.2-7.9-.1-12.9-2.9-15.4-8.4-2.1-4.7-2.3-11.4 1.8-15.9 3.2-3.5 7.8-4.1 11.2-1.6 1.2.9 1.5 2.7.6 3.9-.9 1.2-2.7 1.5-3.9.6-1.8-1.3-3.6.6-3.8.8-2.4 2.6-2.1 7-.8 9.9 1.5 3.4 4.7 5 10.4 5.1 3.6 0 6.4-.5 8.6-1.6 4.7-2.4 7.7-8.6 7.2-15-.5-7.3-5.3-18.2-13-23.9-4.2-3.1-8.5-4.1-12.9-3.1-3.1.7-6.2 2.4-9.7 5-6.6 5.1-11.7 11.8-14.2 19-2.7 7.7-2.1 15.8 1.9 23.9.7 1.4.1 3.1-1.3 3.7-1.4.7-3.1.1-3.7-1.3-4.6-9.4-5.4-19.2-2.2-28.2 2.9-8.2 8.6-15.9 16.1-21.6 4.1-3.1 8-5.1 11.8-6 6-1.4 12 0 17.5 4C257.6 586.9 259.6 588.8 261.3 590.9z'/%3E%3Ccircle cx='1013.7' cy='153.9' r='7.1'/%3E%3Ccircle cx='1024.3' cy='132.1' r='7.1'/%3E%3Ccircle cx='1037.3' cy='148.9' r='7.1'/%3E%3Cpath d='M1508.7 297.2c-4.8-5.4-9.7-10.8-14.8-16.2 5.6-5.6 11.1-11.5 15.6-18.2 1.2-1.7.7-4.1-1-5.2-1.7-1.2-4.1-.7-5.2 1-4.2 6.2-9.1 11.6-14.5 16.9-4.8-5-9.7-10-14.7-14.9-1.5-1.5-3.9-1.5-5.3 0-1.5 1.5-1.5 3.9 0 5.3 4.9 4.8 9.7 9.8 14.5 14.8-1.1 1.1-2.3 2.2-3.5 3.2-4.1 3.8-8.4 7.8-12.4 12-1.4 1.5-1.4 3.8 0 5.3 0 0 0 0 0 0 1.5 1.4 3.9 1.4 5.3-.1 3.9-4 8.1-7.9 12.1-11.7 1.2-1.1 2.3-2.2 3.5-3.3 4.9 5.3 9.8 10.6 14.6 15.9.1.1.1.1.2.2 1.4 1.4 3.7 1.5 5.2.2C1510 301.2 1510.1 298.8 1508.7 297.2zM327.6 248.6l-.4-2.6c-1.5-11.1-2.2-23.2-2.3-37 0-5.5 0-11.5.2-18.5 0-.7 0-1.5 0-2.3 0-5 0-11.2 3.9-13.5 2.2-1.3 5.1-1 8.5.9 5.7 3.1 13.2 8.7 17.5 14.9 5.5 7.8 7.3 16.9 5 25.7-3.2 12.3-15 31-30 32.1L327.6 248.6zM332.1 179.2c-.2 0-.3 0-.4.1-.1.1-.7.5-1.1 2.7-.3 1.9-.3 4.2-.3 6.3 0 .8 0 1.7 0 2.4-.2 6.9-.2 12.8-.2 18.3.1 12.5.7 23.5 2 33.7 11-2.7 20.4-18.1 23-27.8 1.9-7.2.4-14.8-4.2-21.3l0 0C347 188.1 340 183 335 180.3 333.6 179.5 332.6 179.2 332.1 179.2zM516.3 60.8c-.1 0-.2 0-.4-.1-2.4-.7-4-.9-6.7-.7-.7 0-1.3-.5-1.4-1.2 0-.7.5-1.3 1.2-1.4 3.1-.2 4.9 0 7.6.8.7.2 1.1.9.9 1.6C517.3 60.4 516.8 60.8 516.3 60.8zM506.1 70.5c-.5 0-1-.3-1.2-.8-.8-2.1-1.2-4.3-1.3-6.6 0-.7.5-1.3 1.2-1.3.7 0 1.3.5 1.3 1.2.1 2 .5 3.9 1.1 5.8.2.7-.1 1.4-.8 1.6C506.4 70.5 506.2 70.5 506.1 70.5zM494.1 64.4c-.4 0-.8-.2-1-.5-.4-.6-.3-1.4.2-1.8 1.8-1.4 3.7-2.6 5.8-3.6.6-.3 1.4 0 1.7.6.3.6 0 1.4-.6 1.7-1.9.9-3.7 2-5.3 3.3C494.7 64.3 494.4 64.4 494.1 64.4zM500.5 55.3c-.5 0-.9-.3-1.2-.7-.5-1-1.2-1.9-2.4-3.4-.3-.4-.7-.9-1.1-1.4-.4-.6-.3-1.4.2-1.8.6-.4 1.4-.3 1.8.2.4.5.8 1 1.1 1.4 1.3 1.6 2.1 2.6 2.7 3.9.3.6 0 1.4-.6 1.7C500.9 55.3 500.7 55.3 500.5 55.3zM506.7 55c-.3 0-.5-.1-.8-.2-.6-.4-.7-1.2-.3-1.8 1.2-1.7 2.3-3.4 3.3-5.2.3-.6 1.1-.9 1.7-.5.6.3.9 1.1.5 1.7-1 1.9-2.2 3.8-3.5 5.6C507.4 54.8 507.1 55 506.7 55zM1029.3 382.8c-.1 0-.2 0-.4-.1-2.4-.7-4-.9-6.7-.7-.7 0-1.3-.5-1.4-1.2 0-.7.5-1.3 1.2-1.4 3.1-.2 4.9 0 7.6.8.7.2 1.1.9.9 1.6C1030.3 382.4 1029.8 382.8 1029.3 382.8zM1019.1 392.5c-.5 0-1-.3-1.2-.8-.8-2.1-1.2-4.3-1.3-6.6 0-.7.5-1.3 1.2-1.3.7 0 1.3.5 1.3 1.2.1 2 .5 3.9 1.1 5.8.2.7-.1 1.4-.8 1.6C1019.4 392.5 1019.2 392.5 1019.1 392.5zM1007.1 386.4c-.4 0-.8-.2-1-.5-.4-.6-.3-1.4.2-1.8 1.8-1.4 3.7-2.6 5.8-3.6.6-.3 1.4 0 1.7.6.3.6 0 1.4-.6 1.7-1.9.9-3.7 2-5.3 3.3C1007.7 386.3 1007.4 386.4 1007.1 386.4zM1013.5 377.3c-.5 0-.9-.3-1.2-.7-.5-1-1.2-1.9-2.4-3.4-.3-.4-.7-.9-1.1-1.4-.4-.6-.3-1.4.2-1.8.6-.4 1.4-.3 1.8.2.4.5.8 1 1.1 1.4 1.3 1.6 2.1 2.6 2.7 3.9.3.6 0 1.4-.6 1.7C1013.9 377.3 1013.7 377.3 1013.5 377.3zM1019.7 377c-.3 0-.5-.1-.8-.2-.6-.4-.7-1.2-.3-1.8 1.2-1.7 2.3-3.4 3.3-5.2.3-.6 1.1-.9 1.7-.5.6.3.9 1.1.5 1.7-1 1.9-2.2 3.8-3.5 5.6C1020.4 376.8 1020.1 377 1019.7 377zM1329.7 573.4c-1.4 0-2.9-.2-4.5-.7-8.4-2.7-16.6-12.7-18.7-20-.4-1.4-.7-2.9-.9-4.4-8.1 3.3-15.5 10.6-15.4 21 0 1.5-1.2 2.7-2.7 2.8 0 0 0 0 0 0-1.5 0-2.7-1.2-2.7-2.7-.1-6.7 2.4-12.9 7-18 3.6-4 8.4-7.1 13.7-8.8.5-6.5 3.1-12.9 7.4-17.4 7-7.4 18.2-8.9 27.3-10.1l.7-.1c1.5-.2 2.9.9 3.1 2.3.2 1.5-.9 2.9-2.3 3.1l-.7.1c-8.6 1.2-18.4 2.5-24 8.4-3 3.2-5 7.7-5.7 12.4 7.9-1 17.7 1.3 24.3 5.7 4.3 2.9 7.1 7.8 7.2 12.7.2 4.3-1.7 8.3-5.2 11.1C1335.2 572.4 1332.6 573.4 1329.7 573.4zM1311 546.7c.1 1.5.4 3 .8 4.4 1.7 5.8 8.7 14.2 15.1 16.3 2.8.9 5.1.5 7.2-1.1 2.7-2.1 3.2-4.8 3.1-6.6-.1-3.2-2-6.4-4.8-8.3C1326.7 547.5 1317.7 545.6 1311 546.7z'/%3E%3C/g%3E%3C/svg%3E");
+  background-attachment: fixed;
+}
+
+
+
+  .filepond--assistant {
+    position: absolute;
+    overflow: hidden;
+    height: 1px;
+    width: 1px;
+    padding: 0;
+    border: 0;
+    clip: rect(1px, 1px, 1px, 1px);
+    -webkit-clip-path: inset(50%);
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  /* Hard to override styles */
+  .filepond--browser.filepond--browser {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    left: 1em;
+    top: 1.75em;
+    width: calc(100% - 2em);
+    opacity: 0;
+    font-size: 0;
+  }
+
+  .filepond--drip {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    opacity: 0.1;
+    pointer-events: none;
+    border-radius: 0.5em;
+    background: rgba(0, 0, 0, 0.01);
+  }
+
+  .filepond--drip-blob {
+    position: absolute;
+    -webkit-transform-origin: center center;
+    transform-origin: center center;
+    top: 0;
+    left: 0;
+    width: 8em;
+    height: 8em;
+    margin-left: -4em;
+    margin-top: -4em;
+    background: #292625;
+    border-radius: 50%;
+    will-change: transform, opacity;
+  }
+
+  .filepond--drop-label {
+    position: absolute;
+    left: 1em;
+    right: 1em;
+    top: 0;
+    margin: 0;
+    color: #4f4f4f;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -ms-flex-align: center;
+    align-items: center;
+    height: 0px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    will-change: transform, opacity;
+  }
+
+  /* Hard to override styles on purpose */
+  .filepond--drop-label.filepond--drop-label label {
+    display: block;
+    margin: 0;
+    padding: 0.5em;
+  }
+
+  .filepond--drop-label label {
+    cursor: default;
+    font-size: 0.875em;
+    font-weight: normal;
+    text-align: center;
+    line-height: 1.5;
+  }
+
+  .filepond--label-action {
+    text-decoration: underline;
+    -webkit-text-decoration-skip: ink;
+    text-decoration-skip: ink;
+    -webkit-text-decoration-color: #a7a4a4;
+    text-decoration-color: #a7a4a4;
+    cursor: pointer;
+  }
+
+  /* Hard to override styles */
+  .filepond--file-action-button.filepond--file-action-button {
+    font-size: 1em;
+    width: 1.625em;
+    height: 1.625em;
+    font-family: inherit;
+    line-height: inherit;
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    will-change: transform, opacity;
+  }
+  .filepond--file-action-button.filepond--file-action-button svg {
+    width: 100%;
+    height: 100%;
+  }
+  .filepond--file-action-button.filepond--file-action-button::after {
+    position: absolute;
+    left: -0.75em;
+    right: -0.75em;
+    top: -0.75em;
+    bottom: -0.75em;
+    content: '';
+  }
+
+  /* Soft styles */
+  .filepond--file-action-button {
+    cursor: auto;
+    color: #fff;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.5);
+    background-image: none;
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+    transition: box-shadow 0.25s ease-in;
+  }
+  .filepond--file-action-button:hover,
+  .filepond--file-action-button:focus {
+    box-shadow: 0 0 0 0.125em rgba(255, 255, 255, 0.9);
+  }
+
+  .filepond--file-info {
+    position: static;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    -ms-flex: 1;
+    flex: 1;
+    margin: 0 0.5em 0 0;
+    min-width: 0;
+    will-change: transform, opacity;
+    pointer-events: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  .filepond--file-info * {
+    margin: 0;
+  }
+  .filepond--file-info .filepond--file-info-main {
+    font-size: 0.75em;
+    line-height: 1.2;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%;
+  }
+  .filepond--file-info .filepond--file-info-sub {
+    font-size: 0.625em;
+    opacity: 0.5;
+    transition: opacity 0.25s ease-in-out;
+    white-space: nowrap;
+  }
+  .filepond--file-info .filepond--file-info-sub:empty {
+    display: none;
+  }
+
+  .filepond--file-status {
+    position: static;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -ms-flex-align: end;
+    align-items: flex-end;
+    -ms-flex-positive: 0;
+    flex-grow: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    margin: 0;
+    min-width: 2.25em;
+    text-align: right;
+    will-change: transform, opacity;
+    pointer-events: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  .filepond--file-status * {
+    margin: 0;
+    white-space: nowrap;
+  }
+  .filepond--file-status .filepond--file-status-main {
+    font-size: 0.75em;
+    line-height: 1.2;
+  }
+  .filepond--file-status .filepond--file-status-sub {
+    font-size: 0.625em;
+    opacity: 0.5;
+    transition: opacity 0.25s ease-in-out;
+  }
+
+  /* Hard to override styles */
+  .filepond--file-wrapper.filepond--file-wrapper {
+    border: none;
+    margin: 0;
+    padding: 0;
+    min-width: 0;
+  }
+  .filepond--file-wrapper.filepond--file-wrapper > legend {
+    position: absolute;
+    overflow: hidden;
+    height: 1px;
+    width: 1px;
+    padding: 0;
+    border: 0;
+    clip: rect(1px, 1px, 1px, 1px);
+    -webkit-clip-path: inset(50%);
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .filepond--file {
+    position: static;
+    display: -ms-flexbox;
+    display: flex;
+    height: 100%;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    padding: 0.5625em 0.5625em;
+    color: #fff;
+    border-radius: 0.5em;
+  }
+  .filepond--file .filepond--file-status {
+    margin-left: auto;
+    margin-right: 2.25em;
+  }
+  .filepond--file .filepond--processing-complete-indicator {
+    pointer-events: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    z-index: 2;
+  }
+  .filepond--file .filepond--processing-complete-indicator,
+  .filepond--file .filepond--progress-indicator,
+  .filepond--file .filepond--file-action-button {
+    position: absolute;
+  }
+  .filepond--file [data-align*='left'] {
+    left: 0.5625em;
+  }
+  .filepond--file [data-align*='right'] {
+    right: 0.5625em;
+  }
+  .filepond--file [data-align*='center'] {
+    left: calc(50% - 0.8125em);
+  }
+  .filepond--file [data-align*='bottom'] {
+    bottom: 1.125em;
+  }
+  .filepond--file [data-align='center'] {
+    top: calc(50% - 0.8125em);
+  }
+  .filepond--file .filepond--progress-indicator {
+    margin-top: 0.1875em;
+  }
+  .filepond--file .filepond--progress-indicator[data-align*='right'] {
+    margin-right: 0.1875em;
+  }
+  .filepond--file .filepond--progress-indicator[data-align*='left'] {
+    margin-left: 0.1875em;
+  }
+
+  [data-filepond-item-state='cancelled'] .filepond--file-info,
+  [data-filepond-item-state*='invalid'] .filepond--file-info,
+  [data-filepond-item-state*='error'] .filepond--file-info {
+    margin-right: 2.25em;
+  }
+
+  [data-filepond-item-state='processing-complete']
+    .filepond--action-revert-item-processing
+    svg {
+    -webkit-animation: fall 0.5s 0.125s linear both;
+    animation: fall 0.5s 0.125s linear both;
+  }
+
+  [data-filepond-item-state='processing-complete'] .filepond--file-info-sub,
+  [data-filepond-item-state='processing-complete'] .filepond--file-status-sub {
+    opacity: 0;
+  }
+
+  [data-filepond-item-state='processing-complete']
+    .filepond--action-revert-item-processing
+    ~ .filepond--file-info
+    .filepond--file-info-sub,
+  [data-filepond-item-state='processing-complete']
+    .filepond--action-revert-item-processing
+    ~ .filepond--file-status
+    .filepond--file-status-sub {
+    opacity: 0.5;
+  }
+
+  [data-filepond-item-state*='invalid'] .filepond--panel,
+  [data-filepond-item-state*='invalid'] .filepond--file-wrapper,
+  [data-filepond-item-state*='error'] .filepond--panel,
+  [data-filepond-item-state*='error'] .filepond--file-wrapper {
+    -webkit-animation: shake 0.65s linear both;
+    animation: shake 0.65s linear both;
+  }
+
+  [data-filepond-item-state*='busy'] .filepond--progress-indicator svg {
+    -webkit-animation: spin 1s linear infinite;
+    animation: spin 1s linear infinite;
+  }
+
+  /**
+                                           * States
+                                           */
+  @-webkit-keyframes spin {
+    0% {
+      -webkit-transform: rotateZ(0deg);
+      transform: rotateZ(0deg);
+    }
+    100% {
+      -webkit-transform: rotateZ(360deg);
+      transform: rotateZ(360deg);
+    }
+  }
+  @keyframes spin {
+    0% {
+      -webkit-transform: rotateZ(0deg);
+      transform: rotateZ(0deg);
+    }
+    100% {
+      -webkit-transform: rotateZ(360deg);
+      transform: rotateZ(360deg);
+    }
+  }
+
+  @-webkit-keyframes shake {
+    10%,
+    90% {
+      -webkit-transform: translateX(-0.0625em);
+      transform: translateX(-0.0625em);
+    }
+    20%,
+    80% {
+      -webkit-transform: translateX(0.125em);
+      transform: translateX(0.125em);
+    }
+    30%,
+    50%,
+    70% {
+      -webkit-transform: translateX(-0.25em);
+      transform: translateX(-0.25em);
+    }
+    40%,
+    60% {
+      -webkit-transform: translateX(0.25em);
+      transform: translateX(0.25em);
+    }
+  }
+
+  @keyframes shake {
+    10%,
+    90% {
+      -webkit-transform: translateX(-0.0625em);
+      transform: translateX(-0.0625em);
+    }
+    20%,
+    80% {
+      -webkit-transform: translateX(0.125em);
+      transform: translateX(0.125em);
+    }
+    30%,
+    50%,
+    70% {
+      -webkit-transform: translateX(-0.25em);
+      transform: translateX(-0.25em);
+    }
+    40%,
+    60% {
+      -webkit-transform: translateX(0.25em);
+      transform: translateX(0.25em);
+    }
+  }
+
+  @-webkit-keyframes fall {
+    0% {
+      opacity: 0;
+      -webkit-transform: scale(0.5);
+      transform: scale(0.5);
+      -webkit-animation-timing-function: ease-out;
+      animation-timing-function: ease-out;
+    }
+    70% {
+      opacity: 1;
+      -webkit-transform: scale(1.1);
+      transform: scale(1.1);
+      -webkit-animation-timing-function: ease-in-out;
+      animation-timing-function: ease-in-out;
+    }
+    100% {
+      -webkit-transform: scale(1);
+      transform: scale(1);
+      -webkit-animation-timing-function: ease-out;
+      animation-timing-function: ease-out;
+    }
+  }
+
+  @keyframes fall {
+    0% {
+      opacity: 0;
+      -webkit-transform: scale(0.5);
+      transform: scale(0.5);
+      -webkit-animation-timing-function: ease-out;
+      animation-timing-function: ease-out;
+    }
+    70% {
+      opacity: 1;
+      -webkit-transform: scale(1.1);
+      transform: scale(1.1);
+      -webkit-animation-timing-function: ease-in-out;
+      animation-timing-function: ease-in-out;
+    }
+    100% {
+      -webkit-transform: scale(1);
+      transform: scale(1);
+      -webkit-animation-timing-function: ease-out;
+      animation-timing-function: ease-out;
+    }
+  }
+
+  .filepond--hopper[data-hopper-state='drag-over'] > * {
+    pointer-events: none;
+  }
+
+  .filepond--progress-indicator {
+    z-index: 103;
+  }
+
+  .filepond--file-action-button {
+    z-index: 102;
+  }
+
+  .filepond--file-status {
+    z-index: 101;
+  }
+
+  .filepond--file-info {
+    z-index: 100;
+  }
+
+  .filepond--item {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    padding: 0;
+    margin: 0;
+    margin-top: 0.25em;
+    margin-bottom: 0.25em;
+    will-change: transform, opacity;
+  }
+  .filepond--item > .filepond--panel {
+    z-index: -1;
+  }
+  .filepond--item > .filepond--panel .filepond--panel-bottom {
+    box-shadow: 0 0.0625em 0.125em -0.0625em rgba(0, 0, 0, 0.25);
+  }
+
+  .filepond--item-panel {
+    background-color: #64605e;
+  }
+
+  [data-filepond-item-state='processing-complete'] .filepond--item-panel {
+    background-color: #369763;
+  }
+
+  [data-filepond-item-state*='invalid'] .filepond--item-panel,
+  [data-filepond-item-state*='error'] .filepond--item-panel {
+    background-color: #c44e47;
+  }
+
+  .filepond--item-panel {
+    border-radius: 0.5em;
+    transition: background-color 0.25s;
+  }
+
+  .filepond--list-scroller {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: 0;
+    will-change: transform;
+  }
+
+  .filepond--list-scroller[data-state='overflow'] {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    -webkit-mask: linear-gradient(
+      to bottom,
+      #000 calc(100% - 0.5em),
+      transparent 100%
+    );
+    mask: linear-gradient(to bottom, #000 calc(100% - 0.5em), transparent 100%);
+  }
+  .filepond--list-scroller[data-state='overflow'] .filepond--list {
+    bottom: 0;
+    right: 0;
+  }
+
+  .filepond--list-scroller::-webkit-scrollbar {
+    background: transparent;
+  }
+
+  .filepond--list-scroller::-webkit-scrollbar:vertical {
+    width: 1em;
+  }
+
+  .filepond--list-scroller::-webkit-scrollbar:horizontal {
+    height: 0;
+  }
+
+  .filepond--list-scroller::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 99999px;
+    border: 0.3125em solid transparent;
+    background-clip: content-box;
+  }
+
+  /* hard to overide styles on purpose */
+  .filepond--list.filepond--list {
+    position: absolute;
+    top: 0;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    will-change: transform;
+  }
+
+  /* used for padding so allowed to be restyled */
+  .filepond--list {
+    left: 1em;
+    right: 1em;
+  }
+
+  .filepond--root[data-style-panel-layout~='integrated'] {
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    margin: 0;
+  }
+
+  .filepond--root[data-style-panel-layout~='compact'] .filepond--list-scroller,
+  .filepond--root[data-style-panel-layout~='integrated']
+    .filepond--list-scroller {
+    overflow: hidden;
+    height: 100%;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  .filepond--root[data-style-panel-layout~='compact'] .filepond--list,
+  .filepond--root[data-style-panel-layout~='integrated'] .filepond--list {
+    left: 0;
+    right: 0;
+    height: 100%;
+  }
+
+  .filepond--root[data-style-panel-layout~='compact'] .filepond--item,
+  .filepond--root[data-style-panel-layout~='integrated'] .filepond--item {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  .filepond--root[data-style-panel-layout~='compact'] .filepond--file-wrapper,
+  .filepond--root[data-style-panel-layout~='integrated'] .filepond--file-wrapper {
+    height: 100%;
+  }
+
+  .filepond--root[data-style-panel-layout~='compact'] .filepond--panel-root,
+  .filepond--root[data-style-panel-layout~='integrated'] .filepond--panel-root {
+    border-radius: 0;
+  }
+  .filepond--root[data-style-panel-layout~='compact'] .filepond--panel-root > *,
+  .filepond--root[data-style-panel-layout~='integrated']
+    .filepond--panel-root
+    > * {
+    display: none;
+  }
+
+  .filepond--root[data-style-panel-layout~='compact'] .filepond--drop-label,
+  .filepond--root[data-style-panel-layout~='integrated'] .filepond--drop-label {
+    bottom: 0;
+    height: auto;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -ms-flex-align: center;
+    align-items: center;
+    z-index: 7;
+  }
+
+  .filepond--root[data-style-panel-layout~='compact'] .filepond--item-panel,
+  .filepond--root[data-style-panel-layout~='integrated'] .filepond--item-panel {
+    display: none;
+  }
+
+  .filepond--root[data-style-panel-layout~='circle'] {
+    border-radius: 99999rem;
+    overflow: hidden;
+  }
+  .filepond--root[data-style-panel-layout~='circle'] > .filepond--panel {
+    border-radius: inherit;
+  }
+  .filepond--root[data-style-panel-layout~='circle'] > .filepond--panel > * {
+    display: none;
+  }
+  .filepond--root[data-style-panel-layout~='circle'] .filepond--file-info {
+    display: none;
+  }
+  .filepond--root[data-style-panel-layout~='circle'] .filepond--file-status {
+    display: none;
+  }
+
+  .filepond--panel-root {
+    border-radius: 0.5em;
+    background-color: #f1f0ef;
+  }
+
+  .filepond--panel {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    margin: 0;
+    height: 100% !important;
+    pointer-events: none;
+  }
+
+  .filepond-panel:not([data-scalable='false']) {
+    height: auto !important;
+  }
+
+  .filepond--panel[data-scalable='false'] > div {
+    display: none;
+  }
+
+  .filepond--panel[data-scalable='true'] {
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    background-color: transparent !important;
+    border: none !important;
+  }
+
+  .filepond--panel-top,
+  .filepond--panel-bottom,
+  .filepond--panel-center {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+  }
+
+  .filepond--panel-top,
+  .filepond--panel-bottom {
+    height: 0.5em;
+  }
+
+  .filepond--panel-top {
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    border-bottom: none !important;
+  }
+  .filepond--panel-top::after {
+    content: '';
+    position: absolute;
+    height: 2px;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    background-color: inherit;
+  }
+
+  .filepond--panel-center,
+  .filepond--panel-bottom {
+    will-change: transform;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transform-origin: left top;
+    transform-origin: left top;
+    -webkit-transform: translate3d(0, 0.5em, 0);
+    transform: translate3d(0, 0.5em, 0);
+  }
+
+  .filepond--panel-bottom {
+    border-top-left-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+    border-top: none !important;
+  }
+  .filepond--panel-bottom::before {
+    content: '';
+    position: absolute;
+    height: 2px;
+    left: 0;
+    right: 0;
+    top: -1px;
+    background-color: inherit;
+  }
+
+  .filepond--panel-center {
+    height: 100px !important;
+    border-top: none !important;
+    border-bottom: none !important;
+    border-radius: 0 !important;
+  }
+  .filepond--panel-center:not([style]) {
+    visibility: hidden;
+  }
+
+  .filepond--progress-indicator {
+    position: static;
+    width: 1.25em;
+    height: 1.25em;
+    color: #fff;
+    margin: 0;
+    pointer-events: none;
+    will-change: transform, opacity;
+  }
+
+  .filepond--progress-indicator svg {
+    width: 100%;
+    height: 100%;
+    vertical-align: top;
+    transform-box: fill-box;
+  }
+
+  .filepond--progress-indicator path {
+    fill: none;
+    stroke: currentColor;
+  }
+
+  .filepond--list-scroller {
+    z-index: 6;
+  }
+
+  .filepond--drop-label {
+    z-index: 5;
+  }
+
+  .filepond--drip {
+    z-index: 3;
+  }
+
+  .filepond--root > .filepond--panel {
+    z-index: 2;
+  }
+
+  .filepond--browser {
+    z-index: 1;
+  }
+
+  .filepond--root {
+    /* layout*/
+    box-sizing: border-box;
+    position: relative;
+    margin-bottom: 1em;
+    /* base font size for whole component */
+    font-size: 1rem;
+    /* base line height */
+    line-height: normal;
+    /* up uses default system font family */
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
+      Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+    /* will increase font weight a bit on Safari */
+    font-weight: 450;
+    text-align: left;
+    text-rendering: optimizeLegibility;
+    direction: ltr;
+    contain: layout style size;
+  }
+  .filepond--root * {
+    font-size: inherit;
+    box-sizing: inherit;
+    line-height: inherit;
+  }
+
+  /**
+                                           * Root element children layout
+                                           */
+  .filepond--root .filepond--drop-label {
+    min-height: 4.75em;
+  }
+
+  .filepond--root .filepond--list-scroller {
+    margin-top: 1em;
+    margin-bottom: 1em;
+  }
+
+  .filepond--panel-root,
+  .filepond--wrapper {
+    @apply bg-grey-light rounded;
+  }
+
+  .filepond--panel.filepond--panel-root {
+    @apply shadow-inner;
+  }
+
+  /*
+                                       * FilePondPluginImagePreview 3.1.3
+                                       * Licensed under MIT, https://opensource.org/licenses/MIT
+                                       * Please visit https://pqina.nl/filepond for details.
+                                       */
+
+  /* eslint-disable */
+  .filepond--image-preview-wrapper {
+    z-index: 2;
+  }
+
+  .filepond--image-preview-overlay {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    min-height: 5rem;
+    max-height: 7rem;
+    margin: 0;
+    opacity: 0;
+    z-index: 2;
+    pointer-events: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  .filepond--image-preview-overlay svg {
+    width: 100%;
+    height: auto;
+    color: inherit;
+    max-height: inherit;
+  }
+
+  .filepond--image-preview-overlay-idle {
+    mix-blend-mode: multiply;
+    color: rgba(40, 40, 40, 0.85);
+  }
+
+  .filepond--image-preview-overlay-success {
+    mix-blend-mode: normal;
+    color: #369763;
+  }
+
+  .filepond--image-preview-overlay-failure {
+    mix-blend-mode: normal;
+    color: #c44e47;
+  }
+
+  @supports (-webkit-marquee-repetition: infinite) and (object-fit: fill) {
+    .filepond--image-preview-overlay-idle {
+      mix-blend-mode: normal;
+    }
+  }
+
+  .filepond--image-preview-wrapper {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    margin: 0;
+    border-radius: 0.45em;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.01);
+  }
+
+  .filepond--image-preview {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    display: block;
+    width: 100%;
+    height: auto;
+    pointer-events: none;
+    -webkit-transform-origin: center center;
+    transform-origin: center center;
+    background: #222;
+    will-change: transform, opacity;
+  }
+  .filepond--image-preview[data-transparency-indicator='grid'] img,
+  .filepond--image-preview[data-transparency-indicator='grid'] canvas {
+    background-color: #fff;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg' fill='%23eee'%3E%3Cpath d='M0 0 H50 V50 H0'/%3E%3Cpath d='M50 50 H100 V100 H50'/%3E%3C/svg%3E");
+    background-size: 1.25em 1.25em;
+  }
+
+  .filepond--image-clip {
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto;
+  }
+
+  .filepond--image-bitmap,
+  .filepond--image-vector {
+    position: absolute;
+    left: 0;
+    top: 0;
+    will-change: transform;
+  }
+
+  .filepond--root[data-style-panel-layout~='integrated']
+    .filepond--image-preview-wrapper {
+    border-radius: 0;
+  }
+
+  .filepond--root[data-style-panel-layout~='integrated']
+    .filepond--image-preview {
+    height: 100%;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
+
+  .filepond--root[data-style-panel-layout~='circle']
+    .filepond--image-preview-wrapper {
+    border-radius: 99999rem;
+  }
+
+  .filepond--root[data-style-panel-layout~='circle']
+    .filepond--image-preview-overlay {
+    top: auto;
+    bottom: 0;
+    -webkit-transform: scaleY(-1);
+    transform: scaleY(-1);
+  }
+
+  .filepond--root[data-style-panel-layout~='circle']
+    .filepond--file
+    .filepond--file-action-button[data-align*='bottom']:not([data-align*='center']) {
+    margin-bottom: 0.325em;
+  }
+
+  .filepond--root[data-style-panel-layout~='circle']
+    .filepond--file
+    [data-align*='left'] {
+    left: calc(50% - 3em);
+  }
+
+  .filepond--root[data-style-panel-layout~='circle']
+    .filepond--file
+    [data-align*='right'] {
+    right: calc(50% - 3em);
+  }
+
+  .filepond--root[data-style-panel-layout~='circle']
+    .filepond--progress-indicator[data-align*='bottom'][data-align*='left'],
+  .filepond--root[data-style-panel-layout~='circle']
+    .filepond--progress-indicator[data-align*='bottom'][data-align*='right'] {
+    margin-bottom: calc(0.325em + 0.1875em);
+  }
+
+  .filepond--root[data-style-panel-layout~='circle']
+    .filepond--progress-indicator[data-align*='bottom'][data-align*='center'] {
+    margin-top: 0;
+    margin-bottom: 0.1875em;
+    margin-left: 0.1875em;
+  }
+
+
+
+
+
+
+::-webkit-scrollbar {
+  width: 0.375rem;
+}
+
+::-webkit-scrollbar:horizontal{
+  height: 0.375rem;
+}
+
+::-webkit-scrollbar-track {
+  @apply rounded-full bg-grey
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-blue-light rounded-full
+  }
+
+
+/* ::-webkit-scrollbar-thumb,
+::-webkit-scrollbar-track{
+  border:4px solid rgba(0,0,0,0);
+  background-clip:padding-box;
+  border-radius:8px
+}
+::-webkit-scrollbar-thumb{
+  background-color:#adb5bd
+}
+::-webkit-scrollbar-button{
+  display:none;
+  width:0;height:0
+} */
+
+
+

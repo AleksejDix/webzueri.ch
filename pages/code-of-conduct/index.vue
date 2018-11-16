@@ -1,12 +1,12 @@
 <template>
-  <div class="md:px-4 bg-indigo-darkest pb-8">
-    <div class="mx-auto pt-8">
-      <div class="px-4 py-4">
-        <h1 class="leading-tight text-3xl md:text-5xl text-base text-yellow font-display font-bold tracking-wide uppercase text-center">Code of Conduct</h1>
+  <div class="md:px-4 bg-primary-light pattern pb-8">
+    <div class="container mx-auto">
+      <div class="px-4">
+        <h1 class="py-12 leading-tight text-3xl md:text-5xl text-base text-on-dark-primary font-display font-bold tracking-wide text-center">Code of Conduct</h1>
       </div>
 
-      <div class="md:shadow bg-grey-lightest md:rounded-lg md:max-w-5xl md:mx-auto py-8 px-4 md:p-8">
-        <prose class="max-w-lg mx-auto">
+      <div class="shadow-blue-darker bg-primary-dark md:rounded-lg md:max-w-5xl md:mx-auto py-8 px-4 md:p-8">
+        <prose color="on-dark" class="max-w-lg mx-auto owl">
           <h2>Our Pledge</h2>
           <p>In the interest of fostering an open and welcoming environment, we as the community and organisers pledge to making participation in our community a harassment-free experience for everyone, regardless of age, body size, disability, ethnicity, gender identity and expression, level of experience, nationality, personal appearance, race, religion, or sexual identity and orientation.</p>
           <h2>Our Standards</h2>

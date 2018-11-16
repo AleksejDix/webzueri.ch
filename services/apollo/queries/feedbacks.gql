@@ -1,0 +1,18 @@
+query feedbacks {
+  feedbacks {
+    id
+    quote
+    speaker {
+      name
+      speakerPicture {
+        url
+      }
+    }
+    sponsor {
+      name
+      logo {
+        url
+      }
+    }
+  }
+}

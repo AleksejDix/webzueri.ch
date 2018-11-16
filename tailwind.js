@@ -1,3 +1,16 @@
+import hsluv from 'hsluv'
+
+function hsla (hue, saturation, light, a = 1) {
+
+  function floatToInt(f) {
+    return Math.round(f * 255);
+  }
+
+  const [h, s, l] = hsluv.hsluvToRgb([hue, saturation, light])
+
+  return `rgba(${floatToInt(h)}, ${floatToInt(s)}, ${floatToInt(l)}, ${a})`
+}
+
 /*
 
 Tailwind - The Utility-First CSS Framework
@@ -45,87 +58,81 @@ View the full documentation at https://tailwindcss.com.
 let colors = {
   transparent: "transparent",
 
-  black: "#22292f",
+  "current-color": "currentColor",
+
+  "text": "#442C2E",
+
+  "surface": "#f7f7f8",
+
+  "on-light-muted":     hsla(0,0,0,.38),
+  "on-light-secondary": hsla(0,0,0,.54),
+  "on-light-primary":   hsla(0,0,0,.87),
+
+  "on-dark-muted":     hsla(0,0,100,.5),
+  "on-dark-secondary": hsla(0,0,100,.8),
+  "on-dark-primary":   hsla(0,0,100,1),
+
+  "primary-dark": hsla(250,100,10,1),
+  "primary": hsla(250,100,15,1),
+  "primary-light": hsla(250,100,30,1),
+
+  "secondary-dark": "#c8b900",
+  "secondary": hsla(128,0,100,1),
+  "secondary-light": "#ffff72",
+
+  "red-lightest": hsla(10, 100, 90),
+  "red-lighter": hsla(10, 100, 80),
+  "red-light": hsla(10, 100, 43),
+  "red": hsla(10, 100, 38),
+  "red-dark": hsla(10, 100, 33),
+
+  "orange-lightest": hsla(30, 100, 90),
+  "orange-light": hsla(30, 100, 60),
+  "orange": hsla(30, 100, 55),
+  "orange-dark": hsla(30, 100, 50),
+
+  "yellow-lightest": hsla(60, 100, 90),
+  "yellow-light": hsla(60, 100, 85),
+  "yellow": hsla(60, 100, 80),
+  "yellow-dark": hsla(60, 100, 75),
+
+  "green-lightest": hsla(120, 100, 95),
+  "green-light": hsla(120, 100, 70),
+  "green": hsla(120, 100, 60),
+  "green-dark": hsla(120, 100, 50),
+
+  "blue-lightest": hsla(250,100,95),
+  "blue-light": hsla(250,100,70),
+  "blue": hsla(250,100,60),
+  "blue-dark": hsla(250,100,50),
+  "blue-darker": hsla(250,100,40),
+  "blue-darkest": hsla(250,100,30),
+
+
+  "violet-lightest": hsla(275,100,90),
+  "violet-light": hsla(275,100,70),
+  "violet": hsla(275,100,60),
+  "violet-dark": hsla(275,100,50),
+
+  "fuchsia-lightest": hsla(300,100,90),
+  "fuchsia-light": hsla(300,100,64),
+  "fuchsia": hsla(300,100,53),
+  "fuchsia-dark": hsla(300,100,42),
+
+  "pink-lightest": hsla(330,100,90),
+  "pink-light": hsla(330,100,70),
+  "pink": hsla(330,100,60),
+  "pink-dark": hsla(330,100,50),
+
+  black: hsla(250, 17, 5),
   "grey-darkest": "#3d4852",
   "grey-darker": "#606f7b",
   "grey-dark": "#8795a1",
-  grey: "#b8c2cc",
-  "grey-light": "#dae1e7",
-  "grey-lighter": "#f1f5f8",
-  "grey-lightest": "#f8fafc",
+  grey: hsla(250, 17, 90),
+  "grey-light": hsla(250, 17, 93),
+  "grey-lighter": hsla(250, 17, 95),
+  "grey-lightest": hsla(250, 17, 98),
   white: "#ffffff",
-
-  "red-darkest": "#3b0d0c",
-  "red-darker": "#621b18",
-  "red-dark": "#cc1f1a",
-  red: "#e3342f",
-  "red-light": "#ef5753",
-  "red-lighter": "#f9acaa",
-  "red-lightest": "#fcebea",
-
-  "orange-darkest": "#462a16",
-  "orange-darker": "#613b1f",
-  "orange-dark": "#de751f",
-  orange: "#f6993f",
-  "orange-light": "#faad63",
-  "orange-lighter": "#fcd9b6",
-  "orange-lightest": "#fff5eb",
-
-  "yellow-darkest": "#453411",
-  "yellow-darker": "#684f1d",
-  "yellow-dark": "#f2d024",
-  "yellow": "#F6DF66",
-  "yellow-light": "#fff382",
-  "yellow-lighter": "#fff9c2",
-  "yellow-lightest": "#fcfbeb",
-
-  "green-darkest": "#0f2f21",
-  "green-darker": "#1a4731",
-  "green-dark": "#1f9d55",
-  "green": "#38c172",
-  "green-light": "#51d88a",
-  "green-lighter": "#a2f5bf",
-  "green-lightest": "#e3fcec",
-
-  "teal-darkest": "#0d3331",
-  "teal-darker": "#20504f",
-  "teal-dark": "#38a89d",
-  teal: "#4dc0b5",
-  "teal-light": "#64d5ca",
-  "teal-lighter": "#a0f0ed",
-  "teal-lightest": "#e8fffe",
-
-  "blue-darkest": "#12283a",
-  "blue-darker": "#1c3d5a",
-  "blue-dark": "#2779bd",
-  blue: "#3490dc",
-  "blue-light": "#6cb2eb",
-  "blue-lighter": "#bcdefa",
-  "blue-lightest": "#eff8ff",
-
-  "indigo-darkest": "#191e38",
-  "indigo-darker": "#2f365f",
-  "indigo-dark": "#5661b3",
-  indigo: "#6574cd",
-  "indigo-light": "#7886d7",
-  "indigo-lighter": "#b2b7ff",
-  "indigo-lightest": "#e6e8ff",
-
-  "purple-darkest": "#21183c",
-  "purple-darker": "#382b5f",
-  "purple-dark": "#794acf",
-  purple: "#9561e2",
-  "purple-light": "#a779e9",
-  "purple-lighter": "#d6bbfc",
-  "purple-lightest": "#f3ebff",
-
-  "pink-darkest": "#451225",
-  "pink-darker": "#6f213f",
-  "pink-dark": "#eb5286",
-  pink: "#f66d9b",
-  "pink-light": "#fa7ea8",
-  "pink-lighter": "#ffbbca",
-  "pink-lightest": "#ffebef"
 };
 
 module.exports = {
@@ -164,10 +171,10 @@ module.exports = {
   */
 
   screens: {
-    sm: "480px",
-    md: "640px",
-    lg: "960px",
-    xl: "1280px"
+    sm: "576px", // 36 rem
+    md: "768px", // 48 rem
+    lg: "992px", // 62 rem
+    xl: "1280px" // 80 rem
   },
 
   /*
@@ -204,6 +211,7 @@ module.exports = {
       "sans-serif"
     ],
     sans: [
+      "Rubik",
       "system-ui",
       "BlinkMacSystemFont",
       "-apple-system",
@@ -261,14 +269,28 @@ module.exports = {
   textSizes: {
     xs: ".75rem", // 12px
     sm: ".875rem", // 14px
-    body: "0.9375rem", // 15px
+    body: "15pt", // 15px
     base: "1rem", // 16px
-    lg: "1.125rem", // 18px
-    xl: "1.25rem", // 20px
+    lg: "18px", // 18px
+    xl: "20px", // 20px
     "2xl": "1.5rem", // 24px
     "3xl": "1.875rem", // 30px
     "4xl": "2.25rem", // 36px
-    "5xl": "3rem" // 48px
+    "5xl": "3rem", // 48px
+    "8": "8pt",
+    "9": "9pt",
+    "10": "10pt",
+    "11": "11pt",
+    "12": "12pt",
+    "14": "14pt",
+    "16": "16pt",
+    "18": "18pt",
+    "21": "21pt",
+    "24": "24pt",
+    "36": "36pt",
+    "48": "48pt",
+    "60": "60pt",
+    "72": "72pt"
   },
 
   /*
@@ -402,7 +424,8 @@ module.exports = {
     "0": "0",
     "2": "2px",
     "4": "4px",
-    "8": "8px"
+    "8": "8px",
+    "16": "16px"
   },
 
   /*
@@ -422,7 +445,7 @@ module.exports = {
   |
   */
 
-  borderColors: global.Object.assign({ default: colors["grey-light"] }, colors),
+  borderColors: global.Object.assign({ default: colors["grey-lighter"] }, colors),
 
   /*
   |-----------------------------------------------------------------------------
@@ -445,6 +468,7 @@ module.exports = {
     sm: ".125rem",
     default: ".25rem",
     lg: ".5rem",
+    xl: "1.125rem",
     full: "9999px"
   },
 
@@ -486,6 +510,8 @@ module.exports = {
     "40": "10rem",
     "48": "12rem",
     "64": "16rem",
+    "96": "24rem",
+    "160": "40rem",
     "1/2": "50%",
     "1/3": "33.33333%",
     "2/3": "66.66667%",
@@ -498,7 +524,9 @@ module.exports = {
     "1/6": "16.66667%",
     "5/6": "83.33333%",
     full: "100%",
-    screen: "100vw"
+    screen: "100vw",
+    'screen-3/4': "75vw",
+    'screen-3/5': "60vw"
   },
 
   /*
@@ -555,6 +583,10 @@ module.exports = {
   minWidth: {
     "0": "0",
     "12": "3rem",
+    "24": "6rem",
+    "36": "9rem",
+    "48": "12rem",
+    "60": "15rem",
     full: "100%"
   },
 
@@ -575,6 +607,9 @@ module.exports = {
   minHeight: {
     "0": "0",
     "4": "1rem",
+    "8" : "2rem",
+    "12" : "3rem",
+    "32": "8rem",
     "64": "16rem",
     full: "100%",
     screen: "100vh"
@@ -596,6 +631,7 @@ module.exports = {
   */
 
   maxWidth: {
+    '10': "10rem",
     xs: "20rem",
     sm: "30rem",
     md: "40rem",
@@ -654,7 +690,8 @@ module.exports = {
     "12": "3rem",
     "16": "4rem",
     "24": "6rem",
-    "32": "8rem"
+    "32": "8rem",
+    "64": "16rem"
   },
 
   /*
@@ -680,9 +717,13 @@ module.exports = {
     "2": "0.5rem",
     "3": "0.75rem",
     "4": "1rem",
+    "5": "1.25rem",
     "6": "1.5rem",
     "8": "2rem",
-    "12": "3rem"
+    "12": "3rem",
+    "24": "6rem",
+    "36": "9rem",
+    "64": "16rem"
   },
 
   /*
@@ -701,6 +742,7 @@ module.exports = {
   */
 
   negativeMargin: {
+    '1/2': "50%",
     px: "1px",
     "2px": "2px",
     "0": "0",
@@ -712,7 +754,11 @@ module.exports = {
     "8": "2rem",
     "12": "3rem",
     "16": "4rem",
-    "24": "6rem"
+    "24": "6rem",
+    "28": "7rem",
+    "32": "8rem",
+    "36": "9rem",
+    "60": "15rem"
   },
 
   /*
@@ -732,11 +778,19 @@ module.exports = {
   */
 
   shadows: {
-    default: "0 2px 4px 0 rgba(0,0,0,0.2), 0 2px 4px 0 rgba(0,0,0,0.2)",
-    md: "0 4px 8px 0 rgba(0,0,0,0.12), 0 2px 4px 0 rgba(0,0,0,0.08)",
-    lg: "0 15px 30px 0 rgba(0,0,0,0.11), 0 5px 15px 0 rgba(0,0,0,0.08)",
-    inner: "inset 0 2px 4px 0 rgba(0,0,0,0.06)",
+    blue: `0 0 0 1px ${colors['blue']}, 0 5px 15px rgba(0,0,0,1)`,
+    'blue-darker': `0 0 0 1px ${colors['blue-darker']}, 0 5px 15px rgba(0,0,0,1)`,
+    yellow: `0 0 0 1px ${colors['yellow']}, 0 5px 15px rgba(0,0,0,1)`,
+    violet: `0 0 0 1px ${colors['violet']}, 0 5px 15px rgba(0,0,0,1)`,
+    green: `0 0 0 1px ${colors['green']}, 0 5px 15px rgba(0,0,0,1)`,
+    red: `0 0 0 1px ${colors['red']}, 0 5px 15px rgba(0,0,0,1)`,
+    fuchsia: `0 0 0 1px ${colors['fuchsia']}, 0 5px 15px rgba(0,0,0,1)`,
+    default: "0 4px 6px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08)",
+    md: "0 7px 14px rgba(50,50,93,.1), 0 3px 6px rgba(0,0,0,.08)",
+    lg: "0 15px 35px rgba(50,50,93,.1), 0 5px 15px rgba(0,0,0,.07)",
+    inner: "inset 0 2px 4px 0 rgba(0,0,0,0.16)",
     outline: "0 0 0 3px rgba(52,144,220,0.5)",
+    focus: `inset 0 0 0 2px ${hsla(253,100,60)}`,
     none: "none"
   },
 
@@ -778,9 +832,10 @@ module.exports = {
 
   opacity: {
     "0": "0",
-    "25": ".25",
-    "50": ".5",
-    "75": ".75",
+    "8": ".08",
+    "24": ".24",
+    "32": ".32",
+    "64": ".64",
     "100": "1"
   },
 
@@ -848,7 +903,7 @@ module.exports = {
     backgroundRepeat: ["responsive"],
     backgroundSize: ["responsive"],
     borderColors: ["responsive", "hover", "focus"],
-    borderRadius: ["responsive"],
+    borderRadius: ["responsive", "group-hover"],
     borderStyle: ["responsive"],
     borderWidths: ["responsive"],
     cursor: ["responsive"],
@@ -866,7 +921,7 @@ module.exports = {
     minHeight: ["responsive"],
     minWidth: ["responsive"],
     negativeMargin: ["responsive"],
-    opacity: ["responsive"],
+    opacity: ["responsive", "group-hover", "hover"],
     overflow: ["responsive"],
     outline: ["hover", "focus"],
     padding: ["responsive"],
@@ -886,7 +941,7 @@ module.exports = {
     visibility: ["responsive"],
     whitespace: ["responsive"],
     width: ["responsive"],
-    zIndex: ["responsive"]
+    zIndex: ["responsive", "hover"]
   },
 
   /*
@@ -917,5 +972,11 @@ module.exports = {
     prefix: "",
     important: false,
     separator: ":"
-  }
+  },
+
+  experiments: {
+    shadowLookup: true
+  },
+
+  shadowLookup: true
 };
