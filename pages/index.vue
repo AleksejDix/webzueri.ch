@@ -53,7 +53,7 @@
               </div>
               <article class="w-full flex-1 xl:w-1/3 p-4" v-if="event.talks.length < 3">
                 <div class="p-4 h-full  shadow-violet owl items-center justify-center rounded-lg bg-primary">
-                  <h3 class="text-on-dark-primary text-2xl md:text-3xl leading-tight font-medium">{{3 - event.talks.length }} Spot left</h3>
+                  <h3 class="text-on-dark-primary text-2xl md:text-3xl leading-tight font-medium">{{3 - event.talks.length }} {{ event.talks.length > 1 ? 'Spots' : 'Spot'}} left</h3>
                   <p class="text-on-dark-primary leading-normal">Sharing is caring! Why not talk about your latest project, the great tool you found or the problem you just solved recently?</p>
                   <ul class="list-reset list-bullets text-on-dark-secondary">
                     <li>Talks are 15 minutes without Q&A</li>
