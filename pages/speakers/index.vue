@@ -17,9 +17,10 @@
 
               <div class="flex-1 p-2 md:p-4">
                 <h2 class="text-white text-xl xl:text-2xl font-display font-bold tracking-wide mb-4 leading-tight">{{speaker.name}}</h2>
-                <Badge color="green" :number="speaker.talks.length">Talks</Badge>
+                <Badge color="green">
+                  gave {{speaker.talks.length > 0 ? speaker.talks.length + " talk" : speaker.talks.length + " talks" }}
+                </Badge>
               </div>
-
             </nuxt-link>
           </li>
         </ul>
