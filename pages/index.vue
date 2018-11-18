@@ -91,6 +91,7 @@
         </div>
       </section>
     </div>
+    <section-recent-videos />
     <section-feedbacks />
   </div>
 </template>
@@ -100,16 +101,19 @@ import gql from 'graphql-tag'
 import Talk from "@/components/Talk"
 import Spinner from "@/components/feedback/Spinner"
 import SectionFeedbacks from "@/components/sections/feedbacks/"
+import SectionRecentVideos from "@/components/sections/recent-videos/"
 import QueryHome from '~/services/apollo/queries/home'
 import {mapState} from "vuex"
 
 export default {
-  components: { Talk, Spinner, SectionFeedbacks },
+  components: { Talk, Spinner, SectionFeedbacks, SectionRecentVideos },
   data () {
     return {
       users: [],
       events: [],
-      active: false
+      active: false,
+      talksCount: 0,
+      talks: []
     }
   },
   head() {

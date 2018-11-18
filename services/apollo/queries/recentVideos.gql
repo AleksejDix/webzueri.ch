@@ -1,0 +1,31 @@
+query videos($skip: Int!) {
+  talksConnection(where: {
+      status: PUBLISHED,
+      youtubecode_not: null,
+  }) {
+     aggregate {
+      count
+    }
+  }
+  talks(
+    orderBy: updatedAt_DESC
+    first: 3
+    skip: $skip
+    where: {
+      status: PUBLISHED,
+      youtubecode_not: null,
+    }
+  ) {
+    id
+    updatedAt
+    speakers {
+      id
+      name
+      speakerPicture {
+        url
+      }
+    }
+    name
+    youtubecode
+  }
+}
