@@ -1,11 +1,35 @@
 <template>
   <div>
-    <a class="bg-blue-light skip-link fixed pin-t bg-white no-underline uppercase rounded-b text-sm font-bold p-2" href="#content">Skip to content</a>
-    <nav class="relative flex items-center p-2" role="navigation">
+    <a
+      class="bg-blue-light skip-link fixed pin-t bg-white no-underline uppercase rounded-b text-sm font-bold p-2"
+      href="#content"
+    >Skip to content</a>
+    <nav
+      class="relative flex items-center p-2"
+      role="navigation"
+    >
       <slot name="logo"></slot>
 
       <div class=" flex-1 flex items-center owl-x">
-        <nuxt-link class="hidden lg:block transition no-underline text-on-dark-secondary hover:text-fuchsia rounded-full leading-normal py-1 px-3 text-14 font-normal tracking-wide px-4 leading-normal text-shadow" active-class="text-blue-light text-shadow bg-primary " :to="link.url" v-for="link in menu.intern.links" :key="link.text">{{link.text}}</nuxt-link>
+
+        <template v-for="link in menu.intern.links">
+          <a
+            v-if="link.url.includes('http')"
+            class="hidden lg:block transition no-underline text-on-dark-secondary hover:text-fuchsia rounded-full leading-normal py-1 px-3 text-14 font-normal tracking-wide px-4 leading-normal text-shadow"
+            active-class="text-blue-light text-shadow bg-primary "
+            :href="link.url"
+            :key="link.text"
+          >{{link.text}}</a>
+
+          <nuxt-link
+            v-else
+            class="hidden lg:block transition no-underline text-on-dark-secondary hover:text-fuchsia rounded-full leading-normal py-1 px-3 text-14 font-normal tracking-wide px-4 leading-normal text-shadow"
+            active-class="text-blue-light text-shadow bg-primary "
+            :to="link.url"
+            :key="link.text"
+          >{{link.text}}</nuxt-link>
+
+        </template>
       </div>
 
       <div class="w-1/3 xl:relative">
@@ -28,9 +52,16 @@
           </template> -->
 
           <div class="block md:hidden">
-            <Button ref="open" @click="open('mobileNav')" aria-live="assertive">
+            <Button
+              ref="open"
+              @click="open('mobileNav')"
+              aria-live="assertive"
+            >
               <span class="xs:hidden">Menu</span>
-              <svg slot="end" class="w-6 h-6 p-1">
+              <svg
+                slot="end"
+                class="w-6 h-6 p-1"
+              >
                 <use xlink:href="#burger"></use>
               </svg>
             </Button>
@@ -38,10 +69,21 @@
           </div>
 
         </div>
-        <div v-if="mobileNav" class="fixed pin bg-primary-dark z-30 opacity-64" @click="close"></div>
+        <div
+          v-if="mobileNav"
+          class="fixed pin bg-primary-dark z-30 opacity-64"
+          @click="close"
+        ></div>
 
-        <transition name="menu" @after-enter="focusClose" @after-leave="focusOpen">
-          <div v-if="mobileNav" class="absolute w-full xl:m-0 pin-r pin-t z-40  p-2">
+        <transition
+          name="menu"
+          @after-enter="focusClose"
+          @after-leave="focusOpen"
+        >
+          <div
+            v-if="mobileNav"
+            class="absolute w-full xl:m-0 pin-r pin-t z-40  p-2"
+          >
             <div class="relative shadow-blue rounded xl:-mr-2 xl:-mt-2 overflow-hidden">
               <!--  <div class="flex justify-end items-center border-b-lg owl-x p-2 bg-primary-dark rounded">
                 <nuxt-link @click.native="close" to="/user/" class="inline-block flex-1 flex no-underline items-center text-on-dark-secondary hover:text-on-dark-primary transition pl-4" v-if="user">
@@ -54,43 +96,87 @@
 
               </div>-->
               <div class="absolute pin-r pin-t m-4  m-2 ">
-                <icon-button class="text-blue-lightest" @click="close"></icon-button>
+                <icon-button
+                  class="text-blue-lightest"
+                  @click="close"
+                ></icon-button>
               </div>
 
-              <div class="intern pt-8 pb-4 px-6 bg-primary gradient" v-if="menu && menu.intern">
+              <div
+                class="intern pt-8 pb-4 px-6 bg-primary gradient"
+                v-if="menu && menu.intern"
+              >
                 <Overline dark>{{menu.intern.title}}</Overline>
                 <ul class="list-reset py-2">
-                  <li class="text-base" v-for="link in menu.intern.links" :key="link.text">
-                    <nuxt-link @click.native="close" :to="link.url" class="no-underline py-2 block group">
+                  <li
+                    class="text-base"
+                    v-for="link in menu.intern.links"
+                    :key="link.text"
+                  >
+                    <nuxt-link
+                      @click.native="close"
+                      :to="link.url"
+                      class="no-underline py-2 block group"
+                    >
                       <div class="flex flex-wrap items-center">
                         <div class="transition rounded-full bg-primary-dark group-hover:bg-primary-dark w-6 h-6 mr-4 flex items-center justify-center">
-                          <svg class="transition fill-fuchsia group-hover:fill-fuchsia-lightest h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                          <svg
+                            class="transition fill-fuchsia group-hover:fill-fuchsia-lightest h-3 w-3"
+                            viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
                             <path d="M0 11l2-2 5 5L18 3l2 2L7 18z"></path>
                           </svg>
                         </div>
                         <div class="flex-1 flex justify-between leading-normal flex-wrap">
                           <span class="transition w-full sm:w-auto text-on-dark-primary group-hover:text-white font-medium tracking-wide pr-8">{{link.text}}</span>
-                          <span class="transition text-on-dark-muted group-hover:text-blue-dark inline-block font-base max-w-xs" v-if="link.desc" v-html="link.desc"></span>
+                          <span
+                            class="transition text-on-dark-muted group-hover:text-blue-dark inline-block font-base max-w-xs"
+                            v-if="link.desc"
+                            v-html="link.desc"
+                          ></span>
                         </div>
                       </div>
                     </nuxt-link>
                   </li>
                 </ul>
               </div>
-              <div v-if="menu && menu.social" class="intern p-6 bg-primary-dark">
+              <div
+                v-if="menu && menu.social"
+                class="intern p-6 bg-primary-dark"
+              >
                 <Overline dark>{{menu.social.title}}</Overline>
                 <ul class="list-reset py-2">
-                  <li class="text-base" v-if="menu && menu.social.links" v-for="link in menu.social.links" :key="link.text">
-                    <a v-if="link.url.includes('https')" :href="link.url" target="_blank" rel="noopener" class="no-underline py-2 block group">
+                  <li
+                    class="text-base"
+                    v-if="menu && menu.social.links"
+                    v-for="link in menu.social.links"
+                    :key="link.text"
+                  >
+                    <a
+                      v-if="link.url.includes('https')"
+                      :href="link.url"
+                      target="_blank"
+                      rel="noopener"
+                      class="no-underline py-2 block group"
+                    >
                       <div class="flex items-center">
                         <div class="transition rounded-full bg-primary group-hover:bg-primary-light w-6 h-6 mr-4 flex items-center justify-center">
-                          <svg class="transition fill-blue-lightest h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                          <svg
+                            class="transition fill-blue-lightest h-3 w-3"
+                            viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
                             <path d="M0 11l2-2 5 5L18 3l2 2L7 18z"></path>
                           </svg>
                         </div>
                         <div class="flex-1 flex flex-wrap justify-between leading-normal">
                           <span class="transition w-full sm:w-auto text-on-dark-secondary group-hover:text-on-dark-primary font-medium tracking-wide">{{link.text}}</span>
-                          <span class="transition text-on-dark-secondary group-hover:text-on-dark-primary inline-block font-base max-w-xs" v-if="link.desc" v-html="link.desc"></span>
+                          <span
+                            class="transition text-on-dark-secondary group-hover:text-on-dark-primary inline-block font-base max-w-xs"
+                            v-if="link.desc"
+                            v-html="link.desc"
+                          ></span>
                         </div>
                       </div>
                     </a>
@@ -106,50 +192,47 @@
 </template>
 
 <script>
-import IconButton from '@/components/icon-button'
-import FocusLock from 'vue-focus-lock';
-import {mapState, mapGetters} from 'vuex'
+  import IconButton from "@/components/icon-button";
+  import FocusLock from "vue-focus-lock";
+  import { mapState, mapGetters } from "vuex";
 
-export default {
-  components: {
-    FocusLock,IconButton
-  },
-  computed: {
-    ...mapGetters([
-      'hasUser'
-    ]),
-    ...mapState({
-      menu: state => state.menu.menu,
-      user: state => state.user
-    })
-  },
-  data() {
-    return {
-      showUserMenu: false,
-      mobileNav: false,
-      showNav: false
+  export default {
+    components: {
+      FocusLock,
+      IconButton
+    },
+    computed: {
+      ...mapGetters(["hasUser"]),
+      ...mapState({
+        menu: state => state.menu.menu,
+        user: state => state.user
+      })
+    },
+    data() {
+      return {
+        showUserMenu: false,
+        mobileNav: false,
+        showNav: false
+      };
+    },
+    methods: {
+      handleKey(e) {
+        if (event.keyCode !== 27) return;
+        this.close();
+      },
+      close() {
+        this.showUserMenu = false;
+        this.mobileNav = false;
+        document.removeEventListener("keyup", this.handleKey);
+      },
+      open(menu) {
+        this[menu] = true;
+        document.addEventListener("keyup", this.handleKey);
+      },
+      focusOpen() {},
+      focusClose() {}
     }
-  },
-  methods: {
-    handleKey(e) {
-      if (event.keyCode !== 27) return
-      this.close()
-    },
-    close() {
-      this.showUserMenu = false
-      this.mobileNav = false
-      document.removeEventListener('keyup', this.handleKey)
-    },
-    open(menu) {
-      this[menu] = true
-      document.addEventListener('keyup', this.handleKey)
-    },
-    focusOpen() {
-    },
-    focusClose() {
-    },
-  }
-}
+  };
 </script>
 
 <style scoped>

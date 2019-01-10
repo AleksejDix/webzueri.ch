@@ -5,6 +5,11 @@ export const state = () => ({
       title: "Information",
       links: [
         {
+          text: "Vue.js Workshop",
+          desc: "Vue.js Workshop <strong>with Chris Fritz</strong>",
+          url: "https://ti.to/webzurich/vue-chris-fritz/"
+        },
+        {
           text: "News",
           desc: "latest <strong>community stories</strong>",
           url: "/news"
