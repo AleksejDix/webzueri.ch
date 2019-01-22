@@ -7,7 +7,7 @@ export const state = () => ({
         {
           text: "Vue.js Workshop",
           desc: "Vue.js Workshop <strong>with Chris Fritz</strong>",
-          url: "https://ti.to/webzurich/vue-chris-fritz/"
+          url: "https://eventfrog.ch/vue"
         },
         {
           text: "News",

@@ -18,12 +18,14 @@
             </p>
           </div>
           <div class="lg:w-3/5">
-            <div class="md:flex md:flex-wrap -m-2">
+            <div
+              class="md:flex md:flex-wrap -m-2"
+              v-if="menu && menu.social && menu.social.links"
+            >
               <a
                 :href="item.url"
                 target="_blank"
                 class=" block md:flex md:flex-column w-full md:w-1/2 p-2 no-underline"
-                v-if="menu && menu.social && menu.social.links"
                 v-for="item in menu.social.links"
                 :key="item.url"
               >
@@ -59,7 +61,10 @@
           v-if="event"
         >
           <h2 class="leading-tight text-21 md:text-4xl text-on-dark-primary text-shadow font-display font-bold tracking-wide">Next Event: {{ event.date | date }}</h2>
-          <div class="flex-no-shrink">
+          <div
+            class="flex-no-shrink"
+            v-if="event.meetupLink"
+          >
             <Button
               :href="event.meetupLink"
               rel="noopener"

@@ -113,10 +113,40 @@
                     v-for="link in menu.intern.links"
                     :key="link.text"
                   >
-                    <nuxt-link
+                    <a
+                      v-if="link.url.includes('http')"
                       @click.native="close"
-                      :to="link.url"
                       class="no-underline py-2 block group"
+                      :href="link.url"
+                      :key="link.text"
+                    >
+                      <div class="flex flex-wrap items-center">
+                        <div class="transition rounded-full bg-primary-dark group-hover:bg-primary-dark w-6 h-6 mr-4 flex items-center justify-center">
+                          <svg
+                            class="transition fill-fuchsia group-hover:fill-fuchsia-lightest h-3 w-3"
+                            viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path d="M0 11l2-2 5 5L18 3l2 2L7 18z"></path>
+                          </svg>
+                        </div>
+                        <div class="flex-1 flex justify-between leading-normal flex-wrap">
+                          <span class="transition w-full sm:w-auto text-on-dark-primary group-hover:text-white font-medium tracking-wide pr-8">{{link.text}}</span>
+                          <span
+                            class="transition text-on-dark-muted group-hover:text-blue-dark inline-block font-base max-w-xs"
+                            v-if="link.desc"
+                            v-html="link.desc"
+                          ></span>
+                        </div>
+                      </div>
+                    </a>
+
+                    <nuxt-link
+                      v-else
+                      @click.native="close"
+                      class="no-underline py-2 block group"
+                      :to="link.url"
+                      :key="link.text"
                     >
                       <div class="flex flex-wrap items-center">
                         <div class="transition rounded-full bg-primary-dark group-hover:bg-primary-dark w-6 h-6 mr-4 flex items-center justify-center">
@@ -146,10 +176,12 @@
                 class="intern p-6 bg-primary-dark"
               >
                 <Overline dark>{{menu.social.title}}</Overline>
-                <ul class="list-reset py-2">
+                <ul
+                  class="list-reset py-2"
+                  v-if="menu && menu.social.links"
+                >
                   <li
                     class="text-base"
-                    v-if="menu && menu.social.links"
                     v-for="link in menu.social.links"
                     :key="link.text"
                   >
