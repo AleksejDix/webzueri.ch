@@ -778,13 +778,13 @@ module.exports = {
   */
 
   shadows: {
-    blue: `0 0 0 1px ${colors['blue']}, 0 5px 15px rgba(0,0,0,1)`,
-    'blue-darker': `0 0 0 1px ${colors['blue-darker']}, 0 5px 15px rgba(0,0,0,1)`,
-    yellow: `0 0 0 1px ${colors['yellow']}, 0 5px 15px rgba(0,0,0,1)`,
-    violet: `0 0 0 1px ${colors['violet']}, 0 5px 15px rgba(0,0,0,1)`,
-    green: `0 0 0 1px ${colors['green']}, 0 5px 15px rgba(0,0,0,1)`,
-    red: `0 0 0 1px ${colors['red']}, 0 5px 15px rgba(0,0,0,1)`,
-    fuchsia: `0 0 0 1px ${colors['fuchsia']}, 0 5px 15px rgba(0,0,0,1)`,
+    blue: `0 -1px 0 0 ${colors['blue']}, 0 5px 15px rgba(0,0,0,1)`,
+    'blue-darker': `0 -1px 0 0 ${colors['blue-darker']}, 0 5px 15px rgba(0,0,0,1)`,
+    yellow: `0 -1px 0 0 ${colors['yellow']}, 0 5px 15px rgba(0,0,0,1)`,
+    violet: `0 -1px 0 0 ${colors['violet']}, 0 5px 15px rgba(0,0,0,1)`,
+    green: `0 -1px 0 0 ${colors['green']}, 0 5px 15px rgba(0,0,0,1)`,
+    red: `0 -1px 0 0 ${colors['red']}, 0 5px 15px rgba(0,0,0,1)`,
+    fuchsia: `0 -1px 0 0 ${colors['fuchsia']}, 0 5px 15px rgba(0,0,0,1)`,
     default: "0 4px 6px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08)",
     md: "0 7px 14px rgba(50,50,93,.1), 0 3px 6px rgba(0,0,0,.08)",
     lg: "0 15px 35px rgba(50,50,93,.1), 0 5px 15px rgba(0,0,0,.07)",
@@ -814,7 +814,8 @@ module.exports = {
     "20": 20,
     "30": 30,
     "40": 40,
-    "50": 50
+    "50": 50,
+    "60": 60
   },
 
   /*
