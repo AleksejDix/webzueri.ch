@@ -1,0 +1,13 @@
+query workshop($id: ID!) {
+  workshop(where: { id: $id }) {
+    id
+    name
+    speakers {
+      id
+      name
+      speakerPicture {
+        url
+      }
+    }
+  }
+}

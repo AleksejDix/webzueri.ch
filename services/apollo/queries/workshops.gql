@@ -1,0 +1,13 @@
+query workshops {
+  workshops {
+    id
+    name
+    speakers {
+      id
+      name
+      speakerPicture {
+        url
+      }
+    }
+  }
+}
