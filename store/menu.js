@@ -10,11 +10,6 @@ export const state = () => ({
           url: "https://eventfrog.ch/vue"
         },
         {
-          text: "News",
-          desc: "latest <strong>community stories</strong>",
-          url: "/news"
-        },
-        {
           text: "Talks",
           desc: "speeches given at <strong>webzurich</strong>",
           url: "/events/1"
