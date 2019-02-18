@@ -1,28 +1,28 @@
 <template functional>
   <div
     :class="{
-    'bg-green-lightest' : props.color === 'green',
-    'bg-red-lightest' : props.color === 'red',
-    'bg-pink-lightest' : props.color === 'pink',
-    'bg-blue-lightest' : props.color === 'blue',
-    'bg-orange-lightest' : props.color === 'orange',
-    'bg-violet-lightest' : props.color === 'violet',
-    'bg-yellow-lightest' : props.color === 'yellow',
-    'bg-fuchsia-lightest' : props.color === 'fuchsia'
+    'border-green' : props.color === 'green',
+    'border-red' : props.color === 'red',
+    'border-pink' : props.color === 'pink',
+    'border-blue' : props.color === 'blue',
+    'border-orange' : props.color === 'orange',
+    'border-violet' : props.color === 'violet',
+    'border-yellow' : props.color === 'yellow',
+    'border-fuchsia' : props.color === 'fuchsia'
   }"
-    class="leading-none inline-flex rounded-full text-9 uppercase tracking-wide font-bold text-white align-center p-1 items-center"
+    class="border leading-none inline-flex rounded-full text-9 uppercase tracking-wide font-book text-white align-center p-1 items-center"
   >
     <div
       class="px-2"
       :class="{
-      'text-green-dark' : props.color === 'green',
-      'text-red-dark' : props.color === 'red',
-      'text-pink-dark' : props.color === 'pink',
-      'text-blue-dark' : props.color === 'blue',
-      'text-orange-dark' : props.color === 'orange',
-      'text-yellow-dark' : props.color === 'yellow',
-      'text-violet-dark' : props.color === 'violet',
-      'text-fuchsia-dark' : props.color === 'fuchsia',
+      'text-green' : props.color === 'green',
+      'text-red' : props.color === 'red',
+      'text-pink' : props.color === 'pink',
+      'text-blue' : props.color === 'blue',
+      'text-orange' : props.color === 'orange',
+      'text-yellow' : props.color === 'yellow',
+      'text-violet' : props.color === 'violet',
+      'text-fuchsia' : props.color === 'fuchsia',
     }"
     >
       <slot></slot>
