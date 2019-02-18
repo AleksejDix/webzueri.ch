@@ -1,16 +1,4 @@
-import hsluv from 'hsluv'
-
-function hsla (hue, saturation, light, a = 1) {
-
-  function floatToInt(f) {
-    return Math.round(f * 255);
-  }
-
-  const [h, s, l] = hsluv.hsluvToRgb([hue, saturation, light])
-
-  return `rgba(${floatToInt(h)}, ${floatToInt(s)}, ${floatToInt(l)}, ${a})`
-}
-
+import { hsla } from './utils/color'
 /*
 
 Tailwind - The Utility-First CSS Framework
@@ -59,10 +47,13 @@ let colors = {
   transparent: "transparent",
 
   "current-color": "currentColor",
-
   "text": "#442C2E",
-
   "surface": "#f7f7f8",
+
+  "mirage": hsla(229,22,11,1),
+  "black-pearl": hsla(235,16,14,1),
+  "ebony-clay": hsla(233,19,19,1),
+  "zircon": hsla(179,16,89,1),
 
   "on-light-muted":     hsla(0,0,0,.38),
   "on-light-secondary": hsla(0,0,0,.54),
@@ -107,7 +98,6 @@ let colors = {
   "blue-dark": hsla(250,100,50),
   "blue-darker": hsla(250,100,40),
   "blue-darkest": hsla(250,100,30),
-
 
   "violet-lightest": hsla(275,100,90),
   "violet-light": hsla(275,100,70),
@@ -778,17 +768,17 @@ module.exports = {
   */
 
   shadows: {
-    blue: `0 -1px 0 0 ${colors['blue']}, 0 5px 15px rgba(0,0,0,1)`,
-    'blue-darker': `0 -1px 0 0 ${colors['blue-darker']}, 0 5px 15px rgba(0,0,0,1)`,
-    yellow: `0 -1px 0 0 ${colors['yellow']}, 0 5px 15px rgba(0,0,0,1)`,
-    violet: `0 -1px 0 0 ${colors['violet']}, 0 5px 15px rgba(0,0,0,1)`,
-    green: `0 -1px 0 0 ${colors['green']}, 0 5px 15px rgba(0,0,0,1)`,
-    red: `0 -1px 0 0 ${colors['red']}, 0 5px 15px rgba(0,0,0,1)`,
-    fuchsia: `0 -1px 0 0 ${colors['fuchsia']}, 0 5px 15px rgba(0,0,0,1)`,
-    default: "0 4px 6px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08)",
+    blue: `0 -1px 0 0 ${colors['blue']}, 0 5px 15px rgba(0,0,0,.5)`,
+    'blue-darker': `0 -1px 0 0 ${colors['blue-darker']}, 0 5px 15px rgba(0,0,0,.5)`,
+    yellow: `0 -1px 0 0 ${colors['yellow']}, 0 5px 15px rgba(0,0,0,.5)`,
+    violet: `0 -1px 0 0 ${colors['violet']}, 0 5px 15px rgba(0,0,0,.5)`,
+    green: `0 -1px 0 0 ${colors['green']}, 0 5px 15px rgba(0,0,0,.5)`,
+    red: `0 -1px 0 0 ${colors['red']}, 0 5px 15px rgba(0,0,0,.5)`,
+    fuchsia: `0 -1px 0 0 ${colors['fuchsia']}, 0 5px 15px rgba(0,0,0,.5)`,
+    default: "0 4px 6px rgba(50, 50, 93,.11), 0 1px 3px rgba(0,0,0,.08)",
     md: "0 7px 14px rgba(50,50,93,.1), 0 3px 6px rgba(0,0,0,.08)",
     lg: "0 15px 35px rgba(50,50,93,.1), 0 5px 15px rgba(0,0,0,.07)",
-    inner: "inset 0 2px 4px 0 rgba(0,0,0,0.16)",
+    inner: "inset 0 0 4px 0 rgba(0,0,0,0.25)",
     outline: "0 0 0 3px rgba(52,144,220,0.5)",
     focus: `inset 0 0 0 2px ${hsla(253,100,60)}`,
     none: "none"
