@@ -20,7 +20,7 @@
     <div class="w-full lg:w-1/4 lg:relative">
       <div class="lg:absolute lg:pin bg-primary-dark flex flex-col h-full overflow-hidden">
         <div class="p-4 text-grey-dark border-b border-primary-light">
-          Playlist • {talks.length}
+          Playlist • <span v-if="talks">{{talks.length}}</span>
         </div>
         <div class="bg-primary overflow-auto flex-1 h-full">
           <ul
