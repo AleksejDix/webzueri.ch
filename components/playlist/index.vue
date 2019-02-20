@@ -10,7 +10,8 @@
           class="w-full h-full"
           type="text/html"
           allowfullscreen="allowfullscreen"
-          :src="`https://www.youtube.com/embed/${current}?modestbranding=1&showinfo=0`"
+          v-if="talks[0]"
+          :src="`https://www.youtube.com/embed/${talks[current].youtubecode}?modestbranding=1&showinfo=0`"
           frameborder="0"
         />
 
@@ -24,9 +25,10 @@
         <div class="bg-primary overflow-auto flex-1 h-full">
           <ul class="list-reset ">
             <li
-              v-for="video in talks"
+              v-for="(video, index) in talks"
               :key="video.id"
               @click="current = video.youtubecode"
+              :class="{'bg-primary-dark': index === current}"
               class="p-4 border-b border-primary-light cursor-pointer text-on-dark-secondary hover:text-white hover:bg-primary-dark"
             >
               <div class="flex items-start">
@@ -73,7 +75,7 @@
     components: { Ratio },
     data() {
       return {
-        current: "",
+        current: 0,
         talks: []
       };
     },
