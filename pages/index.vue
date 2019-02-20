@@ -3,6 +3,7 @@
     id="content"
     class="bg-primary-light pattern"
   >
+
     <section class="bg-primary-dark py-12">
       <div class="container mx-auto px-2">
         <div class="lg:flex">
@@ -148,7 +149,11 @@
         </div>
       </section>
     </div>
-    <section-recent-videos />
+
+    <div class="container mx-auto p-4">
+      <playlist></playlist>
+    </div>
+
     <section-feedbacks />
   </div>
 </template>
@@ -158,12 +163,17 @@
   import Talk from "@/components/Talk";
   import Spinner from "@/components/feedback/Spinner";
   import SectionFeedbacks from "@/components/sections/feedbacks/";
-  import SectionRecentVideos from "@/components/sections/recent-videos/";
   import QueryHome from "~/services/apollo/queries/home";
+  import Playlist from "@/components/playlist";
   import { mapState } from "vuex";
 
   export default {
-    components: { Talk, Spinner, SectionFeedbacks, SectionRecentVideos },
+    components: {
+      Talk,
+      Spinner,
+      SectionFeedbacks,
+      Playlist
+    },
     data() {
       return {
         users: [],

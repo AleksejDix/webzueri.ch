@@ -1,0 +1,20 @@
+query videos {
+  talks (
+    orderBy: createdAt_DESC,
+    where: {
+      status: PUBLISHED,
+      youtubecode_not: null,
+    }
+  ) {
+    id
+    speakers {
+      id
+      name
+      speakerPicture {
+        url
+      }
+    }
+    name
+    youtubecode
+  }
+}
