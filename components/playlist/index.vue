@@ -30,7 +30,7 @@
             <li
               v-for="(video, index) in talks"
               :key="video.id"
-              @click="current = video.youtubecode"
+              @click="current = index"
               :class="{'bg-primary-dark': index === current}"
               class="p-4 border-b border-primary-light cursor-pointer text-on-dark-secondary hover:text-white hover:bg-primary-dark"
             >
