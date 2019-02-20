@@ -79,11 +79,13 @@
             :active="$apollo.loading"
           />
           <div v-else>
-            <div class="xl:flex">
+            <div
+              class="xl:flex"
+              v-if="talks"
+            >
               <div
                 class="xl:flex-1 xl:w-1/3 p-4"
                 v-for="talk in event.talks"
-                v-if="talk"
                 :key="talk.id"
               >
                 <talk

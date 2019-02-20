@@ -20,10 +20,13 @@
     <div class="w-full lg:w-1/4 lg:relative">
       <div class="lg:absolute lg:pin bg-primary-dark flex flex-col h-full overflow-hidden">
         <div class="p-4 text-grey-dark border-b border-primary-light">
-          Playlist
+          Playlist • {talks.length}
         </div>
         <div class="bg-primary overflow-auto flex-1 h-full">
-          <ul class="list-reset ">
+          <ul
+            class="list-reset"
+            v-if="talks"
+          >
             <li
               v-for="(video, index) in talks"
               :key="video.id"
@@ -32,7 +35,10 @@
               class="p-4 border-b border-primary-light cursor-pointer text-on-dark-secondary hover:text-white hover:bg-primary-dark"
             >
               <div class="flex items-start">
-                <div class="flex-no-shrink mr-4">
+                <div
+                  class="flex-no-shrink mr-4"
+                  v-if="video.speakers"
+                >
                   <div
                     v-for="speaker in video.speakers"
                     :key="speaker.id"
@@ -45,7 +51,6 @@
                   </div>
                 </div>
                 <div class="flex-1 leading-tight">
-
                   <div
                     v-for="speaker in video.speakers"
                     :key="speaker.id"
