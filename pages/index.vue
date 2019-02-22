@@ -122,24 +122,22 @@
               <header>
                 <h3 class="text-white p-4 text-12 font-display font-bold tracking-wide uppercase">sponsored by:</h3>
               </header>
-              <ul class="flex flex-wrap list-reset">
-                <li
-                  class="p-2 flex-no-grow"
+
+              <div class="flex flex-wrap -ml-8 -mt-8 p-4">
+                <a
                   v-for="sponsor in event.sponsors"
                   :key="sponsor.id"
+                  class="pt-8 pl-8 "
+                  :href="sponsor.website"
                 >
-                  <a
-                    class="p-4 rounded-lg block mr-8"
-                    :href="sponsor.website"
+                  <img
+                    style="object-fit: scale-down;"
+                    class="max-w-xs transition w-auto opacity-64 hover:opacity-100 h-16"
+                    :src="sponsor.logo.url"
+                    :alt="sponsor.name"
                   >
-                    <img
-                      class="block transition h-20 opacity-64 hover:opacity-100 object-contain"
-                      :src="sponsor.logo.url"
-                      :alt="sponsor.name"
-                    >
-                  </a>
-                </li>
-              </ul>
+                </a>
+              </div>
             </section>
           </div>
         </div>
