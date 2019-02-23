@@ -1,4 +1,13 @@
-{
+fragment SpeakerFields on Speaker {
+  id
+  name
+  speakerPicture {
+    url
+    fileName
+  }
+}
+
+query home {
   events(orderBy: date_DESC, first: 1, where: { status: PUBLISHED }) {
     status
     id
@@ -19,13 +28,7 @@
       abstract
       youtubecode
       speakers {
-        id
-        name
-        bio
-        speakerPicture {
-          url
-          fileName
-        }
+        ...SpeakerFields
       }
     }
     venue {
@@ -33,4 +36,34 @@
       name
     }
   }
+  talks (
+    orderBy: createdAt_DESC,
+    where: {
+      status: PUBLISHED,
+      youtubecode_not: null,
+    }
+  ) {
+    id
+    speakers {
+      ...SpeakerFields
+    }
+    name
+    youtubecode
+  }
+  feedbacks {
+    id
+    quote
+    speaker {
+      ...SpeakerFields
+    }
+    sponsor {
+      name
+      logo {
+        url
+      }
+    }
+  }
 }
+
+
+

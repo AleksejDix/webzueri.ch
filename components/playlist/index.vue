@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-wrap rounded-lg overflow-hidden shadow-blue">
-    <div class="w-full lg:w-3/4">
+    <div class="w-full lg:w-3/4 sticky pin-t">
       <ratio
         class="bg-black"
         :width="16"
@@ -10,19 +10,17 @@
           class="w-full h-full"
           type="text/html"
           allowfullscreen="allowfullscreen"
-          v-if="talks[0]"
-          :src="`https://www.youtube.com/embed/${talks[current].youtubecode}?modestbranding=1&showinfo=0`"
+          :src="currentVideoURL"
           frameborder="0"
         />
-
       </ratio>
     </div>
     <div class="w-full lg:w-1/4 lg:relative">
-      <div class="lg:absolute lg:pin bg-primary-dark flex flex-col h-full overflow-hidden">
+      <div class="lg:absolute lg:pin bg-primary-dark flex flex-col  overflow-hidden max-h-128 lg:max-h-none h-full">
         <div class="p-4 text-grey-dark border-b border-primary-light">
           Playlist • <span v-if="talks">{{talks.length}}</span>
         </div>
-        <div class="bg-primary overflow-auto flex-1 h-full">
+        <div class="bg-primary overflow-auto flex-1 h-full ">
           <ul
             class="list-reset"
             v-if="talks"
@@ -74,20 +72,21 @@
 
 <script>
   import Ratio from "@/components/layout/Ratio";
-  import QueryVideos from "~/services/apollo/queries/videos";
 
   export default {
     components: { Ratio },
+    props: ["talks"],
     data() {
       return {
-        current: 0,
-        talks: []
+        current: 0
       };
     },
-    apollo: {
-      talks: {
-        prefetch: true,
-        query: QueryVideos
+    computed: {
+      currentVideoURL() {
+        const first = this.talks[this.current];
+        if (!first) return;
+        const { youtubecode } = first;
+        return `https://www.youtube.com/embed/${youtubecode}?modestbranding=1&showinfo=0`;
       }
     }
   };

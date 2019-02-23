@@ -151,10 +151,9 @@
     </div>
 
     <div class="container mx-auto p-4">
-      <playlist></playlist>
+      <playlist :talks="talks" />
     </div>
-
-    <section-feedbacks />
+    <section-feedbacks :feedbacks="feedbacks" />
   </div>
 </template>
 
@@ -176,10 +175,9 @@
     },
     data() {
       return {
-        users: [],
         events: [],
+        feedbacks: [],
         active: false,
-        talksCount: 0,
         talks: []
       };
     },
@@ -191,7 +189,14 @@
     apollo: {
       events: {
         prefetch: true,
-        query: QueryHome
+        query: QueryHome,
+        result(response) {
+          const { data } = response;
+          const { events, talks, feedbacks } = data;
+          this.events = events;
+          this.talks = talks;
+          this.feedbacks = feedbacks;
+        }
       }
     },
     filters: {
