@@ -6,8 +6,8 @@
 
     <section class="bg-primary-dark py-12">
       <div class="container mx-auto px-2">
-        <div class="lg:flex">
-          <div class="lg:w-2/5 px-2 pb-8">
+        <div class="lg:flex items-center">
+          <div class="lg:w-2/5 px-2">
             <h1 class="mb-4 leading-tight text-3xl md:text-4xl text-base text-on-dark-primary text-shadow font-display font-bold tracking-wide uppercase">People making
               <br>the web in Zürich
             </h1>
@@ -16,11 +16,14 @@
               <br>with your local
               <strong>web professionals</strong>
               <br>and enthusiasts!
+              <div class="py-4">
+                <Button href="https://docs.google.com/forms/d/e/1FAIpQLSfTaa-_wOFOQv3dZ7Ord9TJ3vN8wNdzUY5VQqzFiTg_WMQwEw/viewform?c=0&w=1">Submit your talk</Button>
+              </div>
             </p>
           </div>
           <div class="lg:w-3/5">
             <div
-              class="md:flex md:flex-wrap -m-2"
+              class="md:flex md:flex-wrap -m-2 p-2"
               v-if="menu && menu.social && menu.social.links"
             >
               <a
@@ -56,7 +59,7 @@
       </div>
     </section>
     <div class="">
-      <section class="container mx-auto p-2 rounded">
+      <section class="container mx-auto p-4 rounded">
         <header
           class="py-8 flex flex-col md:flex-row items-start md:justify-between md:items-center px-2 owl md:owl-none"
           v-if="event"
