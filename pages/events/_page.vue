@@ -24,7 +24,7 @@
           </div>
         </div>
       </section>
-      <div class="container mx-auto">
+      <div class="container mx-auto p-4">
         <div
           v-if="$apollo.loading"
           class="container mx-auto bg-primary-dark rounded-lg p-2"
@@ -36,19 +36,19 @@
           class="owl"
         >
           <div
-            class="bg-primary-dark rounded-lg shadow-blue-darker"
+            class="bg-primary-dark rounded-lg shadow-blue-darker "
             v-for="event in events"
             :key="event.id"
-            v-if="event.talks.length > 0"
+
           >
-            <ul class="list-reset xl:flex xl:flex-wrap p-2 -m-2">
+            <ul class="list-reset xl:flex xl:flex-wrap p-2 -m-2"  v-if="event.talks.length > 0">
               <li
                 class="p-4 xl:w-1/3"
                 v-for="talk in event.talks"
-                v-if="talk"
                 :key="talk.id"
               >
                 <talk
+                  v-if="talk"
                   class="h-full"
                   :talk="talk"
                   :date="event.date"
