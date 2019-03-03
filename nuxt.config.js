@@ -33,7 +33,8 @@ export default {
     meta: [
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { hid: "description", name: "description", content: pkg.description }
+      { hid: "description", name: "description", content: pkg.description },
+      { hid: "google-site-verification", name: "google-site-verification", content: "IVcT2HAuAxv-lQubqO2BqwmRDjl4IFoNMBDGBPyELH0" }
     ],
     link: [
       { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
