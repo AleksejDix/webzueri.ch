@@ -81,8 +81,9 @@
 
             <div
               class="flex-no-shrink p-4 md:ml-auto"
+              v-if="event.meetupLink"
             >
-            <Button
+              <Button
                 :href="event.meetupLink"
                 rel="noopener"
                 target="_blank"
