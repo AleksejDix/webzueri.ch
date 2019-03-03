@@ -3,7 +3,6 @@
     id="content"
     class="bg-primary-light pattern"
   >
-
     <section class="bg-primary-dark py-12">
       <div class="container mx-auto px-2">
         <div class="lg:flex items-center">
@@ -58,90 +57,110 @@
         </div>
       </div>
     </section>
-    <div class="">
+    <div>
       <section class="container mx-auto p-4 rounded">
-        <header
-          class="py-8 flex flex-col md:flex-row items-start md:justify-between md:items-center px-2 owl md:owl-none"
-          v-if="event"
-        >
-          <h2 class="leading-tight text-21 md:text-4xl text-on-dark-primary text-shadow font-display font-bold tracking-wide">Next Event: {{ event.date | date }}</h2>
-          <div
-            class="flex-no-shrink"
-            v-if="event.meetupLink"
-          >
-            <Button
-              :href="event.meetupLink"
-              rel="noopener"
-              target="_blank"
-            >Secure a seat</Button>
-          </div>
-        </header>
-        <div class="p-2 bg-primary-dark shadow-blue-darker rounded-lg">
-          <Spinner
-            v-if="$apollo.loading"
-            :active="$apollo.loading"
-          />
-          <div v-else>
-            <div
-              class="xl:flex"
-              v-if="talks"
-            >
-              <div
-                class="xl:flex-1 xl:w-1/3 p-4"
-                v-for="talk in event.talks"
-                :key="talk.id"
-              >
-                <talk
-                  class="h-full"
-                  :talk="talk"
-                  :date="event.date"
-                ></talk>
-              </div>
-              <article
-                class="w-full flex-1 xl:w-1/3 p-4"
-                v-if="event.talks.length < 3"
-              >
-                <div class="p-4 h-full  shadow-violet owl items-center justify-center rounded-lg bg-primary">
-                  <h3 class="text-on-dark-primary text-2xl md:text-3xl leading-tight font-medium">{{3 - event.talks.length }} {{ event.talks.length > 1 ? 'Spots' : 'Spot'}} left</h3>
-                  <p class="text-on-dark-primary leading-normal">Sharing is caring! Why not talk about your latest project, the great tool you found or the problem you just solved recently?</p>
-                  <ul class="list-reset list-bullets text-on-dark-secondary">
-                    <li>Talks are 15 minutes without Q&A</li>
-                    <li>We have HDMI & Thunderbolt available and the resolution is 1080p (1920x1080)</li>
-                  </ul>
-                  <Button href="https://docs.google.com/forms/d/e/1FAIpQLSfTaa-_wOFOQv3dZ7Ord9TJ3vN8wNdzUY5VQqzFiTg_WMQwEw/viewform?c=0&w=1">Submit your talk</Button>
-                  <!-- <Button :to="{
-                    name: 'user-index-status-index-create',
-                      query: {
-                        redirect: 'user-index-status-index-create'
-                      },
-                      params: {
-                        status: 'talk'
-                      }
-                    }">Submit your talk</Button> -->
-                </div>
-              </article>
-            </div>
-            <section>
-              <header>
-                <h3 class="text-white p-4 text-12 font-display font-bold tracking-wide uppercase">sponsored by:</h3>
-              </header>
 
-              <div class="flex flex-wrap -ml-8 -mt-8 p-4">
-                <a
-                  v-for="sponsor in event.sponsors"
-                  :key="sponsor.id"
-                  class="pt-8 pl-8 "
-                  :href="sponsor.website"
-                >
-                  <img
-                    style="object-fit: scale-down;"
-                    class="max-w-xs transition w-auto opacity-64 hover:opacity-100 h-16"
-                    :src="sponsor.logo.url"
-                    :alt="sponsor.name"
-                  >
-                </a>
+
+        <div class="bg-primary-dark shadow-blue-darker rounded-lg"  v-if="event">
+          <header class="md:flex p-4">
+
+
+
+
+            <div class="md:flex">
+              <div class="text-white text-16 font-sans p-4">
+                <Overline>when:</Overline>
+                <span  >{{ event.date | date }}, 18:30</span>
               </div>
-            </section>
+
+              <div class="text-white text-16 font-sans p-4">
+                <Overline>where:</Overline>
+                <a target="_blank" rel="noopener" v-if="event.venue" class="no-underline text-pink-light" :href="event.venue.googleMapsUrl">{{ event.venue.name }} • {{event.venue.street}}  • {{event.venue.zip}}, {{event.venue.city}}</a>
+              </div>
+            </div>
+
+            <div
+              class="flex-no-shrink p-4 md:ml-auto"
+            >
+            <Button
+                :href="event.meetupLink"
+                rel="noopener"
+                target="_blank"
+              >Secure a seat</Button>
+            </div>
+
+
+          </header>
+
+
+
+          <div class="p-2 bg-primary-dark shadow-blue-darker rounded-lg">
+            <Spinner
+              v-if="$apollo.loading"
+              :active="$apollo.loading"
+            />
+            <div v-else>
+              <div
+                class="xl:flex"
+                v-if="talks"
+              >
+                <div
+                  class="xl:flex-1 xl:w-1/3 p-4"
+                  v-for="talk in event.talks"
+                  :key="talk.id"
+                >
+                  <talk
+                    class="h-full"
+                    :talk="talk"
+                    :date="event.date"
+                  ></talk>
+                </div>
+                <article
+                  class="w-full flex-1 xl:w-1/3 p-4"
+                  v-if="event.talks.length < 3"
+                >
+                  <div class="p-4 h-full  shadow-violet owl items-center justify-center rounded-lg bg-primary">
+                    <h3 class="text-on-dark-primary text-2xl md:text-3xl leading-tight font-medium">{{3 - event.talks.length }} {{ event.talks.length > 1 ? 'Spots' : 'Spot'}} left</h3>
+                    <p class="text-on-dark-primary leading-normal">Sharing is caring! Why not talk about your latest project, the great tool you found or the problem you just solved recently?</p>
+                    <ul class="list-reset list-bullets text-on-dark-secondary">
+                      <li>Talks are 15 minutes without Q&A</li>
+                      <li>We have HDMI & Thunderbolt available and the resolution is 1080p (1920x1080)</li>
+                    </ul>
+                    <Button href="https://docs.google.com/forms/d/e/1FAIpQLSfTaa-_wOFOQv3dZ7Ord9TJ3vN8wNdzUY5VQqzFiTg_WMQwEw/viewform?c=0&w=1">Submit your talk</Button>
+                    <!-- <Button :to="{
+                      name: 'dashboard-index-status-index-create',
+                        query: {
+                          redirect: 'dashboard-index-status-index-create'
+                        },
+                        params: {
+                          status: 'talk'
+                        }
+                      }">Submit your talk</Button> -->
+                  </div>
+                </article>
+              </div>
+              <section>
+                <header>
+                  <h3 class="text-white p-4 text-12 font-display font-bold tracking-wide uppercase">sponsored by:</h3>
+                </header>
+
+                <div class="flex flex-wrap -ml-8 -mt-8 p-4">
+                  <a
+                    v-for="sponsor in event.sponsors"
+                    :key="sponsor.id"
+                    class="pt-8 pl-8 "
+                    :href="sponsor.website"
+                  >
+                    <img
+                      style="object-fit: scale-down;"
+                      class="max-w-xs transition w-auto opacity-64 hover:opacity-100 h-16"
+                      :src="sponsor.logo.url"
+                      :alt="sponsor.name"
+                    >
+                  </a>
+                </div>
+              </section>
+            </div>
           </div>
         </div>
         <div class="text-center py-16">
@@ -161,67 +180,122 @@
 </template>
 
 <script>
-  import gql from "graphql-tag";
-  import Talk from "@/components/Talk";
-  import Spinner from "@/components/feedback/Spinner";
-  import SectionFeedbacks from "@/components/sections/feedbacks/";
-  import QueryHome from "~/services/apollo/queries/home";
-  import Playlist from "@/components/playlist";
-  import { mapState } from "vuex";
+import gql from "graphql-tag";
+import Talk from "@/components/Talk";
+import Spinner from "@/components/feedback/Spinner";
+import SectionFeedbacks from "@/components/sections/feedbacks/";
+import QueryHome from "~/services/apollo/queries/home";
+import Playlist from "@/components/playlist";
+import { mapState } from "vuex";
 
-  export default {
-    components: {
-      Talk,
-      Spinner,
-      SectionFeedbacks,
-      Playlist
-    },
-    data() {
-      return {
-        events: [],
-        feedbacks: [],
-        active: false,
-        talks: []
-      };
-    },
-    head() {
-      return {
-        title: "Next Event"
-      };
-    },
-    apollo: {
-      events: {
-        prefetch: true,
-        query: QueryHome,
-        result(response) {
-          const { data } = response;
-          const { events, talks, feedbacks } = data;
-          this.events = events;
-          this.talks = talks;
-          this.feedbacks = feedbacks;
-        }
+export default {
+  components: {
+    Talk,
+    Spinner,
+    SectionFeedbacks,
+    Playlist
+  },
+  data() {
+    return {
+      events: [],
+      feedbacks: [],
+      active: false,
+      talks: []
+    };
+  },
+  head() {
+    return (
+      this.event && {
+        title: "next: " + this.event.title,
+        __dangerouslyDisableSanitizers: ["script"],
+        script: [
+          {
+            innerHTML: JSON.stringify({
+              "@context": "http://www.schema.org",
+              "@type": "Event",
+              name: this.event.title,
+              url: "https://webzueri.ch",
+              description: `We're excited to announce the next web zurich event! Where we will have 3 15 minutes Talks about web`,
+              startDate: this.event.date + "18:30",
+              endDate: this.event.date + "22:00",
+              location: this.event.venue && {
+                "@type": "Place",
+                name: this.event.venue.name,
+                sameAs: "https://zurich.impacthub.ch/de/",
+                address: {
+                  "@type": "PostalAddress",
+                  streetAddress: this.event.venue.street,
+                  addressLocality: this.event.venue.street,
+                  addressRegion: this.event.venue.region,
+                  postalCode: this.event.venue.zip,
+                  addressCountry: this.event.venue.country
+                }
+              },
+              performer: this.event.talks.map(talk => {
+                const speaker = talk.speakers[0];
+                const {
+                  id,
+                  name = "",
+                  speakerPicture: { url: image }
+                } = speaker;
+                console.log(speaker);
+                return {
+                  "@type": "Person",
+                  image: "/examples/jvanzweden_s.jpg",
+                  name,
+                  image,
+                  sameAs: `https://webzueri.ch/speaker/${id}`
+                };
+              }),
+              offers: {
+                "@type": "Offer",
+                description:
+                  this.event.talks.length + " awesome talks about web topics",
+                url: this.event.meetupLink,
+                price: 0,
+                priceCurrency: "CHF"
+              }
+            }),
+            type: "application/ld+json"
+          }
+        ]
       }
-    },
-    filters: {
-      date(value) {
-        if (!value) return "";
-        const date = new Date(value);
-        var options = {
-          weekday: "long",
-          year: "numeric",
-          month: "long",
-          day: "numeric"
-        };
-        return date.toLocaleDateString("en-US", options);
-      }
-    },
-    computed: {
-      ...mapState({
-        menu: state => state.menu.menu
-      }),
-      event() {
-        return this.events[0];
+    );
+  },
+  apollo: {
+    events: {
+      prefetch: true,
+      query: QueryHome,
+      result(response) {
+        const { data } = response;
+        const { events, talks, feedbacks } = data;
+        this.events = events;
+        this.talks = talks;
+        this.feedbacks = feedbacks;
       }
     }
-  };
+  },
+  filters: {
+    date(value) {
+      if (!value) return "";
+      const date = new Date(value);
+      var options = {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric"
+      };
+      return date.toLocaleDateString("en-US", options);
+    }
+  },
+  computed: {
+    ...mapState({
+      menu: state => state.menu.menu
+    }),
+    event() {
+      const [first] = this.events;
+      return first;
+    }
+  }
+};
 </script>

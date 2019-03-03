@@ -145,7 +145,7 @@ export default {
     },
     redirect() {
       this.$router.push({
-        name: "user-index-status-index",
+        name: "dashboard-index-status-index",
         params: {
           status: this.$route.params.status
         }

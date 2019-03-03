@@ -6,7 +6,6 @@
     >Skip to content</a>
     <nav
       class="relative flex items-center p-2"
-      role="navigation"
     >
       <slot name="logo"></slot>
 
@@ -16,7 +15,6 @@
           <a
             v-if="link.url.includes('http')"
             class="hidden lg:block transition no-underline text-on-dark-secondary hover:text-fuchsia rounded-full leading-normal py-1 px-3 text-14 font-normal tracking-wide px-4 leading-normal text-shadow"
-            active-class="text-blue-light text-shadow bg-primary "
             :href="link.url"
             :key="link.text"
           >{{link.text}}</a>
@@ -55,7 +53,6 @@
             <Button
               ref="open"
               @click="open('mobileNav')"
-              aria-live="assertive"
             >
               <span class="xs:hidden">Menu</span>
               <svg
@@ -86,7 +83,7 @@
           >
             <div class="relative shadow-blue rounded xl:-mr-2 xl:-mt-2 overflow-hidden">
               <!--  <div class="flex justify-end items-center border-b-lg owl-x p-2 bg-primary-dark rounded">
-                <nuxt-link @click.native="close" to="/user/" class="inline-block flex-1 flex no-underline items-center text-on-dark-secondary hover:text-on-dark-primary transition pl-4" v-if="user">
+                <nuxt-link @click.native="close" to="/dashboard/" class="inline-block flex-1 flex no-underline items-center text-on-dark-secondary hover:text-on-dark-primary transition pl-4" v-if="user">
                   <user-card size="md" :photo="user.photoURL" :name="user.displayName" meta="Hallo, how are you today?" />
                 </nuxt-link>
                 <div v-if="!hasUser">

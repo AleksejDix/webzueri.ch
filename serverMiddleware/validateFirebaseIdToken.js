@@ -2,7 +2,6 @@ import admin from '../services/firebase/admin-init.js'
 const cookieParser = require('cookie-parser')();
 global.XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest
 const db = admin.firestore()
-db.settings({timestampsInSnapshots: true})
 
 const getDocByUID = async (collection, uid) => await db.collection(collection).doc(uid).get()
 

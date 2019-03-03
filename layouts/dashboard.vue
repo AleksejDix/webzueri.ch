@@ -1,20 +1,19 @@
 <template>
-  <div class="page min-h-screen dashboard bg-grey-lightest">
-
-    <div class="fixed pin-l pin-t pin-b h-full w-64 hidden xl:block border-r">
+  <div class="page min-h-full h-full dashboard bg-primary-dark">
+    <div class="fixed pin-l pin-t pin-b h-full w-64 hidden xl:block bg-primary">
       <nav class="owl">
         <div>
-          <div class="pt-6 px-12">
+          <div class="py-4 px-8">
             <Overline class="text-grey-darker">Navigation</Overline>
           </div>
-          <ul class="list-reset py-6 px-12 owl-sm">
+          <ul class="list-reset">
             <li
               v-for="link in user"
               :key="link.name"
             >
               <nuxt-link
-                class="text-on-light-secondary transition text-12 no-underline py-2 flex items-center rounded leading-none"
-                active-class="text-blue-dark"
+                class="text-pink hover:text-pink-light hover:bg-primary-dark transition text-12 no-underline py-4 px-8 flex items-center leading-none"
+                active-class="text-grey-lightest bg-primary-dark"
                 :to="link.to"
                 v-html="link.name"
               ></nuxt-link>
@@ -43,12 +42,11 @@
 
 <script>
   import SvgSymbols from "@/components/SvgSymbols";
-  import NavigationBar from "@/components/NavigationMain";
   import Logo from "@/components/Logo";
   import { mapGetters } from "vuex";
 
   export default {
-    components: { SvgSymbols, NavigationBar, Logo },
+    components: { SvgSymbols, Logo },
     computed: {
       ...mapGetters(["hasUser"])
     },
@@ -57,25 +55,25 @@
         user: [
           {
             name: "Events",
-            to: "/user/events/"
+            to: "/dashboard/events/"
           },
           {
             name: "Talks",
             to: {
-              name: "user-index-status-index",
+              name: "dashboard-index-status-index",
               params: { status: "talk" }
             }
           },
           {
             name: "Stories",
             to: {
-              name: "user-index-status-index",
+              name: "dashboard-index-status-index",
               params: { status: "story" }
             }
           },
           {
             name: "Settings",
-            to: "/user/settings/"
+            to: "/dashboard/settings/"
           }
         ]
       };

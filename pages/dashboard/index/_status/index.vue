@@ -1,5 +1,5 @@
 <template>
-  <div class="flex h-full px-2 md:px-4 overflow-auto scrolling-touch xl:overflow-hidden">
+  <div class="flex h-full min-h-screen px-2 md:px-4 overflow-auto scrolling-touch xl:overflow-hidden">
     <section
       class="flex flex-col w-screen-3/4 md:w-screen-3/5 flex-no-shrink lg:w-1/3 owl-sm xl:px-2"
     >
@@ -56,7 +56,7 @@
             </draggable>
           </resize-observer>
           <div class="sticky pin-b bg-grey-lightest py-2">
-            <Button :to="{name: 'user-index-status-index-create'}">
+            <Button :to="{name: 'dashboard-index-status-index-create'}">
               <svg slot="start" class="w-6 h-6 p-1">
                 <use xlink:href="#add"></use>
               </svg>

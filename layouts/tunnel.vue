@@ -24,7 +24,7 @@ export default {
   },
   methods: {
     redirectTo(routeName) {
-      if (!routeName) this.$router.push('/user/settings/')
+      if (!routeName) this.$router.push('/dashboard/settings/')
       this.$router.push({name: routeName})
     }
   },

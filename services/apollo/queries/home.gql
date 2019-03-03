@@ -7,6 +7,18 @@ fragment SpeakerFields on Speaker {
   }
 }
 
+fragment VenueFields on Venue {
+  id
+  name
+  street
+  region
+  zip
+  city
+  country
+  googleMapsUrl
+}
+
+
 query home {
   events(orderBy: date_DESC, first: 1, where: { status: PUBLISHED }) {
     status
@@ -32,8 +44,7 @@ query home {
       }
     }
     venue {
-      id
-      name
+      ...VenueFields
     }
   }
   talks (

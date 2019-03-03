@@ -5,7 +5,7 @@
     </Ratio>
     <div class="max-w-sm mx-auto owl">
       <div class="flex justify-center">
-        <Button :to="{name: 'user-index-status-index-create'}">
+        <Button :to="{name: 'dashboard-index-status-index-create'}">
           <svg slot="start" class="w-6 h-6 p-1">
             <use xlink:href="#add" /></svg>
           create a new {{this.$route.params.status}}</Button>

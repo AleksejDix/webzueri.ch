@@ -12,9 +12,9 @@
             <div class="flex justify-center pt-8">
               <Button href="https://docs.google.com/forms/d/e/1FAIpQLSfTaa-_wOFOQv3dZ7Ord9TJ3vN8wNdzUY5VQqzFiTg_WMQwEw/viewform?c=0&w=1">Submit your talk</Button>
               <!-- <Button :to="{
-                name: 'user-index-status-index-create',
+                name: 'dashboard-index-status-index-create',
                   query: {
-                    redirect: 'user-index-status-index-create'
+                    redirect: 'dashboard-index-status-index-create'
                   },
                   params: {
                     status: 'talk'

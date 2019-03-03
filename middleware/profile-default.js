@@ -1,5 +1,5 @@
 export default function ({ route, redirect }) {
-  if (route.fullPath === "/user/") {
-    return redirect('/user/talk')
+  if (route.fullPath === "/dashboard/") {
+    return redirect('/dashboard/talk')
   }
 }

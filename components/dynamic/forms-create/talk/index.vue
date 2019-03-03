@@ -32,7 +32,7 @@ export default {
     async handleSubmit() {
       try {
         await this.$store.dispatch(`dashboard/${this.$route.params.status}-proposal/set`, this.form)
-        this.$router.push({name: 'user-index-status-index'})
+        this.$router.push({name: 'dashboard-index-status-index'})
       } catch (error) {
         console.warn(error)
       }
@@ -40,7 +40,7 @@ export default {
     async handleCreate() {
       try {
         await this.$store.dispatch(`dashboard/${this.$route.params.status}-draft/set`, this.form)
-        this.$router.push({name: 'user-index-status-index'})
+        this.$router.push({name: 'dashboard-index-status-index'})
       } catch (error) {
         console.warn(error)
       }
