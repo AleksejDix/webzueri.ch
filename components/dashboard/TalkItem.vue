@@ -2,7 +2,7 @@
   <nuxt-link
     v-bind="$attrs"
     class="text-current-color hover:text-current-color relative transition no-underline block transition"
-    :active-class="text-on-light-primary"
+    active-class="text-on-light-primary"
     :to="{name: `dashboard-index-status-index-id-edit`, params: { id: data.id } }"
   >
     <div class="flex items-center">
