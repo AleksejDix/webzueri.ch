@@ -25,11 +25,15 @@ export default {
       }
     }
   },
+  data() {
+    return {
+      component: null
+    }
+  },
   watch: {
     settings: {
       handler (val) {
         this.component = () => getComponent(val.path, val.type)
-        this.$forceUpdate()
      },
      immediate: true,
      deep: true
