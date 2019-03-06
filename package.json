@@ -17,7 +17,7 @@
     "analyze": "NODE_ENV=development nuxt build --analyze"
   },
   "dependencies": {
-    "@nuxtjs/apollo": "^4.0.0-rc2.3",
+    "@nuxtjs/apollo": "^4.0.0-rc4",
     "@websanova/vue-upload": "^1.2.3-beta",
     "cookie-parser": "^1.4.3",
     "date-fns": "^v2.0.0-alpha.25",
@@ -28,9 +28,8 @@
     "graphql": "^14.0.2",
     "graphql-tag": "^2.10.0",
     "hsluv": "^0.0.3",
-    "nuxt": "^2.2.0",
+    "nuxt": "^2.4.5",
     "portal-vue": "^1.4.0",
-    "sqreen": "^1.29.0",
     "vue-focus-lock": "^1.2.0",
     "vue2-medium-editor": "^1.1.6",
     "vuedraggable": "^2.16.0"
