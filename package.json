@@ -20,7 +20,7 @@
     "@nuxtjs/apollo": "^4.0.0-rc4",
     "@websanova/vue-upload": "^1.2.3-beta",
     "cookie-parser": "^1.4.3",
-    "date-fns": "^v2.0.0-alpha.25",
+    "date-fns": "^2.0.0-alpha.27",
     "dotenv": "^6.1.0",
     "element-resize-detector": "^1.1.14",
     "firebase": "^5.5.4",

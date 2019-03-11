@@ -25,7 +25,7 @@
             >close</Button>
 
           </slot>
-          <div class="relative modal shadow-green rounded p-8 text-white">
+          <div class="relative ">
             <slot>
               <portal-target name="modal" />
             </slot>
@@ -55,10 +55,6 @@
 <style scoped>
   .backdrop {
     background-color: hsla(109, 0%, 10%, 0.9);
-  }
-
-  .modal {
-    background-color: hsla(109, 0%, 13%, 1);
   }
 </style>
 
