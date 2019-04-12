@@ -1,8 +1,11 @@
-import {storage} from '../../services/firebase/client-init.js';
+import {
+  storage
+} from '../../services/firebase/client-init.js';
 
 export const actions = {
-  async set({rootState}, payload) {
-    console.log(payload)
+  async set({
+    rootState
+  }, payload) {
     try {
       const path = `/stories/${rootState.user.uid}/post-cover-${payload.name}-${new Date().getTime()}`
       const snapshot = await storage

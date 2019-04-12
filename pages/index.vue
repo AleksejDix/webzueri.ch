@@ -239,7 +239,7 @@ export default {
                   name = "",
                   speakerPicture: { url: image }
                 } = speaker;
-                console.log(speaker);
+
                 return {
                   "@type": "Person",
                   image: "/examples/jvanzweden_s.jpg",

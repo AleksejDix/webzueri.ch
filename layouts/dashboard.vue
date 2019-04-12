@@ -4,8 +4,8 @@
       <div class="fixed pin-l pin-t pin-b h-full w-64 hidden xl:block bg-primary">
         <nav class="owl">
           <div>
-            <div class="py-4 px-8">
-              <Overline class="text-grey-darker">Navigation</Overline>
+            <div class="py-4 px-8 min-h-16 flex items-center bg-blue">
+              <Overline class="text-white">Navigation</Overline>
             </div>
             <ul class="list-reset">
               <li
@@ -24,7 +24,7 @@
         </nav>
       </div>
 
-      <div class="pl-0 xl:pl-64 min-h-screen ">
+      <div class="pl-0 xl:pl-64 bg-grey-lightest">
         <nuxt />
         <footer>
           <div class="flex justify-center px-3 py-4">

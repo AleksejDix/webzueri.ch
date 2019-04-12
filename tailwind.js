@@ -114,14 +114,14 @@ let colors = {
   "pink": hsla(330,100,60),
   "pink-dark": hsla(330,100,50),
 
-  black: hsla(250, 17, 5),
+  black: hsla(200, 17, 5),
   "grey-darkest": "#3d4852",
   "grey-darker": "#606f7b",
   "grey-dark": "#8795a1",
-  grey: hsla(250, 17, 90),
-  "grey-light": hsla(250, 17, 93),
-  "grey-lighter": hsla(250, 17, 95),
-  "grey-lightest": hsla(250, 17, 98),
+  grey: hsla(200, 17, 90),
+  "grey-light": hsla(200, 17, 93),
+  "grey-lighter": hsla(200, 17, 95),
+  "grey-lightest": hsla(200, 17, 98),
   white: "#ffffff",
 };
 
@@ -597,8 +597,9 @@ module.exports = {
   minHeight: {
     "0": "0",
     "4": "1rem",
-    "8" : "2rem",
-    "12" : "3rem",
+    "8": "2rem",
+    "12": "3rem",
+    "16": "4rem",
     "32": "8rem",
     "64": "16rem",
     full: "100%",
