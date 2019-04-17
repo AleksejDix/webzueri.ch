@@ -70,7 +70,7 @@
             <div class="md:flex">
               <div class="text-white text-16 font-sans p-4">
                 <Overline>when:</Overline>
-                <span  >{{ event.date | date }}, 18:30</span>
+                <span  >{{ toDate(event.date) }}, 18:30</span>
               </div>
 
               <div class="text-white text-16 font-sans p-4">
@@ -181,6 +181,7 @@
 </template>
 
 <script>
+import { toDate } from "@/utils/formater";
 import gql from "graphql-tag";
 import Talk from "@/components/Talk";
 import Spinner from "@/components/feedback/Spinner";
@@ -263,6 +264,9 @@ export default {
       }
     );
   },
+  methods: {
+    toDate
+  },
   apollo: {
     events: {
       prefetch: true,
@@ -274,19 +278,6 @@ export default {
         this.talks = talks;
         this.feedbacks = feedbacks;
       }
-    }
-  },
-  filters: {
-    date(value) {
-      if (!value) return "";
-      const date = new Date(value);
-      var options = {
-        weekday: "long",
-        year: "numeric",
-        month: "long",
-        day: "numeric"
-      };
-      return date.toLocaleDateString("en-US", options);
     }
   },
   computed: {
