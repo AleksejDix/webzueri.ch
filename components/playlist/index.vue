@@ -31,6 +31,7 @@
                 <div class="flex-no-shrink mr-4" v-if="video.speakers">
                   <div v-for="speaker in video.speakers" :key="speaker.id">
                     <img
+                      loading="lazy"
                       class="rounded-full w-10 h-10"
                       :src="speaker.speakerPicture.url"
                       alt="speaker.name"

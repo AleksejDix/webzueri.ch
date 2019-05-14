@@ -1,6 +1,6 @@
 <template>
   <div class="min-w-36 block owl-xs" for="grid-first-name">
-    <Overline>{{label}}</Overline>
+    <Overline>{{ label }}</Overline>
     <div v-if="$slots['hint']" class="leading-normal text-on-light-secondary">
       <slot name="hint"></slot>
     </div>
@@ -10,13 +10,17 @@
     >
       <div class="p-4 w-full">
         <transition name="fade">
-          <div
-            class="text-red-dark text-center"
-            v-if="error"
-          >{{error}}, Drag your new image here or click to browse</div>
+          <div class="text-red-dark text-center" v-if="error">
+            {{ error }}, Drag your new image here or click to browse
+          </div>
           <div v-else-if="image" class="flex">
             <div class="flex-no-shrink">
-              <img class="rounded-lg shadow-md w-32" :src="image" alt="Profile Avatar Image">
+              <img
+                loading="lazy"
+                class="rounded-lg shadow-md w-32"
+                :src="image"
+                alt="Profile Avatar Image"
+              />
             </div>
             <div class="pl-4 flex-1 overflow-hidde owl-sm">
               <div class="flex justify-between">
@@ -33,7 +37,7 @@
                       <path d="M0 11l2-2 5 5L18 3l2 2L7 18z"></path>
                     </svg>
                   </span>
-                  {{(size / 1024).toFixed(0) }}kb
+                  {{ (size / 1024).toFixed(0) }}kb
                 </div>
               </div>
               <div class="flex justify-between">
@@ -50,7 +54,7 @@
                       <path d="M0 11l2-2 5 5L18 3l2 2L7 18z"></path>
                     </svg>
                   </span>
-                  {{height}}px
+                  {{ height }}px
                 </div>
               </div>
               <div class="flex justify-between">
@@ -67,16 +71,15 @@
                       <path d="M0 11l2-2 5 5L18 3l2 2L7 18z"></path>
                     </svg>
                   </span>
-                  {{width}}px
+                  {{ width }}px
                 </div>
               </div>
             </div>
           </div>
         </transition>
-        <div
-          class="px-4 text-center"
-          v-if="!image && !error"
-        >Drag your image here or click to browse</div>
+        <div class="px-4 text-center" v-if="!image && !error">
+          Drag your image here or click to browse
+        </div>
       </div>
       <input
         @change="handleChange"
@@ -84,7 +87,7 @@
         class="absolute pin opacity-0 cursor-pointer focus:outline-none focus:shadow-focus focus:bg-white rounded-lg"
         name="avatar"
         type="file"
-      >
+      />
     </div>
   </div>
 </template>
@@ -94,20 +97,20 @@ export default {
   data() {
     return {
       error: undefined,
-      image: '',
+      image: "",
       size: 0,
       height: 0,
-      width: 0,
-    }
+      width: 0
+    };
   },
   props: {
     label: {
       type: String,
-      default: 'new image'
+      default: "new image"
     },
     hint: {
       type: String,
-      default: ''
+      default: ""
     },
     limit: {
       type: Number,
@@ -117,64 +120,67 @@ export default {
   methods: {
     async handleChange(event) {
       try {
-        this.error = ''
-        const file = event.target.files[0]
+        this.error = "";
+        const file = event.target.files[0];
 
-        const readFile = (file) => {
-          let reader = new FileReader()
+        const readFile = file => {
+          let reader = new FileReader();
 
           return new Promise((resolve, reject) => {
-            reader.onload = (event) => {
-              file.data = event.target.result
-              this.size = file.size
+            reader.onload = event => {
+              file.data = event.target.result;
+              this.size = file.size;
 
-              const img = new Image;
-              img.src = event.target.result
+              const img = new Image();
+              img.src = event.target.result;
               img.onload = () => {
-                this.width = img.width
-                this.height = img.height
+                this.width = img.width;
+                this.height = img.height;
 
-                if (img.height / img.width !== 1) return reject(`your image has wrong proportions 1:${(img.width/img.height).toFixed(2)}`)
-                if (file.size > this.limit)  return reject(`your image is to big with ${file.size / 1024}kb`)
-                resolve(file)
-              }
-            }
+                if (img.height / img.width !== 1)
+                  return reject(
+                    `your image has wrong proportions 1:${(
+                      img.width / img.height
+                    ).toFixed(2)}`
+                  );
+                if (file.size > this.limit)
+                  return reject(
+                    `your image is to big with ${file.size / 1024}kb`
+                  );
+                resolve(file);
+              };
+            };
 
             reader.onerror = () => {
-              return reject(this)
-            }
+              return reject(this);
+            };
 
             if (/^image/.test(file.type)) {
               reader.readAsDataURL(file);
             } else {
               reader.readAsText(file);
             }
-
-          })
-        }
+          });
+        };
 
         const loadedFile = await readFile(file);
 
-
-        this.image = loadedFile.data
-        this.$emit('loaded', loadedFile)
-
+        this.image = loadedFile.data;
+        this.$emit("loaded", loadedFile);
       } catch (error) {
-
-        this.error = error
+        this.error = error;
       }
-
     }
   }
-}
+};
 </script>
 
 <style>
-  .fade-enter-active,
-  .fade-leave-active {
-    transition: opacity 0.5s;
-  }
-  .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-    opacity: 0;
-  }
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
 </style>

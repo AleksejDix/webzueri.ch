@@ -153,6 +153,7 @@
                     :href="sponsor.website"
                   >
                     <img
+                      loading="lazy"
                       style="object-fit: scale-down;"
                       class="max-w-xs transition w-auto opacity-64 hover:opacity-100 h-16"
                       :src="sponsor.logo.url"
