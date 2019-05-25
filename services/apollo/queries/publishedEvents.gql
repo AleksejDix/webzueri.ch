@@ -17,6 +17,7 @@ query events($first: Int!, $skip: Int!) {
         name
         speakerPicture {
           url
+          handle
         }
       }
     }

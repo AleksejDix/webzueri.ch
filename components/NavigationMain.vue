@@ -3,8 +3,7 @@
     <a
       class="bg-blue-light skip-link fixed pin-t bg-white no-underline uppercase rounded-b text-sm font-bold p-2"
       href="#content"
-      >Skip to content</a
-    >
+    >Skip to content</a>
     <nav class="relative flex items-center p-2">
       <slot name="logo"></slot>
 
@@ -15,8 +14,7 @@
             class="hidden lg:block transition no-underline text-on-dark-secondary hover:text-fuchsia rounded-full leading-normal py-1 px-3 text-14 font-normal tracking-wide px-4 leading-normal text-shadow"
             :href="link.url"
             :key="link.text"
-            >{{ link.text }}</a
-          >
+          >{{ link.text }}</a>
 
           <nuxt-link
             v-else
@@ -24,8 +22,7 @@
             active-class="text-blue-light text-shadow bg-primary "
             :to="link.url"
             :key="link.text"
-            >{{ link.text }}</nuxt-link
-          >
+          >{{ link.text }}</nuxt-link>
         </template>
       </div>
 
@@ -48,9 +45,15 @@
           </template> -->
 
           <div class="block md:hidden">
-            <Button ref="open" @click="open('mobileNav')">
+            <Button
+              ref="open"
+              @click="open('mobileNav')"
+            >
               <span class="xs:hidden">Menu</span>
-              <svg slot="end" class="w-6 h-6 p-1">
+              <svg
+                slot="end"
+                class="w-6 h-6 p-1"
+              >
                 <use xlink:href="#burger"></use>
               </svg>
             </Button>
@@ -71,12 +74,10 @@
             v-if="mobileNav"
             class="absolute w-full xl:m-0 pin-r pin-t z-40  p-2"
           >
-            <div
-              class="relative shadow-blue rounded xl:-mr-2 xl:-mt-2 overflow-hidden"
-            >
+            <div class="relative shadow-blue rounded xl:-mr-2 xl:-mt-2 overflow-hidden">
               <!--  <div class="flex justify-end items-center border-b-lg owl-x p-2 bg-primary-dark rounded">
                 <nuxt-link @click.native="close" to="/dashboard/" class="inline-block flex-1 flex no-underline items-center text-on-dark-secondary hover:text-on-dark-primary transition pl-4" v-if="user">
-                  <user-card size="md" :photo="user.photoURL" :name="user.displayName" meta="Hallo, how are you today?" />
+                  <user-card  :photo="user.photoURL" :name="user.displayName" meta="Hallo, how are you today?" />
                 </nuxt-link>
                 <div v-if="!hasUser">
                   <Button to="/signup/">sign up</Button>
@@ -110,9 +111,7 @@
                       :key="link.text"
                     >
                       <div class="flex flex-wrap items-center">
-                        <div
-                          class="transition rounded-full bg-primary-dark group-hover:bg-primary-dark w-6 h-6 mr-4 flex items-center justify-center"
-                        >
+                        <div class="transition rounded-full bg-primary-dark group-hover:bg-primary-dark w-6 h-6 mr-4 flex items-center justify-center">
                           <svg
                             class="transition fill-fuchsia group-hover:fill-fuchsia-lightest h-3 w-3"
                             viewBox="0 0 20 20"
@@ -121,13 +120,8 @@
                             <path d="M0 11l2-2 5 5L18 3l2 2L7 18z"></path>
                           </svg>
                         </div>
-                        <div
-                          class="flex-1 flex justify-between leading-normal flex-wrap"
-                        >
-                          <span
-                            class="transition w-full sm:w-auto text-on-dark-primary group-hover:text-white font-medium tracking-wide pr-8"
-                            >{{ link.text }}</span
-                          >
+                        <div class="flex-1 flex justify-between leading-normal flex-wrap">
+                          <span class="transition w-full sm:w-auto text-on-dark-primary group-hover:text-white font-medium tracking-wide pr-8">{{ link.text }}</span>
                           <span
                             class="transition text-on-dark-muted group-hover:text-blue-dark inline-block font-base max-w-xs"
                             v-if="link.desc"
@@ -145,9 +139,7 @@
                       :key="link.text"
                     >
                       <div class="flex flex-wrap items-center">
-                        <div
-                          class="transition rounded-full bg-primary-dark group-hover:bg-primary-dark w-6 h-6 mr-4 flex items-center justify-center"
-                        >
+                        <div class="transition rounded-full bg-primary-dark group-hover:bg-primary-dark w-6 h-6 mr-4 flex items-center justify-center">
                           <svg
                             class="transition fill-fuchsia group-hover:fill-fuchsia-lightest h-3 w-3"
                             viewBox="0 0 20 20"
@@ -156,13 +148,8 @@
                             <path d="M0 11l2-2 5 5L18 3l2 2L7 18z"></path>
                           </svg>
                         </div>
-                        <div
-                          class="flex-1 flex justify-between leading-normal flex-wrap"
-                        >
-                          <span
-                            class="transition w-full sm:w-auto text-on-dark-primary group-hover:text-white font-medium tracking-wide pr-8"
-                            >{{ link.text }}</span
-                          >
+                        <div class="flex-1 flex justify-between leading-normal flex-wrap">
+                          <span class="transition w-full sm:w-auto text-on-dark-primary group-hover:text-white font-medium tracking-wide pr-8">{{ link.text }}</span>
                           <span
                             class="transition text-on-dark-muted group-hover:text-blue-dark inline-block font-base max-w-xs"
                             v-if="link.desc"
@@ -179,7 +166,10 @@
                 class="intern p-6 bg-primary-dark"
               >
                 <Overline dark>{{ menu.social.title }}</Overline>
-                <ul class="list-reset py-2" v-if="menu && menu.social.links">
+                <ul
+                  class="list-reset py-2"
+                  v-if="menu && menu.social.links"
+                >
                   <li
                     class="text-base"
                     v-for="link in menu.social.links"
@@ -193,9 +183,7 @@
                       class="no-underline py-2 block group"
                     >
                       <div class="flex items-center">
-                        <div
-                          class="transition rounded-full bg-primary group-hover:bg-primary-light w-6 h-6 mr-4 flex items-center justify-center"
-                        >
+                        <div class="transition rounded-full bg-primary group-hover:bg-primary-light w-6 h-6 mr-4 flex items-center justify-center">
                           <svg
                             class="transition fill-blue-lightest h-3 w-3"
                             viewBox="0 0 20 20"
@@ -204,13 +192,8 @@
                             <path d="M0 11l2-2 5 5L18 3l2 2L7 18z"></path>
                           </svg>
                         </div>
-                        <div
-                          class="flex-1 flex flex-wrap justify-between leading-normal"
-                        >
-                          <span
-                            class="transition w-full sm:w-auto text-on-dark-secondary group-hover:text-on-dark-primary font-medium tracking-wide"
-                            >{{ link.text }}</span
-                          >
+                        <div class="flex-1 flex flex-wrap justify-between leading-normal">
+                          <span class="transition w-full sm:w-auto text-on-dark-secondary group-hover:text-on-dark-primary font-medium tracking-wide">{{ link.text }}</span>
                           <span
                             class="transition text-on-dark-secondary group-hover:text-on-dark-primary inline-block font-base max-w-xs"
                             v-if="link.desc"
@@ -247,7 +230,7 @@ export default {
       user: state => state.user
     })
   },
-  data() {
+  data () {
     return {
       showUserMenu: false,
       mobileNav: false,
@@ -255,21 +238,21 @@ export default {
     };
   },
   methods: {
-    handleKey(e) {
+    handleKey (e) {
       if (event.keyCode !== 27) return;
       this.close();
     },
-    close() {
+    close () {
       this.showUserMenu = false;
       this.mobileNav = false;
       document.removeEventListener("keyup", this.handleKey);
     },
-    open(menu) {
+    open (menu) {
       this[menu] = true;
       document.addEventListener("keyup", this.handleKey);
     },
-    focusOpen() {},
-    focusClose() {}
+    focusOpen () { },
+    focusClose () { }
   }
 };
 </script>

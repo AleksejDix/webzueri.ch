@@ -10,7 +10,10 @@
         <h3 class="text-current-color leading-tight text-11 md:text-16 font-normal">{{data.title}}</h3>
         <div class="stack">
           <div>
-            <user-card size="xs" :photo="data.authorPhotoURL" :name="data.authorDisplayName"/>
+            <user-card
+              :photo="data.authorPhotoURL"
+              :name="data.authorDisplayName"
+            />
           </div>
           <div>
             <Badge :color="badgeText.color">{{data.rejected ? 'rejected' : badgeText.text}}</Badge>
@@ -28,7 +31,7 @@
 export default {
   props: ['data'],
   computed: {
-    badgeText() {
+    badgeText () {
       switch (this.data.status) {
         case "approved":
           return {
@@ -50,4 +53,3 @@ export default {
   }
 }
 </script>
-

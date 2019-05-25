@@ -16,7 +16,9 @@
               <strong>web professionals</strong>
               <br>and enthusiasts!
               <div class="py-4">
-                <Button href="https://docs.google.com/forms/d/e/1FAIpQLSfTaa-_wOFOQv3dZ7Ord9TJ3vN8wNdzUY5VQqzFiTg_WMQwEw/viewform?c=0&w=1">Submit your talk</Button>
+                <Button href="https://docs.google.com/forms/d/e/1FAIpQLSfTaa-_wOFOQv3dZ7Ord9TJ3vN8wNdzUY5VQqzFiTg_WMQwEw/viewform?c=0&w=1">
+                  Submit your talk
+                </Button>
               </div>
             </p>
           </div>
@@ -60,22 +62,27 @@
     <div>
       <section class="container mx-auto p-4 rounded">
 
-
-        <div class="bg-primary-dark shadow-blue-darker rounded-lg"  v-if="event">
+        <div
+          class="bg-primary-dark shadow-blue-darker rounded-lg"
+          v-if="event"
+        >
           <header class="md:flex p-4">
-
-
-
 
             <div class="md:flex">
               <div class="text-white text-16 font-sans p-4">
                 <Overline>when:</Overline>
-                <span  >{{ toDate(event.date) }}, 18:30</span>
+                <span>{{ toDate(event.date) }}, 18:30</span>
               </div>
 
               <div class="text-white text-16 font-sans p-4">
                 <Overline>where:</Overline>
-                <a target="_blank" rel="noopener" v-if="event.venue" class="no-underline text-pink-light" :href="event.venue.googleMapsUrl">{{ event.venue.name }} • {{event.venue.street}}  • {{event.venue.zip}}, {{event.venue.city}}</a>
+                <a
+                  target="_blank"
+                  rel="noopener"
+                  v-if="event.venue"
+                  class="no-underline text-pink-light"
+                  :href="event.venue.googleMapsUrl"
+                >{{ event.venue.name }} • {{event.venue.street}} • {{event.venue.zip}}, {{event.venue.city}}</a>
               </div>
             </div>
 
@@ -90,10 +97,7 @@
               >Secure a seat</Button>
             </div>
 
-
           </header>
-
-
 
           <div class="p-2 bg-primary-dark shadow-blue-darker rounded-lg">
             <Spinner
@@ -198,7 +202,7 @@ export default {
     SectionFeedbacks,
     Playlist
   },
-  data() {
+  data () {
     return {
       events: [],
       feedbacks: [],
@@ -206,7 +210,7 @@ export default {
       talks: []
     };
   },
-  head() {
+  head () {
     return (
       this.event && {
         title: "next: " + this.event.title,
@@ -272,7 +276,7 @@ export default {
     events: {
       prefetch: true,
       query: QueryHome,
-      result(response) {
+      result (response) {
         const { data } = response;
         const { events, talks, feedbacks } = data;
         this.events = events;
@@ -285,7 +289,7 @@ export default {
     ...mapState({
       menu: state => state.menu.menu
     }),
-    event() {
+    event () {
       const [first] = this.events;
       return first;
     }

@@ -11,9 +11,9 @@
           class="group no-underline inline-block text-on-dark-secondary hover:text-blue-light transition"
           v-if="talk.speakers"
         >
+
           <user-card
-            size="lg"
-            :photo="speaker.speakerPicture.url"
+            :photo="speaker.speakerPicture.handle"
             :name="speaker.name"
           />
         </nuxt-link>
@@ -63,16 +63,16 @@
 </template>
 
 <script>
-  import Badge from "@/components/Badge";
-  export default {
-    components: { Badge },
-    props: ["talk", "date"],
-    computed: {
-      isFutureTalk() {
-        const today = new Date();
-        const tomorrow = today.setDate(today.getDate() - 1);
-        return new Date(this.date) > new Date(tomorrow);
-      }
+import Badge from "@/components/Badge";
+export default {
+  components: { Badge },
+  props: ["talk", "date"],
+  computed: {
+    isFutureTalk () {
+      const today = new Date();
+      const tomorrow = today.setDate(today.getDate() - 1);
+      return new Date(this.date) > new Date(tomorrow);
     }
-  };
+  }
+};
 </script>

@@ -1,14 +1,9 @@
 query events($query: Int) {
-    events (
-      where: {
-        edition: $query
-      }
-      orderBy: edition_DESC
-    ) {
-      id
-    	date
-    	status
-      edition
+  events(where: { edition: $query }, orderBy: edition_DESC) {
+    id
+    date
+    status
+    edition
     talks {
       id
       speakers {
@@ -16,6 +11,7 @@ query events($query: Int) {
         name
         speakerPicture {
           url
+          handle
         }
       }
     }

@@ -1,10 +1,17 @@
 <template>
-  <form @submit.prevent="handleUpdate('proposal')" class="owl pb-6" v-bind="$attrs">
+  <form
+    @submit.prevent="handleUpdate('proposal')"
+    class="owl pb-6"
+    v-bind="$attrs"
+  >
     <div class="flex-1 owl overflow-y-auto overflow-x-hidden">
       <div class="flex flex-wrap -my-2 -mx-4">
         <div class="owl-sm p-2 px-4">
           <Overline>Author:</Overline>
-          <user-card size="xs" :name="data.authorDisplayName" :photo="data.authorPhotoURL"/>
+          <user-card
+            :name="data.authorDisplayName"
+            :photo="data.authorPhotoURL"
+          />
         </div>
       </div>
       <div class="flex flex-wrap -my-2 -mx-4">
@@ -28,7 +35,10 @@
       <div v-if="can.update">
         <div class="owl-sm">
           <Overline>Status:</Overline>
-          <div v-if="error" class="text-red-dark">{{error}}</div>
+          <div
+            v-if="error"
+            class="text-red-dark"
+          >{{error}}</div>
           <div class="inline-flex owl-x p-1 bg-grey-light rounded">
             <Button
               type="button"
@@ -59,9 +69,16 @@
     </div>
     <div class="sticky pin-b">
       <div class="flex justify-between owl-x">
-        <Button type="button" danger="true" @click="isConfirmDeleteModalOpen = true">delete</Button>
+        <Button
+          type="button"
+          danger="true"
+          @click="isConfirmDeleteModalOpen = true"
+        >delete</Button>
         <portal to="modals">
-          <modal-window v-show="isConfirmDeleteModalOpen" @close="isConfirmDeleteModalOpen = false">
+          <modal-window
+            v-show="isConfirmDeleteModalOpen"
+            @close="isConfirmDeleteModalOpen = false"
+          >
             <div slot="title">Confirm Deletion</div>
             <div class="h-full flex flex-col owl">
               <div class="flex-1 overflow-y-auto overflow-x-hidden">
@@ -77,7 +94,11 @@
                   muted="true"
                   @click="isConfirmDeleteModalOpen = false"
                 >No, go back</Button>
-                <Button type="button" danger="true" @click="handleDelete">Yes, delete</Button>
+                <Button
+                  type="button"
+                  danger="true"
+                  @click="handleDelete"
+                >Yes, delete</Button>
               </div>
             </div>
           </modal-window>
@@ -89,7 +110,10 @@
             muted="true"
             @click="handleUpdate('draft')"
           >save draft</Button>
-          <Button v-if="data.status === 'draft'" type="submit">submit for review</Button>
+          <Button
+            v-if="data.status === 'draft'"
+            type="submit"
+          >submit for review</Button>
         </div>
       </div>
     </div>
@@ -104,7 +128,7 @@ export default {
   components: {
     ModalWindow
   },
-  data() {
+  data () {
     return {
       states: ['draft', 'proposal', 'approved'],
       error: '',
@@ -116,12 +140,12 @@ export default {
     }
   },
   computed: {
-    can() {
+    can () {
       return this.$store.getters[`dashboard/${this.$route.params.status}-approved/can`]
     },
   },
   methods: {
-    async handleDelete() {
+    async handleDelete () {
       try {
         await this.$store.dispatch(`dashboard/${this.$route.params.status}/destroy`, this.$route.params.id)
         this.redirect()
@@ -129,7 +153,7 @@ export default {
         this.error = error
       }
     },
-    async handleUpdate(status) {
+    async handleUpdate (status) {
       this.error = ''
       try {
         await this.$store.dispatch(`dashboard/${this.$route.params.status}-${status}/update`, {
@@ -143,7 +167,7 @@ export default {
         }
       }
     },
-    redirect() {
+    redirect () {
       this.$router.push({
         name: "dashboard-index-status-index",
         params: {
@@ -154,4 +178,3 @@ export default {
   }
 }
 </script>
-

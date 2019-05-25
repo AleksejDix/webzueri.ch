@@ -7,6 +7,7 @@ query workshop($id: ID!) {
       name
       speakerPicture {
         url
+        handle
       }
     }
   }

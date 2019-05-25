@@ -2,7 +2,7 @@ fragment SpeakerFields on Speaker {
   id
   name
   speakerPicture {
-    url
+    handle
     fileName
   }
 }
@@ -17,7 +17,6 @@ fragment VenueFields on Venue {
   country
   googleMapsUrl
 }
-
 
 query home {
   events(orderBy: date_DESC, first: 1, where: { status: PUBLISHED }) {
@@ -47,12 +46,9 @@ query home {
       ...VenueFields
     }
   }
-  talks (
-    orderBy: createdAt_DESC,
-    where: {
-      status: PUBLISHED,
-      youtubecode_not: null,
-    }
+  talks(
+    orderBy: createdAt_DESC
+    where: { status: PUBLISHED, youtubecode_not: null }
   ) {
     id
     speakers {
@@ -75,6 +71,3 @@ query home {
     }
   }
 }
-
-
-

@@ -17,10 +17,9 @@
           :key="speaker.id"
         >
           <user-card
-            size="xl"
             v-if="speaker.speakerPicture"
             :name="speaker.name"
-            :photo="speaker.speakerPicture.url"
+            :photo="speaker.speakerPicture.handle"
           />
         </nuxt-link>
         <div class="flex-1 relative block bg-primary rounded-lg p-4 text-white md:flex no-underline whitespace-normal shadow-blue">
@@ -71,89 +70,89 @@
 </template>
 
 <script>
-  import query from "~/services/apollo/queries/workshop";
-  import Prose from "@/components/Prose";
+import query from "~/services/apollo/queries/workshop";
+import Prose from "@/components/Prose";
 
-  export default {
-    components: { Prose },
-    apollo: {
-      workshop: {
-        query,
-        prefetch: ({
-          route: {
-            params: { id }
-          }
-        }) => ({ id }),
-        variables() {
-          return {
-            id: this.$route.params.id
-          };
+export default {
+  components: { Prose },
+  apollo: {
+    workshop: {
+      query,
+      prefetch: ({
+        route: {
+          params: { id }
         }
+      }) => ({ id }),
+      variables () {
+        return {
+          id: this.$route.params.id
+        };
       }
-    },
-    data: () => ({
-      workshop: ""
-    }),
-    computed: {
-      cardType() {
-        if (!this.workshop.youtubecode) {
-          return [
-            {
-              hid: "twitter:card",
-              name: "twitter:card",
-              content: "summary_large_image"
-            }
-          ];
-        }
-        return [{ hid: "twitter:card", name: "twitter:card", content: "player" }];
-      }
-    },
-    head() {
-      return {
-        title: this.workshop.name,
-        meta: [
-          {
-            hid: "description",
-            name: "description",
-            content: this.workshop.description
-          },
-          {
-            hid: "og:description",
-            name: "og:description",
-            content: this.workshop.description
-          },
-          { hid: "og:site_name", name: "og:site_name", content: "web zürich" },
-          {
-            hid: "og:url",
-            name: "og:url",
-            content: process.env.baseUrl + this.$route.path
-          },
-          { hid: "og:title", name: "og:title", content: this.workshop.name },
-          { hid: "twitter:site", name: "twitter:site", content: "@webzuerich" },
-          {
-            hid: "twitter:creator",
-            name: "twitter:creator",
-            content: "@aleksejdix"
-          },
+    }
+  },
+  data: () => ({
+    workshop: ""
+  }),
+  computed: {
+    cardType () {
+      if (!this.workshop.youtubecode) {
+        return [
           {
             hid: "twitter:card",
             name: "twitter:card",
             content: "summary_large_image"
-          },
-          {
-            hid: "og:image",
-            name: "og:image",
-            content: `https://us-central1-webzuerich-talk-image-gen.cloudfunctions.net/generateImage?id=xYXhOJZttRpkqxERH8MD&name=${this
-              .workshop.speakers && this.workshop.speakers[0].name}&title=${
-              this.workshop.name
-            }&userImg=${this.workshop &&
-              this.workshop.speakers[0].speakerPicture.url}`
           }
-        ],
-        __dangerouslyDisableSanitizersByTagID: {
-          "og:image": ["content"]
-        }
-      };
+        ];
+      }
+      return [{ hid: "twitter:card", name: "twitter:card", content: "player" }];
     }
-  };
+  },
+  head () {
+    return {
+      title: this.workshop.name,
+      meta: [
+        {
+          hid: "description",
+          name: "description",
+          content: this.workshop.description
+        },
+        {
+          hid: "og:description",
+          name: "og:description",
+          content: this.workshop.description
+        },
+        { hid: "og:site_name", name: "og:site_name", content: "web zürich" },
+        {
+          hid: "og:url",
+          name: "og:url",
+          content: process.env.baseUrl + this.$route.path
+        },
+        { hid: "og:title", name: "og:title", content: this.workshop.name },
+        { hid: "twitter:site", name: "twitter:site", content: "@webzuerich" },
+        {
+          hid: "twitter:creator",
+          name: "twitter:creator",
+          content: "@aleksejdix"
+        },
+        {
+          hid: "twitter:card",
+          name: "twitter:card",
+          content: "summary_large_image"
+        },
+        {
+          hid: "og:image",
+          name: "og:image",
+          content: `https://us-central1-webzuerich-talk-image-gen.cloudfunctions.net/generateImage?id=xYXhOJZttRpkqxERH8MD&name=${this
+            .workshop.speakers && this.workshop.speakers[0].name}&title=${
+            this.workshop.name
+            }&userImg=${this.workshop &&
+            this.workshop.speakers[0].speakerPicture.handle}`
+        }
+      ],
+      __dangerouslyDisableSanitizersByTagID: {
+        "og:image": ["content"]
+      }
+    };
+  }
+};
 </script>

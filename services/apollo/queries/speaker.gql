@@ -4,6 +4,7 @@ query speaker($id: ID!) {
     name
     speakerPicture {
       url
+      handle
     }
     talks {
       id

@@ -27,10 +27,9 @@
                   :key="speaker.id"
                 >
                   <user-card
-                    size="xl"
                     v-if="speaker.speakerPicture"
                     :name="speaker.name"
-                    :photo="speaker.speakerPicture.url"
+                    :photo="speaker.speakerPicture.handle"
                   />
                 </nuxt-link>
                 <nuxt-link
@@ -51,25 +50,23 @@
 </template>
 
 <script>
-  import gql from "graphql-tag";
-  import query from "~/services/apollo/queries/workshops";
+import gql from "graphql-tag";
+import query from "~/services/apollo/queries/workshops";
 
-  export default {
-    apollo: {
-      workshops: {
-        prefetch: true,
-        query
-      }
-    },
-    data: () => ({
-      workshops: []
-    }),
-    head() {
-      return {
-        title: "Speakers"
-      };
+export default {
+  apollo: {
+    workshops: {
+      prefetch: true,
+      query
     }
-  };
+  },
+  data: () => ({
+    workshops: []
+  }),
+  head () {
+    return {
+      title: "Speakers"
+    };
+  }
+};
 </script>
-
-

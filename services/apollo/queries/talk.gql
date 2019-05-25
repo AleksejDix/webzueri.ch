@@ -9,6 +9,7 @@ query talk($id: ID!) {
       name
       speakerPicture {
         url
+        handle
       }
     }
   }
