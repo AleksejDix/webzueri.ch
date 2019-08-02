@@ -3,6 +3,7 @@
     id="content"
     class="bg-primary-light pattern"
   >
+
     <section class="bg-primary-dark py-12">
       <div class="container mx-auto px-2">
         <div class="lg:flex items-center">
@@ -12,9 +13,9 @@
             </h1>
             <p class="leading-normal text-xl xl:text-2xl text-grey-lighter">
               Learn, share and collaborate
-              <br>with your local
+              <br/>with your local
               <strong>web professionals</strong>
-              <br>and enthusiasts!
+              <br/>and enthusiasts!
               <div class="py-4">
                 <Button href="https://docs.google.com/forms/d/e/1FAIpQLSfTaa-_wOFOQv3dZ7Ord9TJ3vN8wNdzUY5VQqzFiTg_WMQwEw/viewform?c=0&w=1">
                   Submit your talk
@@ -91,7 +92,6 @@
               v-if="event.meetupLink"
             >
               <Button
-                :href="event.meetupLink"
                 rel="noopener"
                 target="_blank"
               >Secure a seat</Button>
@@ -100,11 +100,7 @@
           </header>
 
           <div class="p-2 bg-primary-dark shadow-blue-darker rounded-lg">
-            <Spinner
-              v-if="$apollo.loading"
-              :active="$apollo.loading"
-            />
-            <div v-else>
+            <div v-if="!$apollo.loading">
               <div
                 class="xl:flex"
                 v-if="talks"
@@ -145,8 +141,11 @@
                 </article>
               </div>
               <section>
-                <header>
-                  <h3 class="text-white p-4 text-12 font-display font-bold tracking-wide uppercase">sponsored by:</h3>
+                <header class="md:flex justify-between items-center px-4">
+                  <h3 class="text-white text-12 font-display font-bold tracking-wide uppercase">sponsored by:</h3>
+                  <Button href="https://forms.gle/kfbyug6aJDngiSfg7">
+                    Offer a sponsorship
+                  </Button>
                 </header>
 
                 <div class="flex flex-wrap -ml-8 -mt-8 p-4">
@@ -181,7 +180,38 @@
     <div class="container mx-auto p-4">
       <playlist :talks="talks" />
     </div>
+
     <section-feedbacks :feedbacks="feedbacks" />
+
+
+<div class="p-4 bg-primary-dark shadow-blue-darker">
+  <section class=" rounded-lg max-w-lg mx-auto p-4">
+
+    <header class="text-center py-6 px-4">
+      <h2
+        class="leading-normal max-w-md mx-auto text-on-dark-primary font-display text-16 md:text-21"
+      >Thank you!</h2>
+    </header>
+
+    <ul class="list-reset flex flex-wrap justify-center">
+      <li
+      :class="sponsor.events > 2 ? 'w-96' : 'w-48'"
+      class="flex justify-center items-center" v-for="sponsor in sponsors" :key="sponsor.id">
+        <a target="_blank" rel="noopener" class="p-4 md:p-8" :href="sponsor.website">
+          <img class="min-w-12 object-contain w-full h-full" :src="sponsor.logo.url" :alt="sponsor.name">
+        </a>
+      </li>
+    </ul>
+
+    <div class="p-4 text-center">
+      <Button target="_blank" href="https://forms.gle/kfbyug6aJDngiSfg7">
+        Offer a sponsorship
+      </Button>
+    </div>
+  </section>
+</div>
+
+
   </div>
 </template>
 
@@ -189,7 +219,6 @@
 import { toDate } from "@/utils/formater";
 import gql from "graphql-tag";
 import Talk from "@/components/Talk";
-import Spinner from "@/components/feedback/Spinner";
 import SectionFeedbacks from "@/components/sections/feedbacks/";
 import QueryHome from "~/services/apollo/queries/home";
 import Playlist from "@/components/playlist";
@@ -198,16 +227,16 @@ import { mapState } from "vuex";
 export default {
   components: {
     Talk,
-    Spinner,
     SectionFeedbacks,
     Playlist
   },
   data () {
     return {
+      active: false,
       events: [],
       feedbacks: [],
-      active: false,
-      talks: []
+      talks: [],
+      sponsors: []
     };
   },
   head () {
@@ -239,13 +268,14 @@ export default {
                 }
               },
               performer: this.event.talks.map(talk => {
-                const speaker = talk.speakers[0];
-                const {
-                  id,
-                  name = "",
-                  speakerPicture: { url: image }
-                } = speaker;
-
+                if (talk) {
+                  const speaker = talk.speakers[0];
+                  const {
+                    id,
+                    name = "",
+                    speakerPicture: { url: image }
+                  } = speaker;
+                }
                 return {
                   "@type": "Person",
                   image: "/examples/jvanzweden_s.jpg",
@@ -278,10 +308,16 @@ export default {
       query: QueryHome,
       result (response) {
         const { data } = response;
-        const { events, talks, feedbacks } = data;
+        const { events, talks, feedbacks, sponsorsConnection } = data;
         this.events = events;
         this.talks = talks;
         this.feedbacks = feedbacks;
+        this.sponsors = sponsorsConnection.edges
+          .map(({node: {events: eventList, ...rest}}) => ({
+            ...rest,
+            events: eventList.length
+          }))
+          .sort((a,b)=>(a.events > b.events) ? -1 : 1);
       }
     }
   },

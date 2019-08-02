@@ -21,7 +21,7 @@ export default {
   computed: {
     ...mapState(['story', 'events'])
   },
-  mounted() {
+  mounted () {
     this.$store.dispatch('GET_events')
   }
 }
@@ -32,5 +32,4 @@ export default {
   display: grid;
   grid-row-gap: 30px;
 }
-
 </style>

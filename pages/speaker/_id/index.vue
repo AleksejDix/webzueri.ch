@@ -1,12 +1,8 @@
 
 
 <template>
-  <div class="pattern  min-h-screen">
-    <Spinner
-      v-if="$apollo.loading"
-      :active="$apollo.loading"
-    />
-    <div class="max-w-lg rounded-lg p-4 mx-auto">
+  <div class="pattern min-h-screen">
+    <div class="max-w-lg rounded-lg p-4 mx-auto"       v-if="!$apollo.loading">
       <div class="owl-lg flex flex-col">
         <div class="text-on-dark-primary hover:text-blue-light no-underline">
           <user-card
@@ -69,9 +65,6 @@
     </div>
   </div>
 </template>
-
-
-
 
 <script>
 import Prose from '@/components/Prose'

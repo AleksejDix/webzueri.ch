@@ -56,7 +56,7 @@ export default {
       },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css?family=Rubik:400,500,600,700,900"
+        href: "https://fonts.googleapis.com/css?family=Rubik:400,700&display=swap"
       }
     ]
   },
@@ -75,23 +75,20 @@ export default {
   plugins: [
     '~/plugins/components',
     '~/plugins/filters.js',
-    '~/plugins/portal-vue.js',
     {
       src: '~/plugins/ga.js',
       ssr: false
     },
-    {
-      src: '~/plugins/auth-cookie.js',
-      ssr: false
-    }
-  ],
-  serverMiddleware: [
-    '~/serverMiddleware/validateFirebaseIdToken'
   ],
   /*
    ** Build configuration
    */
   build: {
+    splitChunks: {
+      layouts: true,
+      pages: true,
+      commons: true
+    },
     extractCSS: true,
     postcss: [
       require('postcss-import')(),

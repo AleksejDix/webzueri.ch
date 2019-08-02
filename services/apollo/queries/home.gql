@@ -2,6 +2,7 @@ fragment SpeakerFields on Speaker {
   id
   name
   speakerPicture {
+    url
     handle
     fileName
   }
@@ -18,6 +19,18 @@ fragment VenueFields on Venue {
   googleMapsUrl
 }
 
+fragment SponsorFields on Sponsor {
+  id
+  name
+  website
+  logo {
+    height
+    width
+    mimeType
+    url
+  }
+}
+
 query home {
   events(orderBy: date_DESC, first: 1, where: { status: PUBLISHED }) {
     status
@@ -26,12 +39,7 @@ query home {
     title
     meetupLink
     sponsors {
-      id
-      name
-      website
-      logo {
-        url
-      }
+      ...SponsorFields
     }
     talks {
       id
@@ -44,6 +52,20 @@ query home {
     }
     venue {
       ...VenueFields
+    }
+  }
+  sponsorsConnection ( where:{
+    logo: {
+      mimeType: "image/svg+xml"
+    }
+  }) {
+    edges {
+      node {
+        ...SponsorFields
+        events {
+          edition
+        }
+      }
     }
   }
   talks(
@@ -64,10 +86,7 @@ query home {
       ...SpeakerFields
     }
     sponsor {
-      name
-      logo {
-        url
-      }
+      ...SponsorFields
     }
   }
 }
