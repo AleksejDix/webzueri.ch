@@ -5,7 +5,7 @@
         <h1 class="py-12 leading-tight text-3xl md:text-5xl text-base text-on-dark-primary font-display font-bold tracking-wide text-center">Code of Conduct</h1>
       </div>
 
-      <div class="shadow-blue-darker bg-primary-dark md:rounded-lg md:max-w-5xl md:mx-auto py-8 px-4 md:p-8">
+      <div class="shadow-blue bg-primary-dark md:rounded-lg md:max-w-5xl md:mx-auto py-8 px-4 md:p-8">
         <prose
           color="on-dark"
           class="max-w-lg mx-auto owl"

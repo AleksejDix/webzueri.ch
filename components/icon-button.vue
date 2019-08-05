@@ -39,15 +39,14 @@ export default {
   }
 
   .c-button:hover .c-button__ripple {
-    @apply opacity-8;
+    @apply opacity-25;
   }
 
   .c-button:active .c-button__ripple {
-    @apply opacity-24;
+    @apply opacity-50;
   }
 
   .c-button:focus .c-button__ripple {
-    @apply opacity-32;
+    @apply opacity-75;
   }
 </style>
-

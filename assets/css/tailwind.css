@@ -12,7 +12,7 @@
 * See: https://github.com/tailwindcss/tailwindcss/issues/53#issuecomment-341413622
 */
 
-@import 'preflight.css';
+@tailwind base;
 
 html {
   height: 100%;
@@ -63,7 +63,7 @@ h6 {
 }
 
 .list-bullets {
-  @apply list-reset;
+  list-style: none;
 }
 
 
@@ -162,7 +162,7 @@ hr {
 
 
 .body-2 {
-  @apply text-sm font-medium font-display
+  @apply text-sm font-medium
 }
 
 
@@ -211,9 +211,9 @@ hr {
 *
 * See: https://github.com/tailwindcss/tailwindcss/issues/53#issuecomment-341413622
 */
-@import 'utilities.css';
+@tailwind utilities;
 
-@import 'screens.css';
+@tailwind screens;
 
 /**
 * Here you would add any custom utilities you need that don't come out of the
@@ -232,11 +232,11 @@ hr {
 
   a.link {
     transition: background-color 120ms;
-    @apply border-b border-blue text-current-color text-blue no-underline;
+    @apply   no-underline;
   }
 
   a.link:hover {
-    @apply border-blue-light text-blue-light
+    @apply
   }
 
 
@@ -259,11 +259,11 @@ hr {
 }
 
 ::-webkit-scrollbar-track {
-  @apply rounded-full bg-grey
+  @apply rounded-full bg-gray-500
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-blue-light rounded-full
+  @apply  rounded-full
   }
 
 
@@ -280,6 +280,3 @@ hr {
   display:none;
   width:0;height:0
 } */
-
-
-

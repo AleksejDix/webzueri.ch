@@ -10,7 +10,7 @@
     'border-yellow' : props.color === 'yellow',
     'border-fuchsia' : props.color === 'fuchsia'
   }"
-    class="border leading-none inline-flex rounded-full text-9 uppercase tracking-wide font-book text-white align-center p-1 items-center"
+    class="border leading-none inline-flex rounded-full text-xs uppercase tracking-wide font-book text-white align-center p-1 items-center"
   >
     <div
       class="px-2"
@@ -39,7 +39,7 @@
       'bg-violet-dark' : props.color === 'violet',
       'bg-fuchsia-dark' : props.color === 'fuchsia',
     }"
-      class="text-on-dark-primary rounded-full h-4 w-4 flex justify-center items-center text-9"
+      class="text-on-dark-primary rounded-full h-4 w-4 flex justify-center items-center text-xs"
     >{{props.number}}</div>
   </div>
 </template>

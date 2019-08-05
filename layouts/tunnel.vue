@@ -43,7 +43,6 @@ export default {
   }
   .nuxt-link-active::after {
     content: '';
-    @apply absolute pin-x pin-b bg-secondary h-1;
+    @apply absolute inset-x-0 bottom-0 bg-secondary h-1;
   }
 </style>
-

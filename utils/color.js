@@ -7,3 +7,5 @@ export const hsla = (hue, saturation, light, a = 1) => {
   const colorString = `rgba(${floatToInt(h)}, ${floatToInt(s)}, ${floatToInt(l)}, ${a})`
   return colorString
 }
+
+export default hsla

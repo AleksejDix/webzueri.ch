@@ -1,7 +1,7 @@
 <template>
   <div>
     <page>
-      <div class="fixed pin-l pin-t pin-b h-full w-64 hidden xl:block bg-primary">
+      <div class="fixed pin-l pin-t bottom-0 h-full w-64 hidden xl:block bg-primary">
         <nav class="owl">
           <div>
             <div class="py-4 px-8 min-h-16 flex items-center bg-blue">

@@ -10,7 +10,7 @@
 </template>
 
 <script>
-const base = process.env.imageURL;
+const base = 'https://media.graphcms.com/';
 
 export default {
   data () {

@@ -1,35 +1,21 @@
-require('dotenv').config()
-import glob from 'glob-all';
-import path from 'path';
-import PurgecssPlugin from 'purgecss-webpack-plugin';
-const pkg = require("./package");
-
-class TailwindExtractor {
-  static extract(content) {
-    return content.match(/[A-z0-9-:/]+/g) || [];
-  }
-}
-
 export default {
   mode: "universal",
   router: {
     base: '/',
-    middleware: 'pages'
   },
   env: {
-    imageURL: 'https://media.graphcms.com/',
     baseUrl: process.env.NOW_URL || "http://localhost:3000"
   },
   /*
    ** Headers of the page
    */
   head: {
-    titleTemplate: `%s - ${pkg.name}`,
+    titleTemplate: `%s - web zurich`,
     htmlAttrs: {
       lang: "en-US"
     },
     bodyAttrs: {
-      class: "antialiased bg-primary-dark"
+      class: "antialiased "
     },
     meta: [{
         charset: "utf-8"
@@ -41,7 +27,7 @@ export default {
       {
         hid: "description",
         name: "description",
-        content: pkg.description
+        content: "Learn, share and collaborate with your local Web professionals and enthusiasts!"
       },
       {
         hid: "google-site-verification",
@@ -60,15 +46,6 @@ export default {
       }
     ]
   },
-  loading: {
-    color: "hsla(214,64%,46%,1.00)"
-  },
-  /*
-   ** Global CSS
-   */
-  css: [
-    '~/assets/css/tailwind.css'
-  ],
   /*
    ** Plugins to load before mounting the App
    */
@@ -80,51 +57,16 @@ export default {
       ssr: false
     },
   ],
-  /*
-   ** Build configuration
-   */
-  build: {
-    splitChunks: {
-      layouts: true,
-      pages: true,
-      commons: true
-    },
-    extractCSS: true,
-    postcss: [
-      require('postcss-import')(),
-      require("tailwindcss")("./tailwind.js"),
-      require("autoprefixer")
-    ],
-    extend(config, {
-      isDev,
-      isClient
-    }) {
-
-      if (!isDev) {
-        config.plugins.push(
-          new PurgecssPlugin({
-            // purgecss configuration
-            // https://github.com/FullHuman/purgecss
-            paths: glob.sync([
-              path.join(__dirname, "./pages/**/*.vue"),
-              path.join(__dirname, "./layouts/**/*.vue"),
-              path.join(__dirname, "./components/**/*.vue")
-            ]),
-            extractors: [{
-              extractor: TailwindExtractor,
-              extensions: ["vue"]
-            }],
-            whitelist: ["html", "body", "nuxt-progress", '__nuxt', '__layout'],
-            whitelistPatterns: [/^group-hover/],
-            whitelistPatternsChildren: [/^group-hover/]
-          })
-        );
-      }
-    }
-  },
+  devModules: [
+    '@nuxtjs/tailwindcss'
+  ],
   modules: [
     "@nuxtjs/apollo"
   ],
+  tailwindcss: {
+    configPath: '~/config/tailwind.config.js',
+    cssPath: '~/assets/css/tailwind.css'
+  },
   apollo: {
     clientConfigs: {
       default: {

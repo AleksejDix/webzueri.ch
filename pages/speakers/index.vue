@@ -5,7 +5,7 @@
         class="py-12 text-center leading-tight text-3xl md:text-5xl text-base text-white text-shadow font-display font-bold tracking-wide"
       >Speakers</h1>
 
-      <div class="p-2 -m-2 rounded-lg bg-primary-dark shadow-blue-darker" v-if="!$apollo.loading">
+      <div class="p-2 -m-2 rounded-lg bg-primary-dark shadow-blue" v-if="!$apollo.loading">
 
         <ul v-if="speakers" class="list-reset md:flex md:flex-wrap justify-center">
           <li class="w-full" v-for="speaker in speakers" :key="speaker.id">

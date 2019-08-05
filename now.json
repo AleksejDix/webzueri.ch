@@ -1,4 +1,17 @@
 {
-  "version": 1,
-  "alias": "webzueri.ch"
+  "version": 2,
+  "alias": "webzueri.ch",
+  "builds": [
+    {
+      "src": "nuxt.config.js",
+      "use": "@nuxtjs/now-builder",
+      "config": {
+        "serverFiles": ["package.json"]
+      }
+    }
+  ],
+  "routes": [
+    { "src": "/_nuxt/.+", "headers": { "Cache-Control": "max-age=31557600" } },
+    { "src": "/(.*)", "dest": "/" }
+  ]
 }

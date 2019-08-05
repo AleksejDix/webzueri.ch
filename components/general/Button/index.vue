@@ -127,7 +127,7 @@
   }
 
   .button > div {
-    @apply w-full text-9 text-white  tracking-wide no-underline uppercase font-medium rounded;
+    @apply w-full text-xs text-white  tracking-wide no-underline uppercase font-medium rounded;
   }
 
   .button:hover,
@@ -161,7 +161,6 @@
   }
 
   .button--big > div {
-    @apply h-12 text-10;
+    @apply h-12 text-xs;
   }
 </style>
-

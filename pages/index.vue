@@ -64,7 +64,7 @@
       <section class="container mx-auto p-4 rounded">
 
         <div
-          class="bg-primary-dark shadow-blue-darker rounded-lg"
+          class="bg-primary-dark shadow-blue rounded-lg"
           v-if="event"
         >
           <header class="md:flex p-4">
@@ -99,7 +99,7 @@
 
           </header>
 
-          <div class="p-2 bg-primary-dark shadow-blue-darker rounded-lg">
+          <div class="p-2 bg-primary-dark shadow-blue rounded-lg">
             <div v-if="!$apollo.loading">
               <div
                 class="xl:flex"
@@ -184,7 +184,7 @@
     <section-feedbacks :feedbacks="feedbacks" />
 
 
-<div class="p-4 bg-primary-dark shadow-blue-darker">
+<div class="p-4 bg-primary-dark shadow-blue">
   <section class=" rounded-lg max-w-lg mx-auto p-4">
 
     <header class="text-center py-6 px-4">

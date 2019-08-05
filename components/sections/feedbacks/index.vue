@@ -31,7 +31,7 @@
 
             <div class="px-2">
               <blockquote
-                class="bg-primary shadow-blue-darker px-6 py-4 text-on-dark-secondary rounded-b text-12 leading-normal"
+                class="bg-primary shadow-blue px-6 py-4 text-on-dark-secondary rounded-b text-12 leading-normal"
               >
                 <svg viewBox="0 0 9 8" xmlns="http://www.w3.org/2000/svg" width="9" height="8">
                   <path

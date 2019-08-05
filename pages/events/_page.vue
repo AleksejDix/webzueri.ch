@@ -33,7 +33,7 @@
       <div class="container mx-auto p-4" v-if="!$apollo.loading">
         <div class="owl">
           <div
-            class="bg-primary-dark rounded-lg shadow-blue-darker"
+            class="bg-primary-dark rounded-lg shadow-blue"
             v-for="event in events"
             :key="event.id"
           >

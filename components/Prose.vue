@@ -16,7 +16,7 @@ export default {
 
 <style>
   .prose {
-    @apply text-11 leading-normal text-current-color;
+    @apply text-sm leading-normal text-current-color;
   }
   .prose--on-dark {
     @apply text-on-dark-secondary;
@@ -49,19 +49,19 @@ export default {
   }
 
   .prose h1 {
-    @apply text-24 font-medium;
+    @apply text-2xl font-medium;
   }
 
   .prose h2 {
-    @apply text-21 font-medium;
+    @apply text-xl font-medium;
   }
 
   .prose h3 {
-    @apply text-18 font-medium;
+    @apply text-lg font-medium;
   }
 
   .prose h4 {
-    @apply text-16 font-medium;
+    @apply text-base font-medium;
   }
 
   .prose--on-dark h1,
@@ -84,9 +84,7 @@ export default {
 
   @media screen and (min-width: 640px) {
     .prose {
-      @apply text-14;
+      @apply text-lg;
     }
   }
 </style>
-
-

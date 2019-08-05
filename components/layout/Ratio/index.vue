@@ -1,7 +1,7 @@
 <template>
   <div class="relative overflow-hidden">
     <div :style="styles"></div>
-    <div class="absolute pin w-full h-full">
+    <div class="absolute inset-0 w-full h-full">
       <slot></slot>
     </div>
   </div>

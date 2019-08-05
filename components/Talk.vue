@@ -41,7 +41,7 @@
       </svg>
       <div class="flex flex-col flex-1 pb-4 md:pb-0 md:pr-4">
         <div class="owl-md">
-          <h2 class="text-current-color text-14 md:text-18 leading-tight font-medium">{{talk.name}}</h2>
+          <h2 class="text-current-color text-lg md:text-18 leading-tight font-medium">{{talk.name}}</h2>
           <div>
             <Badge
               color="red"
@@ -54,7 +54,7 @@
           </div>
           <div
             v-if="talk.abstract"
-            class="leading-normal text-14 text-on-dark-secondary"
+            class="leading-normal text-lg text-on-dark-secondary"
           >{{talk.abstract | shorten(100) }}</div>
         </div>
       </div>
