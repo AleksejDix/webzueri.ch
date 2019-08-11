@@ -23,22 +23,6 @@
       :to="{ name: 'talk-id', params: { id: talk.id }}"
       class="group transition flex-1 relative block bg-primary hover:bg-primary-dark rounded-lg p-4 text-white hover:text-blue-light md:flex no-underline whitespace-normal shadow-blue"
     >
-      <svg
-        viewBox="0 0 24 8"
-        class="w-8 h-8 absolute pin-l ml-2"
-        style="bottom: 100%"
-      >
-        <path
-          transform="translate(0,7.3)"
-          class="fill-blue "
-          d="M3 8s2.021-.015 5.253-4.218C9.584 2.051 10.797 1.007 12 1c1.203-.007 2.416 1.035 3.761 2.782C19.012 8.005 21 8 21 8H3z"
-        />
-        <path
-          transform="translate(0,8.2)"
-          class="transition fill-primary group-hover:fill-primary-dark "
-          d="M3 8s2.021-.015 5.253-4.218C9.584 2.051 10.797 1.007 12 1c1.203-.007 2.416 1.035 3.761 2.782C19.012 8.005 21 8 21 8H3z"
-        />
-      </svg>
       <div class="flex flex-col flex-1 pb-4 md:pb-0 md:pr-4">
         <div class="owl-md">
           <h2 class="text-current-color text-lg md:text-18 leading-tight font-medium">{{talk.name}}</h2>

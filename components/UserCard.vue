@@ -1,15 +1,15 @@
 <template>
   <article class="flex items-center">
-    <div class="flex-no-shrink relative w-12 h-12">
+    <div class="flex-shrink-0 relative w-12 h-12">
       <cms-img
         :width="64"
         :height="64"
         fit="crop"
-        class="absolute pin rounded-full w-full"
+        class="absolute inset-auto rounded-full w-full"
         :src="photo"
         :alt="name"
       />
-      <div class="rounded-full absolute pin shadow-inner"></div>
+      <div class="rounded-full absolute inset-auto shadow-inner"></div>
     </div>
     <div class="flex-1 leading-tight pr-2 pl-4">
       <h3 class="text-on-dark-primary font-normal">{{ name }}</h3>

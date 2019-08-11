@@ -9,10 +9,10 @@
         v-bind="$attrs"
         :maxlength="limit"
         v-model="_value"
-        class="focus:outline-none focus:shadow-focus focus:bg-white bg-transparent rounded absolute h-full pin w-full px-4 py-3 text-12"
+        class="focus:outline-none focus:shadow-focus focus:bg-white bg-transparent rounded absolute h-full inset-auto w-full px-4 py-3 text-12"
         :placeholder="placeholder"
       ></textarea>
-      <div class="z-10 absolute pin-t pin-r p-2 uppercase" v-if="limit">{{+limit - charLimit}}</div>
+      <div class="z-10 absolute top-0 right-0 p-2 uppercase" v-if="limit">{{+limit - charLimit}}</div>
     </div>
   </label>
 </template>
@@ -36,4 +36,3 @@ export default {
   }
 }
 </script>
-

@@ -4,8 +4,8 @@
     class="c-button relative inline-block focus:outline-none border-none rounded-full leading-none"
     @click="handleCLick"
   >
-    <div class="c-button__ripple trans absolute w-full h-full pin rounded-full bg-current-color"></div>
-    <div class="flex items-center justify-center absolute pin">
+    <div class="c-button__ripple trans absolute w-full h-full inset-auto rounded-full bg-current-color"></div>
+    <div class="flex items-center justify-center absolute inset-auto">
       <svg class="w-8 h-8" transform="scale(0.8)">
         <use v-bind="{'xlink:href':'#'+icon}"></use>
       </svg>

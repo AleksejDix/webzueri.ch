@@ -12,7 +12,8 @@ export default {
   head: {
     titleTemplate: `%s - web zurich`,
     htmlAttrs: {
-      lang: "en-US"
+      lang: "en-US",
+      class: "bg-primary-dark"
     },
     bodyAttrs: {
       class: "antialiased "

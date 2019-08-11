@@ -14,7 +14,7 @@
             {{ error }}, Drag your new image here or click to browse
           </div>
           <div v-else-if="image" class="flex">
-            <div class="flex-no-shrink">
+            <div class="flex-shrink-0">
               <img
                 loading="lazy"
                 class="rounded-lg shadow-md w-32"
@@ -84,7 +84,7 @@
       <input
         @change="handleChange"
         accept="image/*"
-        class="absolute pin opacity-0 cursor-pointer focus:outline-none focus:shadow-focus focus:bg-white rounded-lg"
+        class="absolute inset-auto opacity-0 cursor-pointer focus:outline-none focus:shadow-focus focus:bg-white rounded-lg"
         name="avatar"
         type="file"
       />

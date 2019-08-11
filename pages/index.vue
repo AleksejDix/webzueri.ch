@@ -88,7 +88,7 @@
             </div>
 
             <div
-              class="flex-no-shrink p-4 md:ml-auto"
+              class="flex-shrink-0 p-4 md:ml-auto"
               v-if="event.meetupLink"
             >
               <Button
@@ -156,6 +156,7 @@
                     :href="sponsor.website"
                   >
                     <img
+                      v-if="sponsor.name"
                       loading="lazy"
                       style="object-fit: scale-down;"
                       class="max-w-xs transition w-auto opacity-64 hover:opacity-100 h-16"
@@ -185,7 +186,7 @@
 
 
 <div class="p-4 bg-primary-dark shadow-blue">
-  <section class=" rounded-lg max-w-lg mx-auto p-4">
+  <section class=" rounded-lg max-w-4xl mx-auto p-4">
 
     <header class="text-center py-6 px-4">
       <h2
@@ -197,8 +198,8 @@
       <li
       :class="sponsor.events > 2 ? 'w-96' : 'w-48'"
       class="flex justify-center items-center" v-for="sponsor in sponsors" :key="sponsor.id">
-        <a target="_blank" rel="noopener" class="p-4 md:p-8" :href="sponsor.website">
-          <img class="min-w-12 object-contain w-full h-full" :src="sponsor.logo.url" :alt="sponsor.name">
+        <a v-if="sponsor.website" target="_blank" rel="noopener" class="p-4 md:p-8" :href="sponsor.website">
+          <img class="min-w-12 object-contain w-full h-full" v-if="sponsor.name" :src="sponsor.logo.url" :alt="sponsor.name">
         </a>
       </li>
     </ul>
@@ -256,7 +257,7 @@ export default {
               endDate: this.event.date + "22:00",
               location: this.event.venue && {
                 "@type": "Place",
-                name: this.event.venue.name,
+                name: this.event.venue && this.event.venue.name,
                 sameAs: "https://zurich.impacthub.ch/de/",
                 address: {
                   "@type": "PostalAddress",
@@ -267,23 +268,7 @@ export default {
                   addressCountry: this.event.venue.country
                 }
               },
-              performer: this.event.talks.map(talk => {
-                if (talk) {
-                  const speaker = talk.speakers[0];
-                  const {
-                    id,
-                    name = "",
-                    speakerPicture: { url: image }
-                  } = speaker;
-                }
-                return {
-                  "@type": "Person",
-                  image: "/examples/jvanzweden_s.jpg",
-                  name,
-                  image,
-                  sameAs: `https://webzueri.ch/speaker/${id}`
-                };
-              }),
+
               offers: {
                 "@type": "Offer",
                 description:

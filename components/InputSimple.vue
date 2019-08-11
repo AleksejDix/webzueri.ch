@@ -9,13 +9,13 @@
         v-bind="$attrs"
         v-model="_value"
         :autocomplete="type"
-        class="focus:outline-none focus:shadow-focus focus:bg-white bg-transparent rounded absolute h-full pin w-full px-4 py-3 text-12"
+        class="focus:outline-none focus:shadow-focus focus:bg-white bg-transparent rounded absolute h-full inset-auto w-full px-4 py-3 text-12"
         :type="!isVisible && type === 'password' ? 'password' : 'text'"
       >
       <Button
         size="small"
         v-if="type === 'password'"
-        class="absolute pin-r pin-y m-1"
+        class="absolute right-0 inset-auto-y m-1"
         type="button"
         @click="isVisible = !isVisible"
       >{{isVisible ? 'hide' : 'show' }}</Button>
@@ -44,5 +44,3 @@ export default {
 
 <style>
 </style>
-
-

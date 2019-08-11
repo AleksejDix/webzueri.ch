@@ -7,7 +7,7 @@
     >
       <select
         v-bind="$attrs"
-        class="focus:outline-none focus:shadow-focus appearance-none rounded focus:bg-white w-full bg-transparent px-4 py-3 text-12 absolute h-full pin w-full leading-none"
+        class="focus:outline-none focus:shadow-focus appearance-none rounded focus:bg-white w-full bg-transparent px-4 py-3 text-12 absolute h-full inset-auto w-full leading-none"
         v-model="selected"
       >
         <option v-for="option in options" :key="option" :value="option" v-text="option"/>

@@ -117,6 +117,9 @@ const config = {
           "sans-serif"
         ]
       },
+      width: {
+        '96': '24rem'
+      },
       boxShadow: {
         blue: `0 -1px 0 0 ${hsla(250,100,60)}, 0 5px 15px rgba(0,0,0,.5)`,
         'blue-darker': `0 -1px 0 0 ${hsla(250,100,40)}, 0 5px 15px rgba(0,0,0,.5)`,

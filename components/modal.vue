@@ -2,12 +2,12 @@
   <transition name="fade">
     <div
       v-if="open"
-      class="table table-fixed absolute pin-t pin-l pin-r z-50 w-full min-h-full"
+      class="table table-fixed absolute top-0 left-0 right-0 z-50 w-full min-h-full"
     >
       <slot name="backdrop">
         <portal-target name="modalbackdrop" />
         <div
-          class="block backdrop fixed pin"
+          class="block backdrop fixed inset-auto"
           @click="close"
         ></div>
       </slot>
@@ -20,7 +20,7 @@
             :open="open"
           >
             <Button
-              class="absolute pin-t pin-r m-8"
+              class="absolute top-0 right-0 m-8"
               @click="close"
             >close</Button>
 
@@ -57,4 +57,3 @@
     background-color: hsla(109, 0%, 10%, 0.9);
   }
 </style>
-

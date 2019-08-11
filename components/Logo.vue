@@ -1,5 +1,5 @@
 <template>
-  <nuxt-link :to="{name: 'index'}" class="flex items-center flex-no-shrink mr-6 no-underline">
+  <nuxt-link :to="{name: 'index'}" class="flex items-center flex-shrink-0 mr-6 no-underline">
     <div class="bg-blue-dark rounded-full w-12 mr-4 h-12 p-2 flex items-center justify-center">
       <svg class="w-6 h-6 fill-white">
         <use xlink:href="#keyboard" />
@@ -14,4 +14,3 @@ export default {
 
 }
 </script>
-

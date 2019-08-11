@@ -13,7 +13,7 @@
     ></div>
     <div
       :style="[value ? {'transform': `translateX(0)`} : {'transform': `translateX(1.5rem)`}]"
-      class="transition absolute pin-t pin-l rounded-full w-6 h-6 bg-white border shadow transform"
+      class="transition absolute top-0 left-0 rounded-full w-6 h-6 bg-white border shadow transform"
     ></div>
   </div>
 </template>

@@ -2,7 +2,7 @@
   <transition name="fade">
     <div
       style="background-color: rgba(47,54,95,.82)"
-      class="model-mask fixed pin overflow-auto p-4"
+      class="model-mask fixed inset-auto overflow-auto p-4"
       v-if="show"
       @close.self="show = false"
     >
@@ -104,4 +104,3 @@ export default {
 
 <style>
 </style>
-

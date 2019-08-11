@@ -1,7 +1,7 @@
 <template>
   <div>
     <a
-      class="bg-blue-light skip-link fixed pin-t bg-white no-underline uppercase rounded-b text-sm font-bold p-2"
+      class="bg-blue-light skip-link fixed top-0 bg-white no-underline uppercase rounded-b text-sm font-bold p-2"
       href="#content"
     >Skip to content</a>
     <nav class="relative flex items-center p-2">
@@ -61,7 +61,7 @@
         </div>
         <div
           v-if="mobileNav"
-          class="fixed pin bg-primary-dark z-30 opacity-64"
+          class="fixed inset-auto bg-primary-dark z-30 opacity-64"
           @click="close"
         ></div>
 
@@ -72,7 +72,7 @@
         >
           <div
             v-if="mobileNav"
-            class="absolute w-full xl:m-0 pin-r pin-t z-40  p-2"
+            class="absolute w-full xl:m-0 right-0 top-0 z-40  p-2"
           >
             <div class="relative shadow-blue rounded xl:-mr-2 xl:-mt-2 overflow-hidden">
               <!--  <div class="flex justify-end items-center border-b-lg owl-x p-2 bg-primary-dark rounded">
@@ -85,7 +85,7 @@
                 </div>
 
               </div>-->
-              <div class="absolute pin-r pin-t m-4  m-2 ">
+              <div class="absolute right-0 top-0 m-4  m-2 ">
                 <icon-button
                   class="text-blue-lightest"
                   @click="close"
