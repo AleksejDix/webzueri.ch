@@ -94,6 +94,7 @@
               <Button
                 rel="noopener"
                 target="_blank"
+                :href="event.meetupLink"
               >Secure a seat</Button>
             </div>
 
