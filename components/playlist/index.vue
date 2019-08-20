@@ -4,7 +4,7 @@
       <ratio class="bg-black" :width="16" :height="9">
         <video-player v-if="playing" :video="currentVideoURL"/>
         <template v-else>
-          <img     class="w-fulls absolute inset-auto flex items-center justify-center z-10" :src="thumb">
+          <img :alt="currentVideo.speakers[0].name" class="w-fulls absolute inset-auto flex items-center justify-center z-10" :src="thumb">
           <div
             :style="{backgroundColor: 'rgba(0,0,0,0.35)'}"
             class="w-full h-full absolute inset-auto flex items-center justify-center z-10"
@@ -65,10 +65,13 @@ export default {
       return `https://ssig.io/api/v1/projects/3b014fd9-a98a-4f76-a00e-66d8c0030346?speaker.text=${this.talks[this.current].speakers[0].name}&title.text=${this.talks[this.current].name}&avatar.imageUri=${this.talks[this.current].speakers[0].speakerPicture.url}`
     },
     currentVideoURL () {
-      const first = this.talks[this.current];
-      if (!first) return;
-      const { youtubecode } = first;
+      const { youtubecode } = this.currentVideo;
       return `https://www.youtube.com/embed/${youtubecode}?modestbranding=1&showinfo=0`;
+    },
+    currentVideo() {
+      const currentVideo = this.talks[this.current];
+      if (!currentVideo) return;
+      return currentVideo
     }
   },
   methods: {

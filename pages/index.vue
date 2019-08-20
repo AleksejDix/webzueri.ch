@@ -31,6 +31,7 @@
               <a
                 :href="item.url"
                 target="_blank"
+                rel="noopener"
                 class=" block md:flex md:flex-column w-full md:w-1/2 p-2 no-underline"
                 v-for="item in menu.social.links"
                 :key="item.url"
@@ -151,6 +152,8 @@
 
                 <div class="flex flex-wrap -ml-8 -mt-8 p-4">
                   <a
+                    target="_blank"
+                    rel="noopener"
                     v-for="sponsor in event.sponsors"
                     :key="sponsor.id"
                     class="pt-8 pl-8 "
@@ -206,7 +209,7 @@
     </ul>
 
     <div class="p-4 text-center">
-      <Button target="_blank" href="https://forms.gle/kfbyug6aJDngiSfg7">
+      <Button target="_blank" rel="noopener" href="https://forms.gle/kfbyug6aJDngiSfg7">
         Offer a sponsorship
       </Button>
     </div>
