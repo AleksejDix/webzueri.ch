@@ -1,6 +1,6 @@
 <template>
   <img
-    loading="auto"
+    loading="lazy"
     :class="[responsive ? 'max-w-full w-full' : '']"
     :src="srcPath"
     :width="width"
