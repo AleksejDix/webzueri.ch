@@ -4,13 +4,30 @@
       <ratio class="bg-black" :width="16" :height="9">
         <video-player v-if="playing" :video="currentVideoURL"/>
         <template v-else>
-          <img :alt="currentVideo.speakers[0].name" class="w-fulls absolute inset-auto flex items-center justify-center z-10" :src="thumb">
+
+
+          <div  class="p-8 max-w-2xl text-white w-fulls absolute inset-auto z-10">
+
+            <ul v-if="currentVideo.speakers" class="mb-8">
+              <li v-for="speaker in currentVideo.speakers" :key="speaker.id">
+                <user-card
+                  :photo="speaker.speakerPicture.handle"
+                  :name="speaker.name"
+                />
+              </li>
+            </ul>
+
+            <h3 class="mb-4 leading-tight text-3xl md:text-4xl text-base text-on-dark-primary text-shadow font-display font-bold tracking-wide uppercase">{{currentVideo.name}}</h3>
+
+
+          </div>
           <div
             :style="{backgroundColor: 'rgba(0,0,0,0.35)'}"
             class="w-full h-full absolute inset-auto flex items-center justify-center z-10"
             @click="playing = true"
           >
             <button>
+
             <svg class="w-24 h-24  text-yellow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <circle cx="12" cy="12" r="10" class="fill-current"></circle>
               <path class="black" d="M15.51 11.14a1 1 0 0 1 0 1.72l-5 3A1 1 0 0 1 9 15V9a1 1 0 0 1 1.51-.86z"></path>
@@ -49,6 +66,7 @@
 import Ratio from "@/components/layout/Ratio";
 import ListTalks from "@/components/playlist/list-talks";
 import UserCard from "@/components/UserCard";
+
 const VideoPlayer = () => import("@/components/VideoPlayer");
 
 export default {
@@ -61,9 +79,6 @@ export default {
     };
   },
   computed: {
-    thumb () {
-      return `https://ssig.io/api/v1/projects/3b014fd9-a98a-4f76-a00e-66d8c0030346?speaker.text=${this.talks[this.current].speakers[0].name}&title.text=${this.talks[this.current].name}&avatar.imageUri=${this.talks[this.current].speakers[0].speakerPicture.url}`
-    },
     currentVideoURL () {
       const { youtubecode } = this.currentVideo;
       return `https://www.youtube.com/embed/${youtubecode}?modestbranding=1&showinfo=0`;

@@ -123,20 +123,8 @@ export default {
           hid: "twitter:card",
           name: "twitter:card",
           content: "summary_large_image"
-        },
-        {
-          hid: "og:image",
-          name: "og:image",
-          content: `https://ssig.io/api/v1/projects/3b014fd9-a98a-4f76-a00e-66d8c0030346?speaker.text=${this
-            .talk.speakers && this.talk.speakers[0].name}&title.text=${
-            this.talk.name
-            }&avatar.imageUri=${this.talk &&
-            this.talk.speakers[0].speakerPicture.url}`
         }
-      ],
-      __dangerouslyDisableSanitizersByTagID: {
-        "og:image": ["content"]
-      }
+      ]
     };
   }
 };
