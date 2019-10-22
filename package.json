@@ -24,7 +24,7 @@
     "graphql": "^14.4.2",
     "graphql-tag": "^2.10.1",
     "hsluv": "^0.0.3",
-    "nuxt": "^2.8.1",
+    "nuxt": "^2.10.2",
     "vue-focus-lock": "^1.2.0"
   },
   "devDependencies": {
