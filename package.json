@@ -17,7 +17,7 @@
     "analyze": "NODE_ENV=development nuxt build --analyze --modern=server"
   },
   "dependencies": {
-    "@nuxtjs/apollo": "^4.0.0-rc9",
+    "@nuxtjs/apollo": "^4.0.0-rc17",
     "date-fns": "^2.0.0-beta.4",
     "dotenv": "^6.1.0",
     "glob-all": "^3.1.0",
