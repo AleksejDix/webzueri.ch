@@ -254,6 +254,11 @@ export default {
             innerHTML: JSON.stringify({
               "@context": "http://www.schema.org",
               "@type": "Event",
+              image: ['https://secure.meetupstatic.com/photos/event/a/d/1/5/600_487064309.jpeg'],
+              performer: {
+                '@type': 'Person',
+                name: 'Aleksej Dix'
+              },
               name: this.event.title,
               url: "https://webzueri.ch",
               description: `We're excited to announce the next web zurich event! Where we will have 3 15 minutes Talks about web`,
@@ -275,6 +280,8 @@ export default {
 
               offers: {
                 "@type": "Offer",
+                validFrom: '2019-12-12T12:00',
+                availability: 'https://schema.org/InStock',
                 description:
                   this.event.talks.length + " awesome talks about web topics",
                 url: this.event.meetupLink,
