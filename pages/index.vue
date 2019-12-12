@@ -282,6 +282,7 @@ export default {
                 "@type": "Offer",
                 validFrom: '2019-12-12T12:00',
                 availability: 'https://schema.org/InStock',
+                url: this.eventmeetupLink || '',
                 description:
                   this.event.talks.length + " awesome talks about web topics",
                 url: this.event.meetupLink,
