@@ -73,7 +73,7 @@
             <div class="md:flex">
               <div class="text-white text-16 font-sans p-4">
                 <Overline>when:</Overline>
-                <span>{{ toDate(event.date) }}, 18:30</span>
+                <span>{{ toDate(event.date) }}, 18:00</span>
               </div>
 
               <div class="text-white text-16 font-sans p-4">
