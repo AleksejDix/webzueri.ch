@@ -194,13 +194,13 @@
 
     <header class="text-center py-6 px-4">
       <h2
-        class="leading-normal max-w-md mx-auto text-on-dark-primary font-display text-16 md:text-21"
+        class="leading-normal max-w-md mx-auto text-on-dark-primary font-display text-16 md:text-3xl"
       >Thank you!</h2>
     </header>
 
     <ul class="list-reset flex flex-wrap justify-center">
       <li
-      :class="sponsor.events > 2 ? 'w-96' : 'w-48'"
+      :class="sponsor.events > 1 ? 'w-96' : 'w-48'"
       class="flex justify-center items-center" v-for="sponsor in sponsors" :key="sponsor.id">
         <a v-if="sponsor.website" target="_blank" rel="noopener" class="p-4 md:p-8" :href="sponsor.website">
           <img class="min-w-12 object-contain w-full h-full" v-if="sponsor.name" :src="sponsor.logo.url" :alt="sponsor.name">
