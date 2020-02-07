@@ -25,7 +25,7 @@
           <p>Examples of behavior that contributes to creating a positive environment
             include:</p>
 
-          <ul>
+          <ul class="bullet-list">
             <li>Using welcoming and inclusive language</li>
             <li>Being respectful of differing viewpoints and experiences</li>
             <li>Gracefully accepting constructive criticism</li>
@@ -35,7 +35,7 @@
 
           <p>Examples of unacceptable behavior by participants include:</p>
 
-          <ul>
+          <ul class="bullet-list">
             <li>The use of sexualized language or imagery and unwelcome sexual attention or
               advances</li>
             <li>Trolling, insulting/derogatory comments, and personal or political attacks</li>
@@ -90,6 +90,13 @@
     </div>
   </div>
 </template>
+
+<style scoped>
+.bullet-list {
+  list-style: circle;
+  margin-left: 1.2em;
+}
+</style>
 
 <script>
   import Prose from "~/components/Prose";
