@@ -70,7 +70,7 @@
           <h2 id="enforcement">Enforcement</h2>
 
           <p>Instances of abusive, harassing, or otherwise unacceptable behavior may be
-            reported by contacting the project team at [INSERT EMAIL ADDRESS]. All
+            reported by contacting the project team at the venue or write us a message via Meetup or <a href="https://twitter.com/webzurich">Twitter</a>. All
             complaints will be reviewed and investigated and will result in a response that
             is deemed necessary and appropriate to the circumstances. The project team is
             obligated to maintain confidentiality with regard to the reporter of an incident.
