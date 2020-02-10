@@ -13,6 +13,7 @@
         >
 
           <user-card
+            v-if="speaker.speakerPicture"
             :photo="speaker.speakerPicture.handle"
             :name="speaker.name"
           />
