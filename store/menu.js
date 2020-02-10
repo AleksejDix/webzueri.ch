@@ -25,13 +25,6 @@ export const state = () => ({
       title: "community",
       links: [
         {
-          text: "Sponsor",
-          desc: "support us on <strong>patreon.com</strong>",
-          url: "https://www.patreon.com/webzurich",
-          color: "#f96854",
-          icon: "patreon"
-        },
-        {
           text: "Talk",
           desc: "join our <strong>slack chat</strong>.",
           url: "https://webzuerich-invite.herokuapp.com/",

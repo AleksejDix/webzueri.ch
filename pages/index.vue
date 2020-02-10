@@ -1,44 +1,55 @@
 <template>
   <div
     id="content"
-    class="bg-primary-light pattern"
+    class="bg-primary-light pattern "
   >
+  <div class="bg-primary-dark py-12">
+    <section class=" container  mx-auto p-4">
+      <div class=" bg-primary rounded-lg p-4 md:p-8 shadow-blue">
+        <div class="rounded-lg">
 
-    <section class="bg-primary-dark py-12">
-      <div class="container mx-auto px-2">
-        <div class="lg:flex items-center">
-          <div class="lg:w-2/5 px-2">
-            <h1 class="mb-4 leading-tight text-3xl md:text-4xl text-base text-on-dark-primary text-shadow font-display font-bold tracking-wide uppercase">People making
-              <br>the web in Zürich
-            </h1>
-            <p class="leading-normal text-xl xl:text-2xl text-grey-lighter">
-              Learn, share and collaborate
-              <br/>with your local
-              <strong>web professionals</strong>
-              <br/>and enthusiasts!
-              <div class="py-4">
-                <Button href="https://docs.google.com/forms/d/e/1FAIpQLSfTaa-_wOFOQv3dZ7Ord9TJ3vN8wNdzUY5VQqzFiTg_WMQwEw/viewform?c=0&w=1">
-                  Submit your talk
-                </Button>
+          <div class="relative h-ful overflow-hidden bg-primary-dark shadow-blue rounded-lg" :style="{height: '400px'}">
+            <img
+              class="rounded-lg absolute inset-0 w-full h-full object-cover opacity-50 "
+              src="~/assets/img/people.jpeg"
+              alt="People networking at web zurich"
+            />
+            <div class="absolute inset-0 flex items-center">
+
+              <div class="p-4 md:p-10 rounded-lg">
+                <h1 class="mb-4 leading-tight text-3xl md:text-5xl text-base text-on-dark-primary text-shadow font-display font-bold tracking-wide uppercase">People making
+                  <br>the web in Zürich
+                </h1>
+                <p class="leading-normal text-xl xl:text-2xl text-grey-lighter">
+                  Learn, share and collaborate
+                  <br/>with your local
+                  <strong>web professionals</strong>
+                  <br/>and enthusiasts!
+                  <div class="py-4">
+                    <Button href="https://docs.google.com/forms/d/e/1FAIpQLSfTaa-_wOFOQv3dZ7Ord9TJ3vN8wNdzUY5VQqzFiTg_WMQwEw/viewform?c=0&w=1">
+                      Submit your talk
+                    </Button>
+                  </div>
+                </p>
               </div>
-            </p>
+            </div>
           </div>
-          <div class="lg:w-3/5">
-            <div
-              class="md:flex md:flex-wrap -m-2 p-2"
-              v-if="menu && menu.social && menu.social.links"
-            >
+        </div>
+        <div
+          class="md:flex md:flex-wrap -m-6 p-4 mt-2 md:mt-4"
+          v-if="menu && menu.social && menu.social.links"
+        >
               <a
                 :href="item.url"
                 target="_blank"
                 rel="noopener"
-                class=" block md:flex md:flex-column w-full md:w-1/2 p-2 no-underline"
+                class=" block md:flex md:flex-column w-full md:w-1/3 p-2 md:p-4 no-underline "
                 v-for="item in menu.social.links"
                 :key="item.url"
               >
-                <div class="w-full shadow-blue rounded-lg py-4 px-6 flex items-center bg-primary-dark">
+                <div class="w-full bg-primary-dark shadow-blue rounded-lg py-4 px-6 flex items-center bg-primary-dark">
                   <div class="icon pr-4 md:pr-6">
-                    <div class=" transition w-16 h-16 rounded-full flex items-center justify-center">
+                    <div class="transition w-16 h-16 rounded-full flex items-center justify-center">
                       <svg
                         class="w-10 h-10 fill-primary-dark"
                         :style="{fill: item.color}"
@@ -50,17 +61,16 @@
                   <div class="flex-1 leading-normal">
                     <h3 class="text-2xl text-white">{{item.text}}</h3>
                     <div
-                      class="md:w-40 text-lg text-grey"
+                      class=" text-lg text-grey"
                       v-html="item.desc"
                     ></div>
                   </div>
                 </div>
               </a>
             </div>
-          </div>
-        </div>
       </div>
     </section>
+      </div>
     <div>
       <section class="container mx-auto p-4 rounded">
 
