@@ -44,15 +44,11 @@
 <script>
   import SvgSymbols from "@/components/SvgSymbols";
   import Logo from "@/components/Logo";
-  import { mapGetters } from "vuex";
   import Page from "@/components/page";
   import Modal from "@/components/modal";
 
   export default {
     components: { SvgSymbols, Logo, Modal, Page },
-    computed: {
-      ...mapGetters(["hasUser"])
-    },
     data() {
       return {
         user: [
@@ -80,12 +76,6 @@
           }
         ]
       };
-    },
-    watch: {
-      hasUser(value) {
-        if (!value) return;
-        this.redirectTo(this.$route.query.redirect);
-      }
     }
   };
 </script>

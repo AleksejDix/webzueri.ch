@@ -24,6 +24,18 @@ export default {
   .prose--on-light {
     @apply text-on-light-secondary;
   }
+  .prose > ul {
+    list-style: circle;
+    margin-left: 2rem;
+  }
+
+   .prose > ul li + li {
+       margin-top: 0.5rem
+   }
+
+   .prose > * + * {
+     margin-top: 1.5rem
+   }
 
   .prose strong,
   .prose b {

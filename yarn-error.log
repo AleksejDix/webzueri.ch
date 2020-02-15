@@ -1,0 +1,84 @@
+Arguments: 
+  /usr/local/bin/node /usr/local/Cellar/yarn/1.15.2/libexec/bin/yarn.js add @nuxtjs/markdow
+
+PATH: 
+  /Users/aleksejdix/.npm-global/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/Ghostscript/bin:/opt/ImageMagick/bin:/Users/aleksejdix/.npm-global/bin
+
+Yarn version: 
+  1.15.2
+
+Node version: 
+  11.12.0
+
+Platform: 
+  darwin x64
+
+Trace: 
+  Error: https://registry.yarnpkg.com/@nuxtjs%2fmarkdow: Not found
+      at Request.params.callback [as _callback] (/usr/local/Cellar/yarn/1.15.2/libexec/lib/cli.js:66058:18)
+      at Request.self.callback (/usr/local/Cellar/yarn/1.15.2/libexec/lib/cli.js:129541:22)
+      at Request.emit (events.js:197:13)
+      at Request.<anonymous> (/usr/local/Cellar/yarn/1.15.2/libexec/lib/cli.js:130513:10)
+      at Request.emit (events.js:197:13)
+      at IncomingMessage.<anonymous> (/usr/local/Cellar/yarn/1.15.2/libexec/lib/cli.js:130435:12)
+      at Object.onceWrapper (events.js:285:20)
+      at IncomingMessage.emit (events.js:202:15)
+      at endReadableNT (_stream_readable.js:1132:12)
+      at processTicksAndRejections (internal/process/next_tick.js:76:17)
+
+npm manifest: 
+  {
+    "name": "webzuerich",
+    "version": "1.0.0",
+    "description": "Learn, share and collaborate with your local Web professionals and enthusiasts!",
+    "author": "Aleksej Dix",
+    "private": true,
+    "scripts": {
+      "dev": "nuxt",
+      "build:dev": "NODE_ENV=development nuxt build",
+      "start:dev": "NODE_ENV=development nuxt start",
+      "build": "nuxt build --modern=server",
+      "start": "nuxt start --modern=server",
+      "generate": "nuxt generate",
+      "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
+      "precommit": "npm run lint",
+      "deploy": "now",
+      "analyze": "NODE_ENV=development nuxt build --analyze --modern=server"
+    },
+    "dependencies": {
+      "@nuxtjs/apollo": "^4.0.0-rc9",
+      "date-fns": "^2.0.0-beta.4",
+      "dotenv": "^6.1.0",
+      "glob-all": "^3.1.0",
+      "graphql": "^14.4.2",
+      "graphql-tag": "^2.10.1",
+      "hsluv": "^0.0.3",
+      "nuxt": "^2.8.1",
+      "vue-focus-lock": "^1.2.0"
+    },
+    "devDependencies": {
+      "@babel/runtime-corejs2": "^7.5.5",
+      "@nuxtjs/tailwindcss": "^1.1.2",
+      "autoprefixer": "^9.2.0",
+      "babel-eslint": "^10.0.1",
+      "core-js": "2",
+      "cross-env": "^5.0.1",
+      "eslint": "^5.7.0",
+      "eslint-loader": "^2.1.1",
+      "eslint-plugin-vue": "^4.0.0",
+      "postcss-loader": "^3.0.0",
+      "purgecss-webpack-plugin": "^1.3.0",
+      "tailwindcss": "^1.1.1",
+      "vue-svg-loader": "^0.11.0"
+    },
+    "node": {
+      "fs": "empty",
+      "child_process": "empty"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

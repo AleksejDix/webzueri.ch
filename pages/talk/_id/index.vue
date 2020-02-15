@@ -1,6 +1,5 @@
 <template>
   <div class="pattern min-h-screen">
-
     <div class="max-w-lg rounded-lg p-4 mx-auto"  v-if="!$apollo.loading">
       <div class="owl-lg flex flex-col" v-if="talk.speakers">
         <nuxt-link

@@ -62,11 +62,15 @@ export default {
     '@nuxtjs/tailwindcss'
   ],
   modules: [
-    "@nuxtjs/apollo"
+    "@nuxtjs/apollo",
+    '@nuxtjs/markdownit'
   ],
   tailwindcss: {
     configPath: '~/config/tailwind.config.js',
     cssPath: '~/assets/css/tailwind.css'
+  },
+  markdownit: {
+    injected: true
   },
   apollo: {
     clientConfigs: {

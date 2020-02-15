@@ -1,0 +1,27 @@
+query workshop($id: ID!) {
+  workshops(
+    where: {
+      id: $id,
+      status: PUBLISHED
+    }
+  ) {
+    id
+    name
+    description
+    dateAndTime
+    ticketUrl
+    banner {
+      url
+    }
+    speakers {
+      id
+      name
+      twitterHandle
+      speakerPicture {
+        url
+        handle
+        fileName
+      }
+    }
+  }
+}

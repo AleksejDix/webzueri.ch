@@ -91,13 +91,6 @@
   </div>
 </template>
 
-<style scoped>
-.bullet-list {
-  list-style: circle;
-  margin-left: 1.2em;
-}
-</style>
-
 <script>
   import Prose from "~/components/Prose";
   export default {

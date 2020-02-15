@@ -10,6 +10,11 @@ export const state = () => ({
           url: "/events/1"
         },
         {
+          text: "Workshops",
+          desc: "lessons learned at <strong>webzurich</strong>",
+          url: "/workshops"
+        },
+        {
           text: "Speakers",
           desc: "people who <strong>care and share</strong>",
           url: "/speakers"

@@ -1,0 +1,26 @@
+query workshops {
+  workshops(
+    orderBy: dateAndTime_DESC,
+    where: {
+      status: PUBLISHED
+    }
+  ) {
+    id
+    name
+    description
+    dateAndTime
+    ticketUrl
+    banner {
+      url
+    }
+    speakers {
+      id
+      name
+      speakerPicture {
+        url
+        handle
+        fileName
+      }
+    }
+  }
+}
