@@ -1,8 +1,21 @@
 <template>
-  <nav class="flex justify-center py-4 owl-x" role="navigation" aria-label="Pagination Navigation">
-
-    <Button :to="`/events/${index}`" v-for="index in maxPage" :key="index" :aria-label="[($route.path === `/events/${index}`) ? `Current events Page, Page ${index}` : `Goto events Page ${index}`]" :aria-current="$route.path === `/events/${index}`" active-class="bg-red">
-      {{index}}
+  <nav
+    class="flex justify-center py-4 owl-x"
+    role="navigation"
+    aria-label="Pagination Navigation"
+  >
+    <Button
+      v-for="index in maxPage"
+      :key="index"
+      :to="`/events/${index}`"
+      :aria-label="[
+        $route.path === `/events/${index}`
+          ? `Current events Page, Page ${index}`
+          : `Goto events Page ${index}`
+      ]"
+      :aria-current="$route.path === `/events/${index}`"
+    >
+      {{ index }}
     </Button>
 
     <!-- <div class="flex">
@@ -28,9 +41,9 @@ export default {
   },
   computed: {
     hasMore() {
-      return this.page < this.maxPage
+      return this.page < this.maxPage;
     }
   },
   scrollToTop: false
-}
+};
 </script>

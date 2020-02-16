@@ -2,7 +2,7 @@
   <div class="">
     <section>
       <header class="container mx-auto flex items-center justify-between pt-8 pb-4 px-4">
-        <h2 class="leading-normal text-on-dark-primary font-display text-16 md:text-21 text-shadow">
+        <h2 class="leading-normal text-gray-700 font-display text-16 md:text-21 ">
           featured videos
         </h2>
         <Button to="/events/1">{{ talksCount - 3 }} more videos</Button>
@@ -44,7 +44,7 @@
               >
                 <nuxt-link
                   :to="{ name: 'speaker-id', params: { id: speaker.id } }"
-                  class="group no-underline inline-block text-on-dark-secondary hover:text-blue-light transition"
+                  class="group no-underline inline-block text-gray-500 hover:text-blue-500-light transition"
                   v-for="speaker in talk.speakers"
                   :key="speaker.id"
                 >

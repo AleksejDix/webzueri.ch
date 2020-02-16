@@ -1,7 +1,7 @@
 export default {
   mode: "universal",
   router: {
-    base: '/',
+    base: "/"
   },
   env: {
     baseUrl: process.env.NOW_URL || "http://localhost:3000"
@@ -12,13 +12,10 @@ export default {
   head: {
     titleTemplate: `%s - web zurich`,
     htmlAttrs: {
-      lang: "en-US",
-      class: "bg-primary-dark"
+      lang: "en-US"
     },
-    bodyAttrs: {
-      class: "antialiased "
-    },
-    meta: [{
+    meta: [
+      {
         charset: "utf-8"
       },
       {
@@ -28,7 +25,8 @@ export default {
       {
         hid: "description",
         name: "description",
-        content: "Learn, share and collaborate with your local Web professionals and enthusiasts!"
+        content:
+          "Learn, share and collaborate with your local Web professionals and enthusiasts!"
       },
       {
         hid: "google-site-verification",
@@ -36,14 +34,16 @@ export default {
         content: "IVcT2HAuAxv-lQubqO2BqwmRDjl4IFoNMBDGBPyELH0"
       }
     ],
-    link: [{
+    link: [
+      {
         rel: "icon",
         type: "image/x-icon",
         href: "/favicon.ico"
       },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css?family=Rubik:400,700&display=swap"
+        href:
+          "https://fonts.googleapis.com/css?family=Montserrat:400,700,800&display=swap"
       }
     ]
   },
@@ -51,27 +51,26 @@ export default {
    ** Plugins to load before mounting the App
    */
   plugins: [
-    '~/plugins/components',
-    '~/plugins/filters.js',
+    "~/plugins/components",
+    "~/plugins/filters.js",
     {
-      src: '~/plugins/ga.js',
+      src: "~/plugins/ga.js",
       ssr: false
-    },
+    }
   ],
-  devModules: [
-    '@nuxtjs/tailwindcss'
-  ],
-  modules: [
-    "@nuxtjs/apollo"
-  ],
+  devModules: ["@nuxtjs/tailwindcss"],
+  modules: ["@nuxtjs/apollo", "@nuxtjs/markdownit"],
   tailwindcss: {
-    configPath: '~/config/tailwind.config.js',
-    cssPath: '~/assets/css/tailwind.css'
+    configPath: "~/config/tailwind.config.js",
+    cssPath: "~/assets/css/tailwind.css"
+  },
+  markdownit: {
+    injected: true
   },
   apollo: {
     clientConfigs: {
       default: {
-        httpEndpoint: `https://api-euwest.graphcms.com/v1/cjiqbztau0hjj01i2nukb5bjt/master`,
+        httpEndpoint: `https://api-euwest.graphcms.com/v1/cjiqbztau0hjj01i2nukb5bjt/master`
       }
     }
   }

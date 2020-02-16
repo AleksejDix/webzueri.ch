@@ -1,12 +1,12 @@
 <template>
   <div class="min-w-36 block owl-xs" for="grid-first-name">
     <Overline>{{ label }}</Overline>
-    <div v-if="$slots['hint']" class="leading-normal text-on-light-secondary">
+    <div v-if="$slots['hint']" class="leading-normal text-gray-500">
       <slot name="hint"></slot>
     </div>
     <div
-      :class="[error ? 'bg-red-lightest' : 'bg-grey-light']"
-      class="flex items-center justify-center relative cursor-pointer text-black shadow-inner rounded-lg min-h-32"
+      :class="[error ? 'bg-red-200' : 'bg-grey-light']"
+      class="flex items-center justify-center relative cursor-pointer text-black shadow-inner rounded-xl min-h-32"
     >
       <div class="p-4 w-full">
         <transition name="fade">
@@ -17,7 +17,7 @@
             <div class="flex-shrink-0">
               <img
                 loading="lazy"
-                class="rounded-lg shadow-md w-32"
+                class="rounded-xl shadow-md w-32"
                 :src="image"
                 alt="Profile Avatar Image"
               />
@@ -84,7 +84,7 @@
       <input
         @change="handleChange"
         accept="image/*"
-        class="absolute inset-auto opacity-0 cursor-pointer focus:outline-none focus:shadow-focus focus:bg-white rounded-lg"
+        class="absolute inset-auto opacity-0 cursor-pointer focus:outline-none focus:shadow-focus focus:bg-white rounded-xl"
         name="avatar"
         type="file"
       />

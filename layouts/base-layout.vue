@@ -1,9 +1,9 @@
 <template>
-  <div>
-    <div class="bg-primary-dark">
-      <div class="container mx-auto">
+  <div class="pb-8">
+    <div>
+      <div class="container mx-auto px-4 lg:pb-0">
         <navigation-main>
-          <logo slot="logo" class="text-on-dark-secondary hover:text-on-dark-primary" />
+          <logo slot="logo" class="text-black hover:text-black" />
         </navigation-main>
       </div>
     </div>
@@ -15,12 +15,11 @@
 </template>
 
 <script>
-
-import NavigationMain from "@/components/NavigationMain"
-import SvgSymbols from "@/components/SvgSymbols"
-import Logo from "@/components/Logo"
+import NavigationMain from "@/components/NavigationMain";
+import SvgSymbols from "@/components/SvgSymbols";
+import Logo from "@/components/Logo";
 
 export default {
   components: { SvgSymbols, NavigationMain, Logo }
-}
+};
 </script>

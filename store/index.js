@@ -1,3 +1,3 @@
 export const state = () => ({
-  eventsPerPage: 10,
-})
+  eventsPerPage: 10
+});

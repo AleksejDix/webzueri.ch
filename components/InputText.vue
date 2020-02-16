@@ -1,7 +1,7 @@
 <template>
   <label class="min-w-36 block owl-xs" for="grid-first-name">
     <Overline v-if="label">{{label}}</Overline>
-    <div v-if="hint" class="text-on-light-secondary pb-2 px-2 text-11">{{hint}}</div>
+    <div v-if="hint" class="text-gray-500 pb-2 px-2 text-11">{{hint}}</div>
     <div
       class="flex relative w-full h-32 bg-grey-light tracking-wide no-underline leading-none inline-block font-semibold rounded text-sm"
     >

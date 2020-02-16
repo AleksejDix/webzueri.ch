@@ -9,24 +9,24 @@
 
 <script>
 export default {
-  props: ['width', 'height'],
+  props: ["width", "height"],
   computed: {
     ratio() {
       if (!this.width) {
-        console.warn('please provide width prop to Ratio component')
-        return
+        console.warn("please provide width prop to Ratio component");
+        return;
       }
       if (!this.height) {
-        console.warn('please provide height prop to Ratio component')
-        return
+        console.warn("please provide height prop to Ratio component");
+        return;
       }
-      return +this.height / +this.width  * 100
+      return (+this.height / +this.width) * 100;
     },
     styles() {
       return {
-        paddingTop : `${this.ratio}%`,
-      }
+        paddingTop: `${this.ratio}%`
+      };
     }
   }
-}
+};
 </script>

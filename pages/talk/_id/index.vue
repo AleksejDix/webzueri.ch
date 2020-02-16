@@ -1,39 +1,41 @@
 <template>
-  <div class="pattern min-h-screen">
-
-    <div class="max-w-lg rounded-lg p-4 mx-auto"  v-if="!$apollo.loading">
-      <div class="owl-lg flex flex-col" v-if="talk.speakers">
-        <nuxt-link
-          :to="{name: 'speaker-id', params: {id: speaker.id}}"
-          class="text-on-dark-primary hover:text-blue-light no-underline inline-block"
-          v-for="speaker in talk.speakers"
-          :key="speaker.id"
-        >
-          <user-card
-            v-if="speaker.speakerPicture"
-            :name="speaker.name"
-            :photo="speaker.speakerPicture.handle"
-          />
-        </nuxt-link>
-        <div
-          class="flex-1 relative block bg-primary rounded-lg p-4 text-white md:flex no-underline whitespace-normal shadow-blue"
-        >
-          <div class="flex flex-col flex-1 pb-4 md:pb-0 md:pr-4">
-            <div class="owl-md">
-              <Prose color="on-dark" class="owl">
-                <h1>{{talk.name}}</h1>
-                {{talk.abstract}}
-              </Prose>
-              <Ratio v-if="talk.youtubecode" class="rounded-lg shadow-lg" width="16" height="9">
-                <iframe
-                  loading="lazy"
-                  class="w-full h-full"
-                  type="text/html"
-                  :src="`https://www.youtube.com/embed/${talk.youtubecode}`"
-                  frameborder="0"
-                />
-              </Ratio>
-            </div>
+  <div v-if="!$apollo.loading" class="max-w-lg bg-white rounded-xl p-6 mx-auto">
+    <div v-if="talk.speakers" class="owl-lg flex flex-col">
+      <nuxt-link
+        v-for="speaker in talk.speakers"
+        :key="speaker.id"
+        :to="{ name: 'speaker-id', params: { id: speaker.id } }"
+        class="text-gray-700 hover:text-blue-500-light no-underline inline-block"
+      >
+        <user-card
+          v-if="speaker.speakerPicture"
+          :name="speaker.name"
+          :photo="speaker.speakerPicture.handle"
+        />
+      </nuxt-link>
+      <div
+        class="flex-1 relative block bg-primary rounded-xl text-white md:flex no-underline whitespace-normal "
+      >
+        <div class="flex flex-col flex-1 pb-4 md:pb-0 md:pr-4">
+          <div class="owl-md">
+            <Prose color="on-dark" class="owl">
+              <h1 class="leading-tight mb-8">{{ talk.name }}</h1>
+              {{ talk.abstract }}
+            </Prose>
+            <Ratio
+              v-if="talk.youtubecode"
+              class="rounded-xl shadow-lg"
+              width="16"
+              height="9"
+            >
+              <iframe
+                loading="lazy"
+                class="w-full h-full"
+                type="text/html"
+                :src="`https://www.youtube.com/embed/${talk.youtubecode}`"
+                frameborder="0"
+              />
+            </Ratio>
           </div>
         </div>
       </div>
@@ -55,7 +57,7 @@ export default {
           params: { id }
         }
       }) => ({ id }),
-      variables () {
+      variables() {
         return {
           id: this.$route.params.id
         };
@@ -66,7 +68,7 @@ export default {
     talk: ""
   }),
   computed: {
-    video () {
+    video() {
       return [
         {
           hid: "og:video",
@@ -79,7 +81,7 @@ export default {
         { hid: "og:site_name", name: "og:site_name", content: "web züri" }
       ];
     },
-    cardType () {
+    cardType() {
       if (!this.talk.youtubecode) {
         return [
           {
@@ -92,7 +94,7 @@ export default {
       return [{ hid: "twitter:card", name: "twitter:card", content: "player" }];
     }
   },
-  head () {
+  head() {
     return {
       title: this.talk.name,
       meta: [
