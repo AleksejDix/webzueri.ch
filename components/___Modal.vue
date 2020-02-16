@@ -8,7 +8,7 @@
     >
       <section
         role="dialog"
-        class="modal max-w-sm bg-white rounded-lg mx-auto shadow-lg overflow-hidden"
+        class="modal max-w-sm bg-white rounded-xl mx-auto shadow-lg overflow-hidden"
       >
         <focus-lock :disabled="!show">
           <header class="modal-header px-12 py-6 bg-blue-dark">
@@ -38,7 +38,7 @@
                   for="grid-last-name"
                 >Last Name</label>
                 <input
-                  class="appearance-none block w-full bg-grey-lighter text-grey-darkest border-2 rounded py-3 px-4"
+                  class="appearance-none block w-full bg-grey-lighter text-gray-700 border-2 rounded py-3 px-4"
                   id="grid-last-name"
                   type="text"
                   placeholder="Doe"
@@ -48,12 +48,12 @@
             <div class="flex flex-wrap -mx-3 mb-6">
               <div class="w-full px-3">
                 <label
-                  class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
+                  class="block uppercase tracking-wide text-grea-600 text-xs font-bold mb-2"
                   for="grid-password"
                 >Description</label>
                 <textarea
                   rows="4"
-                  class="appearance-none block w-full bg-grey-lighter text-grey-darkest border-2 rounded py-3 px-4 mb-3"
+                  class="appearance-none block w-full bg-grey-lighter text-grey-700 border-2 rounded py-3 px-4 mb-3"
                   id="grid-password"
                   type="password"
                   placeholder="I will talk about Networking unicorns"

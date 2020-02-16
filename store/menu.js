@@ -1,28 +1,31 @@
 export const state = () => ({
-
   menu: {
     intern: {
       title: "Information",
       links: [
         {
-          text: "Talks",
+          text: "Events",
           desc: "speeches given at <strong>webzurich</strong>",
-          url: "/events/1"
+          url: "/events/1",
+          icon: "presentation-play"
         },
         {
           text: "Workshops",
           desc: "lessons learned at <strong>webzurich</strong>",
-          url: "/workshops"
+          url: "/workshops",
+          icon: "certificate"
         },
         {
           text: "Speakers",
           desc: "people who <strong>care and share</strong>",
-          url: "/speakers"
+          url: "/speakers",
+          icon: "microphone"
         },
         {
           text: "CoC",
           desc: "our rules of <strong>good behaviour</strong>",
-          url: "/code-of-conduct"
+          url: "/code-of-conduct",
+          icon: "security-important"
         }
       ]
     },
@@ -53,4 +56,4 @@ export const state = () => ({
       ]
     }
   }
-})
+});

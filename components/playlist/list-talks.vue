@@ -3,17 +3,17 @@
     <li
       v-for="(talk, index) in list"
       :key="talk.id"
-      @click="$emit('click', {index, talk})"
       :class="{ 'bg-primary-dark': active === index }"
-      class="p-4 border-b border-primary-light cursor-pointer text-on-dark-secondary hover:text-white hover:bg-primary-dark"
+      class="p-4 border-b border-white cursor-pointer text-gray-700 hover:bg-purple-100"
+      @click="$emit('click', { index, talk })"
     >
-      <slot :talk="talk"/>
+      <slot :talk="talk" />
     </li>
   </ul>
 </template>
 
 <script>
 export default {
-  props: ['list', 'active'],
-}
+  props: ["list", "active"]
+};
 </script>

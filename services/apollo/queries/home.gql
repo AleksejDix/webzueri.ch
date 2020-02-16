@@ -54,11 +54,7 @@ query home {
       ...VenueFields
     }
   }
-  sponsorsConnection ( where:{
-    logo: {
-      mimeType: "image/svg+xml"
-    }
-  }) {
+  sponsorsConnection  {
     edges {
       node {
         ...SponsorFields

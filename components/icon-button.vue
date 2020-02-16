@@ -4,12 +4,10 @@
     class="c-button relative inline-block focus:outline-none border-none rounded-full leading-none"
     @click="handleCLick"
   >
-    <div class="c-button__ripple trans absolute w-full h-full inset-auto rounded-full bg-current-color"></div>
-    <div class="flex items-center justify-center absolute inset-auto">
-      <svg class="w-8 h-8" transform="scale(0.8)">
-        <use v-bind="{'xlink:href':'#'+icon}"></use>
-      </svg>
-    </div>
+    <div
+      class="trans absolute w-full h-full inset-auto rounded-full bg-current-color"
+    ></div>
+    <div class="flex items-center justify-center absolute inset-auto"></div>
     <slot></slot>
   </button>
 </template>
@@ -22,31 +20,13 @@ export default {
     },
     icon: {
       type: String,
-      default: 'close'
+      default: "close"
     }
   },
   methods: {
     handleCLick(event) {
-      this.$emit('click', event)
+      this.$emit("click", event);
     }
   }
-}
+};
 </script>
-
-<style>
-  .c-button .c-button__ripple {
-    @apply opacity-0;
-  }
-
-  .c-button:hover .c-button__ripple {
-    @apply opacity-25;
-  }
-
-  .c-button:active .c-button__ripple {
-    @apply opacity-50;
-  }
-
-  .c-button:focus .c-button__ripple {
-    @apply opacity-75;
-  }
-</style>

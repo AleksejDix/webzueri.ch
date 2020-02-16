@@ -1,4 +1,5 @@
 <template>
+
   <img
     loading="lazy"
     :class="[responsive ? 'max-w-full w-full' : '']"
@@ -7,6 +8,7 @@
     :height="height"
     :alt="alt"
   >
+
 </template>
 
 <script>

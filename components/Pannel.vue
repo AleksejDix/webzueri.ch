@@ -1,5 +1,5 @@
 <template>
-  <article class="card bg-primary rounded-lg  shadow-blue">
+  <article class="card bg-primary rounded-xl  ">
     <header class="border-b border-black p-4">
       <slot name="header"></slot>
     </header>

@@ -5,14 +5,14 @@
         :width="64"
         :height="64"
         fit="crop"
-        class="absolute inset-auto rounded-full w-full"
+        class="absolute inset-auto rounded-full w-full border border-2 border-white"
         :src="photo"
         :alt="name"
       />
       <div class="rounded-full absolute inset-auto shadow-inner"></div>
     </div>
     <div class="flex-1 leading-tight pr-2 pl-4">
-      <h3 class="text-on-dark-primary font-normal">{{ name }}</h3>
+      <h3 class="text-black font-book">{{ name }}</h3>
       <slot></slot>
       <div>{{ meta }}</div>
     </div>
@@ -20,12 +20,12 @@
 </template>
 
 <script>
-import CmsImg from '@/components/cms-image'
+import CmsImg from "@/components/cms-image";
 
 export default {
   components: {
     CmsImg
   },
-  props: ['name', 'meta', 'photo'],
-}
+  props: ["name", "meta", "photo"]
+};
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <article class="border border-black bg-primary rounded-lg">
+  <article class="border border-black bg-primary rounded-xl">
     <header
       v-if="$slots['title'] || $slots['title']"
       class="border-b flex justify-between items-center px-6 h-16"

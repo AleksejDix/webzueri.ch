@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="md:p-4 md:py-6 pattern min-h-screen">
+    <div class="md:p-4 md:py-6  min-h-screen">
       <nuxt />
     </div>
     <svg-symbols />
@@ -8,41 +8,40 @@
 </template>
 
 <script>
-import SvgSymbols from "@/components/SvgSymbols"
-import {mapGetters} from 'vuex'
+import SvgSymbols from "@/components/SvgSymbols";
+import { mapGetters } from "vuex";
 
 export default {
-  components: {SvgSymbols},
+  components: { SvgSymbols },
   computed: {
-    ...mapGetters(['hasUser'])
+    ...mapGetters(["hasUser"])
   },
   watch: {
     hasUser(value) {
-      if(!value) return
-      this.redirectTo(this.$route.query.redirect)
-    }
-  },
-  methods: {
-    redirectTo(routeName) {
-      if (!routeName) this.$router.push('/dashboard/settings/')
-      this.$router.push({name: routeName})
+      if (!value) return;
+      this.redirectTo(this.$route.query.redirect);
     }
   },
   mounted() {
     if (this.hasUser) {
-       this.redirectTo(this.$route.query.redirect)
+      this.redirectTo(this.$route.query.redirect);
+    }
+  },
+  methods: {
+    redirectTo(routeName) {
+      if (!routeName) this.$router.push("/dashboard/settings/");
+      this.$router.push({ name: routeName });
     }
   }
-}
+};
 </script>
 
-
 <style scoped>
-  .nuxt-link-active {
-    @apply text-secondary;
-  }
-  .nuxt-link-active::after {
-    content: '';
-    @apply absolute inset-x-0 bottom-0 bg-secondary h-1;
-  }
+.nuxt-link-active {
+  @apply text-gray-500;
+}
+.nuxt-link-active::after {
+  content: "";
+  @apply absolute inset-x-0 bottom-0 bg-orange-500 h-1;
+}
 </style>
