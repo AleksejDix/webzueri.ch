@@ -81,7 +81,7 @@
               >
                 when:
               </div>
-              <span>{{ toDate(event.date) }}, 18:00</span>
+              <span>{{ toDate(event.date) }}, 18:30</span>
             </div>
 
             <div class="text-black text-16 font-sans col-span-2">
@@ -306,10 +306,9 @@ export default {
                 "@type": "Offer",
                 validFrom: "2019-12-12T12:00",
                 availability: "https://schema.org/InStock",
-                url: this.eventmeetupLink || "",
+                url: this.event.meetupLink || "",
                 description:
                   this.event.talks.length + " awesome talks about web topics",
-                url: this.event.meetupLink,
                 price: 0,
                 priceCurrency: "CHF"
               }

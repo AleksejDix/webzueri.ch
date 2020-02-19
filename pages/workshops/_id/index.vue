@@ -16,7 +16,10 @@
                 :src="workshop.speakers[0].speakerPicture.url"
                 :alt="workshop.speakers[0].name"
               />
-              <div v-if="workshop.speakers[0].twitterHandler" class="-mt-8 md:ml-0 inline-flex md:p-2 rounded-full owl-x"">
+              <div
+                v-if="workshop.speakers[0].twitterHandler"
+                class="-mt-8 md:ml-0 inline-flex md:p-2 rounded-full owl-x"
+              >
                 <a :href="workshop.speakers[0].twitterHandler" target="_blank">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -42,20 +45,53 @@
                   <strong> by {{ workshop.speakers[0].name }}</strong>
                 </h1>
 
-                <!-- <div
-                  class="relative bg-purple-100 p-4 md:p-8 rounded-lg mb-8 flex items-center overflow-hidden"
+                <div
+                  class="relative bg-purple-100 p-4 md:p-8 rounded-lg mb-8 grid gap-6 md:grid-flow-col items-center overflow-hidden"
                 >
                   <div
                     class="absolute w-2 h-full left-0 top-0 bottom-0 bg-purple-700 rounded-l"
                   ></div>
                   <div class="flex-1">
-                    Fullday workshop. Fun. fun. fun .
+                    <div>
+                      <div class="text-black text-16 font-sans">
+                        <div
+                          class="font-bold font-display text-2xl tracking-tighter uppercase"
+                        >
+                          when:
+                        </div>
+                        <span>{{
+                          workshop.dateAndTime | date("dd, MMMM, yyyy")
+                        }}</span>
+                      </div>
+
+                      <div class="text-black text-16 font-sans col-span-2">
+                        <div
+                          class="font-bold font-display text-2xl tracking-tighter uppercase"
+                        >
+                          where:
+                        </div>
+                        <a
+                          v-if="workshop.venue"
+                          target="_blank"
+                          rel="noopener"
+                          class="no-underline text-pink-light"
+                          :href="workshop.venue.googleMapsUrl"
+                          >{{ workshop.venue.name }} •
+                          {{ workshop.venue.street }} •
+                          {{ workshop.venue.zip }}, {{ workshop.venue.city }}</a
+                        >
+                      </div>
+                    </div>
                   </div>
-                  <Button
-                    >Level up your skills for just
-                    <strong class="font-bold">CHF 395</strong></Button
-                  >
-                </div> -->
+                  <div class="flex justify-end">
+                    <Button target="_blank" :href="workshop.ticketUrl"
+                      >Level up your skills for just
+                      <strong class="font-bold"
+                        >CHF {{ workshop.price }}</strong
+                      >
+                    </Button>
+                  </div>
+                </div>
 
                 <prose
                   v-if="workshop.description"
@@ -97,6 +133,11 @@ export default {
         };
       }
     }
+  },
+  head() {
+    return {
+      title: this.workshop.name
+    };
   }
 };
 </script>

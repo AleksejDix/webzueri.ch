@@ -10,6 +10,7 @@ query workshop($id: ID!) {
     description
     dateAndTime
     ticketUrl
+    price
     banner {
       url
     }
@@ -22,6 +23,16 @@ query workshop($id: ID!) {
         handle
         fileName
       }
+    }
+    venue {
+      id
+      name
+      street
+      region
+      zip
+      city
+      country
+      googleMapsUrl
     }
   }
 }
