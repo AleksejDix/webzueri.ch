@@ -46,6 +46,7 @@
                 </h1>
 
                 <div
+                  v-if="isFutureTalk"
                   class="relative bg-purple-100 p-4 md:p-8 rounded-lg mb-8 grid gap-6 md:grid-flow-col items-center overflow-hidden"
                 >
                   <div
@@ -64,7 +65,10 @@
                         }}</span>
                       </div>
 
-                      <div class="text-black text-16 font-sans col-span-2">
+                      <div
+                        v-if="workshop.venue"
+                        class="text-black text-16 font-sans col-span-2"
+                      >
                         <div
                           class="font-bold font-display text-2xl tracking-tighter uppercase"
                         >
@@ -91,6 +95,12 @@
                       >
                     </Button>
                   </div>
+                </div>
+                <div
+                  v-else
+                  class="relative bg-red-100 p-4 md:p-8 rounded-lg mb-8 grid gap-6 md:grid-flow-col items-center overflow-hidden"
+                >
+                  <p class="text-red-700">This event is the past!</p>
                 </div>
 
                 <prose
@@ -122,6 +132,11 @@ export default {
     workshop() {
       if (this.workshops.length === 0) return;
       return this.workshops[0];
+    },
+    isFutureTalk() {
+      const today = new Date();
+      const tomorrow = today.setDate(today.getDate() - 1);
+      return new Date(this.workshop.dateAndTime) > new Date(tomorrow);
     }
   },
   apollo: {
@@ -136,7 +151,7 @@ export default {
   },
   head() {
     return {
-      title: this.workshop.name
+      title: this.workshop && this.workshop.name
     };
   }
 };

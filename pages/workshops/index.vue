@@ -10,8 +10,19 @@
           class="h-full flex flex-col justify-between block rounded-xl py-4 px-6 bg-main "
           :to="{ name: 'workshops-id', params: { id: workshop.id } }"
         >
-          <div>
-            <span class="block mb-2">{{ workshop.dateAndTime | date }}</span>
+          <div class="owl">
+            <Badge
+              :color="isFuture(workshop.dateAndTime) ? 'green' : 'red'"
+              class="block mb-2"
+            >
+              <template v-if="isFuture(workshop.dateAndTime)">
+                {{ workshop.dateAndTime | date }}
+              </template>
+              <template v-else>
+                in the past
+              </template>
+            </Badge>
+
             <h2
               class="text-2xl block items-center text-black font-bold font-display mb-6 leading-none"
             >
@@ -48,6 +59,13 @@ export default {
   apollo: {
     workshops: {
       query: QueryPublishedWorkshops
+    }
+  },
+  methods: {
+    isFuture(date) {
+      const today = new Date();
+      const tomorrow = today.setDate(today.getDate() - 1);
+      return new Date(date) > new Date(tomorrow);
     }
   }
 };
