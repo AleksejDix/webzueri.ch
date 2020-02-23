@@ -3,7 +3,7 @@
     <section>
       <header class="text-center">
         <h2
-          class="leading-tight tracking-tight font-bold max-w-2xl mx-auto text-black font-display text-3xl "
+          class="px-4 leading-tight tracking-tight font-bold max-w-2xl mx-auto text-black font-display text-3xl "
         >
           Unlock your community's peer-to-peer sharing potential
         </h2>

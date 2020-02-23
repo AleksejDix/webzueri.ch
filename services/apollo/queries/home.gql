@@ -31,8 +31,14 @@ fragment SponsorFields on Sponsor {
   }
 }
 
-query home {
-  events(orderBy: date_DESC, first: 1, where: { status: PUBLISHED }) {
+query home($date: DateTime) {
+  events(
+    orderBy: date_DESC,
+    first: 1,
+    where: {
+      status: PUBLISHED
+    }
+  ) {
     status
     id
     date
@@ -54,6 +60,18 @@ query home {
       ...VenueFields
     }
   }
+  workshops(
+    where:{
+      dateAndTime_gte: $date,
+    }
+  ) {
+    id
+    name
+    dateAndTime
+    speakers {
+      ...SpeakerFields
+    }
+  },
   sponsorsConnection  {
     edges {
       node {

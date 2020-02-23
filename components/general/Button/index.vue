@@ -132,7 +132,7 @@ export default {
 
 .button:hover,
 .button:focus {
-  @apply outline-none bg-purple-300;
+  @apply outline-none bg-purple-500;
 }
 
 .button.nuxt-link-active > div,
