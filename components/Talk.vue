@@ -1,7 +1,7 @@
 <template>
   <nuxt-link
     class="flex flex-col justify-between block rounded-xl py-4 px-6 bg-main owl"
-    :to="{ name: 'talk-id', params: { id: talk.id } }"
+    :to="{ name: 'talks-id', params: { id: talk.id } }"
   >
     <div class="owl-sm">
       <h2

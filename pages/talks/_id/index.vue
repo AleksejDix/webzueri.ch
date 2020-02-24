@@ -4,7 +4,7 @@
       <nuxt-link
         v-for="speaker in talk.speakers"
         :key="speaker.id"
-        :to="{ name: 'speaker-id', params: { id: speaker.id } }"
+        :to="{ name: 'speakers-id', params: { id: speaker.id } }"
         class="text-gray-700 hover:text-blue-500-light no-underline inline-block"
       >
         <user-card

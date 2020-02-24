@@ -13,7 +13,7 @@
       <nuxt-link
         v-for="talk in speaker.talks"
         :key="talk.id"
-        :to="{ name: 'talk-id', params: { id: talk.id } }"
+        :to="{ name: 'talks-id', params: { id: talk.id } }"
         class="flex-1 relative block bg-main rounded-xl p-4 text-white md:flex no-underline whitespace-normal "
       >
         <div class="flex flex-col flex-1 pb-4 md:pb-0 md:pr-4">

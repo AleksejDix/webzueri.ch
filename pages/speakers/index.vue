@@ -7,7 +7,7 @@
     <div v-if="!$apollo.loading">
       <ul v-if="speakers" class="md:flex md:flex-wrap ">
         <li
-          v-for="(speaker, index) in sortedByTalks"
+          v-for="speaker in sortedByTalks"
           :key="speaker.id"
           class="w-full md:w-1/2 lg:w-1/3 xl:w-1/4 p-2 relative"
         >
@@ -27,7 +27,12 @@
             </svg>
           </div>
           <nuxt-link
-            :to="`/speaker/${speaker.id}`"
+            :to="{
+              name: 'speakers-id',
+              params: {
+                id: speaker.id
+              }
+            }"
             class="block w-full bg-main flex justify-between items-center hover:bg no-underline p-2 md:p-4 rounded-xl "
             :class="{ 'border-2 border-yellow-500': speaker.talks.length > 2 }"
           >
