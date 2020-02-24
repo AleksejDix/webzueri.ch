@@ -10,8 +10,8 @@
         {{ talk.name }}
       </h2>
       <div>
+        <slot />
         <Badge v-if="talk.youtubecode" color="red">recorded</Badge>
-        <Badge v-if="isFutureTalk" color="blue">upcoming</Badge>
       </div>
     </div>
     <div class="owl-sm">
@@ -33,13 +33,6 @@ export default {
     talk: {
       type: Object,
       default: () => ({})
-    }
-  },
-  computed: {
-    isFutureTalk() {
-      const today = new Date();
-      const tomorrow = today.setDate(today.getDate() - 1);
-      return new Date(this.date) > new Date(tomorrow);
     }
   }
 };

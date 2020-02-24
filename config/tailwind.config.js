@@ -5,6 +5,7 @@
  ** Default: https://github.com/tailwindcss/tailwindcss/blob/master/stubs/defaultConfig.stub.js
  */
 const config = {
+  plugins: [require("@tailwindcss/custom-forms")],
   theme: {
     extend: {
       fill: theme => ({

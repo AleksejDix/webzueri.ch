@@ -1,13 +1,13 @@
-import Vue from 'vue';
-import InputSimple from '~/components/InputSimple';
-import Button from '~/components/general/Button';
-import Icon from '~/components/general/Icon';
-import InputText from '~/components/InputText';
-import InputSelect from '~/components/InputSelect';
-import Overline from '~/components/Overline';
-import Badge from '~/components/Badge';
-import UserCard from '~/components/UserCard';
-import Ratio from '~/components/layout/Ratio';
+import Vue from "vue";
+import InputSimple from "~/components/InputSimple";
+import Button from "~/components/general/Button";
+import Icon from "~/components/general/Icon";
+import InputText from "~/components/InputText";
+import InputSelect from "~/components/InputSelect";
+import Overline from "~/components/Overline";
+import Badge from "~/components/Badge";
+import UserCard from "~/components/UserCard";
+import Ratio from "~/components/layout/Ratio";
 
 Vue.component("Badge", Badge);
 Vue.component("UserCard", UserCard);

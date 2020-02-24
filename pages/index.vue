@@ -321,14 +321,12 @@ export default {
     today() {
       var dateNow = new Date();
       dateNow.setUTCHours(0, 0, 0, 0);
-      var dateToISO = dateNow.toISOString();
-      return dateToISO;
+      return dateNow.toISOString();
     },
   },
   methods: {
     toDate
   },
-
   head() {
     return (
       this.event && {
