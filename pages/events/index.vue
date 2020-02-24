@@ -111,8 +111,8 @@ export default {
       return dateToISO;
     },
     page() {
-      if (!this.$route.params.page) return;
-      return Number(this.$route.params.page) || 1;
+      if (!this.$route.query.page) return;
+      return Number(this.$route.query.page) || 1;
     },
     maxPage() {
       return Math.ceil(this.eventsCount / this.eventsPerPage);
@@ -124,14 +124,28 @@ export default {
 
   head() {
     return {
-      title: `Events ${this.$route.params.page}`
+      title: `Events ${this.$route.query.page}`
     };
+  },
+  beforeRouteEnter(to, from, next) {
+    if (to.query.page) {
+      next();
+    } else {
+      next(vm => {
+        vm.$router.replace({
+          name: vm.$route.name,
+          query: {
+            page: 1
+          }
+        });
+      });
+    }
   },
   apollo: {
     events: {
       query: QueryEvents,
       prefetch: context => {
-        const { page } = context.route.params || 1;
+        const { page } = context.route.query || 1;
         const skip = Number(page) * this.eventsPerPage - this.eventsPerPage;
         const first = this.eventsPerPage;
         return {

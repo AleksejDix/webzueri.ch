@@ -56,16 +56,21 @@ export default {
       return this.workshops.length;
     }
   },
-  apollo: {
-    workshops: {
-      query: QueryPublishedWorkshops
-    }
-  },
   methods: {
     isFuture(date) {
       const today = new Date();
       const tomorrow = today.setDate(today.getDate() - 1);
       return new Date(date) > new Date(tomorrow);
+    }
+  },
+  head() {
+    return {
+      title: "Workshops"
+    };
+  },
+  apollo: {
+    workshops: {
+      query: QueryPublishedWorkshops
     }
   }
 };

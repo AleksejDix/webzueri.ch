@@ -6,7 +6,7 @@ export const state = () => ({
         {
           text: "Events",
           desc: "speeches given at <strong>webzurich</strong>",
-          url: "/events/1",
+          url: "/events?page=1",
           icon: "presentation-play"
         },
         {

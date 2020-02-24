@@ -7,7 +7,12 @@
     <Button
       v-for="index in maxPage"
       :key="index"
-      :to="`/events/${index}`"
+      :to="{
+        name: 'events',
+        query: {
+          page: index
+        }
+      }"
       :aria-label="[
         $route.path === `/events/${index}`
           ? `Current events Page, Page ${index}`
