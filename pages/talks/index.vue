@@ -22,10 +22,10 @@
             class="w-full"
             @click="isFilterVisible = false"
           >
-            <Icon slot="start" type="close" /> hide
+            <Icon slot="start" type="close" /> hide filters
           </Button>
           <Button v-else class="w-full" @click="isFilterVisible = true">
-            <Icon slot="start" type="tune" /> hide filters
+            <Icon slot="start" type="tune" /> show filters
           </Button>
         </div>
         <div class="md:col-span-2 lg:col-span-4 flex justify-between">
