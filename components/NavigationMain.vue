@@ -68,9 +68,9 @@
             </div>
           </template> -->
 
-          <div class="block md:hidden py-4">
+          <div class="block lg:hidden py-4">
             <Button ref="open" @click="open('mobileNav')">
-              <span class="xs:hidden">Menu</span>
+              <span class="lg:hidden">Menu</span>
               <svg slot="end" class="w-6 h-6 p-1">
                 <use xlink:href="#burger"></use>
               </svg>
@@ -93,7 +93,7 @@
             class="absolute w-full xl:m-0 right-0 top-0 z-40 p-2 "
           >
             <div
-              class="border  relative rounded-xl xl:-mr-2 xl:-mt-2 overflow-hidden"
+              class="border relative rounded-xl xl:-mr-2 xl:-mt-2 overflow-hidden"
             >
               <!--  <div class="flex justify-end items-center border-b-lg owl-x p-2 bg-primary-dark rounded">
                 <nuxt-link @click.native="close" to="/dashboard/" class="inline-block flex-1 flex no-underline items-center text-gray-500 hover:text-gray-700 transition pl-4" v-if="user">
