@@ -59,7 +59,7 @@ export default {
     }
   ],
   devModules: ["@nuxtjs/tailwindcss"],
-  modules: ["@nuxtjs/apollo", "@nuxtjs/markdownit"],
+  modules: ["@nuxtjs/apollo", "@nuxtjs/markdownit", "@nuxtjs/pwa"],
   tailwindcss: {
     configPath: "~/config/tailwind.config.js",
     cssPath: "~/assets/css/tailwind.css"
