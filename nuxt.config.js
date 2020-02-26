@@ -50,16 +50,12 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [
-    "~/plugins/components",
-    "~/plugins/filters.js",
-    {
-      src: "~/plugins/ga.js",
-      ssr: false
-    }
-  ],
-  devModules: ["@nuxtjs/tailwindcss"],
+  plugins: ["~/plugins/components", "~/plugins/filters.js"],
+  buildModules: ["@nuxtjs/tailwindcss", "@nuxtjs/google-analytics"],
   modules: ["@nuxtjs/apollo", "@nuxtjs/markdownit", "@nuxtjs/pwa"],
+  googleAnalytics: {
+    id: "UA-122601504-1"
+  },
   tailwindcss: {
     configPath: "~/config/tailwind.config.js",
     cssPath: "~/assets/css/tailwind.css"
