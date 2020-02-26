@@ -21,14 +21,3 @@ $ yarn run generate
 
 For detailed explanation on how things work, checkout [Nuxt.js docs](https://nuxtjs.org).
 .
-
-```
-{
-  "src": "/sw.js",
-  "dest": "/_nuxt/static/sw.js",
-  "headers": {
-    "cache-control": "public, max-age=43200, immutable",
-    "Service-Worker-Allowed": "/"
-  }
-}
-```
