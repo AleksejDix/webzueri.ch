@@ -8,6 +8,10 @@
       "config": {
         "serverFiles": ["package.json"]
       }
+    },
+    {
+      "src": "static/*",
+      "use": "@now/static"
     }
   ],
   "routes": [
