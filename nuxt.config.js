@@ -63,6 +63,12 @@ export default {
   markdownit: {
     injected: true
   },
+  workbox: {
+    publicPath: "/_nuxt/"
+  },
+  manifest: {
+    publicPath: "/_nuxt/"
+  },
   apollo: {
     clientConfigs: {
       default: {
