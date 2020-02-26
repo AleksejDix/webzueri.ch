@@ -11,6 +11,3 @@ npm-debug.log
 dist
 
 .env
-
-# service workers
-sw.*
