@@ -75,5 +75,12 @@ export default {
         httpEndpoint: `https://api-euwest.graphcms.com/v1/cjiqbztau0hjj01i2nukb5bjt/master`
       }
     }
+  },
+  pwa: {
+    meta: {
+      name: "Web Zurich",
+      short_name: "Web Zurich",
+      author: "Aleksej Dix"
+    }
   }
 };
