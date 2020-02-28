@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "alias": "webzueri.ch",
+  "alias": "webzurich.com",
   "builds": [
     {
       "src": "nuxt.config.js",
