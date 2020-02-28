@@ -23,6 +23,10 @@ export default {
         content: "width=device-width, initial-scale=1"
       },
       {
+        name: "yandex-verification",
+        content: "5b394792ab19c0bd"
+      },
+      {
         hid: "description",
         name: "description",
         content:
