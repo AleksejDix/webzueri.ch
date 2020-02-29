@@ -9,7 +9,7 @@
           <img
             class="rounded-xl absolute inset-0 w-full h-full object-cover opacity-75 "
             src="~/assets/img/people.jpeg"
-            alt="People networking at web zurich"
+            alt="People networking at Web Zurich"
           />
           <div class="absolute inset-0 flex items-center">
             <div class="p-4 md:p-8 rounded-xl">

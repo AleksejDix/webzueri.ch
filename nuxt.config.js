@@ -10,7 +10,7 @@ export default {
    ** Headers of the page
    */
   head: {
-    titleTemplate: `%s - web zurich`,
+    titleTemplate: `%s - Web Zurich`,
     htmlAttrs: {
       lang: "en-US"
     },
@@ -84,7 +84,8 @@ export default {
     meta: {
       name: "Web Zurich",
       short_name: "Web Zurich",
-      author: "Aleksej Dix"
+      author: "Aleksej Dix",
+      description: "Community that matters"
     }
   }
 };
