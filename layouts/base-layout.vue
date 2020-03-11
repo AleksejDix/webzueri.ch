@@ -11,6 +11,7 @@
       <slot />
     </main>
     <svg-symbols />
+    <portal-target name="shamelessplug"></portal-target>
   </div>
 </template>
 

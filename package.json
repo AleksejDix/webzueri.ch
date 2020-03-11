@@ -26,6 +26,7 @@
     "graphql": "^14.6.0",
     "graphql-tag": "^2.10.3",
     "nuxt": "^2.11.0",
+    "portal-vue": "^2.1.7",
     "vue-focus-lock": "^1.4.0"
   },
   "devDependencies": {

@@ -196,17 +196,45 @@
       </h2>
       <ul class="rounded-xl p-4 md:p-6 grid md:grid-cols-2 gap-6 lg:gap-12">
         <li v-for="workshop in workshops" :key="workshop.id">
+          <portal to="shamelessplug">
+            <div v-if="showBanner" class="fixed z-20 bottom-0 inset-x-0 pb-2 sm:pb-5 px-6 text-white">
+              <div class="max-w-screen-xl mx-auto">
+                <div class="p-2 rounded-xl bg-gray-900 shadow-lg">
+                  <div class="md:flex md:items-center md:justify-between md:flex-wrap">
+                      <p class="md:ml-3 text-sm md:text-base font-medium text-white">
+                        <span class="text-white">
+                          <strong class="block md:inline text-yellow-500  mr-1">Tickets on sale!</strong>
+                          <span class="hidden xl:inline">New Workshop!</span> <span>Smart Responsive Interface Design Patterns by <a href="/talks/ck3zmq30eengd0b20qo9606kq"> Vitaly Friedman</a>.</span>
+                        </span>
+                      </p>
+
+                    <div class="order-3 mt-2 flex-shrink-0 w-full sm:order-2 sm:mt-0 sm:w-auto">
+                      <div class="rounded-md shadow-sm flex justify-end owl-x">
+                        <Button :to="{ name: 'workshops-id', params: { id: workshop.id } }">
+                          Learn more
+                        </Button>
+                         <button type="button" class="-mr-1 flex p-2 rounded-md hover:bg-gray-800 focus:outline-none focus:bg-gray-800" @click="hideBanner">
+                          <svg class="h-6 w-6 text-white" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                          </svg>
+                      </button>
+                      </div>
+
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </portal>
           <nuxt-link
           class="h-full flex flex-col justify-between block rounded-xl py-4 px-6 border-white border-4"
           :to="{ name: 'workshops-id', params: { id: workshop.id } }"
         >
           <div class="owl">
-            <div class="text-black text-5xl font-bold tracking-tighter leading-none">
+            <div class="text-black text-2xl md:text-5xl font-bold tracking-tighter leading-none">
               {{ workshop.dateAndTime | date('dd.MM.y') }}
             </div>
-
-
-
             <h2
               class="text-2xl block items-center text-black font-bold font-display mb-6 leading-none"
             >
@@ -302,6 +330,7 @@ export default {
   },
   data() {
     return {
+      showBanner: false,
       active: false,
       events: [],
       feedbacks: [],
@@ -324,13 +353,22 @@ export default {
       return dateNow.toISOString();
     },
   },
+  mounted() {
+    localStorage.getItem('hideBanner') === null
+      ? (setTimeout(() => {this.showBanner = true}, 500))
+      : (this.showBanner = false)
+  },
   methods: {
-    toDate
+    toDate,
+    hideBanner() {
+      localStorage.setItem('hideBanner', true);
+      this.showBanner = false
+    }
   },
   head() {
     return (
       this.event && {
-        title: "next: " + this.event.title,
+        title: "next: " + this.toDate(this.event.date),
         __dangerouslyDisableSanitizers: ["script"],
         script: [
           {

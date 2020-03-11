@@ -56,7 +56,12 @@ export default {
    */
   plugins: ["~/plugins/components", "~/plugins/filters.js"],
   buildModules: ["@nuxtjs/tailwindcss", "@nuxtjs/google-analytics"],
-  modules: ["@nuxtjs/apollo", "@nuxtjs/markdownit", "@nuxtjs/pwa"],
+  modules: [
+    "@nuxtjs/apollo",
+    "@nuxtjs/markdownit",
+    "@nuxtjs/pwa",
+    "portal-vue/nuxt"
+  ],
   googleAnalytics: {
     id: "UA-122601504-1"
   },
