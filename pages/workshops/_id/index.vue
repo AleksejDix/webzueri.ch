@@ -47,20 +47,47 @@
 
                 <div
                   v-if="isFutureTalk"
-                  class="relative bg-purple-100 p-4 md:p-8 rounded-lg mb-8 grid gap-6 md:grid-flow-col items-center overflow-hidden"
+                  :class="{
+                    'bg-purple-100': !workshop.canceled,
+                    'bg-red-100': workshop.canceled
+                  }"
+                  class="relative p-4 md:p-8 rounded-lg mb-8 grid gap-6 md:grid-flow-col items-center overflow-hidden"
                 >
                   <div
-                    class="absolute w-2 h-full left-0 top-0 bottom-0 bg-purple-700 rounded-l"
+                    class="absolute w-2 h-full left-0 top-0 bottom-0 rounded-l"
+                    :class="{
+                      'bg-red-700': workshop.canceled,
+                      'bg-purple-700': !workshop.canceled
+                    }"
                   ></div>
                   <div class="flex-1">
                     <div>
                       <div class="text-black text-16 font-sans">
                         <div
+                          v-if="workshop.canceled"
+                          class="text-xl text-red-700 font-bold pb-4
+                        "
+                        >
+                          This physical workshop is canceled. People who have
+                          bought the tickets will be provided with alternative.
+                          Please contact the organizer.
+                          <a
+                            target="_blank"
+                            href="https://app.slack.com/client/T0L99KVU6/C011FC9N9JQ"
+                            rel="nofollower"
+                            class="underline"
+                            >Join Slack chanel for more information</a
+                          >
+                        </div>
+                        <div
                           class="font-bold font-display text-2xl tracking-tighter uppercase"
                         >
                           when:
                         </div>
-                        <span>{{
+                        <Badge v-if="workshop.canceled" color="red">
+                          canceled
+                        </Badge>
+                        <span v-else>{{
                           workshop.dateAndTime | date("dd, MMMM, yyyy")
                         }}</span>
                       </div>
@@ -87,7 +114,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="flex justify-end">
+                  <div v-if="!workshop.canceled" class="flex justify-end">
                     <Button target="_blank" :href="workshop.ticketUrl"
                       >Level up your skills for just
                       <strong class="font-bold"

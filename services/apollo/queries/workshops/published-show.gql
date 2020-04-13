@@ -6,6 +6,7 @@ query workshop($id: ID!) {
     }
   ) {
     id
+    canceled
     name
     description
     dateAndTime

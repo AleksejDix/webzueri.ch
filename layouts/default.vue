@@ -10,11 +10,11 @@
 </template>
 
 <script>
-  import BaseLayout from "@/layouts/base-layout";
-  import Modal from "@/components/modal";
-  import Page from "@/components/page";
+import BaseLayout from "@/layouts/base-layout";
+import Modal from "@/components/modal";
+import Page from "@/components/page";
 
-  export default {
-    components: { BaseLayout, Modal, Page }
-  };
+export default {
+  components: { BaseLayout, Modal, Page }
+};
 </script>

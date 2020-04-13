@@ -192,11 +192,10 @@
     <section v-if="workshops.length > 0" class="workshops container  rounded-xl p-4 ld:p-6 mx-auto">
 
       <h2 class="pt-2 px-4 md:px-6 text-black font-bold max-w-md  leading-tight font-display text-3xl md:text-3xl text-left">Upcoming Workshops
-
       </h2>
       <ul class="rounded-xl p-4 md:p-6 grid md:grid-cols-2 gap-6 lg:gap-12">
         <li v-for="workshop in workshops" :key="workshop.id">
-          <portal to="shamelessplug">
+          <portal v-if="!workshop.canceled" to="shamelessplug">
             <div v-if="showBanner" class="fixed z-20 bottom-0 inset-x-0 pb-2 sm:pb-5 px-6 text-white">
               <div class="max-w-screen-xl mx-auto">
                 <div class="p-2 rounded-xl bg-gray-900 shadow-lg">
@@ -232,10 +231,17 @@
           :to="{ name: 'workshops-id', params: { id: workshop.id } }"
         >
           <div class="owl">
-            <div class="text-black text-2xl md:text-5xl font-bold tracking-tighter leading-none">
+            <div class="text-black text-2xl md:text-5xl font-bold tracking-tighter leading-none"
+            :class="{
+              'line-through': workshop.canceled
+            }">
               {{ workshop.dateAndTime | date('dd.MM.y') }}
             </div>
+            <Badge color="red">canceled</Badge>
             <h2
+              :class="{
+                'line-through': workshop.canceled
+              }"
               class="text-2xl block items-center text-black font-bold font-display mb-6 leading-none"
             >
               {{ workshop.name }}

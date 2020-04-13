@@ -11,7 +11,11 @@
           :to="{ name: 'workshops-id', params: { id: workshop.id } }"
         >
           <div class="owl">
+            <Badge v-if="workshop.canceled" color="red">
+              canceled
+            </Badge>
             <Badge
+              v-else
               :color="isFuture(workshop.dateAndTime) ? 'green' : 'red'"
               class="block mb-2"
             >
@@ -25,6 +29,9 @@
 
             <h2
               class="text-2xl block items-center text-black font-bold font-display mb-6 leading-none"
+              :class="{
+                'line-through': workshop.canceled
+              }"
             >
               {{ workshop.name }}
             </h2>

@@ -65,6 +65,7 @@ query home($date: DateTime) {
       dateAndTime_gte: $date,
     }
   ) {
+    canceled
     id
     name
     dateAndTime
