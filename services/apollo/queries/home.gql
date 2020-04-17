@@ -42,6 +42,8 @@ query home($date: DateTime) {
     status
     id
     date
+    time
+    eventType
     title
     meetupLink
     sponsors {

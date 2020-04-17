@@ -72,7 +72,7 @@
     <section class="container bg-white mx-auto rounded-xl p-6 xl:p-8">
       <div v-if="event">
         <header >
-          <h1 class="pb-6 leading-tight text-3xl md:text-5xl text-base  font-display font-bold tracking-wide ">Next Event</h1>
+          <h1 class="pb-6 leading-tight text-3xl md:text-5xl text-base  font-display font-bold tracking-wide ">Next {{event.eventType}} Event</h1>
           <div class="grid gap-6 lg:grid-cols-4 pb-8">
           <div class="grid gap-6 lg:grid-cols-3 lg:col-span-3">
             <div class="text-black text-16 font-sans">
@@ -81,10 +81,10 @@
               >
                 when:
               </div>
-              <span>{{ toDate(event.date) }}, 18:30</span>
+              <span>{{ toDate(event.date) }}, {{event.time}}</span>
             </div>
 
-            <div class="text-black text-16 font-sans col-span-2">
+            <div class="text-black text-16 font-sans">
               <div
                 class="font-bold font-display text-2xl tracking-tighter uppercase"
               >
@@ -96,8 +96,25 @@
                 rel="noopener"
                 class="no-underline text-pink-light"
                 :href="event.venue.googleMapsUrl"
-                >{{ event.venue.name }} • {{ event.venue.street }} •
-                {{ event.venue.zip }}, {{ event.venue.city }}</a
+                >{{ event.venue.name }}
+                <span v-if="event.venue.street">• {{ event.venue.street }}</span>
+                <span v-if="event.venue.street">• {{ event.venue.zip }}</span>
+                <span v-if="event.venue.city">, {{ event.venue.city }}</span></a
+              >
+            </div>
+             <div class="text-black text-16 font-sans ">
+              <div
+                class="font-bold font-display text-2xl tracking-tighter uppercase"
+              >
+                stream:
+              </div>
+              <a
+                v-if="event.streamLink"
+                target="_blank"
+                rel="noopener"
+                class="no-underline text-pink-light"
+                :href="event.streamLink"
+                >{{ event.streamLink</a
               >
             </div>
           </div>
