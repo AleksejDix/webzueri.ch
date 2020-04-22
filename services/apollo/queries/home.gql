@@ -46,6 +46,7 @@ query home($date: DateTime) {
     eventType
     title
     meetupLink
+    streamLink
     sponsors {
       ...SponsorFields
     }

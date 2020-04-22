@@ -114,7 +114,7 @@
                 rel="noopener"
                 class="no-underline text-pink-light"
                 :href="event.streamLink"
-                >{{ event.streamLink</a
+                >{{ event.streamLink }}</a
               >
             </div>
           </div>
