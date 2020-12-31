@@ -41,7 +41,7 @@ export default {
         hid: "og:image",
         name: "image",
         property: "og:image",
-        content: "/icon.png"
+        content: `${process.env.NOW_URL || "http://localhost:3000"}/icon.png`
       },
       { hid: "twitter:site", name: "twitter:site", content: "@webzuerich" },
       {
