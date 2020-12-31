@@ -54,7 +54,42 @@ export default {
   },
   head() {
     return {
-      title: this.speaker.name
+      title: this.speaker.name,
+      meta: [
+        {
+          hid: "description",
+          name: "description",
+          content: `Talks by ${this.speaker.name}`
+        },
+        {
+          hid: "og:description",
+          name: "og:description",
+          content: `Talks by ${this.speaker.name}`
+        },
+        {
+          hid: "og:url",
+          name: "og:url",
+          content: process.env.baseUrl + this.$route.path
+        },
+        {
+          hid: "twitter:card",
+          name: "twitter:card",
+          content:
+            this.speaker.speakerPicture && this.speaker.speakerPicture.url
+        },
+        {
+          hid: "og:image",
+          name: "image",
+          property: "og:image",
+          content:
+            this.speaker.speakerPicture && this.speaker.speakerPicture.url
+        },
+        {
+          hid: "og:image:alt",
+          property: "og:image:alt",
+          content: `Profile of ${this.speaker.name}`
+        }
+      ]
     };
   },
   apollo: {

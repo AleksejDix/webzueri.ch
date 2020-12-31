@@ -124,7 +124,7 @@ export default {
 
   head() {
     return {
-      title: `Events ${this.$route.query.page}`
+      title: `Events, page ${this.$route.query.page} of ${this.maxPage}`
     };
   },
   beforeRouteEnter(to, from, next) {

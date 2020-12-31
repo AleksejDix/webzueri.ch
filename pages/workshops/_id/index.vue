@@ -178,7 +178,36 @@ export default {
   },
   head() {
     return {
-      title: this.workshop && this.workshop.name
+      title: this.workshop && this.workshop.name,
+      meta: [
+        {
+          hid: "description",
+          name: "description",
+          content: this.workshop && this.workshop.description.slice(0, 255)
+        },
+        {
+          hid: "og:description",
+          name: "og:description",
+          content: this.workshop && this.workshop.description.slice(0, 255)
+        },
+        { hid: "og:site_name", name: "og:site_name", content: "web zürich" },
+        {
+          hid: "og:url",
+          name: "og:url",
+          content: process.env.baseUrl + this.$route.path
+        },
+        {
+          hid: "twitter:card",
+          name: "twitter:card",
+          content: this.workshop && this.workshop.banner.url
+        },
+        {
+          hid: "og:image",
+          name: "image",
+          property: "og:image",
+          content: this.workshop && this.workshop.banner.url
+        }
+      ]
     };
   }
 };

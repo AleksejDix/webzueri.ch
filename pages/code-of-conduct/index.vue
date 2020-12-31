@@ -129,6 +129,11 @@
 <script>
 import Prose from "~/components/Prose";
 export default {
-  components: { Prose }
+  components: { Prose },
+  head() {
+    return {
+      title: `Code of Conduct`
+    };
+  }
 };
 </script>
