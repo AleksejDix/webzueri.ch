@@ -84,7 +84,7 @@ export default {
   },
   head() {
     return {
-      title: "Speakers"
+      title: `${this.speakers.length} Speakers`
     };
   }
 };

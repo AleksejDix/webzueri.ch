@@ -36,7 +36,20 @@ export default {
         hid: "google-site-verification",
         name: "google-site-verification",
         content: "IVcT2HAuAxv-lQubqO2BqwmRDjl4IFoNMBDGBPyELH0"
-      }
+      },
+      {
+        hid: "og:image",
+        name: "image",
+        property: "og:image",
+        content: `${process.env.NOW_URL || "http://localhost:3000"}/icon.png`
+      },
+      { hid: "twitter:site", name: "twitter:site", content: "@webzuerich" },
+      {
+        hid: "twitter:creator",
+        name: "twitter:creator",
+        content: "@aleksejdix"
+      },
+      { hid: "og:site_name", name: "og:site_name", content: "web zürich" }
     ],
     link: [
       {

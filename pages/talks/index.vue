@@ -244,7 +244,7 @@ export default {
   },
   head() {
     return {
-      title: "Talks"
+      title: `${this.itemsCount} Talks`
     };
   },
   apollo: {

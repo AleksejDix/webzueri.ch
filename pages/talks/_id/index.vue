@@ -108,23 +108,35 @@ export default {
           name: "og:description",
           content: this.talk.abstract
         },
-        { hid: "og:site_name", name: "og:site_name", content: "web zürich" },
         {
           hid: "og:url",
           name: "og:url",
           content: process.env.baseUrl + this.$route.path
         },
         { hid: "og:title", name: "og:title", content: this.talk.name },
-        { hid: "twitter:site", name: "twitter:site", content: "@webzuerich" },
-        {
-          hid: "twitter:creator",
-          name: "twitter:creator",
-          content: "@aleksejdix"
-        },
         {
           hid: "twitter:card",
           name: "twitter:card",
-          content: "summary_large_image"
+          content:
+            this.talk.speakers &&
+            this.talk.speakers.length &&
+            this.talk.speakers[0].speakerPicture.url
+        },
+        {
+          name: "image",
+          property: "og:image",
+          content:
+            this.talk.speakers &&
+            this.talk.speakers.length &&
+            this.talk.speakers[0].speakerPicture.url
+        },
+        {
+          hid: "og:image:alt",
+          property: "og:image:alt",
+          content:
+            this.talk.speakers &&
+            this.talk.speakers.length &&
+            `Profile of ${this.speakers[0].name}`
         }
       ]
     };
