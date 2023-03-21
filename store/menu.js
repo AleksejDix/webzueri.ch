@@ -41,7 +41,7 @@ export const state = () => ({
         {
           text: "Talk",
           desc: "join our <strong>slack chat</strong>.",
-          url: "https://webzuerich-invite.herokuapp.com/",
+          url: "https://webzuerich.slack.com/",
           color: "#79D4B6",
           icon: "slack"
         },
