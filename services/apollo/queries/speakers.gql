@@ -1,5 +1,9 @@
 query speakers {
-  speakers(orderBy: name_ASC, where: { talks_some: {} }) {
+  speakers(
+    orderBy: name_ASC
+    first: 1000
+    where: { speakerPicture: { speakerPictureSpeaker_some: {} } }
+  ) {
     id
     name
     speakerPicture {
