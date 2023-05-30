@@ -1,5 +1,5 @@
 export default {
-  mode: "universal",
+  mode: "spa",
   router: {
     base: "/"
   },
@@ -94,7 +94,7 @@ export default {
   apollo: {
     clientConfigs: {
       default: {
-        httpEndpoint: `https://api-euwest.graphcms.com/v1/cjiqbztau0hjj01i2nukb5bjt/master`
+        httpEndpoint: `https://api-eu-central-1.hygraph.com/v2/cjiqbztau0hjj01i2nukb5bjt/master`
       }
     }
   },

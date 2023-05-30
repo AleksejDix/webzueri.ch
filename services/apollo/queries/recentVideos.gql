@@ -1,5 +1,5 @@
 query videos($skip: Int!) {
-  talksConnection(where: { status: PUBLISHED, youtubecode_not: null }) {
+  talksConnection(where: { youtubecode_not: null }) {
     aggregate {
       count
     }
@@ -8,7 +8,7 @@ query videos($skip: Int!) {
     orderBy: updatedAt_DESC
     first: 3
     skip: $skip
-    where: { status: PUBLISHED, youtubecode_not: null }
+    where: { youtubecode_not: null }
   ) {
     id
     updatedAt

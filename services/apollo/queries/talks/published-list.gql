@@ -1,8 +1,5 @@
-query talks ($where: TalkWhereInput) {
-  talks(
-    orderBy: createdAt_DESC,
-    where: $where
-  ) {
+query talks($where: TalkWhereInput) {
+  talks(orderBy: createdAt_DESC, where: $where) {
     id
     name
     category

@@ -447,13 +447,13 @@ export default {
       query: QueryHome,
       result(response) {
         const { data } = response;
-        const { events, talks, feedbacks, sponsorsConnection, workshops } = data;
+        const { events, talks, feedbacks, sponsors, workshops } = data;
         this.events = events;
         this.talks = talks;
         this.feedbacks = feedbacks;
         this.workshops = workshops;
-        this.sponsors = sponsorsConnection.edges
-          .map(({ node: { events: eventList, ...rest } }) => ({
+        this.sponsors = sponsors
+          .map(({ events: eventList, ...rest }) => ({
             ...rest,
             events: eventList.length
           }))

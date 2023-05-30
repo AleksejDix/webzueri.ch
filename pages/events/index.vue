@@ -108,7 +108,8 @@ export default {
       var dateNow = new Date();
       dateNow.setUTCHours(0, 0, 0, 0);
       var dateToISO = dateNow.toISOString();
-      return dateToISO;
+      var datePart = dateToISO.split("T")[0];
+      return datePart;
     },
     page() {
       if (!this.$route.query.page) return;

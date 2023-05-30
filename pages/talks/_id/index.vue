@@ -129,14 +129,6 @@ export default {
             this.talk.speakers &&
             this.talk.speakers.length &&
             this.talk.speakers[0].speakerPicture.url
-        },
-        {
-          hid: "og:image:alt",
-          property: "og:image:alt",
-          content:
-            this.talk.speakers &&
-            this.talk.speakers.length &&
-            `Profile of ${this.speakers[0].name}`
         }
       ]
     };

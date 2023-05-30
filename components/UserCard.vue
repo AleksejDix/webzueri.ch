@@ -2,6 +2,7 @@
   <article class="flex items-center">
     <div class="flex-shrink-0 relative w-12 h-12">
       <cms-img
+        v-if="photo"
         :width="64"
         :height="64"
         fit="crop"

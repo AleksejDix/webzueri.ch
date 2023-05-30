@@ -1,5 +1,5 @@
 query speakers {
-  speakers(orderBy: name_ASC, where: { status: PUBLISHED, talks_some: {} }) {
+  speakers(orderBy: name_ASC, where: { talks_some: {} }) {
     id
     name
     speakerPicture {

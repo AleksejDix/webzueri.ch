@@ -1,10 +1,5 @@
 query workshop($id: ID!) {
-  workshops(
-    where: {
-      id: $id,
-      status: PUBLISHED
-    }
-  ) {
+  workshops(where: { id: $id }) {
     id
     canceled
     name

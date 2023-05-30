@@ -1,34 +1,34 @@
 <template>
-
   <img
+    v-if="srcPath"
     loading="lazy"
     :class="[responsive ? 'max-w-full w-full' : '']"
     :src="srcPath"
     :width="width"
     :height="height"
     :alt="alt"
-  >
-
+  />
 </template>
 
 <script>
-const base = 'https://media.graphcms.com/';
+const base = "https://media.graphcms.com/";
 
 export default {
-  data () {
+  data() {
     return {
       resize: {
-        ...this.fit && { fit: this.fit },
-        ...this.height && { height: this.height },
-        ...this.width && { width: this.width },
-        ...this.align && { align: this.align }
+        ...(this.fit && { fit: this.fit }),
+        ...(this.height && { height: this.height }),
+        ...(this.width && { width: this.width }),
+        ...(this.align && { align: this.align })
       }
-    }
+    };
   },
   computed: {
-    srcPath () {
-      const transormator = JSON.stringify(this.resize).replace(/\"|\{|\}/g, "")
-      return `${base}${`crop_faces=b:162/output=quality:85/resize=` + transormator}/${this.src}`
+    srcPath() {
+      const transormator = JSON.stringify(this.resize).replace(/\"|\{|\}/g, "");
+      return `${base}${`crop_faces=b:162/output=quality:85/resize=` +
+        transormator}/${this.src}`;
     }
   },
   props: {
@@ -49,6 +49,5 @@ export default {
       required: true
     }
   }
-
-}
+};
 </script>

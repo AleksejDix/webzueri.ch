@@ -1,45 +1,5 @@
-fragment SpeakerFields on Speaker {
-  id
-  name
-  speakerPicture {
-    url
-    handle
-    fileName
-  }
-}
-
-fragment VenueFields on Venue {
-  id
-  name
-  street
-  region
-  zip
-  city
-  country
-  googleMapsUrl
-}
-
-fragment SponsorFields on Sponsor {
-  id
-  name
-  website
-  logo {
-    height
-    width
-    mimeType
-    url
-  }
-}
-
 query home($date: DateTime) {
-  events(
-    orderBy: date_DESC,
-    first: 1,
-    where: {
-      status: PUBLISHED
-    }
-  ) {
-    status
+  events(orderBy: date_DESC, first: 1) {
     id
     date
     time
@@ -48,7 +8,15 @@ query home($date: DateTime) {
     meetupLink
     streamLink
     sponsors {
-      ...SponsorFields
+      id
+      name
+      website
+      logo {
+        height
+        width
+        mimeType
+        url
+      }
     }
     talks {
       id
@@ -56,55 +24,69 @@ query home($date: DateTime) {
       abstract
       youtubecode
       speakers {
-        ...SpeakerFields
+        id
+        name
+        speakerPicture {
+          url
+          handle
+          fileName
+        }
       }
     }
     venue {
-      ...VenueFields
+      id
+      name
+      street
+      region
+      zip
+      city
+      country
+      googleMapsUrl
     }
   }
-  workshops(
-    where:{
-      dateAndTime_gte: $date,
-    }
-  ) {
+  workshops(where: { dateAndTime_gte: $date }) {
     canceled
     id
     name
     dateAndTime
     speakers {
-      ...SpeakerFields
-    }
-  },
-  sponsorsConnection  {
-    edges {
-      node {
-        ...SponsorFields
-        events {
-          edition
-        }
+      id
+      name
+      speakerPicture {
+        url
+        handle
+        fileName
       }
     }
   }
-  talks(
-    orderBy: createdAt_DESC
-    where: { status: PUBLISHED, youtubecode_not: null }
-  ) {
+  sponsors {
     id
-    speakers {
-      ...SpeakerFields
-    }
     name
-    youtubecode
-  }
-  feedbacks {
-    id
-    quote
-    speaker {
-      ...SpeakerFields
+    position
+    publishedAt
+    stage
+    website
+    logo {
+      url
     }
-    sponsor {
-      ...SponsorFields
+    events {
+      id
+    }
+  }
+  talks {
+    id
+    youtubecode
+    slides
+    name
+    abstract
+    category
+    speakers {
+      name
+      speakerPicture {
+        handle
+        fileName
+        height
+      }
     }
   }
 }

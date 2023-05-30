@@ -1,10 +1,5 @@
 query workshops {
-  workshops(
-    orderBy: dateAndTime_DESC,
-    where: {
-      status: PUBLISHED
-    }
-  ) {
+  workshops(orderBy: dateAndTime_DESC) {
     id
     name
     canceled

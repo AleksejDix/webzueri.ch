@@ -197,7 +197,6 @@ export default {
     },
     where() {
       return {
-        status: "PUBLISHED",
         ...(this.filters.category &&
           this.filters.category !== "All" && {
             category: this.filters.category
@@ -250,7 +249,6 @@ export default {
   apollo: {
     talks: {
       query: QueryPublishedTalks,
-      deep: true,
       variables() {
         return {
           where: this.where

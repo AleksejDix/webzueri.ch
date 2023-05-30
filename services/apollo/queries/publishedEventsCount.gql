@@ -1,5 +1,5 @@
 query eventsConnection {
-  eventsConnection(where: { status: PUBLISHED }) {
+  eventsConnection {
     aggregate {
       count
     }

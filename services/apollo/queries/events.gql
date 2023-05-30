@@ -2,7 +2,6 @@ query events($query: Int) {
   events(where: { edition: $query }, orderBy: edition_DESC) {
     id
     date
-    status
     edition
     talks {
       id

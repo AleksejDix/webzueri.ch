@@ -1,12 +1,9 @@
-query events($first: Int!, $skip: Int!, $date: DateTime) {
+query events($first: Int!, $skip: Int!, $date: Date) {
   events(
     orderBy: date_DESC
     first: $first
     skip: $skip
-    where: {
-      status: PUBLISHED,
-      date_lt: $date
-    }
+    where: { date_lt: $date }
   ) {
     id
     date

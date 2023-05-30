@@ -1,5 +1,5 @@
 <template>
-  <ul class="list-reset">
+  <ul v-if="list.length > 0" class="list-reset">
     <li
       v-for="(talk, index) in list"
       :key="talk.id"
