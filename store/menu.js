@@ -47,7 +47,7 @@ export const state = () => ({
         },
         {
           text: "Share",
-          desc: "tweet about <strong>webzueri.ch</strong>",
+          desc: "tweet about <strong>Web Zurich</strong>",
           url: "https://twitter.com/webzuerich",
           color: "#1DA1F3",
           icon: "twitter"
