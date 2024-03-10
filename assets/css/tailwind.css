@@ -41,13 +41,13 @@ html {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  @apply font-sans
+  @apply font-sans;
 }
 
 
 strong,
 b {
-  @apply font-semibold
+  @apply font-semibold;
 }
 
 
@@ -91,11 +91,11 @@ svg {
 }
 
 .stack {
-  @apply flex flex-wrap -mb-2 -ml-2
+  @apply flex flex-wrap -mb-2 -ml-2;
 }
 
 .stack > * {
-  @apply pl-2 pb-2
+  @apply pl-2 pb-2;
 }
 
 @responsive {
@@ -167,7 +167,7 @@ hr {
 
 
 .body-2 {
-  @apply text-sm font-medium
+  @apply text-sm font-medium;
 }
 
 
