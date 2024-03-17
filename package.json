@@ -17,7 +17,7 @@
     "analyze": "NODE_ENV=production nuxt build --analyze --modern=server"
   },
   "dependencies": {
-    "@nuxtjs/apollo": "^4.0.1-rc.5",
+    "@nuxtjs/apollo": "v4.0.1-rc.1",
     "@nuxtjs/markdownit": "^1.2.10",
     "@nuxtjs/pwa": "^3.3.5",
     "date-fns": "^2.15.0",
@@ -53,5 +53,8 @@
   "node": {
     "fs": "empty",
     "child_process": "empty"
+  },
+  "engines": {
+    "node": "<=16.20.2"
   }
 }
