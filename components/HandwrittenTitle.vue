@@ -26,7 +26,7 @@
       />
       </g>
     </svg>
-    <!-- Redraw writes the tapered, gradient-along-the-line version here -->
+    <!-- Redraw writes the glossy version here -->
     <canvas ref="canvas" class="handwritten__canvas" aria-hidden="true" />
   </span>
 </template>
@@ -35,17 +35,18 @@
 import { onBeforeUnmount, onMounted, ref, useId } from "vue";
 import { HANDWRITING } from "~/utils/handwriting";
 
-// The colours of Apple's "hello", from cyan through violet and pink to orange and green
+// The colours of Apple's "hello", from cyan through violet and pink to orange
+// and green; Redraw runs them along the line with a gloss (utils/glossyInk.ts
+// has its own copy), the SVG draws them flat from left to right
 const INK = ["#2bb7e8", "#4f7bf0", "#8f52e8", "#e14f9a", "#ff6347", "#ffb22e", "#3fcf7a"];
-// The dot on the i, in the colour the gradient has on the letter below it
-const DOT = "#ff8840";
+// Where the letters under the dots sit along the line (the ü twice, then the
+// i), so each dot takes its letter's colour
+const DOTS_AT = [0.564, 0.618, 0.739];
 
 // One even pen speed (units per ms) and barely a pause where the pen lifts,
 // so the whole title reads as a single movement of the hand
 const SPEED = 2.6;
 const LIFT = 50;
-// The tapered pen is a touch fuller than the plain one, since its ends are thin
-const PEN = HANDWRITING.pen * 1.1;
 const BASELINE = 300;
 const SLANT = -8;
 const ink = `ink-${useId()}`;
@@ -76,12 +77,14 @@ onMounted(async () => {
 
 onBeforeUnmount(() => stop());
 
-// Writes the title with Redraw (redraw.dev) on WebGPU: one tapered brush that
-// pinches at every pen lift, and a gradient pinned along the whole line, so
-// the pen writes through the colours. Returns a function that tears it down.
+// Writes the title with Redraw (redraw.dev) on WebGPU in glossy coloured ink
+// (utils/glossyInk.ts). Returns a function that tears it down.
 async function write(box: HTMLElement, el: HTMLCanvasElement) {
   if (!navigator.gpu) throw new Error("No WebGPU");
-  const { createLibrary, parseSVG, GradientAlongPath, SineTaper, SingleStrokeBrush } = await import("redraw");
+  const [{ createLibrary, parseSVG, SingleStrokeBrush }, { GlossyInk, InkWidth }] = await Promise.all([
+    import("redraw"),
+    import("~/utils/glossyInk"),
+  ]);
 
   const adapter = await navigator.gpu.requestAdapter();
   if (!adapter) throw new Error("No WebGPU adapter");
@@ -100,19 +103,16 @@ async function write(box: HTMLElement, el: HTMLCanvasElement) {
     usage: direct ? GPUTextureUsage.STORAGE_BINDING : GPUTextureUsage.COPY_DST | GPUTextureUsage.RENDER_ATTACHMENT,
     alphaMode: "premultiplied",
   });
-  const library = createLibrary(device);
+  const library = createLibrary(device, [InkWidth, GlossyInk]);
 
   // The pen strokes as one path, one contour per stroke, and the dots on their own
   const pens = HANDWRITING.strokes.filter((s) => s.length > 1);
   const line = parseSVG(pens.map((s) => s.d).join(" "));
-  const dots = HANDWRITING.strokes.flatMap((s, i) => (s.length > 1 ? [] : [{ path: parseSVG(s.d), at: strokes[i].delay }]));
+  const dots = HANDWRITING.strokes
+    .flatMap((s, i) => (s.length > 1 ? [] : [{ path: parseSVG(s.d), at: strokes[i].delay }]))
+    .map((dot, i) => ({ ...dot, colorAt: DOTS_AT[i] }));
   const contours = line.splitContours().map((c) => c.length());
   const total = contours.reduce((a, b) => a + b, 0);
-
-  const pen = new SingleStrokeBrush(new SineTaper({ baseWidth: PEN, perContour: true })).addShader(
-    new GradientAlongPath(INK, { colorSpace: "oklab", cyclic: false }),
-  );
-  const dot = new SingleStrokeBrush(PEN * 0.8).setColor(DOT);
 
   const [vx, vy, vw, vh] = HANDWRITING.viewBox.split(" ").map(Number);
   const slant = Math.tan((SLANT * Math.PI) / 180);
@@ -166,8 +166,21 @@ async function write(box: HTMLElement, el: HTMLCanvasElement) {
     c.translate(0, -BASELINE);
 
     const progress = written(elapsed);
-    if (progress > 0) c.drawPath(line.segment(0, progress), pen);
-    for (const d of dots) if (elapsed >= d.at) c.drawPath(d.path, dot);
+    if (progress > 0) {
+      const pen = new SingleStrokeBrush(InkWidth, { progress, pathEnd: progress }).addShader(GlossyInk, {
+        pathStart: 0,
+        pathEnd: progress,
+      });
+      c.drawPath(line.segment(0, progress), pen);
+    }
+    for (const d of dots) {
+      if (elapsed < d.at) continue;
+      const dot = new SingleStrokeBrush(InkWidth, { progress: 1, pathEnd: 1 }).addShader(GlossyInk, {
+        pathStart: d.colorAt,
+        pathEnd: d.colorAt,
+      });
+      c.drawPath(d.path, dot);
+    }
 
     if (offscreen) {
       c.render();
@@ -179,17 +192,29 @@ async function write(box: HTMLElement, el: HTMLCanvasElement) {
     }
   };
 
+  // A frame that fails hands the title over to the SVG for good
+  const draw = (elapsed: number) => {
+    try {
+      paint(elapsed);
+      return true;
+    } catch (error) {
+      console.warn("HandwrittenTitle: Redraw failed, using the SVG", error);
+      svgOnly.value = true;
+      resize.disconnect();
+      return false;
+    }
+  };
+
   const tick = (now: number) => {
     const elapsed = now - start;
-    paint(elapsed);
-    if (elapsed < t) frame = requestAnimationFrame(tick);
+    if (draw(elapsed) && elapsed < t) frame = requestAnimationFrame(tick);
   };
+
+  // Redraws the current frame on resize, also once the writing has finished
+  const resize = new ResizeObserver(() => draw(performance.now() - start));
 
   if (reduced) start = -Infinity;
   frame = requestAnimationFrame(tick);
-
-  // Redraws the current frame on resize, also once the writing has finished
-  const resize = new ResizeObserver(() => paint(performance.now() - start));
   resize.observe(box);
 
   return () => {

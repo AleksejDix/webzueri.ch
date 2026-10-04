@@ -1,15 +1,18 @@
-// The homepage title, "Web Zurich", drawn by hand as smooth cubic Bézier strokes
+// The homepage title, "Web Zürich", drawn by hand as smooth cubic Bézier strokes
 // in the spirit of Apple's "hello": a Disney-style W, a script Z, and each word's
-// small letters as one continuous line. Strokes are listed in writing order.
+// small letters as one continuous line. Strokes are listed in writing order, so
+// the dots come last, set one after another: the two on the ü, then the i's.
 // Coordinates: baseline y = 300, x-height y = 190, ascenders y ≈ 60.
 export const HANDWRITING = {
-  text: "Web Zurich",
+  text: "Web Zürich",
   viewBox: "130 46 1120 372",
   pen: 22,
   strokes: [
     { length: 916, d: "M 228 84 C 172 98 149.3 180.1 158 236 C 165.4 284.1 190 305.8 214 302 C 240 297.8 261.8 256 264 210 C 265.8 172 258 146 244 146 C 228 146 222.4 176 226 212 C 230.4 256 252 302 280 302 C 314 302 340.5 250 346 186 C 350.4 134 348 96 336 62" },
     { length: 1058, d: "M 366 282 C 386 276 411.3 259.4 428 240 C 451.1 213.2 446 186.2 424 188 C 398 190.2 384.3 231.9 390 262 C 396.4 295.9 439.9 308.2 470 280 C 495.8 255.8 524 170 524 116 C 524 70 495.1 61.9 490 96 C 484 135.9 485 230 488 298 C 492 248 514 210 540 210 C 566 210 574 248 562 274 C 550 300 512 306 494 288" },
     { length: 2579, d: "M 596 236 C 606 210 620 194 638 194 C 658 194 666 214 660 238 C 654 262 644 284 636 298 C 674 290 698 308 696 338 C 694 370 678 398 658 398 C 638 398 636 372 654 348 C 690 300 732 274 738 190 C 734 240 732 300 764 300 C 790 300 800 250 804 190 C 800 240 804.3 308.2 832 296 C 846.3 289.7 850 230 854 176 C 860 192 868.1 200.2 878 198 C 886 196.2 892 186 898 178 C 898 236 893.9 297.4 924 294 C 941 292.1 948 236 952 192 C 948 240 950.7 303.7 980 296 C 990.4 293.3 996 270 998 250 C 1000 230 1003.9 213.9 1016 204 C 1025.9 195.9 1040 194 1046 204 C 1040 194 1025.9 195.9 1016 204 C 1003.9 213.9 999.7 230 998 250 C 995.5 280 1022.7 317.2 1072 280 C 1103.7 256.1 1122 164 1122 112 C 1122 70 1093.7 62 1090 98 C 1085.7 140 1086 230 1088 300 C 1096 244 1122 196 1148 196 C 1174 196 1175.6 235.9 1172 262 C 1167.5 293.9 1192 306 1224 276" },
+    { length: 1, d: "M 752.5 144 C 752.8 144 753.2 144 753.5 144" },
+    { length: 1, d: "M 789.5 144 C 789.8 144 790.2 144 790.5 144" },
     { length: 1, d: "M 960.5 144 C 960.8 144 961.2 144 961.5 144" },
   ],
 };
