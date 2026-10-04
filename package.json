@@ -10,8 +10,8 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@js-temporal/polyfill": "^0.4.4",
-    "@nuxt/fonts": "^0.11.4",
+    "@js-temporal/polyfill": "^0.5.1",
+    "@nuxt/fonts": "^0.14.0",
     "@nuxt/icon": "^1.13.0",
     "@nuxt/image": "^1.10.0",
     "@nuxt/scripts": "^0.11.7",
@@ -22,7 +22,7 @@
     "@tailwindcss/vite": "^4.3.3",
     "@unhead/vue": "^2.0.9",
     "graphql": "^16.14.2",
-    "lucide-vue-next": "^0.511.0",
+    "lucide-vue-next": "^1.0.0",
     "nuxt": "^3.21.11",
     "nuxt-lucide-icons": "^1.0.5",
     "nuxt-og-image": "^6.10.3",
@@ -45,7 +45,7 @@
     "@webgpu/types": "^0.1.74",
     "autoprefixer": "^10.4.21",
     "postcss": "^8.5.3",
-    "postcss-import": "^16.2.0",
+    "postcss-import": "^17.0.0",
     "tailwindcss": "^4.3.3",
     "typescript": "^5.9.3",
     "unplugin-typegpu": "^0.12.4"
