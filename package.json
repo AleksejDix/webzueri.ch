@@ -23,7 +23,7 @@
     "@unhead/vue": "^2.0.9",
     "graphql": "^16.14.2",
     "lucide-vue-next": "^0.511.0",
-    "nuxt": "^3.17.4",
+    "nuxt": "^3.21.11",
     "nuxt-lucide-icons": "^1.0.5",
     "nuxt-og-image": "^6.10.3",
     "nuxt-schema-org": "^6.4.3",
