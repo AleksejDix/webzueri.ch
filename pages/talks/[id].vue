@@ -92,17 +92,56 @@ const meta = computed(() => {
   return parts.join(", ");
 });
 
+const speakerNames = computed(() => (talk.value?.speakers ?? []).map((s: any) => s.name.trim()).join(", "));
+
+// Search results show about 155 characters: who, when, then the start of the abstract
+const description = computed(() => {
+  const t = talk.value;
+  if (!t) return "A talk from Web Zürich";
+  const when = t.event?.date
+    ? new Date(t.event.date).toLocaleDateString("en-GB", { month: "long", year: "numeric", timeZone: "UTC" })
+    : "";
+  const lead = `${t.youtubecode ? "Watch the talk" : "Talk"} by ${speakerNames.value || "a speaker"} at Web Zürich${when ? `, ${when}` : ""}.`;
+  const abstract = (t.abstract ?? "").replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
+  const text = abstract ? `${lead} ${abstract}` : lead;
+  return text.length > 158 ? `${text.slice(0, 155).replace(/\s+\S*$/, "")}…` : text;
+});
+
 useSeoMeta({
   title: () => talk.value?.name?.trim() || "Talk not found",
-  description: () => talk.value?.abstract || "A talk from Web Zürich",
-  ogTitle: () => talk.value?.name || "Talk",
-  ogDescription: () => talk.value?.abstract || "A talk from Web Zürich",
-  ogImage: () =>
-    talk.value?.youtubecode
-      ? `https://i.ytimg.com/vi/${talk.value.youtubecode}/sddefault.jpg`
-      : talk.value?.speakers?.[0]?.speakerPicture?.url || "https://webzurich.ch/icon.png",
-  twitterCard: "summary_large_image",
+  description: () => description.value,
+  ogTitle: () => talk.value?.name?.trim() || "Talk",
+  ogDescription: () => description.value,
 });
+
+// schema.org: a recorded talk is a video, so Google can show it in video results
+if (talk.value?.youtubecode) {
+  const t = talk.value;
+  useSchemaOrg([
+    defineVideo({
+      name: t.name.trim(),
+      description: description.value,
+      thumbnailUrl: `https://i.ytimg.com/vi/${t.youtubecode}/hqdefault.jpg`,
+      uploadDate: t.event?.date ?? t.createdAt,
+      embedUrl: `https://www.youtube.com/embed/${t.youtubecode}`,
+      contentUrl: `https://www.youtube.com/watch?v=${t.youtubecode}`,
+    }),
+  ]);
+}
+
+// Share card for LinkedIn, X and Slack previews
+if (talk.value) {
+  const photo = talk.value.speakers?.find((s: any) => s.speakerPicture?.url && s.speakerPicture.fileName !== "unicorn.jpg");
+  defineOgImage("Talk", {
+    title: talk.value.name.trim(),
+    speakers: speakerNames.value,
+    photo: photo?.speakerPicture.url ?? "",
+    date: talk.value.event?.date
+      ? new Date(talk.value.event.date).toLocaleDateString("en-GB", { month: "long", year: "numeric", timeZone: "UTC" })
+      : "",
+    video: Boolean(talk.value.youtubecode),
+  });
+}
 
 if (talk.value?.youtubecode) {
   useSeoMeta({

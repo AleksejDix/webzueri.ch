@@ -15,14 +15,33 @@ export default defineNuxtConfig({
     '@nuxtjs/apollo',
     "nuxt-lucide-icons",
     'vue-view-transitions/nuxt',
+    // Nuxt SEO, module by module: the @nuxtjs/seo bundle only loads them on Nuxt 4
+    'nuxt-site-config',
+    'nuxt-seo-utils',
+    '@nuxtjs/robots',
+    '@nuxtjs/sitemap',
+    'nuxt-schema-org',
     'nuxt-og-image',
   ],
   site: {
     url: 'https://webzurich.ch',
     name: 'Web Zürich',
+    description: "Zürich's web community: free meetups, talks and speakers since 2016.",
+    defaultLocale: 'en',
+    trailingSlash: false,
   },
-  ogImage: {
-    fonts: ['Inter:400', 'Inter:600'],
+  schemaOrg: {
+    identity: {
+      type: 'Organization',
+      name: 'Web Zürich',
+      url: 'https://webzurich.ch',
+      logo: 'https://webzurich.ch/icon.png',
+      sameAs: ['https://www.meetup.com/web-zurich/', 'https://twitter.com/webzuerich', 'https://github.com/AleksejDix/webzueri.ch'],
+    },
+  },
+  sitemap: {
+    // Talks, speakers and meetups come from Hygraph (server/api/__sitemap__/urls.ts)
+    sources: ['/api/__sitemap__/urls'],
   },
   vite: {
     plugins: [
@@ -51,9 +70,11 @@ export default defineNuxtConfig({
         { name: 'description', content: 'Learn, share and collaborate with your local Web professionals and enthusiasts!' },
         { name: 'yandex-verification', content: '5b394792ab19c0bd' },
         { name: 'google-site-verification', content: 'IVcT2HAuAxv-lQubqO2BqwmRDjl4IFoNMBDGBPyELH0' },
-        { property: 'og:site_name', content: 'web zürich' },
+        { property: 'og:site_name', content: 'Web Zürich' },
+        { property: 'og:type', content: 'website' },
+        { property: 'og:locale', content: 'en_US' },
+        { name: 'twitter:card', content: 'summary_large_image' },
         { name: 'theme-color', content: '#0070b4' },
-        { property: 'og:image', content: 'https://webzurich.ch/icon.png' },
         { name: 'twitter:site', content: '@webzuerich' },
         { name: 'twitter:creator', content: '@aleksejdix' },
       ],
@@ -70,6 +91,8 @@ export default defineNuxtConfig({
     },
   },
   routeRules: {
+    // The old team page lives on as About; one address keeps search engines from splitting it
+    '/team': { redirect: { to: '/about', statusCode: 301 } },
     // Workshops were discontinued; keep old links working
     '/workshops': { redirect: { to: '/', statusCode: 301 } },
     '/workshops/**': { redirect: { to: '/', statusCode: 301 } },

@@ -280,6 +280,19 @@ useSeoMeta({
   ogDescription: () => description.value,
 });
 
+// Share card for LinkedIn, X and Slack previews
+if (event.value) {
+  const names = talks.value.flatMap((t) => t.speakers.map((s) => s.name.trim()));
+  defineOgImage("Meetup", {
+    date: fmt({ day: "numeric", month: "long", year: "numeric" }),
+    title: event.value.title?.trim() ?? "",
+    venue: venueLine(event.value.venue) ?? "",
+    speakers: names.length ? `Talks by ${names.join(", ")}` : "",
+    talkCount: talks.value.length,
+    upcoming: upcoming.value,
+  });
+}
+
 // schema.org Event, so the meetup can show up in Google's event listings
 useHead(() => {
   const e = event.value;

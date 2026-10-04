@@ -208,6 +208,10 @@ useHead({ title: "Code of Conduct" });
 useSeoMeta({
   description: "Web Zürich's Code of Conduct: the standards we hold ourselves to at meetups and online, and how to report a problem.",
 });
+defineOgImage("Page", {
+  title: "Code of Conduct",
+  description: "The standards we hold ourselves to at meetups and online, and how to report a problem.",
+});
 </script>
 
 <style scoped>

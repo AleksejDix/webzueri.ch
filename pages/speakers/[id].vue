@@ -252,6 +252,19 @@ const description = computed(
   () => bio.value || `${name.value} has given ${talks.value.length === 1 ? "a talk" : `${talks.value.length} talks`} at Web Zürich.`
 );
 
+// schema.org: a speaker's page is a profile of that person
+if (speaker.value) {
+  useSchemaOrg([
+    defineWebPage({ "@type": "ProfilePage" }),
+    definePerson({
+      name: name.value,
+      description: description.value,
+      image: photo.value || undefined,
+      jobTitle: roleLine.value || undefined,
+    }),
+  ]);
+}
+
 useSeoMeta({
   title: () => name.value || "Speaker not found",
   description: () => description.value,
@@ -261,7 +274,7 @@ useSeoMeta({
 
 // Share card for LinkedIn, X and Slack previews
 if (speaker.value) {
-  defineOgImageComponent("Speaker", {
+  defineOgImage("Speaker", {
     name: name.value,
     role: roleLine.value,
     photo: photo.value ?? "",

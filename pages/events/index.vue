@@ -197,6 +197,10 @@ useSeoMeta({
   title: "Events",
   description: () => `Every Web Zürich meetup since ${firstYear.value}: talks, speakers, venues and sponsors.`,
 });
+defineOgImage("Page", {
+  title: "Every meetup",
+  description: `Every Web Zürich meetup since ${firstYear.value}: talks, speakers, venues and sponsors.`,
+});
 </script>
 
 <style scoped>

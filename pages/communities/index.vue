@@ -166,6 +166,14 @@ const plural = (n: number, one: string, many: string) => `${n} ${n === 1 ? one :
 const lede = `Web Zürich is one evening a month. These ${COMMUNITIES.length} groups across Switzerland fill the rest of the calendar, from JavaScript to security.`;
 
 useHead({ title: "Communities" });
+useSeoMeta({
+  description: "Other tech meetups and communities in Switzerland, from JavaScript and design to data and AI, and how to find them.",
+});
+defineOgImage("Page", {
+  kicker: "Web Zürich recommends",
+  title: "Tech communities in Switzerland",
+  description: "Other meetups worth your evening, from JavaScript and design to data and AI.",
+});
 </script>
 
 <style scoped>

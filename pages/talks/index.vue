@@ -177,6 +177,14 @@ const lede = computed(() => {
 });
 
 useHead(() => ({ title: `${all.value.length} Talks` }));
+useSeoMeta({
+  description: () =>
+    `All ${all.value.length} talks given at Web Zürich since 2016, on frontend, backend and design. Filter by topic, speaker or year, and watch the recordings.`,
+});
+defineOgImage("Page", {
+  title: `${all.value.length} talks`,
+  description: "Every talk given at Web Zürich since 2016, on frontend, backend and design, with recordings.",
+});
 </script>
 
 <style scoped>

@@ -76,6 +76,10 @@ useHead({ title: "Advertising rules" });
 useSeoMeta({
   description: "How hosts, sponsors, speakers and members may advertise at Web Zürich meetups and in our channels.",
 });
+defineOgImage("Page", {
+  title: "Advertising rules",
+  description: "How hosts, sponsors, speakers and members may advertise at Web Zürich meetups and in our channels.",
+});
 </script>
 
 <style scoped>

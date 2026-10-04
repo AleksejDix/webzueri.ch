@@ -113,7 +113,6 @@ import Avatar from "~/components/Avatar.vue";
 import { MEETUP_URL, SUBMIT_TALK_URL } from "~/composables/useSiteSearch";
 
 // /team was a page on the old site; keep the URL alive
-definePageMeta({ alias: ["/team"] });
 
 const { data: about } = await useFetch("/api/about");
 const thumb = useThumb();
@@ -187,6 +186,14 @@ const fmt = (iso: string, opts: Intl.DateTimeFormatOptions) =>
   new Date(iso).toLocaleDateString("en-GB", { ...opts, timeZone: "UTC" });
 
 useHead({ title: "About" });
+useSeoMeta({
+  description: "Web Zürich is a free, volunteer-run meetup for people who build for the web, held in Zürich since 2016. Meet the organisers and find out how to take part.",
+});
+defineOgImage("Page", {
+  kicker: "About Web Zürich",
+  title: "A free meetup for people who build the web",
+  description: "Run by volunteers in Zürich since 2016. Come to a meetup, give a talk or host an evening.",
+});
 </script>
 
 <style scoped>

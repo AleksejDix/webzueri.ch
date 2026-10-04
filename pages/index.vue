@@ -134,8 +134,11 @@ useSeoMeta({
     "Zürich's web community: free monthly meetups and the people who give the talks. Find a talk, a speaker or the next meetup.",
   ogTitle: "Web Zürich",
   ogDescription: "Free monthly meetups and the people who give the talks.",
-  ogImage: "https://webzurich.ch/icon.png",
-  twitterCard: "summary_large_image",
+});
+defineOgImage("Page", {
+  kicker: "Zürich's web community",
+  title: "Web Zürich",
+  description: "Free meetups, talks and speakers since 2016. Find a talk, a speaker or the next meetup.",
 });
 </script>
 

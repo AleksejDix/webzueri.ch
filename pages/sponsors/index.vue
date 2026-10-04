@@ -88,6 +88,10 @@ useSeoMeta({
   title: "Sponsors",
   description: "The companies that host, feed and support Web Zürich, and what it costs to sponsor a meetup.",
 });
+defineOgImage("Page", {
+  title: "Sponsors",
+  description: "The companies that host, feed and support Web Zürich, and what it costs to sponsor a meetup.",
+});
 </script>
 
 <style scoped>

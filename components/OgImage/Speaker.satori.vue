@@ -48,6 +48,9 @@ withDefaults(
           >
             {{ talkCount === 1 ? "1 talk" : `${talkCount} talks` }}
           </div>
+          <div
+            style="display: flex; width: 120px; height: 12px; margin-left: 20px; border-radius: 9999px; background-image: linear-gradient(90deg, #2bb7e8, #4f7bf0, #8f52e8, #e14f9a, #ff6347, #ffb22e, #3fcf7a)"
+          />
           <div style="display: flex; margin-left: 20px; font-size: 24px; font-weight: 600">webzurich.ch</div>
         </div>
       </div>

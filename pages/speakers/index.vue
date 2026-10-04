@@ -214,6 +214,10 @@ useSeoMeta({
   ogTitle: () => `${people.value.length} Speakers - Web Zürich`,
   ogDescription: "Everyone who has given a talk at Web Zürich, with their talks and recordings.",
 });
+defineOgImage("Page", {
+  title: `${people.value.length} speakers`,
+  description: "Everyone who has given a talk at Web Zürich, with their talks and recordings.",
+});
 </script>
 
 <style scoped>
