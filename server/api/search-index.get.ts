@@ -6,6 +6,7 @@ const QUERY = /* GraphQL */ `
       id
       name
       category
+      abstract
       youtubecode
       event { date }
       speakers { name }
@@ -13,7 +14,9 @@ const QUERY = /* GraphQL */ `
     speakers(first: 1000) {
       id
       name
-      speakerPicture { url }
+      role
+      company
+      speakerPicture { url fileName }
       talks { id }
     }
     events(first: 1000, orderBy: date_DESC) {
@@ -34,6 +37,7 @@ interface HygraphResponse {
       id: string;
       name: string;
       category: string | null;
+      abstract: string | null;
       youtubecode: string | null;
       event: { date: string } | null;
       speakers: { name: string }[];
@@ -41,7 +45,9 @@ interface HygraphResponse {
     speakers: {
       id: string;
       name: string;
-      speakerPicture: { url: string } | null;
+      role: string | null;
+      company: string | null;
+      speakerPicture: { url: string; fileName: string | null } | null;
       talks: { id: string }[];
     }[];
     events: {
@@ -70,16 +76,20 @@ export default defineCachedEventHandler(
         name: t.name.trim(),
         category: t.category,
         video: Boolean(t.youtubecode),
+        // Enough of the description to search by topic without sending every word
+        about: (t.abstract ?? "").replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim().slice(0, 400),
         date: t.event?.date ?? null,
         speakers: t.speakers.map((s) => s.name),
       })),
       speakers: data.speakers
-        .filter((s) => s.talks.length > 0)
+        .filter((s) => s.talks.length > 0 && s.name !== "Organising team")
         .map((s) => ({
           id: s.id,
           name: s.name.trim(),
           // Resized on the client through @nuxt/image (see useThumb)
-          picture: s.speakerPicture?.url ?? "",
+          // unicorn.jpg is the stand-in picture for speakers without a photo
+          picture: s.speakerPicture?.fileName === "unicorn.jpg" ? "" : (s.speakerPicture?.url ?? ""),
+          role: [s.role, s.company].filter(Boolean).join(", "),
           talkCount: s.talks.length,
         })),
       // Placeholder entries like "No event in June" have no talks and no venue
@@ -96,5 +106,5 @@ export default defineCachedEventHandler(
         })),
     };
   },
-  { maxAge: 60 * 60, name: "search-index" }
+  { maxAge: 60 * 60, name: "search-index-v2" }
 );

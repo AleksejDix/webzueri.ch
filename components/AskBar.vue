@@ -59,7 +59,7 @@
                   role="option"
                   :aria-selected="isActive(item)"
                   class="ask__option"
-                  :class="{ 'is-active': isActive(item) }"
+                  :class="{ 'is-active': isActive(item), 'ask__option--answer': item.kind === 'answer' }"
                   @mousedown.prevent
                   @mouseenter="activeIndex = items.indexOf(item)"
                   @click.prevent="pick(item)"
@@ -77,7 +77,8 @@
                     {{ initials(item.title) }}
                   </span>
                   <span v-else class="ask__icon" aria-hidden="true">
-                    <LucidePlay v-if="item.kind === 'talk' && item.video" :size="16" />
+                    <LucideMessageCircle v-if="item.kind === 'answer'" :size="16" />
+                    <LucidePlay v-else-if="item.kind === 'talk' && item.video" :size="16" />
                     <LucideMic v-else-if="item.kind === 'talk'" :size="16" />
                     <LucideCalendarDays v-else-if="item.kind === 'event'" :size="16" />
                     <LucideList v-else-if="item.kind === 'all-talks'" :size="16" />
@@ -156,7 +157,7 @@ const props = withDefaults(defineProps<{ variant?: "hero" | "floating" }>(), {
 
 interface Item {
   key: string;
-  kind: "next" | "page" | "speaker" | "talk" | "all-talks" | "event";
+  kind: "next" | "answer" | "page" | "speaker" | "talk" | "all-talks" | "event";
   title: string;
   meta?: string;
   to: string | { path: string; query: Record<string, string> };
@@ -180,9 +181,9 @@ const inputId = `ask-input-${uid}`;
 const listId = `ask-list-${uid}`;
 const optionId = (key: string) => `ask-${uid}-${key}`;
 
-const suggestions = ["Next meetup", "Talks with video", "Frontend", "Design", "Accessibility", "Submit a talk"];
+const suggestions = ["Next meetup", "Videos from 2024", "Talks by Martin", "Accessibility", "Is it free?", "How do I give a talk?"];
 const placeholder = props.variant === "hero"
-  ? "Try “talks about CSS” or “next meetup”"
+  ? "Try “react videos”, “talks by Martin” or “is it free?”"
   : "Ask Web Zürich";
 
 const date = (iso: string) =>
@@ -196,6 +197,9 @@ const items = computed<Item[]>(() => {
     return list;
   }
   if (r.showNext) list.push(nextItem());
+  for (const a of r.answers) {
+    list.push({ key: `answer-${a.key}`, kind: "answer", title: a.text, meta: a.link, to: a.to, external: a.external });
+  }
   for (const p of r.pages) {
     list.push({ key: `page-${p.title}`, kind: "page", title: p.title, meta: p.description, to: p.to, external: p.external });
   }
@@ -204,7 +208,7 @@ const items = computed<Item[]>(() => {
       key: `speaker-${s.id}`,
       kind: "speaker",
       title: s.name,
-      meta: s.talkCount === 1 ? "1 talk" : `${s.talkCount} talks`,
+      meta: [s.role, s.talkCount === 1 ? "1 talk" : `${s.talkCount} talks`].filter(Boolean).join(", "),
       to: `/speakers/${s.id}`,
       picture: thumb(s.picture, 80),
     });
@@ -248,6 +252,7 @@ function nextItem(): Item {
 const groups = computed(() => {
   const labels: Record<Item["kind"], string> = {
     next: "Next meetup",
+    answer: "Answer",
     page: "Pages",
     speaker: "Speakers",
     talk: "Talks",
@@ -566,6 +571,17 @@ onBeforeUnmount(() => {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+/* Answers are sentences: let them wrap, and show where the link goes */
+.ask__option--answer .ask__title {
+  font-weight: 500;
+  white-space: normal;
+  text-wrap: pretty;
+}
+.ask__option--answer .ask__meta {
+  margin-top: 0.125rem;
+  font-weight: 600;
+  color: var(--color-zh-blue);
 }
 .ask__empty {
   padding: 0.5rem;
