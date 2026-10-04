@@ -25,3 +25,6 @@ logs
 
 # Personal Claude Code settings
 .claude/settings.local.json
+
+# Redraw is subscriber-only; scripts/fetch-redraw.mjs downloads it at build time
+vendors
