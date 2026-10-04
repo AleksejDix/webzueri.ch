@@ -1,4 +1,6 @@
 import { SPONSOR_EMAIL, SPONSOR_PRICES } from "~/utils/sponsoring";
+import { MEETUP_URL, SUBMIT_TALK_URL } from "~/utils/links";
+import type { AskAnswer } from "~/server/api/ask.post";
 
 export interface SearchTalk {
   id: string;
@@ -39,6 +41,18 @@ export interface SearchPage {
   keywords: string;
 }
 
+/** Claude's answer to a question the search couldn't match, with what it picked */
+export interface ClaudeResult {
+  question: string;
+  status: "loading" | "done" | "failed";
+  answer: string;
+  talks: SearchTalk[];
+  speakers: SearchSpeaker[];
+  events: SearchEvent[];
+}
+// Answers already fetched in this visit, by question
+const claudeAnswers = new Map<string, ClaudeResult>();
+
 /** A direct answer to a question, shown above the results */
 export interface SearchAnswer {
   key: string;
@@ -48,9 +62,7 @@ export interface SearchAnswer {
   external?: boolean;
 }
 
-export const SUBMIT_TALK_URL =
-  "https://docs.google.com/forms/d/e/1FAIpQLSfTaa-_wOFOQv3dZ7Ord9TJ3vN8wNdzUY5VQqzFiTg_WMQwEw/viewform?c=0&w=1";
-export const MEETUP_URL = "https://www.meetup.com/web-zurich/";
+export { MEETUP_URL, SUBMIT_TALK_URL };
 const WHATSAPP_URL = "https://chat.whatsapp.com/FxOfVTK9nf431xHtVl3eGK";
 
 const PAGES: SearchPage[] = [
@@ -222,6 +234,7 @@ export function useSiteSearch() {
   const index = useState<SearchIndex | null>("search-index", () => null);
   const query = useState("search-query", () => "");
   const loading = useState("search-loading", () => false);
+  const claude = useState<ClaudeResult | null>("search-claude", () => null);
 
   async function load() {
     if (index.value || loading.value) return;
@@ -304,6 +317,8 @@ export function useSiteSearch() {
       // Set when nothing matched exactly and the results are the closest instead
       talksNote: null as string | null,
       eventsNote: null as string | null,
+      // Only some of the words matched: a question worth handing to Claude
+      partial: false,
       filters: { video: false, category: null as string | null, year: null as number | null },
       words: "",
     };
@@ -393,6 +408,7 @@ export function useSiteSearch() {
     const narrowed = video || category || year || month >= 0;
     let talkMatches = findTalks(true, false);
     let talksNote: string | null = null;
+    let partial = false;
     if (!talkMatches.length && topic.length) {
       const what = topic.join(" ");
       if (narrowed && (talkMatches = findTalks(false, false)).length) {
@@ -400,6 +416,7 @@ export function useSiteSearch() {
         talksNote = `No ${what} talks${when ? ` in ${when}` : " like that"}. The closest:`;
       } else if (topic.length > 1 && (talkMatches = findTalks(narrowed, true)).length) {
         talksNote = `Nothing about all of “${what}”. The closest:`;
+        partial = true;
       }
     }
 
@@ -436,12 +453,46 @@ export function useSiteSearch() {
       showNext,
       talksNote,
       eventsNote,
+      partial,
       filters: { video, category, year },
       words: topic.join(" "),
     };
   });
 
-  return { index, query, loading, load, results, nextEvent, lastEvent };
+  /** Hands a question the search couldn't match to Claude (server/api/ask.post.ts) */
+  async function askClaude(question: string) {
+    const q = question.trim();
+    if (claude.value?.question === q) return;
+    const known = claudeAnswers.get(q);
+    if (known) {
+      claude.value = known;
+      return;
+    }
+    claude.value = { question: q, status: "loading", answer: "", talks: [], speakers: [], events: [] };
+    let result: ClaudeResult;
+    try {
+      const r = await $fetch<AskAnswer>("/api/ask", { method: "POST", body: { question: q } });
+      const i = index.value;
+      const byId = <T extends { id: string }>(list: T[] | undefined, ids: string[]) =>
+        ids.map((id) => list?.find((x) => x.id === id)).filter((x): x is T => Boolean(x));
+      result = {
+        question: q,
+        status: "done",
+        answer: r.answer,
+        talks: byId(i?.talks, r.talks),
+        speakers: byId(i?.speakers, r.speakers),
+        events: r.events.map((d) => i?.events.find((e) => e.date === d)).filter((e): e is SearchEvent => Boolean(e)),
+      };
+      claudeAnswers.set(q, result);
+    } catch {
+      // Not set up, busy or offline: the bar keeps its usual "nothing matches"
+      result = { question: q, status: "failed", answer: "", talks: [], speakers: [], events: [] };
+    }
+    // Only show it if the question hasn't changed in the meantime
+    if (claude.value?.question === q) claude.value = result;
+  }
+
+  return { index, query, loading, load, results, nextEvent, lastEvent, claude, askClaude };
 }
 
 /** Link to the full talks list with the same filters the bar applied */

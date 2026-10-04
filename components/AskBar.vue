@@ -59,7 +59,7 @@
                   role="option"
                   :aria-selected="isActive(item)"
                   class="ask__option"
-                  :class="{ 'is-active': isActive(item), 'ask__option--answer': item.kind === 'answer' }"
+                  :class="{ 'is-active': isActive(item), 'ask__option--answer': item.kind === 'answer' || item.kind === 'claude' }"
                   @mousedown.prevent
                   @mouseenter="activeIndex = items.indexOf(item)"
                   @click.prevent="pick(item)"
@@ -78,6 +78,7 @@
                   </span>
                   <span v-else class="ask__icon" aria-hidden="true">
                     <LucideMessageCircle v-if="item.kind === 'answer'" :size="16" />
+                    <LucideSparkles v-else-if="item.kind === 'claude'" :size="16" />
                     <LucidePlay v-else-if="item.kind === 'talk' && item.video" :size="16" />
                     <LucideMic v-else-if="item.kind === 'talk'" :size="16" />
                     <LucideCalendarDays v-else-if="item.kind === 'event'" :size="16" />
@@ -94,7 +95,8 @@
             </ul>
           </template>
 
-          <p v-if="!items.length && index" class="ask__empty">
+          <p v-if="!items.length && asking" class="ask__empty">Nothing matches word for word. Asking Claude…</p>
+          <p v-else-if="!items.length && index" class="ask__empty">
             Nothing matches “{{ query }}”. Try a technology like
             <button type="button" class="text-link" @mousedown.prevent @click="query = 'css'">css</button>,
             a speaker's first name, or
@@ -148,7 +150,7 @@
 <script setup lang="ts">
 import { computed, onBeforeUnmount, onMounted, ref, watch } from "vue";
 import { initials } from "~/utils/assets";
-import { MEETUP_URL, talksLink, useSiteSearch } from "~/composables/useSiteSearch";
+import { MEETUP_URL, talksLink, useSiteSearch, type SearchEvent, type SearchSpeaker, type SearchTalk } from "~/composables/useSiteSearch";
 import NextMeetup from "~/components/NextMeetup.vue";
 
 const props = withDefaults(defineProps<{ variant?: "hero" | "floating" }>(), {
@@ -157,7 +159,7 @@ const props = withDefaults(defineProps<{ variant?: "hero" | "floating" }>(), {
 
 interface Item {
   key: string;
-  kind: "next" | "answer" | "page" | "speaker" | "talk" | "all-talks" | "event";
+  kind: "next" | "answer" | "claude" | "page" | "speaker" | "talk" | "all-talks" | "event";
   title: string;
   meta?: string;
   to: string | { path: string; query: Record<string, string> };
@@ -168,7 +170,7 @@ interface Item {
 
 const router = useRouter();
 const thumb = useThumb();
-const { index, query, load, results, nextEvent, lastEvent } = useSiteSearch();
+const { index, query, load, results, nextEvent, lastEvent, claude, askClaude } = useSiteSearch();
 // The hero bar "docks" the floating one: while the hero is on screen, the floating bar hides
 const docked = useState("ask-docked", () => false);
 
@@ -189,7 +191,42 @@ const placeholder = props.variant === "hero"
 const date = (iso: string) =>
   new Date(iso).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
 
-const items = computed<Item[]>(() => {
+const speakerItem = (s: SearchSpeaker): Item => ({
+  key: `speaker-${s.id}`,
+  kind: "speaker",
+  title: s.name,
+  meta: [s.role, s.talkCount === 1 ? "1 talk" : `${s.talkCount} talks`].filter(Boolean).join(", "),
+  to: `/speakers/${s.id}`,
+  picture: thumb(s.picture, 80),
+});
+const talkItem = (t: SearchTalk): Item => ({
+  key: `talk-${t.id}`,
+  kind: "talk",
+  title: t.name,
+  meta: [t.speakers.join(", "), t.date && date(t.date)].filter(Boolean).join(", "),
+  to: `/talks/${t.id}`,
+  video: t.video,
+});
+const eventItem = (e: SearchEvent): Item => ({
+  key: `event-${e.id}`,
+  kind: "event",
+  title: e.title || `Meetup on ${date(e.date)}`,
+  meta: [e.venue, e.talkCount && `${e.talkCount} talks`].filter(Boolean).join(", "),
+  to: `/events/${e.date}`,
+});
+
+// What Claude answered for the current question, when the search found nothing
+const claudeItems = computed<Item[]>(() => {
+  const c = claude.value;
+  if (!c || c.status !== "done" || c.question !== query.value.trim()) return [];
+  const list: Item[] = [];
+  const first = c.talks[0] ? `/talks/${c.talks[0].id}` : c.speakers[0] ? `/speakers/${c.speakers[0].id}` : "/talks";
+  if (c.answer) list.push({ key: "claude", kind: "claude", title: c.answer, meta: "Answered by Claude", to: first });
+  list.push(...c.speakers.map(speakerItem), ...c.talks.map(talkItem), ...c.events.map(eventItem));
+  return list;
+});
+
+const localItems = computed<Item[]>(() => {
   const r = results.value;
   const list: Item[] = [];
   if (!query.value.trim()) {
@@ -203,39 +240,26 @@ const items = computed<Item[]>(() => {
   for (const p of r.pages) {
     list.push({ key: `page-${p.title}`, kind: "page", title: p.title, meta: p.description, to: p.to, external: p.external });
   }
-  for (const s of r.speakers) {
-    list.push({
-      key: `speaker-${s.id}`,
-      kind: "speaker",
-      title: s.name,
-      meta: [s.role, s.talkCount === 1 ? "1 talk" : `${s.talkCount} talks`].filter(Boolean).join(", "),
-      to: `/speakers/${s.id}`,
-      picture: thumb(s.picture, 80),
-    });
-  }
-  for (const t of r.talks) {
-    list.push({
-      key: `talk-${t.id}`,
-      kind: "talk",
-      title: t.name,
-      meta: [t.speakers.join(", "), t.date && date(t.date)].filter(Boolean).join(", "),
-      to: `/talks/${t.id}`,
-      video: t.video,
-    });
-  }
+  list.push(...r.speakers.map(speakerItem), ...r.talks.map(talkItem));
   if (r.talkTotal > r.talks.length) {
     list.push({ key: "all-talks", kind: "all-talks", title: `See all ${r.talkTotal} matching talks`, to: talksLink(r) });
   }
-  for (const e of r.events) {
-    list.push({
-      key: `event-${e.id}`,
-      kind: "event",
-      title: e.title || `Meetup on ${date(e.date)}`,
-      meta: [e.venue, e.talkCount && `${e.talkCount} talks`].filter(Boolean).join(", "),
-      to: `/events/${e.date}`,
-    });
-  }
+  list.push(...r.events.map(eventItem));
   return list;
+});
+
+// Claude's answer replaces a search that found nothing or only some of the words
+const unmatched = computed(() => !localItems.value.length || results.value.partial);
+const items = computed<Item[]>(() => (unmatched.value && claudeItems.value.length ? claudeItems.value : localItems.value));
+const asking = computed(() => claude.value?.status === "loading" && claude.value.question === query.value.trim());
+
+// When the search finds nothing, the question goes to Claude once typing pauses
+let askTimer: ReturnType<typeof setTimeout> | undefined;
+watch([query, unmatched, index], () => {
+  clearTimeout(askTimer);
+  const q = query.value.trim();
+  if (!index.value || !unmatched.value || q.length < 3) return;
+  askTimer = setTimeout(() => askClaude(q), 700);
 });
 
 function nextItem(): Item {
@@ -253,6 +277,7 @@ const groups = computed(() => {
   const labels: Record<Item["kind"], string> = {
     next: "Next meetup",
     answer: "Answer",
+    claude: "Claude's answer",
     page: "Pages",
     speaker: "Speakers",
     talk: "Talks",
@@ -346,6 +371,7 @@ onMounted(() => {
   // Warm the index once the page is idle so the first keystroke is instant
   ("requestIdleCallback" in window ? window.requestIdleCallback : setTimeout)(() => load());
 });
+onBeforeUnmount(() => clearTimeout(askTimer));
 onBeforeUnmount(() => {
   window.removeEventListener("keydown", onKey);
   observer?.disconnect();
