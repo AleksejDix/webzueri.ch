@@ -232,7 +232,7 @@ const items = computed<Item[]>(() => {
       kind: "event",
       title: e.title || `Meetup on ${date(e.date)}`,
       meta: [e.venue, e.talkCount && `${e.talkCount} talks`].filter(Boolean).join(", "),
-      to: "/events",
+      to: `/events/${e.date}`,
     });
   }
   return list;

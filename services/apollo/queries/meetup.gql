@@ -1,0 +1,60 @@
+query meetup($date: Date!) {
+  events(where: { date: $date }, first: 1) {
+    id
+    date
+    time
+    title
+    eventType
+    edition
+    meetupLink
+    streamLink
+    venue {
+      name
+      street
+      zip
+      city
+      googleMapsUrl
+    }
+    talks {
+      id
+      name
+      abstract
+      youtubecode
+      speakers {
+        id
+        name
+        role
+        company
+        speakerPicture {
+          url
+          fileName
+        }
+      }
+    }
+    sponsors {
+      id
+      name
+      website
+      logo {
+        url
+      }
+    }
+  }
+  previous: events(where: { date_lt: $date, NOT: [{ title_starts_with: "No event" }] }, orderBy: date_DESC, first: 1) {
+    date
+    title
+  }
+  next: events(where: { date_gt: $date, NOT: [{ title_starts_with: "No event" }] }, orderBy: date_ASC, first: 1) {
+    date
+    title
+  }
+  photos(where: { date: $date }, first: 60) {
+    id
+    caption
+    image {
+      url
+      width
+      height
+    }
+  }
+}

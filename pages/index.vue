@@ -5,7 +5,7 @@
         <h1 class="hero__title"><HandwrittenTitle /></h1>
         <p class="lede hero__lede">Talks, speakers and meetups. Whatever you're looking for, start here.</p>
         <div class="hero__card">
-          <HeroGallery :photos="gallery" />
+          <HeroGallery v-if="gallery.length" :photos="gallery" />
           <div class="hero__ask">
             <AskBar variant="hero" />
           </div>
@@ -79,6 +79,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import homeQuery from "~/services/apollo/queries/home.gql";
+import heroPhotosQuery from "~/services/apollo/queries/heroPhotos.gql";
 import { MEETUP_URL, SUBMIT_TALK_URL } from "~/composables/useSiteSearch";
 import AskBar from "~/components/AskBar.vue";
 import RevealStatement from "~/components/RevealStatement.vue";
@@ -119,32 +120,13 @@ const statement = computed(() => [
 ]);
 
 
-// Our own meetup photos (from the Meetup group albums), shown as a slideshow in the hero
-const august = "the August 2025 meetup";
-const january = "the January 2026 meetup";
-const gallery = [
-  { src: "/img/people.jpeg", alt: "Web Zürich members talking after a meetup" },
-  { src: "/img/gallery/01-2025-08.webp", alt: `Attendees laughing together at ${august}` },
-  { src: "/img/gallery/02-2026-01.webp", alt: `Attendees chatting at ${january}` },
-  { src: "/img/gallery/03-2025-08.webp", alt: `A full room listening at ${august}` },
-  { src: "/img/gallery/04-2026-01.webp", alt: `Drinks and conversation at ${january}` },
-  { src: "/img/gallery/05-2025-08.webp", alt: `A group talking on the stairs at ${august}` },
-  { src: "/img/gallery/06-2026-01.webp", alt: `The audience listening at ${january}` },
-  { src: "/img/gallery/07-2025-08.webp", alt: `The audience reacting to a talk at ${august}` },
-  { src: "/img/gallery/08-2026-01.webp", alt: `Attendees in conversation at ${january}` },
-  { src: "/img/gallery/09-2025-08.webp", alt: `Two attendees talking at ${august}` },
-  { src: "/img/gallery/10-2026-01.webp", alt: `A packed room at ${january}` },
-  { src: "/img/gallery/11-2025-08.webp", alt: `Smiling faces in the audience at ${august}` },
-  { src: "/img/gallery/12-2026-01.webp", alt: `Two attendees in conversation at ${january}` },
-  { src: "/img/gallery/13-2025-08.webp", alt: `The audience on the stairs at ${august}` },
-  { src: "/img/gallery/14-2026-01.webp", alt: `The audience at ${january}` },
-  { src: "/img/gallery/15-2025-08.webp", alt: `Conversations over drinks at ${august}` },
-  { src: "/img/gallery/16-2026-01.webp", alt: `An attendee listening closely at ${january}` },
-  { src: "/img/gallery/17-2025-08.webp", alt: `People standing and talking at ${august}` },
-  { src: "/img/gallery/18-2026-01.webp", alt: `A speaker presenting at ${january}` },
-  { src: "/img/gallery/19-2025-08.webp", alt: `The audience at ${august}` },
-  { src: "/img/gallery/20-2025-08.webp", alt: `Listening to a talk at ${august}` },
-];
+// Meetup photos from Hygraph (Photo entries with "Show in hero" switched on)
+const { data: photoData } = await useAsyncQuery<{
+  photos: { id: string; caption: string | null; date: string | null; image: { url: string } }[];
+}>(heroPhotosQuery);
+const gallery = computed(() =>
+  (photoData.value?.photos ?? []).map((p) => ({ src: p.image.url, alt: p.caption || "Web Zürich meetup" }))
+);
 
 useSeoMeta({
   title: "Web Zürich: meetups, talks and speakers",

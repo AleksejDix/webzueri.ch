@@ -1,0 +1,10 @@
+query heroPhotos {
+  photos(where: { showInHero: true }, orderBy: date_DESC, first: 50) {
+    id
+    caption
+    date
+    image {
+      url
+    }
+  }
+}

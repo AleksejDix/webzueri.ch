@@ -53,7 +53,7 @@
                   <span class="event__day">{{ fmt(event.date, { day: "numeric" }) }}</span>
                 </div>
                 <div class="event__heading">
-                  <h3 class="heading event__title">{{ eventTitle(event) }}</h3>
+                  <h3 class="heading event__title"><NuxtLink :to="`/events/${event.date}`" class="event__link">{{ eventTitle(event) }}</NuxtLink></h3>
                   <p class="event__meta">
                     <span>{{ fmt(event.date, { weekday: "long", day: "numeric", month: "long" }) }}</span>
                     <span v-if="event.time">{{ clock(event.time) }}</span>
@@ -333,6 +333,12 @@ useSeoMeta({
 .event__title {
   font-size: clamp(1.25rem, 2vw, 1.625rem);
   font-weight: 500;
+}
+.event__link {
+  transition: color 0.2s;
+}
+.event__link:hover {
+  color: var(--color-zh-blue);
 }
 .event__meta {
   display: flex;
