@@ -18,6 +18,7 @@ const APPLY = process.argv.includes("--apply");
 const meetup = (path, id) => `https://secure.meetupstatic.com/photos/event/${path}/highres_${id}.webp`;
 const AUG = "2025-08-29";
 const JAN = "2026-01-30";
+const SEP = "2025-09-26";
 
 const PHOTOS = [
   { url: "https://webzurich.ch/img/people.jpeg", caption: "Web Zürich members talking after a meetup", date: null },
@@ -41,6 +42,25 @@ const PHOTOS = [
   { url: meetup("7/b/b/1", 532531665), caption: "A speaker presenting", date: JAN },
   { url: meetup("6/d/c/7", 529888103), caption: "The audience during a talk", date: AUG },
   { url: meetup("6/d/c/d", 529888109), caption: "Listening to a talk", date: AUG },
+  { url: meetup("5/1/a", 530881306), caption: "Two attendees talking before the talks", date: SEP },
+  { url: meetup("5/1/c", 530881308), caption: "Conversation by the window", date: SEP },
+  { url: meetup("5/2/5", 530881317), caption: "A group chatting by the window", date: SEP },
+  { url: meetup("5/2/c", 530881324), caption: "Attendees on the wooden stairs", date: SEP },
+  { url: meetup("5/3/1", 530881329), caption: "A full room on the stairs", date: SEP },
+  { url: meetup("5/3/7", 530881335), caption: "The audience following a talk", date: SEP },
+  { url: meetup("5/3/9", 530881337), caption: "Listening closely", date: SEP },
+  { url: meetup("5/3/d", 530881341), caption: "A packed audience", date: SEP },
+  { url: meetup("5/4/0", 530881344), caption: "Laughing during a talk", date: SEP },
+  { url: meetup("5/4/1", 530881345), caption: "The audience smiling", date: SEP },
+  { url: meetup("5/4/3", 530881347), caption: "A speaker presenting", date: SEP },
+  { url: meetup("5/4/7", 530881351), caption: "Smiles in the crowd", date: SEP },
+  { url: meetup("6/d/a/1", 529888065), caption: "Chatting on the stairs", date: AUG },
+  { url: meetup("6/d/b/3", 529888083), caption: "A circle of attendees by the stone wall", date: AUG },
+  { url: meetup("6/d/c/8", 529888104), caption: "Talking by the stone wall", date: AUG },
+  { url: meetup("7/b/9/d", 532531645), caption: "The audience watching a talk", date: JAN },
+  { url: meetup("7/b/a/3", 532531651), caption: "A talk in the vaulted room", date: JAN },
+  { url: meetup("7/b/a/6", 532531654), caption: "A full room on the stairs", date: JAN },
+  { url: meetup("7/b/b/2", 532531666), caption: "The audience on the stairs", date: JAN },
 ];
 
 const envFile = new URL("../.env", import.meta.url);

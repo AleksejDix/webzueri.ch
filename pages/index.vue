@@ -80,6 +80,7 @@
 import { computed } from "vue";
 import homeQuery from "~/services/apollo/queries/home.gql";
 import heroPhotosQuery from "~/services/apollo/queries/heroPhotos.gql";
+import { GALLERY_PHOTOS } from "~/utils/galleryPhotos";
 import { MEETUP_URL, SUBMIT_TALK_URL } from "~/composables/useSiteSearch";
 import AskBar from "~/components/AskBar.vue";
 import RevealStatement from "~/components/RevealStatement.vue";
@@ -120,13 +121,24 @@ const statement = computed(() => [
 ]);
 
 
-// Meetup photos from Hygraph (Photo entries with "Show in hero" switched on)
+// Meetup photos from Hygraph (Photo entries with "Show in hero" switched on),
+// plus the ones shipped with the site (utils/galleryPhotos.ts). A photo in both,
+// matched by caption and date, is shown once. The slideshow takes turns between
+// meetups, newest first, so it doesn't show one evening a dozen times in a row
 const { data: photoData } = await useAsyncQuery<{
   photos: { id: string; caption: string | null; date: string | null; image: { url: string } }[];
 }>(heroPhotosQuery);
-const gallery = computed(() =>
-  (photoData.value?.photos ?? []).map((p) => ({ src: p.image.url, alt: p.caption || "Web Zürich meetup" }))
-);
+const gallery = computed(() => {
+  const fromHygraph = (photoData.value?.photos ?? []).map((p) => ({ src: p.image.url, caption: p.caption ?? "", date: p.date ?? "" }));
+  const seen = new Set(fromHygraph.map((p) => `${p.caption}|${p.date}`));
+  const all = [...fromHygraph, ...GALLERY_PHOTOS.filter((p) => !seen.has(`${p.caption}|${p.date}`))];
+  const meetups = [...new Set(all.map((p) => p.date))].sort().reverse().map((d) => all.filter((p) => p.date === d));
+  const turns = Math.max(...meetups.map((m) => m.length));
+  return Array.from({ length: turns }, (_, i) => meetups.map((m) => m[i]))
+    .flat()
+    .filter((p) => p !== undefined)
+    .map((p) => ({ src: p.src, alt: p.caption || "Web Zürich meetup" }));
+});
 
 useSeoMeta({
   title: "Web Zürich: meetups, talks and speakers",
