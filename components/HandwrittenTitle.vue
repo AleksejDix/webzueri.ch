@@ -26,7 +26,7 @@
       />
       </g>
     </svg>
-    <!-- Redraw writes the glossy version here -->
+    <!-- Redraw writes the luminous version here -->
     <canvas ref="canvas" class="handwritten__canvas" aria-hidden="true" />
   </span>
 </template>
@@ -36,12 +36,12 @@ import { onBeforeUnmount, onMounted, ref, useId } from "vue";
 import { HANDWRITING } from "~/utils/handwriting";
 
 // The colours of Apple's "hello", from cyan through violet and pink to orange
-// and green; Redraw runs them along the line with a gloss (utils/glossyInk.ts
+// and green; Redraw runs them along the line as light (utils/lightInk.ts
 // has its own copy), the SVG draws them flat from left to right
 const INK = ["#2bb7e8", "#4f7bf0", "#8f52e8", "#e14f9a", "#ff6347", "#ffb22e", "#3fcf7a"];
 // Where the letters under the dots sit along the line (the ü twice, then the
 // i), so each dot takes its letter's colour
-const DOTS_AT = [0.564, 0.618, 0.739];
+const DOTS_AT = [0.577, 0.63, 0.747];
 
 // One even pen speed (units per ms) and barely a pause where the pen lifts,
 // so the whole title reads as a single movement of the hand
@@ -77,13 +77,13 @@ onMounted(async () => {
 
 onBeforeUnmount(() => stop());
 
-// Writes the title with Redraw (redraw.dev) on WebGPU in glossy coloured ink
-// (utils/glossyInk.ts). Returns a function that tears it down.
+// Writes the title with Redraw (redraw.dev) on WebGPU as a line of light
+// (utils/lightInk.ts). Returns a function that tears it down.
 async function write(box: HTMLElement, el: HTMLCanvasElement) {
   if (!navigator.gpu) throw new Error("No WebGPU");
-  const [{ createLibrary, parseSVG, SingleStrokeBrush }, { GlossyInk, InkWidth }] = await Promise.all([
+  const [{ createLibrary, parseSVG, SingleStrokeBrush }, { InkWidth, LightGlow, LightInk }] = await Promise.all([
     import("redraw"),
-    import("~/utils/glossyInk"),
+    import("~/utils/lightInk"),
   ]);
 
   const adapter = await navigator.gpu.requestAdapter();
@@ -103,7 +103,7 @@ async function write(box: HTMLElement, el: HTMLCanvasElement) {
     usage: direct ? GPUTextureUsage.STORAGE_BINDING : GPUTextureUsage.COPY_DST | GPUTextureUsage.RENDER_ATTACHMENT,
     alphaMode: "premultiplied",
   });
-  const library = createLibrary(device, [InkWidth, GlossyInk]);
+  const library = createLibrary(device, [InkWidth, LightInk, LightGlow]);
 
   // The pen strokes as one path, one contour per stroke, and the dots on their own
   const pens = HANDWRITING.strokes.filter((s) => s.length > 1);
@@ -113,6 +113,11 @@ async function write(box: HTMLElement, el: HTMLCanvasElement) {
     .map((dot, i) => ({ ...dot, colorAt: DOTS_AT[i] }));
   const contours = line.splitContours().map((c) => c.length());
   const total = contours.reduce((a, b) => a + b, 0);
+  // Redraw blends nearby parts of one stroke into a single shape, so where the
+  // line loops over itself the two passes meet in a seam. Drawn in short
+  // pieces, one after another, each piece lies on top of what came before, as
+  // with a real pen; neighbouring pieces share their colour where they meet
+  const piece = 120 / total;
 
   const [vx, vy, vw, vh] = HANDWRITING.viewBox.split(" ").map(Number);
   const slant = Math.tan((SLANT * Math.PI) / 180);
@@ -165,22 +170,22 @@ async function write(box: HTMLElement, el: HTMLCanvasElement) {
     c.concat([1, 0, 0, slant, 1, 0, 0, 0, 1]);
     c.translate(0, -BASELINE);
 
+    // Draws a part of the line, from and to places on the whole line (0 to 1)
+    const ink = (shader: typeof LightInk, path: typeof line, from: number, to: number, progress: number) => {
+      const brush = new SingleStrokeBrush(InkWidth, { progress, pathStart: from, pathEnd: to });
+      c.drawPath(path, brush.addShader(shader, { pathStart: from, pathEnd: to }));
+    };
     const progress = written(elapsed);
-    if (progress > 0) {
-      const pen = new SingleStrokeBrush(InkWidth, { progress, pathEnd: progress }).addShader(GlossyInk, {
-        pathStart: 0,
-        pathEnd: progress,
-      });
-      c.drawPath(line.segment(0, progress), pen);
+    const dotsDown = dots.filter((d) => elapsed >= d.at);
+
+    // The glow first, under everything, then the line piece by piece
+    if (progress > 0) ink(LightGlow, line.segment(0, progress), 0, progress, progress);
+    for (const d of dotsDown) ink(LightGlow, d.path, d.colorAt, d.colorAt, 1);
+    for (let from = 0; from < progress; from += piece) {
+      const to = Math.min(from + piece, progress);
+      ink(LightInk, line.segment(from, to), from, to, progress);
     }
-    for (const d of dots) {
-      if (elapsed < d.at) continue;
-      const dot = new SingleStrokeBrush(InkWidth, { progress: 1, pathEnd: 1 }).addShader(GlossyInk, {
-        pathStart: d.colorAt,
-        pathEnd: d.colorAt,
-      });
-      c.drawPath(d.path, dot);
-    }
+    for (const d of dotsDown) ink(LightInk, d.path, d.colorAt, d.colorAt, 1);
 
     if (offscreen) {
       c.render();
