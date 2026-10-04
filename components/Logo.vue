@@ -1,17 +1,18 @@
 <template>
-  <nuxt-link
-    :to="{ name: 'index' }"
-    class="flex items-center flex-shrink-0 mr-6 no-underline py-2"
-  >
-    <div
-      class="bg-purple-700 py-2 rounded-full w-12 mr-4 h-12 p-2 flex items-center justify-center text-white"
-    >
-      <svg class="w-6 h-6 text-white">
-        <use xlink:href="#keyboard" />
-      </svg>
-    </div>
-    <span class="font-bold text-base font-display tracking leading-none"
-      >Web Zurich</span
-    >
-  </nuxt-link>
+  <NuxtLink to="/" class="logo" aria-label="Web Zürich, home">
+    <KeycapLogo />
+  </NuxtLink>
 </template>
+
+<script setup lang="ts">
+import KeycapLogo from "~/components/KeycapLogo.vue";
+</script>
+
+<style scoped>
+.logo {
+  display: inline-flex;
+  align-items: center;
+  margin: -0.25rem -0.6rem;
+  border-radius: 1rem;
+}
+</style>

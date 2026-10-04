@@ -1,0 +1,679 @@
+{
+  "takenAt": "2026-10-04T09:47:22.406Z",
+  "speakers_DRAFT": [
+    {
+      "id": "cjjudlss9lnqm0953569cv7lr",
+      "name": "David Buchmann",
+      "bio": "",
+      "twitterHandle": "dbu",
+      "github": null,
+      "type": [],
+      "role": null,
+      "company": null,
+      "website": null,
+      "linkedIn": null,
+      "mastodon": null,
+      "bluesky": null,
+      "profileAsOf": null,
+      "profileSources": null,
+      "createdAt": "2018-07-20T19:26:59.586+00:00",
+      "updatedAt": "2025-05-23T13:14:24.74811+00:00",
+      "speakerPicture": {
+        "id": "cjjudk587lnmf09533xx1ad26",
+        "url": "https://eu-central-1.graphassets.com/AYopFRtiZSsGRyNXA0N4nz/X7O1JefT6GYw6L6u9BAq"
+      },
+      "talks": [],
+      "workshops": [],
+      "feedback": null
+    },
+    {
+      "id": "ck991mjbihmqx0b84p4frw9ns",
+      "name": "Christian \"Schepp\" Schaefer",
+      "bio": null,
+      "twitterHandle": "derSchepp",
+      "github": null,
+      "type": [],
+      "role": null,
+      "company": null,
+      "website": null,
+      "linkedIn": null,
+      "mastodon": null,
+      "bluesky": null,
+      "profileAsOf": null,
+      "profileSources": null,
+      "createdAt": "2020-04-20T22:20:49.614+00:00",
+      "updatedAt": "2020-11-18T09:20:32.074+00:00",
+      "speakerPicture": {
+        "id": "ck991mdahhirz0b20qfhy3e3f",
+        "url": "https://eu-central-1.graphassets.com/AYopFRtiZSsGRyNXA0N4nz/K8EVBSXFTHi3UipUluIE"
+      },
+      "talks": [
+        {
+          "id": "ck991vbc1hn960b84g17tv7ss",
+          "name": "Things you didn't know about images on the web",
+          "event": null
+        }
+      ],
+      "workshops": [],
+      "feedback": null
+    },
+    {
+      "id": "cka72jspwcp0s0b84igeb4f5c",
+      "name": "Christian \"Schepp\" Schaefer",
+      "bio": "Christian \"Schepp\" Schaefer is a freelance frontend developer from Düsseldorf focusing on modern CSS, accessibility and web performance. He co-hosts the Working Draft podcast and co-organizes Fronteers Conference, CSS Café and Webworker NRW.",
+      "twitterHandle": "derSchepp",
+      "github": "Schepp",
+      "type": [],
+      "role": "Freelance Frontend Developer",
+      "company": null,
+      "website": "https://schepp.dev",
+      "linkedIn": null,
+      "mastodon": "https://mastodon.social/@Schepp",
+      "bluesky": null,
+      "profileAsOf": "2026",
+      "profileSources": "https://schepp.dev/about/\nhttps://github.com/Schepp\nhttps://sessionize.com/schepp/",
+      "createdAt": "2020-05-14T17:50:51.428+00:00",
+      "updatedAt": "2026-10-04T09:42:54.07872+00:00",
+      "speakerPicture": {
+        "id": "cka72jigy5mov0b20ud3hosoh",
+        "url": "https://eu-central-1.graphassets.com/AYopFRtiZSsGRyNXA0N4nz/w2D4eRmROu2fRbne9UUb"
+      },
+      "talks": [
+        {
+          "id": "cka72jv0qcp170b849uhn78vn",
+          "name": "Things you didn't know about images on the web",
+          "event": {
+            "id": "cka72hl04cov70b841qp8g14m",
+            "date": "2020-05-25"
+          }
+        }
+      ],
+      "workshops": [],
+      "feedback": null
+    },
+    {
+      "id": "cl0ceecde2roq0cxsrfbpcfpo",
+      "name": "Llorenç Muntaner",
+      "bio": null,
+      "twitterHandle": "@lmuntaner",
+      "github": null,
+      "type": [],
+      "role": null,
+      "company": null,
+      "website": null,
+      "linkedIn": null,
+      "mastodon": null,
+      "bluesky": null,
+      "profileAsOf": null,
+      "profileSources": null,
+      "createdAt": "2022-03-04T12:33:43.948812+00:00",
+      "updatedAt": "2022-03-04T12:33:43.948812+00:00",
+      "speakerPicture": {
+        "id": "cl0cecrx82wr10bz5nbh2fke0",
+        "url": "https://eu-central-1.graphassets.com/AYopFRtiZSsGRyNXA0N4nz/T8PaUB4RFKy02Qs9zCxp"
+      },
+      "talks": [],
+      "workshops": [],
+      "feedback": null
+    },
+    {
+      "id": "cl0gu4quh31ak0cz5y7ff3g41",
+      "name": "Llorenç Muntaner",
+      "bio": "Llorenç Muntaner is a software engineer at the DFINITY Foundation, working on the Internet Computer since 2022. He has over ten years of frontend and full-stack experience, has taught at coding bootcamps and writes a newsletter on frontend engineering.",
+      "twitterHandle": "@lmuntaner",
+      "github": "lmuntaner",
+      "type": [],
+      "role": "Software Engineer",
+      "company": "DFINITY Foundation",
+      "website": "http://www.llorencmuntaner.com/",
+      "linkedIn": null,
+      "mastodon": null,
+      "bluesky": null,
+      "profileAsOf": "2023",
+      "profileSources": "https://github.com/lmuntaner\nhttps://frontendengineering.substack.com/about\nhttps://www.youtube.com/watch?v=7pHXpOGeWLI",
+      "createdAt": "2022-03-07T15:05:14.704616+00:00",
+      "updatedAt": "2026-10-04T09:42:59.526034+00:00",
+      "speakerPicture": {
+        "id": "cl0guld4736ud0cxgc367dc77",
+        "url": "https://eu-central-1.graphassets.com/AYopFRtiZSsGRyNXA0N4nz/zxjh32fsSrej47DN2M3C"
+      },
+      "talks": [
+        {
+          "id": "cl0gtyp5h2k5b0cxl5i59y93s",
+          "name": "Web Development Fallacies",
+          "event": {
+            "id": "cl0cdqb7x2aac0axm3mvrjdqg",
+            "date": "2022-03-18"
+          }
+        }
+      ],
+      "workshops": [],
+      "feedback": null
+    },
+    {
+      "id": "cliioy5aabclw0btcp5zrzekn",
+      "name": "David Buchmann",
+      "bio": "David Buchmann is a lead developer and Symfony coach at Liip in Switzerland. He maintains the FOSHttpCache library, is a founding member of HTTPlug and Symfony CMF, co-authored PSR-18 and speaks regularly at PHP conferences about HTTP caching.",
+      "twitterHandle": null,
+      "github": "dbu",
+      "type": [],
+      "role": "Lead Developer and Symfony Coach",
+      "company": "Liip",
+      "website": "https://davidbu.ch/",
+      "linkedIn": null,
+      "mastodon": "https://phpc.social/@dbu",
+      "bluesky": null,
+      "profileAsOf": "2025",
+      "profileSources": "https://davidbu.ch/mann/about/\nhttps://sessionize.com/david-buchmann/\nhttps://pretalx.com/drupal-mountain-camp-2024/speaker/9TWB8K/",
+      "createdAt": "2023-06-05T10:10:23.060901+00:00",
+      "updatedAt": "2026-10-04T09:43:03.011413+00:00",
+      "speakerPicture": {
+        "id": "cliioxrhxanio0buqdu3mz598",
+        "url": "https://eu-central-1.graphassets.com/AYopFRtiZSsGRyNXA0N4nz/FUyEFOj9SCabWWbiYlJx"
+      },
+      "talks": [
+        {
+          "id": "cliions1aavhg0btcxmx7xciy",
+          "name": "HTTP Caching",
+          "event": {
+            "id": "cliioleo9aa2g0bthhvzsnvtv",
+            "date": "2023-06-27"
+          }
+        },
+        {
+          "id": "cjjn84t0481n30953jk7cjj4t",
+          "name": "HTTP Caching",
+          "event": null
+        }
+      ],
+      "workshops": [],
+      "feedback": null
+    },
+    {
+      "id": "cmc8y6brl99ld07t9j29zggrk",
+      "name": "Jordan",
+      "bio": "Jordan Unegbu is CEO of BoostedHost, a Swiss web hosting company based in Cham that offers performance-focused WordPress hosting and the AI site builder BoostedHost Orbit.",
+      "twitterHandle": null,
+      "github": null,
+      "type": [],
+      "role": "CEO",
+      "company": "BoostedHost",
+      "website": null,
+      "linkedIn": "https://www.linkedin.com/in/jordan-unegbu/",
+      "mastodon": null,
+      "bluesky": null,
+      "profileAsOf": "2025",
+      "profileSources": "https://boostedhost.com/about-us/\nhttps://www.crunchbase.com/organization/boostedhost\nhttps://www.moneyhouse.ch/en/company/boostedhost-gmbh-18774342861",
+      "createdAt": "2025-06-23T10:22:09.641637+00:00",
+      "updatedAt": "2026-10-04T09:43:08.960161+00:00",
+      "speakerPicture": {
+        "id": "cmc8y63h9969b07t5tx57df3n",
+        "url": "https://eu-central-1.graphassets.com/AYopFRtiZSsGRyNXA0N4nz/i2rAXCJFQdGbkymFs60V"
+      },
+      "talks": [
+        {
+          "id": "cmc8y6kvm9a4v07t9jwhq00px",
+          "name": "Think It. Type It. Launch It. — Powered by BoostedHost Orbit",
+          "event": null
+        },
+        {
+          "id": "cmehax592mvkq07t634xlsbar",
+          "name": "Edge Ahead: The BoostedHost Performance Revolution",
+          "event": null
+        }
+      ],
+      "workshops": [],
+      "feedback": null
+    },
+    {
+      "id": "cmehawrm8muxv07t68kcebnw2",
+      "name": "Jordan Unegbu",
+      "bio": null,
+      "twitterHandle": null,
+      "github": null,
+      "type": [],
+      "role": null,
+      "company": null,
+      "website": null,
+      "linkedIn": null,
+      "mastodon": null,
+      "bluesky": null,
+      "profileAsOf": null,
+      "profileSources": null,
+      "createdAt": "2025-08-18T16:00:12.749978+00:00",
+      "updatedAt": "2025-08-18T20:48:18.84834+00:00",
+      "speakerPicture": {
+        "id": "cmehawkiylp7d07t8dvc9srjx",
+        "url": "https://eu-central-1.graphassets.com/AYopFRtiZSsGRyNXA0N4nz/cmehawkiylp7e07t8pp4ayb7f"
+      },
+      "talks": [],
+      "workshops": [],
+      "feedback": null
+    }
+  ],
+  "speakers_PUBLISHED": [
+    {
+      "id": "cjjudlss9lnqm0953569cv7lr",
+      "name": "David Buchmann",
+      "bio": "",
+      "twitterHandle": "dbu",
+      "github": null,
+      "type": [],
+      "role": null,
+      "company": null,
+      "website": null,
+      "linkedIn": null,
+      "mastodon": null,
+      "bluesky": null,
+      "profileAsOf": null,
+      "profileSources": null,
+      "createdAt": "2018-07-20T19:26:59.586+00:00",
+      "updatedAt": "2018-07-20T19:26:59.586+00:00",
+      "speakerPicture": {
+        "id": "cjjudk587lnmf09533xx1ad26",
+        "url": "https://eu-central-1.graphassets.com/AYopFRtiZSsGRyNXA0N4nz/X7O1JefT6GYw6L6u9BAq"
+      },
+      "talks": [],
+      "workshops": [],
+      "feedback": null
+    },
+    {
+      "id": "cka72jspwcp0s0b84igeb4f5c",
+      "name": "Christian \"Schepp\" Schaefer",
+      "bio": "Christian \"Schepp\" Schaefer is a freelance frontend developer from Düsseldorf focusing on modern CSS, accessibility and web performance. He co-hosts the Working Draft podcast and co-organizes Fronteers Conference, CSS Café and Webworker NRW.",
+      "twitterHandle": "derSchepp",
+      "github": "Schepp",
+      "type": [],
+      "role": "Freelance Frontend Developer",
+      "company": null,
+      "website": "https://schepp.dev",
+      "linkedIn": null,
+      "mastodon": "https://mastodon.social/@Schepp",
+      "bluesky": null,
+      "profileAsOf": "2026",
+      "profileSources": "https://schepp.dev/about/\nhttps://github.com/Schepp\nhttps://sessionize.com/schepp/",
+      "createdAt": "2020-05-14T17:50:51.428+00:00",
+      "updatedAt": "2026-10-04T09:42:54.07872+00:00",
+      "speakerPicture": {
+        "id": "cka72jigy5mov0b20ud3hosoh",
+        "url": "https://eu-central-1.graphassets.com/AYopFRtiZSsGRyNXA0N4nz/w2D4eRmROu2fRbne9UUb"
+      },
+      "talks": [
+        {
+          "id": "cka72jv0qcp170b849uhn78vn",
+          "name": "Things you didn't know about images on the web",
+          "event": {
+            "id": "cka72hl04cov70b841qp8g14m",
+            "date": "2020-05-25"
+          }
+        }
+      ],
+      "workshops": [],
+      "feedback": null
+    },
+    {
+      "id": "cl0gu4quh31ak0cz5y7ff3g41",
+      "name": "Llorenç Muntaner",
+      "bio": "Llorenç Muntaner is a software engineer at the DFINITY Foundation, working on the Internet Computer since 2022. He has over ten years of frontend and full-stack experience, has taught at coding bootcamps and writes a newsletter on frontend engineering.",
+      "twitterHandle": "@lmuntaner",
+      "github": "lmuntaner",
+      "type": [],
+      "role": "Software Engineer",
+      "company": "DFINITY Foundation",
+      "website": "http://www.llorencmuntaner.com/",
+      "linkedIn": null,
+      "mastodon": null,
+      "bluesky": null,
+      "profileAsOf": "2023",
+      "profileSources": "https://github.com/lmuntaner\nhttps://frontendengineering.substack.com/about\nhttps://www.youtube.com/watch?v=7pHXpOGeWLI",
+      "createdAt": "2022-03-07T15:05:14.704616+00:00",
+      "updatedAt": "2026-10-04T09:42:59.526034+00:00",
+      "speakerPicture": {
+        "id": "cl0guld4736ud0cxgc367dc77",
+        "url": "https://eu-central-1.graphassets.com/AYopFRtiZSsGRyNXA0N4nz/zxjh32fsSrej47DN2M3C"
+      },
+      "talks": [
+        {
+          "id": "cl0gtyp5h2k5b0cxl5i59y93s",
+          "name": "Web Development Fallacies",
+          "event": {
+            "id": "cl0cdqb7x2aac0axm3mvrjdqg",
+            "date": "2022-03-18"
+          }
+        }
+      ],
+      "workshops": [],
+      "feedback": null
+    },
+    {
+      "id": "cliioy5aabclw0btcp5zrzekn",
+      "name": "David Buchmann",
+      "bio": "David Buchmann is a lead developer and Symfony coach at Liip in Switzerland. He maintains the FOSHttpCache library, is a founding member of HTTPlug and Symfony CMF, co-authored PSR-18 and speaks regularly at PHP conferences about HTTP caching.",
+      "twitterHandle": null,
+      "github": "dbu",
+      "type": [],
+      "role": "Lead Developer and Symfony Coach",
+      "company": "Liip",
+      "website": "https://davidbu.ch/",
+      "linkedIn": null,
+      "mastodon": "https://phpc.social/@dbu",
+      "bluesky": null,
+      "profileAsOf": "2025",
+      "profileSources": "https://davidbu.ch/mann/about/\nhttps://sessionize.com/david-buchmann/\nhttps://pretalx.com/drupal-mountain-camp-2024/speaker/9TWB8K/",
+      "createdAt": "2023-06-05T10:10:23.060901+00:00",
+      "updatedAt": "2026-10-04T09:43:03.011413+00:00",
+      "speakerPicture": {
+        "id": "cliioxrhxanio0buqdu3mz598",
+        "url": "https://eu-central-1.graphassets.com/AYopFRtiZSsGRyNXA0N4nz/FUyEFOj9SCabWWbiYlJx"
+      },
+      "talks": [
+        {
+          "id": "cliions1aavhg0btcxmx7xciy",
+          "name": "HTTP Caching",
+          "event": {
+            "id": "cliioleo9aa2g0bthhvzsnvtv",
+            "date": "2023-06-27"
+          }
+        },
+        {
+          "id": "cjjn84t0481n30953jk7cjj4t",
+          "name": "HTTP Caching",
+          "event": null
+        }
+      ],
+      "workshops": [],
+      "feedback": null
+    },
+    {
+      "id": "cmc8y6brl99ld07t9j29zggrk",
+      "name": "Jordan",
+      "bio": "Jordan Unegbu is CEO of BoostedHost, a Swiss web hosting company based in Cham that offers performance-focused WordPress hosting and the AI site builder BoostedHost Orbit.",
+      "twitterHandle": null,
+      "github": null,
+      "type": [],
+      "role": "CEO",
+      "company": "BoostedHost",
+      "website": null,
+      "linkedIn": "https://www.linkedin.com/in/jordan-unegbu/",
+      "mastodon": null,
+      "bluesky": null,
+      "profileAsOf": "2025",
+      "profileSources": "https://boostedhost.com/about-us/\nhttps://www.crunchbase.com/organization/boostedhost\nhttps://www.moneyhouse.ch/en/company/boostedhost-gmbh-18774342861",
+      "createdAt": "2025-06-23T10:22:09.641637+00:00",
+      "updatedAt": "2026-10-04T09:43:08.960161+00:00",
+      "speakerPicture": {
+        "id": "cmc8y63h9969b07t5tx57df3n",
+        "url": "https://eu-central-1.graphassets.com/AYopFRtiZSsGRyNXA0N4nz/i2rAXCJFQdGbkymFs60V"
+      },
+      "talks": [
+        {
+          "id": "cmc8y6kvm9a4v07t9jwhq00px",
+          "name": "Think It. Type It. Launch It. — Powered by BoostedHost Orbit",
+          "event": null
+        },
+        {
+          "id": "cmehax592mvkq07t634xlsbar",
+          "name": "Edge Ahead: The BoostedHost Performance Revolution",
+          "event": null
+        }
+      ],
+      "workshops": [],
+      "feedback": null
+    },
+    {
+      "id": "cmehawrm8muxv07t68kcebnw2",
+      "name": "Jordan Unegbu",
+      "bio": null,
+      "twitterHandle": null,
+      "github": null,
+      "type": [],
+      "role": null,
+      "company": null,
+      "website": null,
+      "linkedIn": null,
+      "mastodon": null,
+      "bluesky": null,
+      "profileAsOf": null,
+      "profileSources": null,
+      "createdAt": "2025-08-18T16:00:12.749978+00:00",
+      "updatedAt": "2025-08-18T16:00:12.749978+00:00",
+      "speakerPicture": {
+        "id": "cmehawkiylp7d07t8dvc9srjx",
+        "url": "https://eu-central-1.graphassets.com/AYopFRtiZSsGRyNXA0N4nz/cmehawkiylp7e07t8pp4ayb7f"
+      },
+      "talks": [],
+      "workshops": [],
+      "feedback": null
+    }
+  ],
+  "talks_DRAFT": [
+    {
+      "id": "cjjn84t0481n30953jk7cjj4t",
+      "name": "HTTP Caching",
+      "abstract": "In this introduction, David took us to explore HTTP and we looked at how a web server can control what may be cached.",
+      "youtubecode": null,
+      "slides": null,
+      "category": "Frontend",
+      "createdAt": "2018-07-15T19:19:25.4+00:00",
+      "event": null,
+      "speakers": [
+        {
+          "id": "cliioy5aabclw0btcp5zrzekn",
+          "name": "David Buchmann"
+        }
+      ]
+    },
+    {
+      "id": "ck991vbc1hn960b84g17tv7ss",
+      "name": "Things you didn't know about images on the web",
+      "abstract": "You think you are a web veteran and so by now you know everything about using images on the web? Well, I wouldn't be too sure about that. My talk will feature a potpourri of very unusual techniques, centered around the use of images on the web. Some of them are stone old, some are bleeding edge, some are useful, and some are completly useless. And I bet, you don't even know half of them.",
+      "youtubecode": null,
+      "slides": null,
+      "category": "Frontend",
+      "createdAt": "2020-04-20T22:27:39.169+00:00",
+      "event": null,
+      "speakers": [
+        {
+          "id": "ck991mjbihmqx0b84p4frw9ns",
+          "name": "Christian \"Schepp\" Schaefer"
+        }
+      ]
+    },
+    {
+      "id": "cka72jv0qcp170b849uhn78vn",
+      "name": "Things you didn't know about images on the web",
+      "abstract": "You think you are a web veteran and so by now you know everything about using images on the web? Well, I wouldn't be too sure about that. My talk will feature a potpourri of very unusual techniques, centered around the use of images on the web. Some of them are stone old, some are bleeding edge, some are useful, and some are completly useless. And I bet, you don't even know half of them.",
+      "youtubecode": "cZxyj5Qf16M",
+      "slides": null,
+      "category": "Frontend",
+      "createdAt": "2020-05-14T17:50:54.41+00:00",
+      "event": {
+        "id": "cka72hl04cov70b841qp8g14m",
+        "date": "2020-05-25"
+      },
+      "speakers": [
+        {
+          "id": "cka72jspwcp0s0b84igeb4f5c",
+          "name": "Christian \"Schepp\" Schaefer"
+        }
+      ]
+    },
+    {
+      "id": "cl0gtyp5h2k5b0cxl5i59y93s",
+      "name": "Web Development Fallacies",
+      "abstract": "According to the Cambridge Dictionary, a fallacy is: \"an idea that a lot of people think is true but is in fact false.\"",
+      "youtubecode": null,
+      "slides": null,
+      "category": "Frontend",
+      "createdAt": "2022-03-07T15:00:32.576166+00:00",
+      "event": {
+        "id": "cl0cdqb7x2aac0axm3mvrjdqg",
+        "date": "2022-03-18"
+      },
+      "speakers": [
+        {
+          "id": "cl0gu4quh31ak0cz5y7ff3g41",
+          "name": "Llorenç Muntaner"
+        }
+      ]
+    },
+    {
+      "id": "cliions1aavhg0btcxmx7xciy",
+      "name": "HTTP Caching",
+      "abstract": "Whether with CDN, a reverse proxy or to avoid problems with browser caching, the basis for correct caching are the HTTP caching specifications. David Buchmann shows us how to properly use the caching headers to achieve the desired result.",
+      "youtubecode": null,
+      "slides": null,
+      "category": "Backend",
+      "createdAt": "2023-06-05T10:02:19.405638+00:00",
+      "event": {
+        "id": "cliioleo9aa2g0bthhvzsnvtv",
+        "date": "2023-06-27"
+      },
+      "speakers": [
+        {
+          "id": "cliioy5aabclw0btcp5zrzekn",
+          "name": "David Buchmann"
+        }
+      ]
+    },
+    {
+      "id": "cmc8y6kvm9a4v07t9jwhq00px",
+      "name": "Think It. Type It. Launch It. — Powered by BoostedHost Orbit",
+      "abstract": "BoostedHost Orbit builds real, hosted WordPress websites in minutes—just from your idea. Fully native to Gutenberg, it understands intent and creates fast, scalable sites without templates or drag-and-drop. An AI Copilot remains built into the WordPress dashboard to guide users every step of the way, delivering the smoothest onboarding experience in web hosting.",
+      "youtubecode": null,
+      "slides": null,
+      "category": "Others",
+      "createdAt": "2025-06-23T10:22:21.470523+00:00",
+      "event": null,
+      "speakers": [
+        {
+          "id": "cmc8y6brl99ld07t9j29zggrk",
+          "name": "Jordan"
+        }
+      ]
+    },
+    {
+      "id": "cmehax592mvkq07t634xlsbar",
+      "name": "Edge Ahead: The BoostedHost Performance Revolution",
+      "abstract": "BoostedHost is a next-generation Swiss web hosting platform built for speed and reliability. We leverage CloudLinux for secure, isolated environments, LiteSpeed with HTTP/3 for ultra-fast page loads, and a fully clustered cPanel DNS setup to eliminate single points of failure. In under five minutes, you can migrate any site off legacy stacks like Apache/NGINX + Plesk and start delivering lightning-fast experiences to every visitor.\n\n",
+      "youtubecode": null,
+      "slides": null,
+      "category": "Backend",
+      "createdAt": "2025-08-18T16:00:30.414892+00:00",
+      "event": null,
+      "speakers": [
+        {
+          "id": "cmc8y6brl99ld07t9j29zggrk",
+          "name": "Jordan"
+        }
+      ]
+    }
+  ],
+  "talks_PUBLISHED": [
+    {
+      "id": "cjjn84t0481n30953jk7cjj4t",
+      "name": "HTTP Caching",
+      "abstract": "In this introduction, David took us to explore HTTP and we looked at how a web server can control what may be cached.",
+      "youtubecode": null,
+      "slides": null,
+      "category": "Frontend",
+      "createdAt": "2018-07-15T19:19:25.4+00:00",
+      "event": null,
+      "speakers": [
+        {
+          "id": "cliioy5aabclw0btcp5zrzekn",
+          "name": "David Buchmann"
+        }
+      ]
+    },
+    {
+      "id": "cka72jv0qcp170b849uhn78vn",
+      "name": "Things you didn't know about images on the web",
+      "abstract": "You think you are a web veteran and so by now you know everything about using images on the web? Well, I wouldn't be too sure about that. My talk will feature a potpourri of very unusual techniques, centered around the use of images on the web. Some of them are stone old, some are bleeding edge, some are useful, and some are completly useless. And I bet, you don't even know half of them.",
+      "youtubecode": "cZxyj5Qf16M",
+      "slides": null,
+      "category": "Frontend",
+      "createdAt": "2020-05-14T17:50:54.41+00:00",
+      "event": {
+        "id": "cka72hl04cov70b841qp8g14m",
+        "date": "2020-05-25"
+      },
+      "speakers": [
+        {
+          "id": "cka72jspwcp0s0b84igeb4f5c",
+          "name": "Christian \"Schepp\" Schaefer"
+        }
+      ]
+    },
+    {
+      "id": "cl0gtyp5h2k5b0cxl5i59y93s",
+      "name": "Web Development Fallacies",
+      "abstract": "According to the Cambridge Dictionary, a fallacy is: \"an idea that a lot of people think is true but is in fact false.\"",
+      "youtubecode": null,
+      "slides": null,
+      "category": "Frontend",
+      "createdAt": "2022-03-07T15:00:32.576166+00:00",
+      "event": {
+        "id": "cl0cdqb7x2aac0axm3mvrjdqg",
+        "date": "2022-03-18"
+      },
+      "speakers": [
+        {
+          "id": "cl0gu4quh31ak0cz5y7ff3g41",
+          "name": "Llorenç Muntaner"
+        }
+      ]
+    },
+    {
+      "id": "cliions1aavhg0btcxmx7xciy",
+      "name": "HTTP Caching",
+      "abstract": "Whether with CDN, a reverse proxy or to avoid problems with browser caching, the basis for correct caching are the HTTP caching specifications. David Buchmann shows us how to properly use the caching headers to achieve the desired result.",
+      "youtubecode": null,
+      "slides": null,
+      "category": "Backend",
+      "createdAt": "2023-06-05T10:02:19.405638+00:00",
+      "event": {
+        "id": "cliioleo9aa2g0bthhvzsnvtv",
+        "date": "2023-06-27"
+      },
+      "speakers": [
+        {
+          "id": "cliioy5aabclw0btcp5zrzekn",
+          "name": "David Buchmann"
+        }
+      ]
+    },
+    {
+      "id": "cmc8y6kvm9a4v07t9jwhq00px",
+      "name": "Think It. Type It. Launch It. — Powered by BoostedHost Orbit",
+      "abstract": "BoostedHost Orbit builds real, hosted WordPress websites in minutes—just from your idea. Fully native to Gutenberg, it understands intent and creates fast, scalable sites without templates or drag-and-drop. An AI Copilot remains built into the WordPress dashboard to guide users every step of the way, delivering the smoothest onboarding experience in web hosting.",
+      "youtubecode": null,
+      "slides": null,
+      "category": "Others",
+      "createdAt": "2025-06-23T10:22:21.470523+00:00",
+      "event": null,
+      "speakers": [
+        {
+          "id": "cmc8y6brl99ld07t9j29zggrk",
+          "name": "Jordan"
+        }
+      ]
+    },
+    {
+      "id": "cmehax592mvkq07t634xlsbar",
+      "name": "Edge Ahead: The BoostedHost Performance Revolution",
+      "abstract": "BoostedHost is a next-generation Swiss web hosting platform built for speed and reliability. We leverage CloudLinux for secure, isolated environments, LiteSpeed with HTTP/3 for ultra-fast page loads, and a fully clustered cPanel DNS setup to eliminate single points of failure. In under five minutes, you can migrate any site off legacy stacks like Apache/NGINX + Plesk and start delivering lightning-fast experiences to every visitor.\n\n",
+      "youtubecode": null,
+      "slides": null,
+      "category": "Backend",
+      "createdAt": "2025-08-18T16:00:30.414892+00:00",
+      "event": null,
+      "speakers": [
+        {
+          "id": "cmc8y6brl99ld07t9j29zggrk",
+          "name": "Jordan"
+        }
+      ]
+    }
+  ]
+}

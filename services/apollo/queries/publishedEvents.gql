@@ -1,23 +1,27 @@
-query events($first: Int!, $skip: Int!, $date: Date) {
-  events(
-    orderBy: date_DESC
-    first: $first
-    skip: $skip
-    where: { date_lt: $date }
-  ) {
+query events($date: Date) {
+  events(orderBy: date_DESC, first: 1000, where: { date_lt: $date }) {
     id
     date
+    time
+    title
+    eventType
+    meetupLink
+    streamLink
+    venue {
+      name
+      city
+      googleMapsUrl
+    }
     talks {
       id
       name
-      abstract
       youtubecode
+      category
       speakers {
         id
         name
         speakerPicture {
           url
-          handle
         }
       }
     }
@@ -28,6 +32,16 @@ query events($first: Int!, $skip: Int!, $date: Date) {
       logo {
         url
       }
+    }
+  }
+  next: events(orderBy: date_ASC, first: 1, where: { date_gte: $date }) {
+    date
+    time
+    title
+    meetupLink
+    venue {
+      name
+      city
     }
   }
 }

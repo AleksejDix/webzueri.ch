@@ -15,4 +15,4 @@ query events($query: Int) {
       }
     }
   }
-}
+} 

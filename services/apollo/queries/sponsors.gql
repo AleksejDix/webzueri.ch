@@ -1,0 +1,16 @@
+query sponsors {
+  sponsors(first: 1000) {
+    id
+    name
+    website
+    logo {
+      url
+      mimeType
+    }
+    events(first: 1000) {
+      id
+      date
+      title
+    }
+  }
+}

@@ -1,0 +1,16 @@
+query eventsCalendar {
+  events(orderBy: date_ASC) {
+    id
+    date
+    title
+    eventType
+    talks {
+      id
+      name
+      speakers {
+        id
+        name
+      }
+    }
+  }
+}

@@ -1,20 +1,18 @@
 <template>
-  <div>
-    <page>
-      <base-layout>
-        <nuxt></nuxt>
-      </base-layout>
-    </page>
-    <modal />
+  <div class="relative min-h-screen bg-white">
+    <TopNotice />
+    <NavigationMain />
+    <main id="content">
+      <slot />
+    </main>
+    <Footer />
+    <AskBar variant="floating" />
   </div>
 </template>
 
-<script>
-import BaseLayout from "@/layouts/base-layout";
-import Modal from "@/components/modal";
-import Page from "@/components/page";
-
-export default {
-  components: { BaseLayout, Modal, Page }
-};
+<script setup lang="ts">
+import TopNotice from "~/components/TopNotice.vue";
+import NavigationMain from "~/components/NavigationMain.vue";
+import Footer from "~/components/Footer.vue";
+import AskBar from "~/components/AskBar.vue";
 </script>

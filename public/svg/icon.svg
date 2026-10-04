@@ -1,0 +1,15 @@
+<svg
+    height="100"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 80 80"
+    >
+    <!-- Ready for your line instructions -->
+    <rect fill="#ff611a" width="80" height="80"></rect>
+    <g transform="translate(5,30)">
+        <path d="M 0,0 L 10,0 L 20,20 L 10,20 Z" fill="black" />
+        <path d="M 15,0 L 25,0 L 35,20 L 25,20 Z" fill="black" />
+        <path d="M 30,0 L 45,0 L 41,8 L 35,10  Z" fill="black" />
+        <path d="M 50,0 L 60,0 L 50,20 L 40,20 Z" fill="white" />
+        <path d="M 55,20 L 70,20 L 65,10 L 59,12 Z" fill="black" />
+    </g>
+</svg>

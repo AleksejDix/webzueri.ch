@@ -1,92 +1,65 @@
-query home($date: DateTime) {
-  events(orderBy: date_DESC, first: 1) {
+query home {
+  events(orderBy: date_DESC, first: 1, where: { talks_some: {} }) {
     id
     date
     time
-    eventType
     title
     meetupLink
-    streamLink
-    sponsors {
-      id
-      name
-      website
-      logo {
-        height
-        width
-        mimeType
-        url
-      }
-    }
     talks {
       id
       name
-      abstract
-      youtubecode
       speakers {
         id
         name
         speakerPicture {
           url
-          handle
-          fileName
         }
       }
     }
     venue {
-      id
       name
-      street
-      region
-      zip
       city
-      country
-      googleMapsUrl
     }
   }
-  workshops(where: { dateAndTime_gte: $date }) {
-    canceled
+  recent: talks(orderBy: createdAt_DESC, first: 40) {
     id
-    name
-    dateAndTime
     speakers {
       id
       name
       speakerPicture {
         url
-        handle
-        fileName
       }
     }
   }
   sponsors {
     id
     name
-    position
-    publishedAt
-    stage
     website
     logo {
       url
+      mimeType
     }
-    events {
+    events(first: 1000) {
       id
+      date
     }
   }
-  talks {
-    id
-    youtubecode
-    slides
-    name
-    abstract
-    category
-    speakers {
-      name
-      speakerPicture {
-        handle
-        fileName
-        height
-      }
+  talksConnection {
+    aggregate {
+      count
     }
+  }
+  speakersConnection(where: { talks_some: {} }) {
+    aggregate {
+      count
+    }
+  }
+  eventsConnection(where: { talks_some: {} }) {
+    aggregate {
+      count
+    }
+  }
+  firstEvent: events(orderBy: date_ASC, first: 1, where: { talks_some: {} }) {
+    date
   }
 }

@@ -1,0 +1,189 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+/*
+ * Web Zürich design tokens.
+ * Zürich Blau #0070B4 comes from the Canton of Zurich design system
+ * (zh.ch/designsystem). Blue is reserved for actions, links and duotone
+ * imagery; type sits in a deep ink so pages stay calm.
+ */
+@theme {
+  --color-zh-blue: #0070b4;
+  --color-zh-blue-hover: #005a91;
+  --color-zh-deep: #00407c;
+  --color-zh-navy: #000c1f;
+  --color-zh-ink: #0b1a2b;
+  --color-zh-muted: #59616d;
+  --color-zh-soft: #ebedee;
+  --color-zh-line: #e2e3e5;
+
+  --font-display: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-sans: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+  --radius-frame: clamp(1.5rem, 2.08vw, 3rem);
+  --frame-inset: clamp(0.5rem, 1.38vw, 2rem);
+  --notice-h: 2.5rem;
+  --radius-tile: 1.75rem;
+
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@layer base {
+  /* Smooth jumps for in-page links like the events year chips (off with reduced motion) */
+  html:focus-within {
+    scroll-behavior: smooth;
+  }
+
+  html {
+    @apply bg-white text-zh-ink antialiased;
+    font-family: var(--font-sans);
+    -webkit-text-size-adjust: 100%;
+  }
+
+  ::selection {
+    background: var(--color-zh-blue);
+    color: white;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-zh-blue);
+    outline-offset: 3px;
+    border-radius: 0.5rem;
+  }
+}
+
+@layer components {
+  /* Large headline in Inter's Display optical size: Swiss grotesk, tight and medium */
+  .display {
+    font-family: var(--font-display);
+    font-variation-settings: "opsz" 32;
+    font-weight: 400;
+    letter-spacing: -0.036em;
+    line-height: 1;
+    color: var(--color-zh-navy);
+    text-wrap: balance;
+  }
+
+  .heading {
+    font-family: var(--font-sans);
+    font-variation-settings: "opsz" 32;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1.12;
+    color: var(--color-zh-navy);
+    text-wrap: balance;
+  }
+
+  .lede {
+    @apply text-lg md:text-xl text-zh-muted;
+    line-height: 1.45;
+    text-wrap: pretty;
+  }
+
+  /* Rounded, inset page frame. The site header sits inside the first one */
+  .frame {
+    position: relative;
+    margin: 0 var(--frame-inset);
+    border-radius: var(--radius-frame);
+    isolation: isolate;
+    background: var(--color-zh-soft);
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition-colors;
+  }
+  .btn-primary {
+    @apply bg-zh-blue text-white hover:bg-zh-blue-hover;
+  }
+  .btn-quiet {
+    @apply bg-white text-zh-navy shadow-[0_1px_2px_rgb(0_26_51/0.08)] hover:bg-zh-soft;
+  }
+  .btn-ink {
+    @apply bg-zh-navy text-white hover:bg-zh-ink;
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-zh-line bg-white px-3.5 py-1.5 text-sm text-zh-navy transition-colors hover:border-zh-blue hover:text-zh-blue;
+  }
+  .chip[aria-pressed="true"] {
+    @apply border-zh-navy bg-zh-navy text-white hover:text-white;
+  }
+
+  .tile {
+    border-radius: var(--radius-tile);
+    overflow: hidden;
+  }
+
+  /*
+   * Blue-and-white duotone: a greyscale image screened over Zürich blue,
+   * so black becomes blue and white stays white. Full colour on hover.
+   */
+  .duotone {
+    background: var(--color-zh-blue);
+  }
+  .duotone img {
+    filter: grayscale(1) contrast(1.15) brightness(1.05);
+    mix-blend-mode: screen;
+    transition: filter 0.4s;
+  }
+  a:hover .duotone img,
+  .duotone:hover img {
+    filter: none;
+    mix-blend-mode: normal;
+  }
+
+  /* Long-form rules pages: Code of Conduct, advertising rules */
+  .policy {
+    max-width: 42rem;
+    margin: clamp(3rem, 6vw, 5rem) auto 0;
+    padding-inline: 1.5rem;
+    font-size: 1.125rem;
+    line-height: 1.65;
+    color: var(--color-zh-ink);
+  }
+  .policy h2 {
+    margin-top: 3rem;
+    font-size: clamp(1.5rem, 2.4vw, 2rem);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    color: var(--color-zh-navy);
+  }
+  .policy h2:first-child {
+    margin-top: 0;
+  }
+  .policy p,
+  .policy ul {
+    margin-top: 1rem;
+  }
+  .policy ul {
+    display: grid;
+    gap: 0.5rem;
+    padding-left: 1.25rem;
+    list-style: disc;
+  }
+  .policy li::marker {
+    color: var(--color-zh-blue);
+  }
+  .policy a {
+    font-weight: 600;
+    color: var(--color-zh-blue);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .text-link {
+    @apply font-semibold text-zh-navy underline decoration-zh-line decoration-2 underline-offset-4 transition-colors hover:text-zh-blue hover:decoration-zh-blue;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

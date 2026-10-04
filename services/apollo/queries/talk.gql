@@ -1,16 +1,23 @@
 query talk($id: ID!) {
-  talk(where: { id: $id }) {
+  talks(where: { id: $id }, first: 1) {
     id
     name
     abstract
     youtubecode
+    category
+    createdAt
     speakers {
       id
       name
       speakerPicture {
         url
         handle
+        fileName
       }
+    }
+    event {
+      id
+      date
     }
   }
 }

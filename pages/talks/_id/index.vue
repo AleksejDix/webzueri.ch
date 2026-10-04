@@ -1,18 +1,23 @@
 <template>
-  <div v-if="!$apollo.loading" class="max-w-lg bg-white rounded-xl p-6 mx-auto">
-    <div v-if="talk.speakers" class="owl-lg flex flex-col">
+  <div v-if="!$apollo.loading" class="max-w-4xl bg-white rounded-xl p-6 mx-auto">
+    <div v-if="talk.speakers" class="mb-4 flex flex-row items-center gap-3">
       <nuxt-link
         v-for="speaker in talk.speakers"
         :key="speaker.id"
         :to="{ name: 'speakers-id', params: { id: speaker.id } }"
-        class="text-gray-700 hover:text-blue-500-light no-underline inline-block"
+        class="text-gray-700 hover:text-blue-500-light no-underline flex items-center gap-2"
       >
-        <user-card
-          v-if="speaker.speakerPicture"
-          :name="speaker.name"
-          :photo="speaker.speakerPicture.handle"
-        />
+        <div class="w-8 h-8 rounded-full overflow-hidden bg-gray-200 flex-shrink-0">
+          <img
+            v-if="speaker.speakerPicture"
+            :src="`https://media.graphcms.com/resize=fit:crop,height:32,width:32/${speaker.speakerPicture.handle}`"
+            :alt="speaker.name"
+            class="w-full h-full object-cover"
+          />
+        </div>
+        <span class="text-sm font-medium">{{ speaker.name }}</span>
       </nuxt-link>
+    </div>
       <div
         class="flex-1 relative block bg-primary rounded-xl text-white md:flex no-underline whitespace-normal "
       >
@@ -39,7 +44,6 @@
           </div>
         </div>
       </div>
-    </div>
   </div>
 </template>
 

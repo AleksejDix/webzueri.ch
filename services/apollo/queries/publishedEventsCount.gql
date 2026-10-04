@@ -1,5 +1,5 @@
-query eventsConnection {
-  eventsConnection {
+query eventsConnection($date: Date) {
+  eventsConnection(where: { date_lt: $date }) {
     aggregate {
       count
     }

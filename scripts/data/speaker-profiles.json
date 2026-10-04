@@ -1,0 +1,3068 @@
+[
+  {
+    "id": "cjiqciytfkego091851ymsogb",
+    "name": "Aleksej Dix",
+    "confidence": "high",
+    "bio": "Aleksej Dix is a Zürich-based frontend developer focused on Vue.js, web performance and accessibility. He co-founded the Web Zürich meetup, founded the accessibility auditing tool Allyship.dev, and speaks regularly at local meetups.",
+    "role": "Frontend developer, founder of Allyship.dev",
+    "company": "Allyship.dev",
+    "links": {
+      "website": "https://aleksejdix.com",
+      "github": "https://github.com/AleksejDix",
+      "twitter": "https://x.com/aleksejdix",
+      "linkedin": "https://www.linkedin.com/in/aleksejdix/"
+    },
+    "sources": [
+      "https://aleksejdix.com",
+      "https://github.com/AleksejDix",
+      "https://zurichjs.com/speakers/aleksej-dix",
+      "https://allyship.dev/legal"
+    ],
+    "asOf": "2025"
+  },
+  {
+    "id": "cjjb0o9x2jqnj09187n476q05",
+    "name": "Fabian Gosebrink",
+    "confidence": "high",
+    "bio": "Fabian Gosebrink is a Swiss-based software engineer, consultant and trainer for Angular and ASP.NET Core, and founder of Offering Solutions Software. A Microsoft MVP, Google Developer Expert and Pluralsight author, he leads SwissAngular and the .NET user group Zürich.",
+    "role": "Software engineer, consultant and trainer",
+    "company": "Offering Solutions Software",
+    "links": {
+      "website": "https://fabian-gosebrink.com/",
+      "github": "https://github.com/FabianGosebrink"
+    },
+    "sources": [
+      "https://github.com/FabianGosebrink",
+      "https://sessionize.com/fabian-gosebrink/",
+      "https://offering.solutions/team/",
+      "https://swissangular.com/about/"
+    ],
+    "asOf": "2026"
+  },
+  {
+    "id": "cjjbq2tq3kxoq0918rz6l9tfx",
+    "name": "Memi Beltrame",
+    "confidence": "high",
+    "bio": "Memi Beltrame is a Zürich-based digital strategist and UX designer specialising in user research and prototyping. He founded the content strategy agency Less A Mess and created Protostrap, an open-source framework for building clickable prototypes.",
+    "role": "Digital strategist and UX designer",
+    "company": "Less A Mess",
+    "links": {
+      "website": "http://lessamess.ch",
+      "github": "https://github.com/memibeltrame",
+      "linkedin": "https://www.linkedin.com/in/memibeltrame/"
+    },
+    "sources": [
+      "https://github.com/memibeltrame",
+      "https://github.com/lessamess/Protostrap",
+      "https://www.slideshare.net/memibeltrame",
+      "http://blog.lessamess.ch/?author=2"
+    ],
+    "asOf": "2019"
+  },
+  {
+    "id": "cjjbqrbm8kyzx0918kbrghoz9",
+    "name": "Fidel Thomet",
+    "confidence": "high",
+    "bio": "Fidel Thomet is an interaction designer, media artist and creative technologist working on data visualization, speculative design and creative coding. He is affiliated with the Urban Complexity Lab at FH Potsdam and previously created Where2 with Open Data Zürich.",
+    "role": "Interaction designer and creative technologist",
+    "company": "Thomet Nanni",
+    "links": {
+      "website": "https://fidel.computer/",
+      "github": "https://github.com/fidelthomet"
+    },
+    "sources": [
+      "https://fidel.computer/",
+      "https://github.com/fidelthomet",
+      "https://uclab.fh-potsdam.de/people/fidel-thomet/",
+      "https://vizknowledge.aalto.fi/archive/2018/conference/fidel-thomet/"
+    ],
+    "asOf": "2025"
+  },
+  {
+    "id": "cjjiq7thv0aq20953g6j2orhx",
+    "name": "Joris Noordermeer",
+    "confidence": "medium",
+    "bio": "Joris Noordermeer is a freelance full stack web developer based in Zürich. He builds web applications, services and websites, covering system architecture, UX/UI implementation and content management system integration.",
+    "role": "Freelance full stack web developer",
+    "company": "noordermeer gmbh",
+    "links": {
+      "website": "https://noordermeer.ch/en/",
+      "github": "https://github.com/jorisnoo",
+      "linkedin": "https://www.linkedin.com/in/jorisnoo/"
+    },
+    "sources": [
+      "https://noordermeer.ch/en/",
+      "https://github.com/jorisnoo",
+      "https://www.linkedin.com/in/jorisnoo/"
+    ],
+    "asOf": "2026"
+  },
+  {
+    "id": "cjjiqmwdv0bsp0953g23hxgs1",
+    "name": "Fabio Filli",
+    "confidence": "medium",
+    "bio": "Fabio Filli works on research and development of web technologies with a focus on functional programming, using Elm, Haskell and Nix. As of 2020 he was digital strategy and technology lead at miaEngiadina, where he helped build engadin.app.",
+    "role": "Digital strategy and technology lead",
+    "company": "miaEngiadina",
+    "links": {},
+    "sources": [
+      "https://news.miaengiadina.ch/inscuntrar-fabio-filli/"
+    ],
+    "asOf": "2020"
+  },
+  {
+    "id": "cjjiqnsb10buw0953z7847tg7",
+    "name": "Beni Buess",
+    "confidence": "high",
+    "bio": "Beni Buess works at the intersection of product, technology and journalism and runs Lavaberry, a consultancy for newsroom tools and workflows. He previously led editorial tech at NZZ, where he was the lead developer of the open-source storytelling toolbox Q.",
+    "role": "Founder, newsroom technology consultant",
+    "company": "Lavaberry",
+    "links": {
+      "website": "https://benibuess.ch",
+      "github": "https://github.com/benib",
+      "linkedin": "https://www.linkedin.com/in/beni-buess/"
+    },
+    "sources": [
+      "https://benibuess.ch",
+      "https://github.com/benib",
+      "https://medium.com/nzz-open/why-newsrooms-need-storytelling-tools-and-what-weve-learned-building-them-87df4802b737",
+      "https://webzurich.ch/talks/cjjn7s87980v90953697e3s4a"
+    ],
+    "asOf": "2025"
+  },
+  {
+    "id": "cjjir5dsd0cv30953yuosg0tx",
+    "name": "Rene",
+    "confidence": "low",
+    "bio": "",
+    "role": "",
+    "company": "",
+    "links": {},
+    "sources": [],
+    "asOf": ""
+  },
+  {
+    "id": "cjjn6o56a7y3e09537ujeats7",
+    "name": "Alberto Piai",
+    "confidence": "high",
+    "bio": "Alberto Piai is a Zürich-based software engineer at Sensational AG, where he works on backend and frontend components of the company's B2B e-commerce platform, including architecture, refactoring and infrastructure.",
+    "role": "Principal Software Engineer",
+    "company": "Sensational AG",
+    "links": {
+      "github": "https://github.com/brainlock",
+      "linkedin": "https://www.linkedin.com/in/alberto-piai-ab7702ba/"
+    },
+    "sources": [
+      "https://github.com/brainlock",
+      "https://www.linkedin.com/in/alberto-piai-ab7702ba/"
+    ],
+    "asOf": "2026"
+  },
+  {
+    "id": "cjjn6x7mb7yms0953z793v3yu",
+    "name": "Adrian Zumbrunnen",
+    "confidence": "high",
+    "bio": "Adrian Zumbrunnen is a Zürich-based interface and UX designer and conference speaker known for his work on conversational design. He worked at iA and later as a designer at Google, including on conversational design for the Google Assistant.",
+    "role": "Interface and UX designer",
+    "company": "",
+    "links": {
+      "website": "https://www.azumbrunnen.me",
+      "github": "https://github.com/azumbrunnen",
+      "twitter": "https://x.com/azumbrunnen_"
+    },
+    "sources": [
+      "https://github.com/azumbrunnen",
+      "https://uxdesign.cc/my-website-is-now-conversational-here-is-what-i-learned-7e943cc6ace0",
+      "https://pixelpioneers.co/pioneers/adrian-zumbrunnen",
+      "https://medium.com/ux-london/interview-with-adrian-zumbrunnen-b3ae35e1ec1d",
+      "http://2016.productmanagementfestival.com/speakers/adrian-zumbrunnen/"
+    ],
+    "asOf": "2019"
+  },
+  {
+    "id": "cjjn6xnl97yns0953elxmbhsw",
+    "name": "Gion Kunz",
+    "confidence": "high",
+    "bio": "Gion Kunz is a Zürich-based front-end developer and consultant who founded the company syncrea in 2018. An Angular Google Developer Expert, he wrote the book Mastering Angular Components and created the open-source charting library Chartist.js.",
+    "role": "Front-end developer and consultant, founder",
+    "company": "syncrea",
+    "links": {
+      "github": "https://github.com/gionkunz"
+    },
+    "sources": [
+      "https://github.com/gionkunz",
+      "https://www.smashingmagazine.com/author/gionkunz/",
+      "https://slides.com/gionkunz/angularjs2-glance-into-future-swissjs"
+    ],
+    "asOf": "2026"
+  },
+  {
+    "id": "cjjn75np97z7a0953zyew6395",
+    "name": "Pascal Kaufmann",
+    "confidence": "high",
+    "bio": "Pascal Kaufmann is a software engineer and co-founder of Unchained Commerce in Zürich, which builds a headless Node.js e-commerce framework. He previously worked as an SAP consultant and developer of mobile and web applications.",
+    "role": "Co-founder, software engineer",
+    "company": "Unchained Commerce",
+    "links": {
+      "github": "https://github.com/pozylon",
+      "linkedin": "https://www.linkedin.com/in/pascal-kaufmann-95927985/"
+    },
+    "sources": [
+      "https://github.com/pozylon",
+      "https://www.linkedin.com/in/pascal-kaufmann-95927985/",
+      "https://unchained.shop/about"
+    ],
+    "asOf": "2026"
+  },
+  {
+    "id": "cjjn8c65q821a0953si4ulczw",
+    "name": "Alain M. Lafon",
+    "confidence": "high",
+    "bio": "Alain M. Lafon is CEO of 200ok, a Swiss software company that builds free and open source software with Clojure, JavaScript and Ruby, including the Org mode web app organice. He speaks regularly about functional programming.",
+    "role": "CEO",
+    "company": "200ok GmbH",
+    "links": {
+      "website": "https://200ok.ch",
+      "github": "https://github.com/munen",
+      "twitter": "https://x.com/munen_200ok",
+      "linkedin": "https://www.linkedin.com/in/alafon/"
+    },
+    "sources": [
+      "https://github.com/munen",
+      "https://200ok.ch/posts/2018-07-24_introduction_to_clojurescript_and_functional_programming.html",
+      "https://200ok.ch/blog.html"
+    ],
+    "asOf": "2026"
+  },
+  {
+    "id": "cjjn8k12482p40953k51y41ko",
+    "name": "Mirko Eberlein",
+    "confidence": "medium",
+    "bio": "Mirko Eberlein is a senior developer at WebGate Consulting AG, a Swiss AWS partner whose team develops CloudeeCMS, an open-source serverless content management system for AWS. He has spoken about serverless, AWS Lambda and voice interfaces.",
+    "role": "Senior developer",
+    "company": "WebGate Consulting AG",
+    "links": {
+      "twitter": "https://x.com/mirkoeberlein",
+      "linkedin": "https://www.linkedin.com/in/mirko-eberlein/"
+    },
+    "sources": [
+      "https://www.linkedin.com/in/mirko-eberlein/",
+      "https://x.com/mirkoeberlein",
+      "https://github.com/WebGateConsultingAG/CloudeeCMS",
+      "https://webzurich.ch/talks/ckk4e6eaoa7u20b41lv29foj8"
+    ],
+    "asOf": "2021"
+  },
+  {
+    "id": "cjjo1i3po9edj0953bkq044m3",
+    "name": "Josef Dabernig",
+    "confidence": "high",
+    "bio": "Josef works at the intersection of technology, user experience and business, with a focus on open source, Drupal and AI. He was CTO at Amazee Labs in Zürich, where he helped shape the agency's upcycling strategy for existing websites, and is a long-time Drupal community member.",
+    "role": "Technology and open source consultant",
+    "company": "",
+    "links": {
+      "website": "https://www.dasjo.at/",
+      "github": "https://github.com/dasjo",
+      "twitter": "https://x.com/dasjo"
+    },
+    "sources": [
+      "https://www.dasjo.at/",
+      "https://github.com/dasjo",
+      "https://www.dasjo.at/drupal/",
+      "https://www.agiledrop.com/blog/josef-dabernig-drupal-not-just-software-ecosystem",
+      "https://www.amazeelabs.com/en/journal/drupal-mountain-camp-2019-recap"
+    ],
+    "asOf": "2025"
+  },
+  {
+    "id": "cjjr01r2keu2q0953hwcitq11",
+    "name": "Evgeniya Tokareva",
+    "confidence": "medium",
+    "bio": "Evgeniya Tokareva is a full-stack developer who trained at Propulsion Academy in Zürich. Her 2018 graduation project was a web app for finding hiking routes that compared the Leaflet and Google Maps mapping libraries.",
+    "role": "Full-stack developer",
+    "company": "",
+    "links": {
+      "github": "https://github.com/toki2612"
+    },
+    "sources": [
+      "https://github.com/toki2612",
+      "https://webzurich.ch/talks/cjjr0f5xieutj0953omu255im"
+    ],
+    "asOf": "2024"
+  },
+  {
+    "id": "cjjuc8l65ljio0953t8rj1r6c",
+    "name": "David Aerne",
+    "confidence": "high",
+    "bio": "David Aerne is a Zürich-based computational designer and frontend developer at his studio Elastiq, working where code meets design. He is known for open-source color tools such as the Color Names dataset and API, Poline and Rampensau.",
+    "role": "Computational designer and frontend developer",
+    "company": "Elastiq",
+    "links": {
+      "website": "https://elastiq.ch/",
+      "github": "https://github.com/meodai",
+      "twitter": "https://x.com/meodai",
+      "linkedin": "https://www.linkedin.com/in/davidaerne/"
+    },
+    "sources": [
+      "https://elastiq.ch/",
+      "https://github.com/meodai"
+    ],
+    "asOf": "2026"
+  },
+  {
+    "id": "cjjucdvntljws0953tsygvj4q",
+    "name": "Nick Niles",
+    "confidence": "high",
+    "bio": "Nick Niles is a digital product designer and front-end developer with a focus on interactive, high-fidelity prototyping. After 13 years in Switzerland working with clients such as ETH Zürich and hosting Front Conference Zürich, he founded the web studio Tassu in California.",
+    "role": "Digital product designer, founder",
+    "company": "Tassu",
+    "links": {
+      "website": "https://nickniles.com",
+      "github": "https://github.com/lab27",
+      "linkedin": "https://www.linkedin.com/in/nickniles/"
+    },
+    "sources": [
+      "https://github.com/lab27",
+      "https://nickniles.com/",
+      "https://tassu.net/about/",
+      "https://frontconference.com/hosts/nick-niles"
+    ],
+    "asOf": "2025"
+  },
+  {
+    "id": "cjjucfkrxlk170953x235wauw",
+    "name": "Kristiine Naska",
+    "confidence": "low",
+    "bio": "",
+    "role": "",
+    "company": "",
+    "links": {},
+    "sources": [],
+    "asOf": ""
+  },
+  {
+    "id": "cjjucnznplkm90953dowqf70h",
+    "name": "Stefan Bruggmann",
+    "confidence": "high",
+    "bio": "Stefan Bruggmann is a Zürich-based web developer and Neos CMS specialist. He works with the digital agency Jung von Matt TECH and the Neos agency webexcess, building websites and platforms on Neos.",
+    "role": "Web developer, Neos CMS specialist",
+    "company": "Jung von Matt TECH",
+    "links": {
+      "github": "https://github.com/sbruggmann",
+      "twitter": "https://x.com/sbruggm4nn"
+    },
+    "sources": [
+      "https://github.com/sbruggmann",
+      "https://jvmtech.ch"
+    ],
+    "asOf": "2026"
+  },
+  {
+    "id": "cjjucqlj5lksg09536wh2im69",
+    "name": "Matthias Indermühle",
+    "confidence": "medium",
+    "bio": "Matthias Indermühle is a co-founder of VSHN, the Swiss DevOps and cloud operations company, and has been part of its management since the start, responsible for customer projects. He has also worked in sales and account management for VSHN Canada.",
+    "role": "Co-founder, member of the management",
+    "company": "VSHN",
+    "links": {
+      "linkedin": "https://www.linkedin.com/in/matthias-indermuehle/"
+    },
+    "sources": [
+      "https://www.vshn.ch/en/blog/vshn-appoints-new-co-ceos-and-members-of-the-management/",
+      "https://www.vshn.ch/team/matthias-indermuehle/",
+      "https://www.linkedin.com/in/matthias-indermuehle/"
+    ],
+    "asOf": "2021"
+  },
+  {
+    "id": "cjjud2e5ullr20953cvawov2u",
+    "name": "Alice Ruppert",
+    "confidence": "high",
+    "bio": "Alice Ruppert is a Zürich-based game designer and producer. She was Head of Games at AirConsole (N-Dream AG), then creative producer at Aesir Interactive, and as of 2024 works as a freelance consultant for game production and marketing.",
+    "role": "Game production and marketing consultant",
+    "company": "",
+    "links": {
+      "website": "https://aliceruppert.ch"
+    },
+    "sources": [
+      "https://aliceruppert.ch/about.html",
+      "https://aliceruppert.ch/airconsole-gameproduction.html",
+      "http://blog.airconsole.com/2016/01/airconsole-from-prototype-to-full.html"
+    ],
+    "asOf": "2024"
+  },
+  {
+    "id": "cjjud4hs8lm090953iay7bf0p",
+    "name": "Fabienne Gafner",
+    "confidence": "low",
+    "bio": "",
+    "role": "",
+    "company": "",
+    "links": {},
+    "sources": [],
+    "asOf": ""
+  },
+  {
+    "id": "cjjudowdjlo1s0953kljd4d67",
+    "name": "Pankaj Juvekar",
+    "confidence": "low",
+    "bio": "",
+    "role": "",
+    "company": "",
+    "links": {},
+    "sources": [],
+    "asOf": ""
+  },
+  {
+    "id": "cjjudrv3zlobv09534trkd4gr",
+    "name": "João Figueiredo",
+    "confidence": "high",
+    "bio": "João Figueiredo is a web developer based between Porto and Zürich and co-founder of Aditus, an accessibility testing platform that helps teams find and fix accessibility issues on their websites.",
+    "role": "Co-founder",
+    "company": "Aditus",
+    "links": {
+      "website": "https://www.aditus.io",
+      "github": "https://github.com/lucalanca",
+      "twitter": "https://x.com/lucalanca"
+    },
+    "sources": [
+      "https://github.com/lucalanca",
+      "https://www.aditus.io"
+    ],
+    "asOf": "2026"
+  },
+  {
+    "id": "cjk2vf7zw2ew30953klekcbzg",
+    "name": "Martin Splitt",
+    "confidence": "high",
+    "bio": "Martin Splitt is a developer advocate on the Search Relations team at Google in Zürich, focusing on JavaScript, web development and how search engines process websites. He co-hosts Google's Search Off the Record podcast.",
+    "role": "Developer advocate, Search Relations",
+    "company": "Google",
+    "links": {
+      "website": "https://splitti.online",
+      "github": "https://github.com/AVGP",
+      "twitter": "https://x.com/g33konaut"
+    },
+    "sources": [
+      "https://developers.google.com/search/podcasts/search-off-the-record",
+      "https://github.com/AVGP",
+      "https://sessionize.com/martin-splitt/"
+    ],
+    "asOf": "2026"
+  },
+  {
+    "id": "cjlku64ai2uig09244n8g8sac",
+    "name": "Raluca Nicola",
+    "confidence": "high",
+    "bio": "Raluca Nicola is a Zürich-based web cartographer and product engineer at Esri. She works on web maps and data visualization, with projects ranging from mobility and traffic dashboards to climate data.",
+    "role": "Web cartographer and product engineer",
+    "company": "Esri",
+    "links": {
+      "website": "https://raluca-nicola.net/",
+      "github": "https://github.com/RalucaNicola",
+      "twitter": "https://x.com/nicolaraluk"
+    },
+    "sources": [
+      "https://github.com/RalucaNicola",
+      "https://raluca-nicola.net/"
+    ],
+    "asOf": "2026"
+  },
+  {
+    "id": "cjlkvi38o2xg00924ianmotj7",
+    "name": "Alicia Rüegg",
+    "confidence": "low",
+    "bio": "",
+    "role": "",
+    "company": "",
+    "links": {},
+    "sources": [],
+    "asOf": ""
+  },
+  {
+    "id": "cjlkvqqwt2xxn0924a1qmeqsq",
+    "name": "Nicolas Ruflin",
+    "confidence": "high",
+    "bio": "Nicolas Ruflin is a Zürich-based software engineer who created Elastica, an open-source PHP client for Elasticsearch. He has worked on the Beats project of the Elastic Stack and writes about search, distributed systems and software quality.",
+    "role": "Software engineer",
+    "company": "",
+    "links": {
+      "website": "http://ruflin.com/",
+      "github": "https://github.com/ruflin",
+      "twitter": "https://x.com/ruflin"
+    },
+    "sources": [
+      "http://ruflin.com/",
+      "https://github.com/ruflin",
+      "https://github.com/ruflin/Elastica"
+    ],
+    "asOf": "2026"
+  },
+  {
+    "id": "cjlkyaguj33e10924jx9k7bov",
+    "name": "Alexander Gerasimov",
+    "confidence": "low",
+    "bio": "",
+    "role": "",
+    "company": "",
+    "links": {},
+    "sources": [],
+    "asOf": ""
+  },
+  {
+    "id": "cjlttv998mw0u0924tugylv8c",
+    "name": "Markus Klimmasch",
+    "confidence": "high",
+    "bio": "Markus Klimmasch is a Zurich-based consultant and developer specialising in the Sitecore platform. He has held lead roles at ti&m, Namics and Merkle, including Sitecore Solutions Director at Merkle Switzerland.",
+    "role": "Sitecore consultant",
+    "company": "",
+    "links": {
+      "twitter": "https://x.com/mklimmasch",
+      "github": "https://github.com/mklimmasch",
+      "linkedin": "https://www.linkedin.com/in/markus-klimmasch-33860687/"
+    },
+    "sources": [
+      "https://github.com/mklimmasch",
+      "https://x.com/mklimmasch",
+      "https://www.linkedin.com/in/markus-klimmasch-33860687/",
+      "https://www.youtube.com/watch?v=LnsUP9KH6Rg"
+    ],
+    "asOf": ""
+  },
+  {
+    "id": "cjltub94zmwzf09246a7dc4mx",
+    "name": "Gianluca Guarini",
+    "confidence": "high",
+    "bio": "Gianluca Guarini is a Switzerland-based software developer and the long-time maintainer of Riot.js, the component-based UI library, which he rewrote for version 4. He also publishes small open-source JavaScript libraries such as icaro and erre.",
+    "role": "Software developer, Riot.js maintainer",
+    "company": "",
+    "links": {
+      "website": "https://gianlucaguarini.com",
+      "github": "https://github.com/GianlucaGuarini",
+      "twitter": "https://x.com/gianlucaguarini",
+      "bluesky": "https://bsky.app/profile/gianlucaguarini.com"
+    },
+    "sources": [
+      "https://github.com/GianlucaGuarini",
+      "https://gianluca-guarini.medium.com/every-revolution-begins-with-a-riot-js-first-6c6a4b090ee",
+      "https://twitter.com/gianlucaguarini/status/958708388640178176"
+    ],
+    "asOf": "2025"
+  },
+  {
+    "id": "cjltuglcgmxbe0924varrltzb",
+    "name": "Christian Riesen",
+    "confidence": "high",
+    "bio": "Christian Riesen is a Zurich-based CTO working on applied AI, with around thirty years in software. He founded and was CTO of the image platform rokka.io (2016 to 2024) and maintains open-source PHP libraries for Base32 and one-time passwords.",
+    "role": "CTO",
+    "company": "AlpineAI",
+    "links": {
+      "website": "https://christianriesen.com",
+      "github": "https://github.com/ChristianRiesen",
+      "twitter": "https://x.com/christianriesen",
+      "linkedin": "https://www.linkedin.com/in/christianriesen/"
+    },
+    "sources": [
+      "https://christianriesen.com",
+      "https://github.com/ChristianRiesen",
+      "https://www.linkedin.com/in/christianriesen/"
+    ],
+    "asOf": "2026"
+  },
+  {
+    "id": "cjlupziozomf30924vtq9ooi5",
+    "name": "Timo Horstschaefer",
+    "confidence": "high",
+    "bio": "Timo Horstschaefer is co-founder and CTO of Ledgy, a Zurich-based equity management platform. He studied physics at ETH Zurich and has published research on event-based vision and tracking.",
+    "role": "Co-founder and CTO",
+    "company": "Ledgy",
+    "links": {
+      "twitter": "https://x.com/thrstschfr",
+      "github": "https://github.com/morloy",
+      "linkedin": "https://www.linkedin.com/in/timohorstschaefer/"
+    },
+    "sources": [
+      "https://dev.to/thrstschfr",
+      "https://x.com/thrstschfr",
+      "https://github.com/morloy",
+      "https://ledgy.com/blog/ai-powered-equity-management-platform"
+    ],
+    "asOf": "2025"
+  },
+  {
+    "id": "cjluqav46on4a0924b3cfj1b2",
+    "name": "Miguel Perello",
+    "confidence": "medium",
+    "bio": "Miguel Perello is a Zurich-based software engineer focused on React, TypeScript and Node.js. He has worked as front-end and platform lead at Sygnum Bank, technical lead at Biogen and senior software engineer at Netstream.",
+    "role": "Front-end and Platform Lead",
+    "company": "Sygnum Bank",
+    "links": {},
+    "sources": [
+      "https://www.toptal.com/resume/miguel-perello-garcia"
+    ],
+    "asOf": "2026"
+  },
+  {
+    "id": "cjluqgl4bongx0924o9zk7mgk",
+    "name": "Marion Schleifer",
+    "confidence": "high",
+    "bio": "Marion Schleifer is co-founder and CEO of Label Ladder, a Swiss-Namibian data and software company, and founder of the non-profit Code Blossom. She previously led developer education at Hasura and co-founded Women Techmakers Switzerland.",
+    "role": "Co-founder and CEO",
+    "company": "Label Ladder",
+    "links": {
+      "twitter": "https://x.com/rubydwarf",
+      "linkedin": "https://www.linkedin.com/in/marion-schleifer/"
+    },
+    "sources": [
+      "https://x.com/rubydwarf",
+      "https://labelladder.com/about/",
+      "https://www.linkedin.com/in/marion-schleifer/",
+      "https://medium.com/code-blossom/code-blossom-certification-program-53f71c102450",
+      "https://weshape.tech/2024/07/31/role-model-marion-schleifer/"
+    ],
+    "asOf": "2025"
+  },
+  {
+    "id": "cjluqkyhfonrw0924y3lr7rb4",
+    "name": "Nick Budden",
+    "confidence": "medium",
+    "bio": "Nick Budden is a Canadian founder based in Taipei, formerly a freelance designer and WordPress developer. He founded Phase, an animation tool for product designers, and has been CEO of the vector graphics editor Vectr.",
+    "role": "Founder",
+    "company": "Phase",
+    "links": {
+      "website": "https://nickbudden.com",
+      "github": "https://github.com/nickbuddendotcom",
+      "twitter": "https://x.com/nickbudden"
+    },
+    "sources": [
+      "https://github.com/nickbuddendotcom",
+      "https://www.producthunt.com/@nickbudden",
+      "https://www.linkedin.com/in/nickbudden/"
+    ],
+    "asOf": ""
+  },
+  {
+    "id": "cjluqvqppoofr0924hjzc7pgv",
+    "name": "Aarno Aukia",
+    "confidence": "high",
+    "bio": "Aarno Aukia is co-founder and CTO of VSHN, the Zurich DevOps company he founded in 2014. He works on DevOps and platform engineering with Kubernetes and open-source software and speaks at events such as KubeCon.",
+    "role": "Co-founder and CTO",
+    "company": "VSHN",
+    "links": {
+      "linkedin": "https://www.linkedin.com/in/aukia/"
+    },
+    "sources": [
+      "https://sessionize.com/aarnoaukia/",
+      "https://www.vshn.ch/en/blog/netzwoche-interview-with-vshn-founder-and-cto-aarno-aukia/",
+      "https://kccnceu2026.sched.com/speaker/aarno.aukia"
+    ],
+    "asOf": "2026"
+  },
+  {
+    "id": "cjluqza7uoop30924e1ng7yjj",
+    "name": "Ivan Jovanovic",
+    "confidence": "high",
+    "bio": "Ivan Jovanovic is a full-stack software engineer and consultant based in Zurich. His open-source work includes a widely used set of SICP study notes and solutions.",
+    "role": "Full-stack software engineer and consultant",
+    "company": "",
+    "links": {
+      "website": "http://ivanjovanovic.com",
+      "github": "https://github.com/ivanjovanovic",
+      "twitter": "https://x.com/ivanjovanovic"
+    },
+    "sources": [
+      "https://github.com/ivanjovanovic",
+      "https://x.com/ivanjovanovic"
+    ],
+    "asOf": ""
+  },
+  {
+    "id": "cjlur22troowq0924rkc1l8vb",
+    "name": "Min Chen",
+    "confidence": "medium",
+    "bio": "Min Chen is a user experience designer who moved from Shanghai to Zurich and worked at the Zurich digital agency Ginetta, where she wrote about design systems in Sketch.",
+    "role": "UX designer",
+    "company": "Ginetta",
+    "links": {},
+    "sources": [
+      "https://blog.ginetta.net/@minchen"
+    ],
+    "asOf": ""
+  },
+  {
+    "id": "cjlur958sopee0924xqzku7cs",
+    "name": "Jose Aguinaga",
+    "confidence": "high",
+    "bio": "Jose Aguinaga is a cryptography and blockchain engineer, originally from Mexico and based in Switzerland. He is co-founder and CTO of Tungsten, which builds digital asset custody solutions, and writes and speaks about web cryptography.",
+    "role": "Co-founder and CTO",
+    "company": "Tungsten",
+    "links": {
+      "website": "https://jjperezaguinaga.com/",
+      "github": "https://github.com/0xjjpa",
+      "twitter": "https://twitter.com/0xjjpa",
+      "linkedin": "https://ch.linkedin.com/in/jjperezaguinaga"
+    },
+    "sources": [
+      "https://jjperezaguinaga.com/",
+      "https://slides.com/jjperezaguinaga"
+    ],
+    "asOf": ""
+  },
+  {
+    "id": "cjlurcsv0opoc0924nzpmv8tr",
+    "name": "Alvaro Videla",
+    "confidence": "high",
+    "bio": "Alvaro Videla is a Zurich-based software engineer at Microsoft, previously an applied ML engineer at Apple and a RabbitMQ core developer. He co-authored RabbitMQ in Action and organises DuraznoConf.",
+    "role": "Software engineer",
+    "company": "Microsoft",
+    "links": {
+      "website": "http://alvaro-videla.com",
+      "github": "https://github.com/videlalvaro",
+      "twitter": "https://x.com/old_sound"
+    },
+    "sources": [
+      "https://github.com/videlalvaro",
+      "https://x.com/old_sound",
+      "https://old-sound.medium.com/"
+    ],
+    "asOf": ""
+  },
+  {
+    "id": "cjlus3ifjor980924w7t1nr38",
+    "name": "Robert Leckenby",
+    "confidence": "high",
+    "bio": "Robert Leckenby is a British-Swiss geologist who works with Python and JavaScript, with a PhD on fractured reservoir modelling. He has worked as a digital geoscientist at Agile Scientific, teaching geocomputing, and contributed to 52 Things You Should Know About Geocomputing.",
+    "role": "Digital geoscientist",
+    "company": "",
+    "links": {},
+    "sources": [
+      "https://github.com/softwareunderground/52things",
+      "https://agilescientific.com/blog/2018/7/19/lots-of-news",
+      "https://transform2020.sched.com/speaker/robert860"
+    ],
+    "asOf": "2020"
+  },
+  {
+    "id": "cjlutjb20oul8092421e95og6",
+    "name": "Bastian Widmer",
+    "confidence": "high",
+    "bio": "Bastian Widmer is a Swiss engineer focused on open source and infrastructure. He worked as a system engineer at amazee.io, spoke at many DrupalCon events, and runs infrastructure for CommunityRack.org.",
+    "role": "Infrastructure engineer",
+    "company": "",
+    "links": {
+      "website": "https://bastianwidmer.ch",
+      "github": "https://github.com/dasrecht",
+      "twitter": "https://x.com/dasrecht",
+      "mastodon": "https://chaos.social/@dasrecht"
+    },
+    "sources": [
+      "https://bastianwidmer.ch",
+      "https://github.com/dasrecht",
+      "https://www.drupal.org/u/dasrecht"
+    ],
+    "asOf": ""
+  },
+  {
+    "id": "cjlutm3beouuw09246cqjbafo",
+    "name": "Silvia Schiaulini",
+    "confidence": "medium",
+    "bio": "Silvia Schiaulini is a designer trained at Università Iuav di Venezia whose work focuses on co-design and participatory design. She has worked at Republik Magazine in Zurich.",
+    "role": "Designer",
+    "company": "Republik",
+    "links": {
+      "linkedin": "https://www.linkedin.com/in/silviaschiaulini/"
+    },
+    "sources": [
+      "https://www.linkedin.com/in/silviaschiaulini/",
+      "https://www.researchgate.net/profile/Silvia-Schiaulini-2",
+      "https://www.we-have-iuav.com/project/silvia-schiaulini/"
+    ],
+    "asOf": ""
+  },
+  {
+    "id": "cjlutu0eiovjj09246jfhpm1l",
+    "name": "Nico Martin",
+    "confidence": "high",
+    "bio": "Nico Martin is an open-source machine learning engineer at Hugging Face, working on WebML and Transformers.js, and a Google Developer Expert in AI and web technologies. He is based in Switzerland and speaks internationally about on-device AI in the browser.",
+    "role": "Open-source ML engineer",
+    "company": "Hugging Face",
+    "links": {
+      "website": "https://nico.dev",
+      "github": "https://github.com/nico-martin",
+      "twitter": "https://x.com/nicodotdev",
+      "linkedin": "https://www.linkedin.com/in/nicodotdev"
+    },
+    "sources": [
+      "https://nico.dev/",
+      "https://gitnation.com/person/nico_martin",
+      "https://github.com/nico-martin",
+      "https://www.jsday.it/speaker/nico-martin/"
+    ],
+    "asOf": "2026"
+  },
+  {
+    "id": "cjlutwyi8ovwg0924nn79so38",
+    "name": "Jean-Baptiste Clion",
+    "confidence": "medium",
+    "bio": "Jean-Baptiste Clion has worked as Google Practice Technical Lead at Capgemini-Sogeti in Switzerland and coordinated DevFest Switzerland, the Google Developer Groups conference, opening its 2016 edition.",
+    "role": "Google Practice Technical Lead",
+    "company": "Capgemini-Sogeti",
+    "links": {
+      "twitter": "https://x.com/JBaptisteClion"
+    },
+    "sources": [
+      "https://portal.klewel.com/watch/webcast/gdg-devfest-2016/talk/AqXeAo4nFDhXLZq4pvWqBm/",
+      "https://www.flickr.com/photos/thearkvalais/15828310193/"
+    ],
+    "asOf": "2016"
+  },
+  {
+    "id": "cjluu1decowa709246q86edfh",
+    "name": "Sam Hertig",
+    "confidence": "high",
+    "bio": "Sam Hertig is a Zurich-based scientific visualisation specialist with a PhD in computational biology from ETH Zurich. He runs Hertig Visualizations, creating interactive visualisations with D3.js and three.js, and works as quality manager for medical software at Comerge AG.",
+    "role": "Quality manager, medical software",
+    "company": "Comerge AG",
+    "links": {
+      "website": "https://samhertig.com",
+      "github": "https://github.com/sam-hertig",
+      "linkedin": "https://www.linkedin.com/in/samhertig/"
+    },
+    "sources": [
+      "https://samhertig.com/",
+      "https://github.com/sam-hertig",
+      "https://www.linkedin.com/in/samhertig/"
+    ],
+    "asOf": ""
+  },
+  {
+    "id": "cjluu642sowq60924qxi7jy14",
+    "name": "Lukas Elmer",
+    "confidence": "high",
+    "bio": "Lukas Elmer is a Zurich-based software engineer running Elmer Software Engineering GmbH. He co-founded and led Renuo AG until 2017, founded the TypeScript Switzerland meetup and co-organised the Ruby on Rails Switzerland meetup.",
+    "role": "Software engineer",
+    "company": "Elmer Software Engineering GmbH",
+    "links": {
+      "website": "https://lukaselmer.github.io/",
+      "github": "https://github.com/lukaselmer",
+      "twitter": "https://x.com/lukaselmer",
+      "linkedin": "https://www.linkedin.com/in/lukaselmer/"
+    },
+    "sources": [
+      "https://github.com/lukaselmer",
+      "https://x.com/lukaselmer",
+      "https://www.linkedin.com/in/lukaselmer/"
+    ],
+    "asOf": ""
+  },
+  {
+    "id": "cjluuc1x2ox4o09246lz9wn4c",
+    "name": "Michael Zelensky",
+    "confidence": "high",
+    "bio": "Michael Zelensky is a Zurich-based software engineer and the creator of SiteXML, a lightweight, platform-independent website framework. He has worked at UBS, SIX and PXL Vision.",
+    "role": "Software engineer",
+    "company": "SiteXML",
+    "links": {
+      "github": "https://github.com/michaelzelensky",
+      "linkedin": "https://www.linkedin.com/in/michael-zelensky-40b524175/"
+    },
+    "sources": [
+      "https://github.com/michaelzelensky",
+      "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4619725",
+      "https://www.youtube.com/watch?v=KR_HUUrKcYA"
+    ],
+    "asOf": "2023"
+  },
+  {
+    "id": "cjluui2i7oxm60924e82v8gad",
+    "name": "Tomas Polach",
+    "confidence": "high",
+    "bio": "Tomas Polach is a co-founder of Archilogic, the Zurich company that turns floor plans into interactive 3D models in the browser with WebGL. He focuses on web APIs for 3D, VR and AR and studied architecture and urban planning at ETH Zurich.",
+    "role": "Co-founder",
+    "company": "Archilogic",
+    "links": {
+      "twitter": "https://x.com/tomaspolach"
+    },
+    "sources": [
+      "https://medium.com/@tomaspolach/about",
+      "https://www.crunchbase.com/person/tomas-polach",
+      "https://archipreneur.com/a-new-way-of-presenting-space-in-the-internet-with-archilogic/"
+    ],
+    "asOf": ""
+  },
+  {
+    "id": "cjluullquoxw609244mytet9t",
+    "name": "Propulsion",
+    "confidence": "high",
+    "bio": "Propulsion Academy was a Zurich coding and data science bootcamp running intensive 12-week programmes in full-stack development and data science. The school was later renamed and now operates as Constructor Nexademy.",
+    "role": "",
+    "company": "Propulsion Academy",
+    "links": {
+      "twitter": "https://x.com/_Propulsion"
+    },
+    "sources": [
+      "https://www.swissinfo.ch/eng/sci-tech/workforce-development_coding-boot-camps-take-off-in-switzerland/43653430",
+      "https://www.coursereport.com/schools/propulsion-academy"
+    ],
+    "asOf": ""
+  },
+  {
+    "id": "cjluunf6uoy4o0924ebeok07g",
+    "name": "William Candillon",
+    "confidence": "high",
+    "bio": "William Candillon is a Zurich-based developer known for the YouTube series Can it be done in React Native?. He created React Native Skia, React Native WebGPU and the 2D graphics library Redraw.",
+    "role": "Developer, React Native graphics",
+    "company": "",
+    "links": {
+      "website": "https://wcandillon.dev",
+      "github": "https://github.com/wcandillon",
+      "twitter": "https://x.com/wcandillon"
+    },
+    "sources": [
+      "https://wcandillon.dev/",
+      "https://github.com/wcandillon"
+    ],
+    "asOf": "2026"
+  },
+  {
+    "id": "cjluuu8hdoyrg09243vfg96xk",
+    "name": "Nicolas Mattia",
+    "confidence": "high",
+    "bio": "Nicolas Mattia is a Zurich-based full-stack and infrastructure engineer at DFINITY, focused on functional programming, reproducible builds and developer tooling. He created niv and naersk for the Nix ecosystem and previously worked at Tweag I/O.",
+    "role": "Full-stack and infrastructure engineer",
+    "company": "DFINITY",
+    "links": {
+      "website": "https://nmattia.com",
+      "github": "https://github.com/nmattia",
+      "twitter": "https://x.com/nasmattia",
+      "linkedin": "https://www.linkedin.com/in/nicolas-mattia/"
+    },
+    "sources": [
+      "https://nmattia.com/",
+      "https://nmattia.com/resume/",
+      "https://github.com/nmattia"
+    ],
+    "asOf": ""
+  },
+  {
+    "id": "cjluuxrasoz3c0924co37o6w2",
+    "name": "Jordi Boggiano",
+    "confidence": "high",
+    "bio": "Jordi Boggiano is a Zurich-based developer and the lead of Composer and Packagist.org, the PHP dependency manager and package repository. He co-founded Private Packagist and created the Monolog logging library.",
+    "role": "Co-founder",
+    "company": "Private Packagist",
+    "links": {
+      "github": "https://github.com/Seldaek",
+      "twitter": "https://x.com/seldaek",
+      "mastodon": "https://mastodon.social/@seldaek"
+    },
+    "sources": [
+      "https://github.com/Seldaek",
+      "https://x.com/seldaek",
+      "https://europe.wordcamp.org/2025/speaker/jordi-boggiano/",
+      "https://connect.symfony.com/profile/seldaek"
+    ],
+    "asOf": "2025"
+  },
+  {
+    "id": "cjluv9oeyp03c0924qsad4qde",
+    "name": "Maria Husmann",
+    "confidence": "high",
+    "bio": "Maria Husmann researched cross-device user interfaces and developer tools for her PhD at ETH Zurich. She has taught web design and engineering as a lecturer in the Digital Ideation programme at Lucerne University of Applied Sciences and Arts (HSLU).",
+    "role": "Lecturer",
+    "company": "Lucerne University of Applied Sciences and Arts",
+    "links": {},
+    "sources": [
+      "https://www.polymer-project.org/blog/2017-08-09-speaker-spotlight-maria",
+      "https://www.research-collection.ethz.ch/handle/20.500.11850/222796",
+      "https://scholar.google.ch/citations?user=iejeatMAAAAJ&hl=en"
+    ],
+    "asOf": "2017"
+  },
+  {
+    "id": "cjluvcy0ap0i2092471w2ed9p",
+    "name": "Luca Simone",
+    "confidence": "high",
+    "bio": "Luca Simone is a Zurich-based developer from Lugano with a background in web technologies and GIS. His GitHub lists Swiss Post as his employer, and he previously worked in the machine learning group at Swisscom.",
+    "role": "Developer",
+    "company": "Swiss Post",
+    "links": {
+      "website": "https://www.lucasimone.info",
+      "github": "https://github.com/lukefx",
+      "twitter": "https://x.com/Lukefx"
+    },
+    "sources": [
+      "https://github.com/lukefx",
+      "https://x.com/Lukefx"
+    ],
+    "asOf": ""
+  },
+  {
+    "id": "cjluvlg1xp1720924h8zlojyk",
+    "name": "Giorgia",
+    "confidence": "low",
+    "bio": "",
+    "role": "",
+    "company": "",
+    "links": {},
+    "sources": [],
+    "asOf": ""
+  },
+  {
+    "id": "cjluvnionp1co0924dvcbow7n",
+    "name": "Emily",
+    "confidence": "low",
+    "bio": "",
+    "role": "",
+    "company": "",
+    "links": {},
+    "sources": [],
+    "asOf": ""
+  },
+  {
+    "id": "cjluvqie8p1k60924ynubdxeh",
+    "name": "Peter Braden",
+    "confidence": "high",
+    "bio": "Peter Braden is a Zurich-based software engineer who founded the consultancy FrozenRidge and created node-opencv, the popular OpenCV bindings for Node.js. He favours open-source tooling built around vim, tmux and make.",
+    "role": "Software engineer",
+    "company": "",
+    "links": {
+      "website": "https://peterbraden.co.uk",
+      "github": "https://github.com/peterbraden",
+      "linkedin": "https://www.linkedin.com/in/peterbraden/"
+    },
+    "sources": [
+      "https://peterbraden.co.uk/about/",
+      "https://github.com/peterbraden",
+      "https://peterbraden.co.uk/article/tools-tools-tools/"
+    ],
+    "asOf": ""
+  },
+  {
+    "id": "cjluvwup8p21s0924eckew108",
+    "name": "Christy Blum",
+    "confidence": "high",
+    "bio": "UX designer with a focus on business and content strategy. She worked in Switzerland for about a decade at Swisscom, tutti.ch, Futureworks and Swarovski, where she was a UX Design Manager, before joining Accenture in the San Francisco area.",
+    "role": "UX Designer",
+    "company": "Accenture",
+    "links": {
+      "twitter": "https://x.com/cecblum",
+      "linkedin": "https://www.linkedin.com/in/cecblum/",
+      "website": "https://christyblum.com"
+    },
+    "sources": [
+      "https://www.linkedin.com/in/cecblum/",
+      "https://christyblum.com/about",
+      "https://medium.com/@cecblum"
+    ],
+    "asOf": ""
+  },
+  {
+    "id": "cjluvy99bp25e0924a5n15w90",
+    "name": "Nicolas Kick",
+    "confidence": "high",
+    "bio": "Zurich-based independent software developer who builds productivity apps for Apple platforms, including Disk Graph and uFocus. He also created xde, a cross-device IDE that runs in the browser, and sharedb-codemirror for collaborative editing.",
+    "role": "Independent app developer",
+    "company": "",
+    "links": {
+      "github": "https://github.com/nickasd",
+      "website": "http://desairem.com",
+      "mastodon": "https://mastodon.social/@nicolaskick"
+    },
+    "sources": [
+      "https://github.com/nickasd",
+      "https://apps.apple.com/us/developer/nicolas-kick/id583995254"
+    ],
+    "asOf": ""
+  },
+  {
+    "id": "cjluw14twp2co09245xdd6nf6",
+    "name": "Florian Schulz",
+    "confidence": "high",
+    "bio": "German interface designer based in Zurich who designs and codes apps, websites and design tools. Independent at Digitalstation since 2018 and guest lecturer in interface design at ZHdK, previously an interaction designer at Ginetta. Known for his Anatomy of Typefaces project.",
+    "role": "Interface Designer",
+    "company": "Digitalstation",
+    "links": {
+      "website": "https://florianschulz.info",
+      "twitter": "https://x.com/getflourish",
+      "github": "https://github.com/getflourish",
+      "mastodon": "https://mastodon.social/@getflourish"
+    },
+    "sources": [
+      "https://florianschulz.info/portfolio/",
+      "https://mastodon.social/@getflourish",
+      "https://github.com/getflourish"
+    ],
+    "asOf": ""
+  },
+  {
+    "id": "cjluw7g9wp2t00924uqj3ux0u",
+    "name": "Anna Migas",
+    "confidence": "high",
+    "bio": "Lead UI Developer at Field Intelligence and Google Developer Expert in Web Technologies, based in Kraków. She speaks about web performance and animations, created the Repaintless CSS animation library, and has organized coding workshops for WebMuses and Rails Girls.",
+    "role": "Lead UI Developer",
+    "company": "Field Intelligence",
+    "links": {
+      "twitter": "https://x.com/szynszyliszys",
+      "github": "https://github.com/szynszyliszys",
+      "linkedin": "https://www.linkedin.com/in/anna-migas-56575159/"
+    },
+    "sources": [
+      "https://sessionize.com/szynszyliszys/",
+      "https://github.com/szynszyliszys",
+      "https://revojs.ro/2023/speakers/anna-migas/"
+    ],
+    "asOf": "2023"
+  },
+  {
+    "id": "cjluw9ebwp2za09248zzykmof",
+    "name": "Monika Kedrova",
+    "confidence": "medium",
+    "bio": "Zurich-based software engineer and WebXR advocate. She worked on web-based 3D and VR for architecture and interiors at Archilogic and has spoken about A-Frame and WebVR authoring, including at a W3C WebVR workshop. Her LinkedIn profile lists Scandit as a later employer.",
+    "role": "Software Engineer",
+    "company": "Scandit",
+    "links": {
+      "twitter": "https://x.com/salad_milk_soup",
+      "github": "https://github.com/m-ke",
+      "linkedin": "https://www.linkedin.com/in/monika-kedrova-503398a6/"
+    },
+    "sources": [
+      "https://x.com/salad_milk_soup",
+      "https://www.syntheticnative.com/blog/2018/2/1/11-architecture-interiors-with-webxr-ft-monika-kedrova-of-archilogic",
+      "https://github.com/w3c/webvr-content-workshop/issues/17",
+      "https://www.linkedin.com/in/monika-kedrova-503398a6/"
+    ],
+    "asOf": "2018"
+  },
+  {
+    "id": "cjluwb2n5p34z0924946y0xf8",
+    "name": "Francisco Silva",
+    "confidence": "medium",
+    "bio": "Frontend developer based in Switzerland. His open-source work on GitHub covers Angular, Storybook and Jest setups, plus a TypeScript remake of a Super Mario game.",
+    "role": "Frontend Developer",
+    "company": "",
+    "links": {
+      "github": "https://github.com/x1c0",
+      "website": "https://x1c0.app/",
+      "twitter": "https://x.com/x1c0"
+    },
+    "sources": [
+      "https://github.com/x1c0",
+      "https://x1c0.app/"
+    ],
+    "asOf": ""
+  },
+  {
+    "id": "cjluwl2awp40q092466mt7jny",
+    "name": "Tibor Kranjc",
+    "confidence": "medium",
+    "bio": "Zurich-based interaction designer and illustrator with a background in UX research and product design. His profiles describe design work at Google, and he has illustrated books and film projects.",
+    "role": "Interaction Designer",
+    "company": "Google",
+    "links": {
+      "twitter": "https://x.com/herrkranz",
+      "linkedin": "https://www.linkedin.com/in/tiborkranjc/"
+    },
+    "sources": [
+      "https://x.com/herrkranz",
+      "https://www.linkedin.com/in/tiborkranjc/",
+      "https://medium.com/@tiborkranjc",
+      "https://www.goodreads.com/author/show/7352398.Tibor_Kranjc"
+    ],
+    "asOf": ""
+  },
+  {
+    "id": "cjlv08trzpblb0924kkn8mnqs",
+    "name": "Martin Ockajak",
+    "confidence": "high",
+    "bio": "Zurich-based software engineer focused on AI, distributed systems and technical leadership, currently Head of Engineering and AI at Layer Finance. Earlier roles include Seervision, Onedot and UBS. He created the Automorph RPC library for Scala and the Rust crate cantrip.",
+    "role": "Head of Engineering & AI",
+    "company": "Layer Finance",
+    "links": {
+      "linkedin": "https://www.linkedin.com/in/martin-ockajak/"
+    },
+    "sources": [
+      "https://www.slideshare.net/MartinOckajak",
+      "https://www.linkedin.com/in/martin-ockajak/",
+      "https://crates.io/users/martin-ockajak",
+      "https://www.layerfinance.com/about"
+    ],
+    "asOf": ""
+  },
+  {
+    "id": "cjlv0bvndpbs809242yffqevd",
+    "name": "Kyle Simpson",
+    "confidence": "high",
+    "bio": "JavaScript educator and author of the You Don't Know JS book series and Functional-Light JavaScript. Through Getify Solutions he teaches JavaScript courses and maintains open-source libraries such as CAF and monio.",
+    "role": "Author and Educator",
+    "company": "Getify Solutions",
+    "links": {
+      "github": "https://github.com/getify",
+      "twitter": "https://x.com/getify",
+      "website": "http://getify.me",
+      "linkedin": "https://www.linkedin.com/in/getify"
+    },
+    "sources": [
+      "https://github.com/getify",
+      "https://www.kickstarter.com/projects/getify/you-dont-know-js-yet-second-edition-books",
+      "https://www.oreilly.com/pub/au/4853"
+    ],
+    "asOf": "2021"
+  },
+  {
+    "id": "cjlv0ebt3pbz40924ce9vb36j",
+    "name": "Michelle Sanver",
+    "confidence": "high",
+    "bio": "Independent senior software architect with over 20 years of PHP experience, specialising in backend, APIs and Symfony. She previously worked at the Swiss agency Liip, has been president of PHPWomen, and has spoken at PHP conferences since 2012.",
+    "role": "Senior Software Architect",
+    "company": "Independent",
+    "links": {
+      "github": "https://github.com/michellesanver",
+      "twitter": "https://x.com/michellesanver",
+      "linkedin": "https://www.linkedin.com/in/michellesanver/"
+    },
+    "sources": [
+      "https://sessionize.com/michellesanver/",
+      "https://www.liip.ch/en/team/michelle-sanver",
+      "https://www.phparch.com/community/michelle-sanver/",
+      "https://github.com/michellesanver"
+    ],
+    "asOf": "2024"
+  },
+  {
+    "id": "cjlv0h137pc7f092429bzok9e",
+    "name": "Tammie Hutto-Egloff",
+    "confidence": "medium",
+    "bio": "UX consultant and usability researcher with a background in computer science and an MSc in Human Centered Computer Systems from the University of Sussex. She has worked in consulting, agency, startup and publishing environments and spoke at UX Basel in 2020.",
+    "role": "UX Consultant",
+    "company": "",
+    "links": {},
+    "sources": [
+      "https://www.meetup.com/de-DE/UX-Basel-Meetups/events/267041998/",
+      "https://sussex.academia.edu/TammieHuttoEgloff",
+      "https://tegloff.wordpress.com/"
+    ],
+    "asOf": "2020"
+  },
+  {
+    "id": "cjlv0k2expcf50924y7pw23m4",
+    "name": "Robin Guldner",
+    "confidence": "high",
+    "bio": "Co-founder and CEO of Nango, a developer platform for building product integrations with external APIs. He previously co-founded the Zurich fleet management SaaS Avrios, where he was CPO from 2015 to 2020. He studied computer science at ETH Zurich.",
+    "role": "Co-Founder & CEO",
+    "company": "Nango",
+    "links": {
+      "twitter": "https://x.com/rguldner"
+    },
+    "sources": [
+      "https://www.crunchbase.com/person/robin-guldener",
+      "https://www.ycombinator.com/companies/nango",
+      "https://wellfound.com/p/robin-guldener"
+    ],
+    "asOf": ""
+  },
+  {
+    "id": "cjlv0pfwzpcrg092428bz5j7y",
+    "name": "Tiago Henriques",
+    "confidence": "high",
+    "bio": "Security researcher and entrepreneur who founded the Zurich internet-scanning and threat intelligence company BinaryEdge in 2015. After Coalition acquired BinaryEdge in 2020 he led security engineering there and became VP of Research, and he writes a column for Dark Reading.",
+    "role": "VP of Research",
+    "company": "Coalition",
+    "links": {},
+    "sources": [
+      "https://www.darkreading.com/author/tiago-henriques",
+      "https://www.businesswire.com/news/home/20200122005461/en/Coalition-Acquires-Security-Threat-Intelligence-Provider-BinaryEdge",
+      "https://www.global-nikkei.com/cit/23/en/contents/speakers/TiagoHenriques.html",
+      "https://www.slideshare.net/balgan/the-state-of-cybersecurity-in-switzerland-fintechday-2017"
+    ],
+    "asOf": "2023"
+  },
+  {
+    "id": "cjlv0ybvdpdc40924grt0j7ow",
+    "name": "Gabriela Patil",
+    "confidence": "high",
+    "bio": "Communication designer and co-founder of Twygg, a Zurich startup building tools that help IT teams track releases of third-party software. She holds an MA in Communication Design from the Bern University of the Arts and has worked for agencies in Switzerland and Canada.",
+    "role": "Co-Founder, Designer",
+    "company": "Twygg",
+    "links": {
+      "twitter": "https://x.com/gabrielapatil"
+    },
+    "sources": [
+      "https://2017.wiadswitzerland.org/",
+      "https://f6s.com/twygg",
+      "https://x.com/gabrielapatil"
+    ],
+    "asOf": "2017"
+  },
+  {
+    "id": "cjnirn6wim84h0932hrvvrc82",
+    "name": "Jesse Martin",
+    "confidence": "high",
+    "bio": "Full-stack developer and independent consultant (Jmart Tech) with a background in solutions architecture, developer advocacy and agency work. He was a developer advocate at GraphCMS, now Hygraph, and has written many GraphQL and headless CMS tutorials.",
+    "role": "Independent Consultant",
+    "company": "Jmart Tech",
+    "links": {
+      "github": "https://github.com/motleydev",
+      "twitter": "https://x.com/motleydev",
+      "website": "https://jmart.tech"
+    },
+    "sources": [
+      "https://github.com/motleydev",
+      "https://medium.com/@motleydev/graphcms-ready-for-dd4417da5a9e",
+      "https://hygraph.com/blog/wine-db"
+    ],
+    "asOf": ""
+  },
+  {
+    "id": "cjnpxxg7nzi3m0932rzu8poeg",
+    "name": "Paul Hayes",
+    "confidence": "low",
+    "bio": "",
+    "role": "",
+    "company": "",
+    "links": {},
+    "sources": [],
+    "asOf": ""
+  },
+  {
+    "id": "cjnq6uwcp34gj093220jgm7sv",
+    "name": "David Dal Busco",
+    "confidence": "high",
+    "bio": "Freelance software engineer in Zurich and founder of Juno, an open-source serverless platform for shipping web apps. He also created DeckDeckGo, Papyrs and Tie Tracker, and has worked with DFINITY, Die Mobiliar and ETH Zurich.",
+    "role": "Founder",
+    "company": "Juno",
+    "links": {
+      "website": "https://daviddalbusco.com",
+      "github": "https://github.com/peterpeterparker",
+      "twitter": "https://x.com/daviddalbusco",
+      "bluesky": "https://bsky.app/profile/daviddalbusco.com"
+    },
+    "sources": [
+      "https://daviddalbusco.com",
+      "https://daviddalbusco.com/blog/introducing-juno-an-open-source-blockchain-platform-for-frontend-devs/",
+      "https://juno.build/blog/authors/peterpeterparker/page/5"
+    ],
+    "asOf": "2026"
+  },
+  {
+    "id": "cjnxyys6r1dq30932efrxwn4c",
+    "name": "Xia Willuhn",
+    "confidence": "medium",
+    "bio": "Zurich-based product owner working on digital products, including the V-Kitchen app at V-ZUG. She has been involved in smart kitchen and IoT projects since 2018 and is a certified SAFe Product Owner/Product Manager.",
+    "role": "Product Owner",
+    "company": "V-ZUG",
+    "links": {
+      "linkedin": "https://www.linkedin.com/in/xia-willuhn/"
+    },
+    "sources": [
+      "https://www.linkedin.com/in/xia-willuhn/",
+      "https://hack.opendata.ch/event/21/print",
+      "https://www.about.v-kitchen.ch/ueber-uns"
+    ],
+    "asOf": ""
+  },
+  {
+    "id": "cjo1d9lndxdxi0932ebxzhyqk",
+    "name": "Olga Skurativska",
+    "confidence": "high",
+    "bio": "Software engineer at Google in Zurich, previously Principal Frontend Engineer at Homegate and a frontend engineer at Unic. She works on JavaScript, accessibility, performance and design systems, and has helped run the Web Zurich and Vue Zurich communities.",
+    "role": "Software Engineer",
+    "company": "Google",
+    "links": {
+      "twitter": "https://x.com/_olko",
+      "github": "https://github.com/ol-ko",
+      "linkedin": "https://www.linkedin.com/in/olgaskurativska/"
+    },
+    "sources": [
+      "https://www.linkedin.com/in/olgaskurativska/",
+      "https://oskurativska.medium.com/",
+      "https://www.slideshare.net/OlgaSkurativska",
+      "https://github.com/ol-ko"
+    ],
+    "asOf": ""
+  },
+  {
+    "id": "cjpo9b9efx9sz0a84har5fc4m",
+    "name": "Stéphane Bisinger",
+    "confidence": "high",
+    "bio": "Zurich-based software engineer and software crafter with an interest in Python, Ruby and functional programming. He has worked as a senior software engineer at Rentouch and is affiliated with the KOF Swiss Economic Institute at ETH Zurich.",
+    "role": "Software Engineer",
+    "company": "KOF Swiss Economic Institute, ETH Zurich",
+    "links": {
+      "github": "https://github.com/Kjir",
+      "twitter": "https://x.com/SteBjoerne",
+      "website": "https://www.sbisinger.ch/"
+    },
+    "sources": [
+      "https://github.com/Kjir",
+      "https://kof.ethz.ch/en/the-institute/people/person-detail.MzEyMzMy.TGlzdC8yNjAzLDg0ODkwMDk4.html"
+    ],
+    "asOf": ""
+  },
+  {
+    "id": "cjpplieht97sz0a84o6iydy91",
+    "name": "Andre Rothweiler",
+    "confidence": "medium",
+    "bio": "Full stack developer based in Zurich.",
+    "role": "Full Stack Developer",
+    "company": "",
+    "links": {
+      "github": "https://github.com/arothweiler",
+      "website": "https://www.andrerothweiler.ch"
+    },
+    "sources": [
+      "https://github.com/arothweiler"
+    ],
+    "asOf": ""
+  },
+  {
+    "id": "cjprcddy5oqs30a84u11db99m",
+    "name": "Marcin Zasepa",
+    "confidence": "high",
+    "bio": "Engineering and product leader at Homegate, where he joined in 2017 as Technical Lead, became Director of Engineering, and was appointed CTO in 2020. He led Homegate's move to AWS serverless and later took a product leadership role at SMG Swiss Marketplace Group.",
+    "role": "CTO",
+    "company": "Homegate",
+    "links": {
+      "twitter": "https://x.com/zasempa",
+      "linkedin": "https://www.linkedin.com/in/marcin-zas%C4%99pa-aa810728/"
+    },
+    "sources": [
+      "https://www.persoenlich.com/digital/marcin-zasepa-wird-technologiechef",
+      "https://medium.com/homegate-engineering/configuration-management-for-serverless-aws-applications-fab5269b2def",
+      "https://www.linkedin.com/in/marcin-zas%C4%99pa-aa810728/"
+    ],
+    "asOf": "2020"
+  },
+  {
+    "id": "cjqf8x7x5jkex0a841lwx35jb",
+    "name": "Christina",
+    "confidence": "high",
+    "bio": "Christina Zenzes is a software developer and consultant at codecentric AG in Germany, focused on JavaScript, React, CSS, clean code and testing. With Anna Backs she built a BabylonJS 3D control panel for the IoT devices in codecentric's office and presented it at conferences in 2019.",
+    "role": "Software Developer and Consultant",
+    "company": "codecentric AG",
+    "links": {
+      "twitter": "https://x.com/merelyChristina"
+    },
+    "sources": [
+      "https://github.com/merelyAnna/spartakiade-babylonJSworkshop",
+      "https://speakerdeck.com/softwerkerkonf/christina-zenzes-and-anna-backs-how-not-to-javascript",
+      "https://jsnation.com/2019/"
+    ],
+    "asOf": "2020"
+  },
+  {
+    "id": "cjqf8zfvhjl0p0a84v0zp8bwd",
+    "name": "Anna",
+    "confidence": "high",
+    "bio": "Anna Backs is a software developer and IT consultant at codecentric AG in Germany. With Christina Zenzes she built a BabylonJS 3D control panel for the IoT devices in codecentric's office and presented it at JSHeroes and other conferences in 2019.",
+    "role": "Software Developer and IT Consultant",
+    "company": "codecentric AG",
+    "links": {
+      "twitter": "https://x.com/merelyAnna",
+      "github": "https://github.com/merelyAnna"
+    },
+    "sources": [
+      "https://github.com/merelyAnna/spartakiade-babylonJSworkshop",
+      "https://jsheroes.io/speakers/anna-backs",
+      "https://www.crunchbase.com/person/anna-backs"
+    ],
+    "asOf": "2019"
+  },
+  {
+    "id": "cjqqf2jtrionk0a84z2bes4tm",
+    "name": "Benny Schudel",
+    "confidence": "medium",
+    "bio": "Zurich-based new media engineer working at the intersection of code and design. His open-source work includes JSManipulate, a JavaScript image filter library, and web components for colour picking and image cropping.",
+    "role": "New Media Engineer",
+    "company": "",
+    "links": {
+      "twitter": "https://x.com/bennyschudel",
+      "github": "https://github.com/bennyschudel",
+      "website": "http://benjaminschudel.com"
+    },
+    "sources": [
+      "https://github.com/bennyschudel",
+      "https://twitter.com/bennyschudel",
+      "https://observablehq.com/@bennyschudel/zoomable-timeline"
+    ],
+    "asOf": ""
+  },
+  {
+    "id": "cjrapyzj3x7jn0845bh1a8lql",
+    "name": "Vladimir Novick",
+    "confidence": "high",
+    "bio": "Software architect and CTO-level consultant at Novick Labs, working with React, React Native, GraphQL and serverless. He was a developer advocate at Hasura and co-organized the ReactJS Israel community.",
+    "role": "CTO and Software Architect",
+    "company": "Novick Labs",
+    "links": {
+      "twitter": "https://x.com/VladimirNovick"
+    },
+    "sources": [
+      "https://www.codementor.io/@vnovick",
+      "https://www.gofractional.com/member/vladimir-novick",
+      "https://cynicaldeveloper.com/podcast/112/",
+      "https://chainreactconf.com/speaker-list/vlad-novick"
+    ],
+    "asOf": ""
+  },
+  {
+    "id": "cjsarslism4w80c156fdh4taz",
+    "name": "Alina Cvetkova",
+    "confidence": "high",
+    "bio": "Product designer focused on user-centred design and setting up UX processes. In 2018 she was a product designer on XING's B2B recruiting products in Barcelona, where she organised the local DesignOps chapter, and she writes about UX on Medium.",
+    "role": "Product Designer",
+    "company": "XING",
+    "links": {
+      "twitter": "https://x.com/nuacco"
+    },
+    "sources": [
+      "https://chicagocamps.org/speaker/alina-cvetkova/",
+      "https://medium.com/@nuacco",
+      "https://creativemornings.com/individuals/nuacco"
+    ],
+    "asOf": "2018"
+  },
+  {
+    "id": "cjt3f3thdxipp0c1581b4b45x",
+    "name": "Rene Pot",
+    "confidence": "high",
+    "bio": "JavaScript developer and developer advocate, most recently at DHIS2. He was a developer evangelist for Axway Appcelerator, founded the Titanium Slack community, and created ti.xhr and the All Titanium publication.",
+    "role": "Developer Advocate",
+    "company": "DHIS2",
+    "links": {
+      "twitter": "https://x.com/Wraldpyk",
+      "github": "https://github.com/topener",
+      "linkedin": "https://www.linkedin.com/in/wraldpyk/"
+    },
+    "sources": [
+      "https://github.com/wraldpyk",
+      "https://www.linkedin.com/in/wraldpyk/",
+      "https://dev.to/wraldpyk/titanium-is-alive-and-well-37li",
+      "https://www.slideshare.net/RenePot1/high-performance-apps-with-titanium"
+    ],
+    "asOf": ""
+  },
+  {
+    "id": "cjt4pk2nlsre30c15j1zi0l3k",
+    "name": "Oktawia Kata",
+    "confidence": "medium",
+    "bio": "Software developer based in London who has spoken about web accessibility.",
+    "role": "Software Developer",
+    "company": "",
+    "links": {
+      "twitter": "https://x.com/aiwatko",
+      "github": "https://github.com/aiwatko"
+    },
+    "sources": [
+      "https://github.com/aiwatko",
+      "https://www.youtube.com/watch?v=TSO1SIeWcFU"
+    ],
+    "asOf": ""
+  },
+  {
+    "id": "cjubnaqzrpm1w0c15x7a3ahq9",
+    "name": "Yvan Monneron",
+    "confidence": "high",
+    "bio": "Co-founder and COO of SnowHaze, the Zurich company behind a privacy-focused browser and an anonymous VPN with zero-knowledge authentication. He studied mechanical engineering at ETH Zurich and has also worked as a software engineer at BSI.",
+    "role": "Co-Founder & COO",
+    "company": "SnowHaze",
+    "links": {
+      "website": "https://snowhaze.com",
+      "linkedin": "https://www.linkedin.com/in/yvan-monneron-22a79a127/"
+    },
+    "sources": [
+      "https://www.digitec.ch/en/page/snowhaze-the-secure-browser-developed-by-swiss-students-4757",
+      "https://snowhaze.com/en/index.html",
+      "https://www.linkedin.com/in/yvan-monneron-22a79a127/"
+    ],
+    "asOf": ""
+  },
+  {
+    "id": "cjuy0z5t82po30871gypaywli",
+    "name": "Savas Vedova",
+    "confidence": "high",
+    "bio": "Savas Vedova is the founder of Stormkit, a self-hostable deployment and hosting platform for JavaScript applications. He has also worked as a Staff Frontend Engineer at GitLab since 2020.",
+    "role": "Founder; Staff Frontend Engineer",
+    "company": "Stormkit; GitLab",
+    "links": {
+      "website": "https://www.stormkit.io",
+      "github": "https://github.com/svedova",
+      "twitter": "https://x.com/savasvedova"
+    },
+    "sources": [
+      "https://www.stormkit.io/about-us",
+      "https://github.com/svedova",
+      "https://www.crunchbase.com/person/savas-vedova"
+    ],
+    "asOf": "2026"
+  },
+  {
+    "id": "cjuy13f942t410871omnpnkfc",
+    "name": "Adam Juras",
+    "confidence": "high",
+    "bio": "Adam Juras is a Zürich-based software engineer and product builder who led engineering at tutti.ch for 6.5 years until 2022. Since 2025 he has worked independently, building products and coaching product engineers.",
+    "role": "Independent product builder and engineering coach",
+    "company": "",
+    "links": {
+      "website": "https://adamjuras.com",
+      "github": "https://github.com/ajur58",
+      "linkedin": "https://www.linkedin.com/in/adamjuras/"
+    },
+    "sources": [
+      "https://adamjuras.com/",
+      "https://github.com/ajur58",
+      "https://zurich.impacthub.ch/event/web-zurich-may/"
+    ],
+    "asOf": "2025"
+  },
+  {
+    "id": "cjw29i1b1he1w09413tbdks5j",
+    "name": "Cynthia Eschler",
+    "confidence": "medium",
+    "bio": "Cynthia Eschler is a software developer at cyon, a Swiss web hosting company, with a focus on frontend development.",
+    "role": "Software Developer",
+    "company": "cyon",
+    "links": {
+      "github": "https://github.com/LadyMashiro",
+      "twitter": "https://x.com/lady_mashiro",
+      "linkedin": "https://www.linkedin.com/in/cynthia-eschler-b19854102/"
+    },
+    "sources": [
+      "https://github.com/LadyMashiro",
+      "https://www.linkedin.com/in/cynthia-eschler-b19854102/"
+    ],
+    "asOf": "2026"
+  },
+  {
+    "id": "cjwzwkbvz4vtr09105bfon5ys",
+    "name": "Ludwig Franz Johann Sebastian Antilli",
+    "confidence": "medium",
+    "bio": "Ludwig Antilli is a software developer working with TypeScript and JavaScript. His open-source work is published on GitHub as lfjsa.",
+    "role": "Software Developer",
+    "company": "",
+    "links": {
+      "github": "https://github.com/lfjsa"
+    },
+    "sources": [
+      "https://github.com/lfjsa"
+    ],
+    "asOf": ""
+  },
+  {
+    "id": "cjy86v5x96w8p094144y1ifmn",
+    "name": "Janusz Tomasik",
+    "confidence": "high",
+    "bio": "Janusz Tomasik is co-founder and CTO of SwissDevJobs.ch, a developer job board started in Zürich in 2018 with transparent salary information, and of its sister sites GermanTechJobs.de and DevITjobs. He previously worked as a software engineer.",
+    "role": "Co-Founder & CTO",
+    "company": "SwissDevJobs.ch",
+    "links": {
+      "linkedin": "https://www.linkedin.com/in/janusztomasik/"
+    },
+    "sources": [
+      "https://www.weblaw.ch/en/produkte/lawjobs/karrieretipps/lohntransparenz-ein-paradigmenwechsel-im-recruiting-mit-dr-anna-sender-und-anusz-greg-tomasik-swissdevjobs.html",
+      "https://www.linkedin.com/posts/janusztomasik_super-early-bird-alert-i-am-inviting-you-activity-7135576993454043136-Wb6-"
+    ],
+    "asOf": "2023"
+  },
+  {
+    "id": "cjybr0gcco0lx0910jjm2w5nz",
+    "name": "Jonny Burger",
+    "confidence": "high",
+    "bio": "Jonny Burger is the creator of Remotion, an open-source framework for making videos programmatically with React, and founder of the Zürich-based company behind it.",
+    "role": "Founder",
+    "company": "Remotion",
+    "links": {
+      "website": "https://jonny.io",
+      "github": "https://github.com/JonnyBurger",
+      "twitter": "https://x.com/JNYBGR",
+      "linkedin": "https://www.linkedin.com/in/jonny-burger-4115109b/"
+    },
+    "sources": [
+      "https://github.com/JonnyBurger",
+      "https://www.remotion.dev/blog/seed-funding",
+      "https://www.startupticker.ch/en/news/meta-engineer-invests-in-remotion"
+    ],
+    "asOf": "2026"
+  },
+  {
+    "id": "cjzbex15u7l12088728qq9dsh",
+    "name": "Jason Wilson",
+    "confidence": "low",
+    "bio": "",
+    "role": "",
+    "company": "",
+    "links": {},
+    "sources": [],
+    "asOf": "",
+    "note": "handle now tied to a different name"
+  },
+  {
+    "id": "cjzbf045kuex60910jfaf98et",
+    "name": "Bartosz Goralewicz",
+    "confidence": "high",
+    "bio": "Bartosz Góralewicz is the founder of Onely, a technical SEO agency, and is known for his research on how Google crawls and renders JavaScript websites. He previously co-founded the SEO agency Elephate and has spoken at more than 100 conferences.",
+    "role": "Founder and Head of Innovation",
+    "company": "Onely",
+    "links": {
+      "twitter": "https://x.com/bart_goralewicz",
+      "linkedin": "https://www.linkedin.com/in/goralewicz/"
+    },
+    "sources": [
+      "https://www.onely.com/person/bartosz-goralewicz/",
+      "https://searchengineland.com/author/bartosz-goralewicz"
+    ],
+    "asOf": "2026"
+  },
+  {
+    "id": "ck057885j4xsd0b04p40tubdn",
+    "name": "Tobias Willmann",
+    "confidence": "high",
+    "bio": "Tobias Willmann has led SEO at the Blick Group (Ringier) in Zürich, covering news SEO strategy, technical SEO and SEO data. He has also taught SEO at the Zurich University of Applied Sciences (ZHAW).",
+    "role": "Head of SEO",
+    "company": "Blick / Ringier",
+    "links": {
+      "website": "https://tobiaswillmann.de/",
+      "twitter": "https://x.com/WillmannTobias"
+    },
+    "sources": [
+      "https://www.slideshare.net/TobiasWillmann1/news-seo-insights-web-zrich-26092019-tobias-willmann-head-of-seo-blickch-ringier-ag",
+      "https://pilea.ch/en/news-seo-tobias-willmann/",
+      "https://workinseo.com/seonerdswitzerland/seo-for-news-tobias-willmann"
+    ],
+    "asOf": "2019"
+  },
+  {
+    "id": "ck0w4ohajcf9u0b54k6fa0pwq",
+    "name": "Büşra Coşkuner",
+    "confidence": "high",
+    "bio": "Büşra Coşkuner is a product coach and trainer known as \"The Metrics Lady\", helping product teams with metrics and outcome-driven decision-making. She previously worked in product management at Doodle and home24 and speaks at conferences such as Craft.",
+    "role": "Product Coach & Trainer",
+    "company": "",
+    "links": {
+      "website": "https://busra.co/",
+      "twitter": "https://x.com/_beesea_",
+      "linkedin": "https://www.linkedin.com/in/busra-coskuner/"
+    },
+    "sources": [
+      "https://busra.co/",
+      "https://craft-conf.com/2025/speaker/busra-coskuner",
+      "https://agiletourzurich.com/speaker/busra-coskuner/"
+    ],
+    "asOf": "2025"
+  },
+  {
+    "id": "ck1m71c8yxwpj0b71a27xjuc9",
+    "name": "Patrick Wolleb",
+    "confidence": "high",
+    "bio": "Patrick Wolleb is a Zürich-based software engineer who moved into tech after training as a car mechanic. As of 2022 he worked as a backend engineer and technical lead at SRF (Swiss Radio and Television).",
+    "role": "Software Engineer",
+    "company": "SRF",
+    "links": {
+      "github": "https://github.com/PatrickWolleb",
+      "twitter": "https://x.com/theshabbatgoy",
+      "linkedin": "https://www.linkedin.com/in/patrickwolleb/"
+    },
+    "sources": [
+      "https://www.linkedin.com/in/patrickwolleb/",
+      "https://ch.linkedin.com/posts/patrickwolleb_srf-software-engineer-scalajava-activity-6889923092634759168-YXAH",
+      "https://github.com/PatrickWolleb"
+    ],
+    "asOf": "2022"
+  },
+  {
+    "id": "ck21perkrayo90b4959xd3qy7",
+    "name": "Alberto Congiu",
+    "confidence": "high",
+    "bio": "Alberto Congiu is a product-focused engineering leader with about 16 years of experience managing teams and building web applications, focusing on JavaScript, Node.js, AWS and frontend performance. He currently offers his services as a freelancer.",
+    "role": "Engineering leader (freelance)",
+    "company": "",
+    "links": {
+      "website": "https://albertocongiu.com/",
+      "github": "https://github.com/4lbertoC",
+      "twitter": "https://x.com/4lbertoC",
+      "linkedin": "https://www.linkedin.com/in/albertocongiu/"
+    },
+    "sources": [
+      "https://albertocongiu.com/",
+      "https://github.com/4lbertoC"
+    ],
+    "asOf": "2026"
+  },
+  {
+    "id": "ck21piyfzqw1k0b71dier0vaz",
+    "name": "Jonas Felix",
+    "confidence": "low",
+    "bio": "",
+    "role": "",
+    "company": "",
+    "links": {},
+    "sources": [
+      "https://medium.com/@wingsuitist",
+      "https://www.crunchbase.com/person/jonas-felix",
+      "https://theorg.com/org/your-sidekicks/org-chart/jonas-felix"
+    ],
+    "asOf": "2021",
+    "note": "GitHub now shows a different first name; publishing could out the person"
+  },
+  {
+    "id": "ck2t3syw9r77m0b32mr6ypk35",
+    "name": "Christoph Hermann",
+    "confidence": "high",
+    "bio": "Christoph Hermann is a Zürich-based software engineer working with Elm and Haskell. Around 2019 he worked as an engineering manager at NoRedInk, and he has published many open-source npm packages.",
+    "role": "Engineering Manager",
+    "company": "NoRedInk",
+    "links": {
+      "website": "http://stoeffel.github.io/",
+      "github": "https://github.com/stoeffel",
+      "twitter": "https://x.com/schtoeffel"
+    },
+    "sources": [
+      "https://dev.to/stoeffel",
+      "https://github.com/stoeffel",
+      "https://www.npmjs.com/~schtoeffel"
+    ],
+    "asOf": "2019"
+  },
+  {
+    "id": "ck2t4lxnprb4o0b32fl6ekjm2",
+    "name": "Doug Sillars",
+    "confidence": "high",
+    "bio": "Doug Sillars is a developer relations leader, Google Developer Expert and author of the O'Reilly book High Performance Android Apps. He has long advocated for web performance, especially the efficient delivery of video and images.",
+    "role": "Developer Relations Leader",
+    "company": "",
+    "links": {
+      "website": "https://dougsillars.com/",
+      "github": "https://github.com/dougsillars",
+      "twitter": "https://x.com/dougsillars",
+      "linkedin": "https://www.linkedin.com/in/dougsillars/"
+    },
+    "sources": [
+      "http://speakofthedevrel.cloud/",
+      "https://github.com/dougsillars",
+      "https://javascript-conference.com/speaker/doug-sillars/"
+    ],
+    "asOf": "2026"
+  },
+  {
+    "id": "ck3oemrgrsh160b32cpemh1dk",
+    "name": "Wolf Bergenheim",
+    "confidence": "high",
+    "bio": "Wolf Bergenheim is a Technical Solutions Engineer at Google in Zürich, working on geospatial products and the Google Maps Platform.",
+    "role": "Technical Solutions Engineer",
+    "company": "Google",
+    "links": {
+      "twitter": "https://x.com/WolfBergenheim",
+      "linkedin": "https://www.linkedin.com/in/wolfbergenheim/"
+    },
+    "sources": [
+      "https://www.linkedin.com/in/wolfbergenheim/",
+      "https://www.youtube.com/watch?v=v3WLchSqHJg"
+    ],
+    "asOf": "2025"
+  },
+  {
+    "id": "ck5lio7zvvkf40b20r5zbjwlk",
+    "name": "Susanne König",
+    "confidence": "high",
+    "bio": "Susanne König worked as a web developer at agencies before joining Powercoders, the Swiss non-profit coding program for refugees, where she has been Co-Lead and Training & Talent Development Lead.",
+    "role": "Co-Lead, Training & Talent Development",
+    "company": "Powercoders",
+    "links": {
+      "twitter": "https://x.com/sardayk1n",
+      "linkedin": "https://www.linkedin.com/in/susannekoenig/"
+    },
+    "sources": [
+      "https://powercoders.org/about/",
+      "https://powercoders.org/author/wp-susanne/",
+      "https://womenplusplus.medium.com/interview-susanne-k%C3%B6nig-on-her-volunteering-experience-in-hackn-lead-4762990b6ed9"
+    ],
+    "asOf": "2020"
+  },
+  {
+    "id": "ck60wa3qem94i0b20ksqzpjng",
+    "name": "Silvia Götti",
+    "confidence": "high",
+    "bio": "Silvia Götti is a software engineer in Switzerland with an interest in augmented and virtual reality, WebXR and 3D on the web. She also builds projects that combine technology with archaeology.",
+    "role": "Software Engineer",
+    "company": "",
+    "links": {
+      "website": "https://silviagoetti.ch",
+      "github": "https://github.com/sigoetti",
+      "twitter": "https://x.com/sigoetti",
+      "linkedin": "https://www.linkedin.com/in/silviagoetti/"
+    },
+    "sources": [
+      "https://silviagoetti.ch",
+      "https://github.com/sigoetti",
+      "https://blog.oddeven.ch/author/silviagoetti/"
+    ],
+    "asOf": "2026"
+  },
+  {
+    "id": "ck6t3canifx7i0b75c6vgjcbm",
+    "name": "David Khourshid",
+    "confidence": "high",
+    "bio": "David Khourshid is the founder and CEO of Stately.ai and the creator of XState, a widely used open-source library for state machines and statecharts in JavaScript.",
+    "role": "Founder & CEO",
+    "company": "Stately.ai",
+    "links": {
+      "github": "https://github.com/davidkpiano",
+      "twitter": "https://x.com/DavidKPiano",
+      "linkedin": "https://www.linkedin.com/in/davidkpiano/"
+    },
+    "sources": [
+      "https://github.com/davidkpiano",
+      "https://gitnation.com/person/david_khourshid",
+      "https://shows.acast.com/contejas-code/episodes/david-khourshid-ceo-stately-xstate-state-machine-chart"
+    ],
+    "asOf": "2026"
+  },
+  {
+    "id": "ck991kfz5hmmb0b84lozlm2ci",
+    "name": "Aymen Loukil",
+    "confidence": "high",
+    "bio": "Aymen Loukil is an international SEO and web performance consultant and the founder of Speetals, a real-user web performance monitoring tool. A former developer, he speaks at SEO conferences such as BrightonSEO.",
+    "role": "International SEO & Web Performance Consultant; Founder",
+    "company": "Speetals",
+    "links": {
+      "website": "https://www.aymen-loukil.com/en/",
+      "github": "https://github.com/AymenLoukil",
+      "twitter": "https://x.com/LoukilAymen",
+      "bluesky": "https://bsky.app/profile/loukilaymen.bsky.social"
+    },
+    "sources": [
+      "https://github.com/AymenLoukil",
+      "https://www.aymen-loukil.com/en/",
+      "https://brightonseo.com/people/aymen-loukil"
+    ],
+    "asOf": "2026"
+  },
+  {
+    "id": "ck99onvxrirjl0b20wfhswai6",
+    "name": "Vasilika Klimova",
+    "confidence": "high",
+    "bio": "Vasilika Klimova is a software engineer and engineering manager who led a frontend team building 3D web applications with WebGL and Three.js at Artec 3D. She is a Google Developer Expert in Web, a Microsoft MVP and founder of the Cute Geek agency and SkillUp web school.",
+    "role": "Engineering Manager; Founder",
+    "company": "Cute Geek",
+    "links": {
+      "website": "https://www.vasilika.dev/",
+      "github": "https://github.com/Likita",
+      "twitter": "https://x.com/Lik04ka",
+      "linkedin": "https://www.linkedin.com/in/likita"
+    },
+    "sources": [
+      "https://www.vasilika.dev/",
+      "https://github.com/Likita",
+      "https://jsnation.medium.com/speaker-interview-vasilika-klimova-frontend-developer-at-artec-3d-cccad6269008"
+    ],
+    "asOf": "2026"
+  },
+  {
+    "id": "cka72jspwcp0s0b84igeb4f5c",
+    "name": "Christian \"Schepp\" Schaefer",
+    "confidence": "high",
+    "bio": "Christian \"Schepp\" Schaefer is a freelance frontend developer from Düsseldorf focusing on modern CSS, accessibility and web performance. He co-hosts the Working Draft podcast and co-organizes Fronteers Conference, CSS Café and Webworker NRW.",
+    "role": "Freelance Frontend Developer",
+    "company": "",
+    "links": {
+      "website": "https://schepp.dev",
+      "github": "https://github.com/Schepp",
+      "twitter": "https://x.com/derSchepp",
+      "mastodon": "https://mastodon.social/@Schepp"
+    },
+    "sources": [
+      "https://schepp.dev/about/",
+      "https://github.com/Schepp",
+      "https://sessionize.com/schepp/"
+    ],
+    "asOf": "2026"
+  },
+  {
+    "id": "ckayymj11du7o0915upzymplu",
+    "name": "Maxim Salnikov",
+    "confidence": "high",
+    "bio": "Maxim Salnikov is an Oslo-based developer and community organizer working as an AI Dev Tools Solution Engineer at Microsoft. He is a Google Developer Expert in Web and organizes events such as Mobile Era, ngVikings and PWA Summit.",
+    "role": "AI Dev Tools Solution Engineer",
+    "company": "Microsoft",
+    "links": {
+      "website": "https://sessionize.com/maxim-salnikov/",
+      "github": "https://github.com/webmaxru",
+      "twitter": "https://x.com/webmaxru"
+    },
+    "sources": [
+      "https://github.com/webmaxru",
+      "https://sessionize.com/maxim-salnikov/"
+    ],
+    "asOf": "2026"
+  },
+  {
+    "id": "ckcdieib44j4k0b97lkzknzjt",
+    "name": "Paul Lovell",
+    "confidence": "high",
+    "bio": "Paul Lovell is an SEO consultant and founder of Always Evolving SEO, specializing in technical SEO, schema markup and analytics. He also builds Built by SEO, a suite of HubSpot apps, and speaks at events such as SMX London.",
+    "role": "SEO Consultant; Founder",
+    "company": "Always Evolving SEO",
+    "links": {
+      "website": "https://paullovell.uk/",
+      "twitter": "https://x.com/_PaulLovell"
+    },
+    "sources": [
+      "https://paullovell.uk/about",
+      "https://edgeofthewebradio.com/seo-podcast/structured-data-via-gtm-with-paul-lovell/",
+      "https://www.crunchbase.com/person/paul-lovell"
+    ],
+    "asOf": "2026"
+  },
+  {
+    "id": "ckcousgmlhywt0b096tkr3yol",
+    "name": "Peter Nikolow",
+    "confidence": "medium",
+    "bio": "Peter Nikolow is a developer with more than 20 years of experience and CEO of Mobilio, a Bulgarian software company. He advocates a mobile-first approach and speaks about technical SEO and web performance, for example at BrightonSEO.",
+    "role": "CEO",
+    "company": "Mobilio",
+    "links": {
+      "twitter": "https://x.com/PeterNikolow",
+      "linkedin": "https://www.linkedin.com/in/peternikolow/"
+    },
+    "sources": [
+      "https://serpconf.com/sofia/speakers/peter-nikolow/",
+      "https://brightonseo.libsyn.com/peter-nikolow-quick-and-dirty-server-side-tweaks-to-improve-your-seo"
+    ],
+    "asOf": "2017"
+  },
+  {
+    "id": "ckel186i8o1yq0908y2oj2nil",
+    "name": "Guillaume Monnet",
+    "confidence": "high",
+    "bio": "Guillaume Monnet is a Luxembourg-based full-stack developer and the creator and maintainer of Mockoon, a widely used open-source API mocking tool, which he develops full-time.",
+    "role": "Founder",
+    "company": "Mockoon",
+    "links": {
+      "website": "https://mockoon.com",
+      "github": "https://github.com/255kb",
+      "twitter": "https://x.com/255kb",
+      "linkedin": "https://www.linkedin.com/in/guillaumemonnet/"
+    },
+    "sources": [
+      "https://github.com/255kb",
+      "https://fosdem.org/2026/schedule/speaker/guillaume_monnet/",
+      "https://www.siliconluxembourg.lu/luxembourg-firm-mockoon-scoops-open-source-prize/"
+    ],
+    "asOf": "2026"
+  },
+  {
+    "id": "ckfies1k8d5860970yv0lez9b",
+    "name": "Mike Solomon",
+    "confidence": "medium",
+    "bio": "Mike Solomon is a Helsinki-based software engineer. In 2020 he worked at Meeshkan on API and GraphQL testing tools, and he is the author of Deku, a PureScript web UI framework.",
+    "role": "Software Engineer",
+    "company": "",
+    "links": {
+      "github": "https://github.com/mikesol",
+      "twitter": "https://x.com/stronglynormal"
+    },
+    "sources": [
+      "https://dev.to/mikesol",
+      "https://github.com/mikesol/purescript-deku",
+      "https://x.com/stronglynormal/status/1506202377292029958"
+    ],
+    "asOf": "2022"
+  },
+  {
+    "id": "ckgjjxtcp6ii70970czi33hrj",
+    "name": "Pierre Spring",
+    "confidence": "high",
+    "bio": "Pierre Spring is a Zürich-based freelance Node.js and frontend developer who works mainly with TypeScript. He was previously a partner at the web agency Nelmio and is one of the initiators of the JSZürich meetup.",
+    "role": "Freelance Node.js and Frontend Developer",
+    "company": "",
+    "links": {
+      "website": "https://caillou.ch",
+      "github": "https://github.com/caillou",
+      "twitter": "https://x.com/shvi"
+    },
+    "sources": [
+      "https://github.com/caillou",
+      "https://caillou.ch/"
+    ],
+    "asOf": "2026"
+  },
+  {
+    "id": "ckgjk0v5nmpmi0b77neejr01k",
+    "name": "Andrei Terentyev",
+    "confidence": "high",
+    "bio": "Andrei Terentyev is an SEO specialist focused on online travel. He is an SEO strategy advisor at the Kyiv Independent and previously worked as SEO Lead at Kiwi.com (2019 to 2023) and COO of Hotelscan.com.",
+    "role": "SEO Strategy Advisor",
+    "company": "Kyiv Independent",
+    "links": {
+      "github": "https://github.com/internetyev",
+      "twitter": "https://x.com/internetyev",
+      "linkedin": "https://www.linkedin.com/in/terentyev/"
+    },
+    "sources": [
+      "https://github.com/internetyev",
+      "https://www.crunchbase.com/person/andrei-terentyev"
+    ],
+    "asOf": "2026"
+  },
+  {
+    "id": "ckgwfsoc33x550970m8nltjlr",
+    "name": "Esther Brunner",
+    "confidence": "high",
+    "bio": "Esther Brunner is an Expert User Interface Developer and Partner at Zeix in Zürich, where she has worked since 2008. She focuses on semantic HTML, web standards and accessibility, and contributes to the Accessibility Developer Guide.",
+    "role": "Expert User Interface Developer & Partner",
+    "company": "Zeix",
+    "links": {
+      "twitter": "https://x.com/esthrbrunnr",
+      "linkedin": "https://www.linkedin.com/in/esther-brunner/"
+    },
+    "sources": [
+      "https://zeix.com/team/esther-brunner",
+      "https://medium.com/@esthrbrunnr"
+    ],
+    "asOf": "2026"
+  },
+  {
+    "id": "ckhnhm7tdb3hb0b77ellecr4y",
+    "name": "Nils Binder",
+    "confidence": "high",
+    "bio": "Nils Binder is a frontend designer based in Bochum, Germany, who leads the web development team at the agency 9elements. He writes and speaks about CSS and design, co-organizes CSS Café and teaches web design courses at universities.",
+    "role": "Frontend Designer, Head of Web Development",
+    "company": "9elements",
+    "links": {
+      "twitter": "https://x.com/supremebeing09"
+    },
+    "sources": [
+      "https://x.com/supremebeing09",
+      "https://frontendnorth.com/speakers/nils-binder/",
+      "https://csscamp.tech/speakers/2021/nils-binder/"
+    ],
+    "asOf": "2024"
+  },
+  {
+    "id": "ckiec8iz23iuz09115hi54dnh",
+    "name": "Jayne Mast",
+    "confidence": "high",
+    "bio": "Jayne Mast is an engineering manager and frontend developer with over 15 years of web development experience, working at quantilope since 2023. She speaks about ethics, teamwork and inclusion in tech and has organised QueerJS, Global Diversity CFP Day and meetups in Amsterdam.",
+    "role": "Engineering Manager",
+    "company": "quantilope",
+    "links": {
+      "twitter": "https://x.com/jayne_mast"
+    },
+    "sources": [
+      "https://sessionize.com/jayne/",
+      "https://theorg.com/org/quantilope/org-chart/jayne-mast",
+      "https://noti.st/jayne"
+    ],
+    "asOf": "2023"
+  },
+  {
+    "id": "ckiecg4q861hs0b37lwd6qgs5",
+    "name": "Adem Bilican",
+    "confidence": "high",
+    "bio": "Adem Bilican is a Zürich-based mobile developer and the co-founder and CTO of Relai, a Swiss Bitcoin app. He previously founded the blockchain consultancy Cansulting and worked as lead mobile developer on blockchain wallet projects using React Native native modules.",
+    "role": "Co-founder and CTO",
+    "company": "Relai",
+    "links": {
+      "website": "https://ademcan.net/",
+      "twitter": "https://x.com/ademcan_net"
+    },
+    "sources": [
+      "https://ademcan.net/blog/category/uncategorized/",
+      "https://www.vincit.com/blog/duck-tapes-transcript-native-modules-and-blockchain-with-adem-bilican",
+      "https://theorg.com/org/relai/org-chart/adem-bilican"
+    ],
+    "asOf": "2023"
+  },
+  {
+    "id": "ckk4e307de62h0a12u2r0f5a5",
+    "name": "Fabrice & Thibi",
+    "confidence": "low",
+    "bio": "",
+    "role": "",
+    "company": "",
+    "links": {},
+    "sources": [],
+    "asOf": ""
+  },
+  {
+    "id": "ckk4e9yjqe6e20a12yikggr2x",
+    "name": "Stephanie Flügge",
+    "confidence": "low",
+    "bio": "",
+    "role": "",
+    "company": "",
+    "links": {},
+    "sources": [],
+    "asOf": ""
+  },
+  {
+    "id": "cklextayodwdx0a5803ynjow3",
+    "name": "Livio Brunner",
+    "confidence": "high",
+    "bio": "Livio Brunner is a Swiss software engineer and a member of the NestJS core team since 2018, where he created the Terminus health check integration and worked on large parts of the documentation. He also writes about design systems and web components.",
+    "role": "Software Engineer, NestJS core team member",
+    "company": "",
+    "links": {
+      "website": "https://www.brunnerliv.io/",
+      "github": "https://github.com/BrunnerLivio",
+      "twitter": "https://x.com/brunnerlivio"
+    },
+    "sources": [
+      "https://github.com/BrunnerLivio",
+      "https://www.brunnerliv.io/",
+      "https://dev.to/brunnerlivio"
+    ],
+    "asOf": "2021"
+  },
+  {
+    "id": "ckmarxzzsuu0s0a63jw8uti7r",
+    "name": "Michal Pasierbski",
+    "confidence": "high",
+    "bio": "Michał Pasierbski is a Zürich-based software engineer focused on AI product engineering and agent systems. He has worked at Google and AWS, and earlier at EF Education First and R3PI in Zürich, and built Stencilbot, an image automation tool for content creators.",
+    "role": "Software Engineer",
+    "company": "",
+    "links": {
+      "website": "https://www.pasmichal.com/",
+      "github": "https://github.com/pasierb",
+      "linkedin": "https://www.linkedin.com/in/mpasierbski/",
+      "twitter": "https://x.com/pasmichal_"
+    },
+    "sources": [
+      "https://github.com/pasierb",
+      "https://pasierb.github.io/cv/",
+      "https://www.pasmichal.com/"
+    ],
+    "asOf": "2026"
+  },
+  {
+    "id": "ckospdyugy2bj0d120h7bo5wp",
+    "name": "Hussam Allaham",
+    "confidence": "high",
+    "bio": "Hussam Allaham is the co-founder and CEO of Remotecoders, a Powercoders spin-off that trains IT talent from the MENA region for remote jobs at European companies. A Powercoders alumnus, he previously led the coding academy's Zürich and Lausanne locations.",
+    "role": "Co-founder and CEO",
+    "company": "Remotecoders",
+    "links": {},
+    "sources": [
+      "https://www.unhcr.org/ch/news/stories/meister-der-it-arbeitsintegration",
+      "https://hudsongoodman.com/de/blog/conversation-remotecoders-hussam-allaham/",
+      "https://www.nzz.ch/bildung/fachkraeftemangel-berner-startup-setzt-auf-informatiker-in-kairo-ld.1735555"
+    ],
+    "asOf": "2024"
+  },
+  {
+    "id": "cl0gu4quh31ak0cz5y7ff3g41",
+    "name": "Llorenç Muntaner",
+    "confidence": "high",
+    "bio": "Llorenç Muntaner is a software engineer at the DFINITY Foundation, working on the Internet Computer since 2022. He has over ten years of frontend and full-stack experience, has taught at coding bootcamps and writes a newsletter on frontend engineering.",
+    "role": "Software Engineer",
+    "company": "DFINITY Foundation",
+    "links": {
+      "website": "http://www.llorencmuntaner.com/",
+      "github": "https://github.com/lmuntaner",
+      "twitter": "https://x.com/lmuntaner"
+    },
+    "sources": [
+      "https://github.com/lmuntaner",
+      "https://frontendengineering.substack.com/about",
+      "https://www.youtube.com/watch?v=7pHXpOGeWLI"
+    ],
+    "asOf": "2023"
+  },
+  {
+    "id": "cl0jezobniyy80cxl4r6lngz3",
+    "name": "Joël Bez",
+    "confidence": "high",
+    "bio": "Joël Bez is a Zürich-based technical project lead with more than 20 years in web development. He leads and coaches multidisciplinary teams, focusing on the path from concept to implementation and, more recently, on AI-assisted coding.",
+    "role": "Technical Project Lead and Coach",
+    "company": "",
+    "links": {
+      "website": "https://lejoe.com/",
+      "github": "https://github.com/lejoe",
+      "twitter": "https://x.com/lejoe",
+      "mastodon": "https://mastodon.social/@lejoe",
+      "linkedin": "https://linkedin.com/in/joelbez/"
+    },
+    "sources": [
+      "https://lejoe.com/",
+      "https://github.com/lejoe"
+    ],
+    "asOf": "2025"
+  },
+  {
+    "id": "cl6xlp35w3x4f0bt9up5q8f2x",
+    "name": "Tan Li Hau",
+    "confidence": "high",
+    "bio": "Tan Li Hau is a core maintainer of the Svelte framework and author of the book Real-World Svelte (Packt). He previously led the web frontend platform team at Shopee in Singapore and teaches compilers and Svelte through blog posts and YouTube videos.",
+    "role": "Svelte core maintainer",
+    "company": "",
+    "links": {
+      "website": "https://lihautan.com/",
+      "github": "https://github.com/tanhauhau",
+      "twitter": "https://x.com/lihautan"
+    },
+    "sources": [
+      "https://lihautan.com/about",
+      "https://www.swyx.io/compile-svelte-lihau",
+      "https://www.amazon.com/Real-World-Svelte-Supercharge-mastering-development-ebook/dp/B0CG1HQK19"
+    ],
+    "asOf": "2023"
+  },
+  {
+    "id": "cl77hcve331cw0ctgclvgsaxz",
+    "name": "Max Gfeller",
+    "confidence": "high",
+    "bio": "Max Gfeller is a Swiss full-stack web and AI engineer with over 15 years in software, working as an AI engineer at Sutro. He is a Manning author, conference speaker and organizer of the Vue Basel meetup.",
+    "role": "AI Engineer",
+    "company": "Sutro",
+    "links": {
+      "website": "https://maxgfeller.com/",
+      "github": "https://github.com/MaxGfeller",
+      "twitter": "https://x.com/mgfeller",
+      "linkedin": "https://www.linkedin.com/in/max-gfeller-038b1847/"
+    },
+    "sources": [
+      "https://frontconference.com/speakers/max-gfeller",
+      "https://www.manning.com/authors/max-gfeller",
+      "https://github.com/MaxGfeller"
+    ],
+    "asOf": "2025"
+  },
+  {
+    "id": "cl77hhs8g1btq0ct8bekyi69u",
+    "name": "Chen Hui Jing",
+    "confidence": "high",
+    "bio": "Chen Hui Jing is a self-taught designer and developer from Singapore known for her work on CSS and web layout. She co-founded the Talk.CSS meetup, has worked as a developer advocate, and speaks and writes widely about CSS and web standards.",
+    "role": "Designer and Developer",
+    "company": "",
+    "links": {
+      "website": "https://chenhuijing.com/",
+      "github": "https://github.com/huijing",
+      "twitter": "https://x.com/hj_chen",
+      "mastodon": "https://tech.lgbt/@huijing",
+      "bluesky": "https://bsky.app/profile/huijing.bsky.social"
+    },
+    "sources": [
+      "https://chenhuijing.com/",
+      "https://www.smashingmagazine.com/author/huijing-chen/",
+      "https://shoptalkshow.com/580/"
+    ],
+    "asOf": "2026"
+  },
+  {
+    "id": "cl78pfho7k9m00ct5oddrhfij",
+    "name": "Yiying Lu",
+    "confidence": "high",
+    "bio": "Yiying Lu is an artist and designer known for creating Twitter's Fail Whale illustration and for designing the dumpling and boba emoji. Her work bridges art, technology and cultures, and she was named a Pantone Spotlight Artist in 2024.",
+    "role": "Artist and Designer",
+    "company": "",
+    "links": {
+      "twitter": "https://x.com/yiyinglu"
+    },
+    "sources": [
+      "https://en.wikipedia.org/wiki/Yiying_Lu",
+      "https://blog.adobe.com/en/publish/2023/05/15/yiying-lu-celebrates-diversity-inclusion-with-digital-art-that-unleashes-new-possibilities",
+      "https://designobserver.com/a-successful-failure/"
+    ],
+    "asOf": "2024"
+  },
+  {
+    "id": "clbbad97ym2020atbyk7skvw3",
+    "name": "Christoph Bühler",
+    "confidence": "high",
+    "bio": "Christoph Bühler is a Swiss software engineer who worked at smartive and lectured at OST, where he joined the Programming Group as a research assistant in 2024. He wrote smartive's Hitchhiker's Guide to OIDC and maintains .NET open-source projects for Kubernetes.",
+    "role": "Software Engineer",
+    "company": "",
+    "links": {
+      "github": "https://github.com/buehler"
+    },
+    "sources": [
+      "https://smartive.ch/en/magazin/hitchhiker-s-guide-to-oidc",
+      "https://zitadel.com/blog/success-story-smartive-ost",
+      "https://programming-group.com/members/buehler"
+    ],
+    "asOf": "2024"
+  },
+  {
+    "id": "clbbaftdpm0cz0bujhky8gcts",
+    "name": "Riccardo Lardi",
+    "confidence": "high",
+    "bio": "Riccardo Lardi is a Basel-based designer and technologist who runs Studio Riccardo Lardi, working on web, apps and interactive projects between digital and physical space. He worked at the media architecture studio iart and holds an MA in Design Interactions from the Royal College of Art.",
+    "role": "Designer and Technologist",
+    "company": "Studio Riccardo Lardi",
+    "links": {
+      "website": "https://riccardolardi.com/",
+      "github": "https://github.com/riccardolardi",
+      "twitter": "https://x.com/riccardolardi",
+      "linkedin": "https://www.linkedin.com/in/riccardolardi/"
+    },
+    "sources": [
+      "https://riccardolardi.com/",
+      "https://www.creativeapplications.net/people/riccardo-lardi/",
+      "https://github.com/riccardolardi"
+    ],
+    "asOf": "2024"
+  },
+  {
+    "id": "clbbwauakr79p0auyhb2601mg",
+    "name": "Jan Pistor",
+    "confidence": "high",
+    "bio": "Jan Pistor is a Zürich-based full-stack developer and interaction designer focused on frontend development and interactive installations. He worked at iart and bureau314 and, since 2023, at ZHdK on open-source software such as leihs and Madek.",
+    "role": "Full-Stack Developer",
+    "company": "ZHdK",
+    "links": {
+      "website": "https://www.janpistor.com/",
+      "linkedin": "https://www.linkedin.com/in/jan-pistor-61022b15a/"
+    },
+    "sources": [
+      "https://www.janpistor.com/",
+      "https://master.design.diplome.zhdk.ch/2016/pistor-jan",
+      "https://www.optomausa.com/case-studies/princeton-school-of-architecture-celebrates-influential-architect-in-interactive"
+    ],
+    "asOf": "2023"
+  },
+  {
+    "id": "clfcmgr869lzr0bunwtp4h873",
+    "name": "Christian Wörz",
+    "confidence": "high",
+    "bio": "Christian Wörz is a Swiss-based freelance full-stack engineer and trainer working with Java, Kotlin and TypeScript. A Microsoft MVP and Oracle ACE, he speaks at international conferences on advanced TypeScript and Java and runs the Typed Rocks YouTube channel.",
+    "role": "Freelance Full-Stack Engineer and Trainer",
+    "company": "",
+    "links": {
+      "twitter": "https://x.com/chwoerz"
+    },
+    "sources": [
+      "https://sessionize.com/christian-woerz/",
+      "https://www.letsboot.ch/en-gb/trainer/christian-woerz",
+      "https://ndccopenhagen.com/speakers/christian-woerz"
+    ],
+    "asOf": "2025"
+  },
+  {
+    "id": "clhote2igl4gi0atfhushw8fd",
+    "name": "Nicolas Ponce",
+    "confidence": "low",
+    "bio": "",
+    "role": "",
+    "company": "",
+    "links": {},
+    "sources": [],
+    "asOf": ""
+  },
+  {
+    "id": "clhotj9gojohi0at5kmcgtbnx",
+    "name": "Robert Einars",
+    "confidence": "medium",
+    "bio": "Robert Einars is a web developer who builds apps with SvelteKit, Directus and shadcn-svelte and publishes demos and experiments on GitHub.",
+    "role": "Web Developer",
+    "company": "",
+    "links": {
+      "github": "https://github.com/robots4life"
+    },
+    "sources": [
+      "https://github.com/robots4life"
+    ],
+    "asOf": "2026"
+  },
+  {
+    "id": "cliioy5aabclw0btcp5zrzekn",
+    "name": "David Buchmann",
+    "confidence": "high",
+    "bio": "David Buchmann is a lead developer and Symfony coach at Liip in Switzerland. He maintains the FOSHttpCache library, is a founding member of HTTPlug and Symfony CMF, co-authored PSR-18 and speaks regularly at PHP conferences about HTTP caching.",
+    "role": "Lead Developer and Symfony Coach",
+    "company": "Liip",
+    "links": {
+      "website": "https://davidbu.ch/",
+      "github": "https://github.com/dbu",
+      "mastodon": "https://phpc.social/@dbu"
+    },
+    "sources": [
+      "https://davidbu.ch/mann/about/",
+      "https://sessionize.com/david-buchmann/",
+      "https://pretalx.com/drupal-mountain-camp-2024/speaker/9TWB8K/"
+    ],
+    "asOf": "2025"
+  },
+  {
+    "id": "cliip061gatk40buqgthnooic",
+    "name": "Thijs Feryn",
+    "confidence": "high",
+    "bio": "Thijs Feryn is the Technical Evangelist at Varnish Software, focusing on web performance, scalability and content delivery. He has given hundreds of conference talks, wrote Getting Started with Varnish Cache and Varnish 6 by Example, and helped organize the PHPBenelux Conference.",
+    "role": "Technical Evangelist",
+    "company": "Varnish Software",
+    "links": {
+      "website": "https://feryn.eu/",
+      "linkedin": "https://www.linkedin.com/in/ThijsFeryn/"
+    },
+    "sources": [
+      "https://feryn.eu/",
+      "https://ndclondon.com/speakers/thijs-feryn",
+      "https://info.varnish-software.com/blog/author/thijs-feryn"
+    ],
+    "asOf": "2025"
+  },
+  {
+    "id": "cliip2jgpb0bs0auimu55r8tx",
+    "name": "Adele Kuzmiakova",
+    "confidence": "medium",
+    "bio": "Adele Kuzmiakova is a Lausanne-based machine learning engineer working across computer vision and natural language processing. She worked as a data scientist at EPFL, has authored books on machine learning and computer science, and organized workshops at Women in Data Science Geneva.",
+    "role": "Machine Learning Engineer",
+    "company": "",
+    "links": {
+      "linkedin": "https://www.linkedin.com/in/adele-k02/"
+    },
+    "sources": [
+      "https://www.linkedin.com/in/adele-k02/",
+      "https://www.behance.net/adelek1",
+      "https://www.amazon.com/Machine-Learning-Biometrics-Adele-Kuzmiakova/dp/1774691043"
+    ],
+    "asOf": "2023"
+  },
+  {
+    "id": "cliip4qc9amjn0bun6lrmy4q8",
+    "name": "Roy Ammerschuber",
+    "confidence": "high",
+    "bio": "Roy Ammerschuber is the developer of RenderGate, a Swiss cloud render farm for Blender running since 2020, and has worked as a developer at WebGate Consulting AG.",
+    "role": "Developer",
+    "company": "RenderGate",
+    "links": {},
+    "sources": [
+      "https://blog.rendergate.ch/rendergate/2023/11/05/what-is-cloud-rendering.html",
+      "https://www.webgate.biz/uber-uns"
+    ],
+    "asOf": "2023"
+  },
+  {
+    "id": "clkpcknwprv1f0at7knxl12t4",
+    "name": "Brad Frost",
+    "confidence": "high",
+    "bio": "Brad Frost is a design systems consultant and author of the book Atomic Design, which introduced a widely used methodology for building design systems. He works with Big Medium helping teams create and evolve design systems and collaborative workflows.",
+    "role": "Design Systems Consultant",
+    "company": "Big Medium",
+    "links": {
+      "website": "https://bradfrost.com/"
+    },
+    "sources": [
+      "https://bigmedium.com/bm.tags/brad-frost/",
+      "https://2024.uxlondon.com/speakers/brad-frost/",
+      "https://www.amazon.com/Atomic-Design-Brad-Frost/dp/0998296600"
+    ],
+    "asOf": "2025"
+  },
+  {
+    "id": "clkpcnvn6s2dh0burfmdzbc3y",
+    "name": "Andy Budd",
+    "confidence": "high",
+    "bio": "Andy Budd is a design leader, investor and coach who co-founded the UX consultancy Clearleft and created the UX London and Leading Design events. He is a venture partner at Seedcamp, advising startups on design, product and growth, and wrote The Growth Equation.",
+    "role": "Venture Partner",
+    "company": "Seedcamp",
+    "links": {},
+    "sources": [
+      "https://clearleft.com/thinking/a-farewell-to-andy",
+      "https://siliconbrighton.com/2025/07/25/speaker-spotlight-evolve-25-edition-andy-budd/"
+    ],
+    "asOf": "2025"
+  },
+  {
+    "id": "clm1x59c94vw60bt7b845nmgf",
+    "name": "Oliver Glas",
+    "confidence": "high",
+    "bio": "Oliver Glas is a Zürich-based senior full-stack API developer and architect working with Java, Go and OpenAPI, running International Network Support & Service (INSS). He offers API First workshops and maintains open-source OpenAPI sample projects.",
+    "role": "Senior API Developer and Architect",
+    "company": "International Network Support & Service",
+    "links": {
+      "website": "http://inss.ch",
+      "github": "https://github.com/networkinss",
+      "linkedin": "https://www.linkedin.com/in/inss-oliver-glas/"
+    },
+    "sources": [
+      "https://github.com/networkinss",
+      "https://dev.to/networkinss",
+      "https://www.linkedin.com/in/inss-oliver-glas/"
+    ],
+    "asOf": "2025"
+  },
+  {
+    "id": "clpv927htyyri0athhrcddngx",
+    "name": "Richard Bützer",
+    "confidence": "medium",
+    "bio": "Richard Bützer is a developer who experiments with unconventional CSS, including CSS is Amazing, a randomly generated 3D maze built in pure HTML and CSS without JavaScript.",
+    "role": "Developer",
+    "company": "",
+    "links": {
+      "github": "https://github.com/rbuetzer"
+    },
+    "sources": [
+      "https://github.com/rbuetzer",
+      "https://github.com/rbuetzer/css-is-amazing/blob/master/README.md"
+    ],
+    "asOf": "2023"
+  },
+  {
+    "id": "clpv976vqycus0bufw4hziu1i",
+    "name": "Niklas Buchfink",
+    "confidence": "high",
+    "bio": "Niklas Buchfink is a design engineer who worked at Opral from 2023 to 2025, building the Fink localization editor for the inlang i18n ecosystem, the lix file manager and the Flashtype editor. He has a background in interaction design and electrical engineering.",
+    "role": "Design Engineer",
+    "company": "Opral",
+    "links": {
+      "website": "https://niklasbuchfink.com/",
+      "github": "https://github.com/NiklasBuchfink",
+      "twitter": "https://x.com/NBuchfink",
+      "linkedin": "https://www.linkedin.com/in/niklasbuchfink/"
+    },
+    "sources": [
+      "https://niklasbuchfink.com/about",
+      "https://www.linkedin.com/in/niklasbuchfink/",
+      "https://inlang.com/blog"
+    ],
+    "asOf": "2025"
+  },
+  {
+    "id": "clpv9apzoxz4i0aujqnfg4rqs",
+    "name": "Tomas Trajan",
+    "confidence": "high",
+    "bio": "Tomas Trajan is a Switzerland-based Angular architect, consultant and trainer, a Google Developer Expert for Angular and founder of Angular Experts. He co-organizes the Angular Zürich meetup and wrote the Angular Enterprise Architecture ebook.",
+    "role": "Founder, Angular Consultant and Trainer",
+    "company": "Angular Experts",
+    "links": {
+      "website": "https://angularexperts.io/",
+      "github": "https://github.com/tomastrajan",
+      "twitter": "https://x.com/tomastrajan"
+    },
+    "sources": [
+      "https://angularexperts.io/products/ebook-angular-enterprise-architecture/",
+      "https://www.agiledrop.com/blog/interview-tomas-trajan-gde-and-angular-content-creator-its-all-about-choosing-best-tool-job",
+      "http://ng-poland.pl/speaker/2025/tomas-trajan"
+    ],
+    "asOf": "2025"
+  },
+  {
+    "id": "clyg1ru6rr87t07tcp2zwn79f",
+    "name": "Tomas Chmelevskij",
+    "confidence": "high",
+    "bio": "Tomas Chmelevskij is a Switzerland-based full-stack JavaScript developer with a focus on performant front-ends and terminal tooling. He writes about front-end performance and web development on his site tomche.space.",
+    "role": "Full-stack JavaScript developer",
+    "company": "",
+    "links": {
+      "website": "https://www.tomche.space/",
+      "github": "https://github.com/chmelevskij",
+      "twitter": "https://x.com/megatomche",
+      "linkedin": "https://www.linkedin.com/in/chmelevskij/"
+    },
+    "sources": [
+      "https://www.tomche.space/",
+      "https://github.com/chmelevskij",
+      "https://www.linkedin.com/in/chmelevskij/"
+    ],
+    "asOf": "2026"
+  },
+  {
+    "id": "cm3oddo851y5j0eur8myw3m79",
+    "name": "Yao",
+    "confidence": "high",
+    "bio": "Yao Liu is an interaction designer and co-founder of 1993 Design Associates, a design studio with roots in Switzerland and New Zealand that creates interactive websites, apps and digital experiences for brands.",
+    "role": "Co-founder, Interaction Designer",
+    "company": "1993 Design Associates",
+    "links": {
+      "website": "https://www.1993.design/",
+      "linkedin": "https://www.linkedin.com/in/liuyeow/"
+    },
+    "sources": [
+      "https://www.1993.design/",
+      "https://www.awwwards.com/sites/1993-design-associates",
+      "https://www.linkedin.com/in/liuyeow/"
+    ],
+    "asOf": "2024"
+  },
+  {
+    "id": "cm5rabhr0zyhw07td865eapq1",
+    "name": "Tamas Csaba",
+    "confidence": "low",
+    "bio": "",
+    "role": "",
+    "company": "",
+    "links": {},
+    "sources": [],
+    "asOf": ""
+  },
+  {
+    "id": "cm5radlhtmcwu08tdqcrf0s2u",
+    "name": "Alexander Repenning",
+    "confidence": "high",
+    "bio": "Alexander Repenning is a computer science education researcher and professor at FHNW University of Applied Sciences and Arts Northwestern Switzerland. He created AgentSheets, the Scalable Game Design program and RULER.game, a computational thinking tool for young learners.",
+    "role": "Professor",
+    "company": "FHNW University of Applied Sciences and Arts Northwestern Switzerland",
+    "links": {},
+    "sources": [
+      "https://en.wikipedia.org/wiki/Alexander_Repenning",
+      "https://www.researchgate.net/profile/Alexander-Repenning",
+      "https://www.researchgate.net/publication/384103048_RULER_Prebugging_with_Proxy-Based_Programming",
+      "https://constructionism.oapublishing.ch/index.php/con/article/view/63"
+    ],
+    "asOf": "2024"
+  },
+  {
+    "id": "cm6axmjxmww1107tcbstb6rvb",
+    "name": "Yerbolat Tazhkeyev",
+    "confidence": "low",
+    "bio": "",
+    "role": "",
+    "company": "",
+    "links": {},
+    "sources": [],
+    "asOf": ""
+  },
+  {
+    "id": "cm6z5ax65b91o07ur3lfylwb8",
+    "name": "Faris Aziz",
+    "confidence": "high",
+    "bio": "Faris Aziz is a Staff Frontend Engineer at Smallpdf and the founder of ZurichJS, which runs monthly meetups and ZurichJS Conf. He speaks internationally on React, Next.js, payment systems and resilient system design.",
+    "role": "Staff Frontend Engineer",
+    "company": "Smallpdf",
+    "links": {
+      "website": "https://www.faziz-dev.com/",
+      "github": "https://github.com/farisaziz12",
+      "twitter": "https://x.com/farisaziz12",
+      "linkedin": "https://www.linkedin.com/in/farisaziz12/"
+    },
+    "sources": [
+      "https://github.com/farisaziz12",
+      "https://zurichjs.com/speakers/faris-aziz",
+      "https://www.faziz-dev.com/about",
+      "https://vdz26.voxxeddays.ch/speaker/?id=2901"
+    ],
+    "asOf": "2026"
+  },
+  {
+    "id": "cm8j3tke0hekv07unzxpzr7ge",
+    "name": "Evangelia Mitsopoulou",
+    "confidence": "high",
+    "bio": "Evangelia Mitsopoulou is a frontend engineer and founder of an online coding academy for frontend engineers. She has worked with Elastic, ETH Zurich, Google and fintech firms, including leading frontend work at ETH spin-off Modulos, and speaks at conferences and meetups.",
+    "role": "Founder",
+    "company": "Evangelia Tech Philomath Coding Academy",
+    "links": {
+      "website": "https://tech.evangelia.me",
+      "github": "https://github.com/evangelia-mitsopoulou",
+      "linkedin": "https://www.linkedin.com/in/evangelia-mitsopoulou-5765135/"
+    },
+    "sources": [
+      "https://zurichjs.com/speakers/evangelia-mitsopoulou",
+      "https://tech.evangelia.me/en/about",
+      "https://gitnation.com/person/evangelia_litsa_mitsopoulou",
+      "https://mentorcruise.com/mentor/evangeliamitsopoulou/"
+    ],
+    "asOf": "2025"
+  },
+  {
+    "id": "cm8r9bazia5ow07t9gr9slvkb",
+    "name": "Jan Hesters",
+    "confidence": "high",
+    "bio": "Jan Hesters is CTO and co-founder of ReactSquad, which provides senior React developers to SaaS companies. He previously led an engineering team at Hopin and creates tutorials on React, Next.js and full-stack web development.",
+    "role": "CTO and Co-founder",
+    "company": "ReactSquad",
+    "links": {
+      "website": "https://janhesters.com",
+      "github": "https://github.com/janhesters",
+      "twitter": "https://x.com/janhesters",
+      "linkedin": "https://ch.linkedin.com/in/jan-hesters"
+    },
+    "sources": [
+      "https://www.janhesters.com/about",
+      "https://github.com/janhesters",
+      "https://x.com/janhesters"
+    ],
+    "asOf": "2026"
+  },
+  {
+    "id": "cmc8xqx6e8ilh07t9lslng6rz",
+    "name": "Beatrice Malova-Kaplan",
+    "confidence": "medium",
+    "bio": "Beatrice Malova-Kaplan works in agile transformation in Switzerland, with roles as Release Train Engineer at Viseca and Agile Enterprise Transformation Coach at Accenture. Her interests include customer experience and digital transformation.",
+    "role": "Release Train Engineer",
+    "company": "Viseca",
+    "links": {},
+    "sources": [
+      "https://theorg.com/org/viseca/org-chart/beatrice-malova",
+      "https://www.researchgate.net/profile/Beatrice-Malova",
+      "https://nextupswitzerland.substack.com/p/web-zurich-june-2025"
+    ],
+    "asOf": "2025"
+  },
+  {
+    "id": "cmc8y6brl99ld07t9j29zggrk",
+    "name": "Jordan",
+    "confidence": "medium",
+    "bio": "Jordan Unegbu is CEO of BoostedHost, a Swiss web hosting company based in Cham that offers performance-focused WordPress hosting and the AI site builder BoostedHost Orbit.",
+    "role": "CEO",
+    "company": "BoostedHost",
+    "links": {
+      "linkedin": "https://www.linkedin.com/in/jordan-unegbu/"
+    },
+    "sources": [
+      "https://boostedhost.com/about-us/",
+      "https://www.crunchbase.com/organization/boostedhost",
+      "https://www.moneyhouse.ch/en/company/boostedhost-gmbh-18774342861"
+    ],
+    "asOf": "2025"
+  },
+  {
+    "id": "cmc8y8a749af507t5ctmihgxn",
+    "name": "Warren Parad",
+    "confidence": "high",
+    "bio": "Warren Parad is co-founder and CTO of Authress, an authentication and authorization API for software teams, based in Switzerland. He hosts the Adventures in DevOps podcast and speaks on security, auth and system architecture.",
+    "role": "CTO and Co-founder",
+    "company": "Authress",
+    "links": {
+      "website": "https://warrenparad.net/",
+      "github": "https://github.com/wparad",
+      "linkedin": "https://www.linkedin.com/in/warren-parad"
+    },
+    "sources": [
+      "https://warrenparad.net/",
+      "https://github.com/wparad",
+      "https://l8conf.com/speakers/parad_warren.html"
+    ],
+    "asOf": "2026"
+  },
+  {
+    "id": "cmee3rjx98si307tbl6y86lx0",
+    "name": "Loris Sigrist",
+    "confidence": "high",
+    "bio": "Loris Sigrist is a Zürich-based web developer who builds open-source JavaScript tooling. His projects include the ParaglideJS i18n library, the Zocker mock data generator and Dither Studio.",
+    "role": "Web Developer",
+    "company": "",
+    "links": {
+      "website": "https://sigrist.dev",
+      "github": "https://github.com/LorisSigrist",
+      "twitter": "https://x.com/loris_sigrist"
+    },
+    "sources": [
+      "https://sigrist.dev/",
+      "https://github.com/LorisSigrist"
+    ],
+    "asOf": "2026"
+  },
+  {
+    "id": "cmee3vnzs8kb207t6yrg5d7ls",
+    "name": "Dani Leitner",
+    "confidence": "high",
+    "bio": "Dani Leitner is an independent SEO consultant in the Zürich area, focusing on search visibility in German-speaking markets and AI-powered search. She previously worked at Webrepublic and Evergreen Media and organizes the WordPress Meetup Zurich.",
+    "role": "Independent SEO Consultant",
+    "company": "",
+    "links": {
+      "website": "https://danileitner.ch/en/",
+      "linkedin": "https://www.linkedin.com/in/dani-leitner/",
+      "twitter": "https://x.com/DanielaLeitner2"
+    },
+    "sources": [
+      "https://danileitner.ch/en/about-me/",
+      "https://danileitner.ch/en/dani-leitner-profil/",
+      "https://marketing.ch/suchmaschinenmarketing/dani-leitner-erklaert-wie-du-bei-einem-relaunch-deinen-seo-traffic-nicht-verlierst/"
+    ],
+    "asOf": "2026"
+  },
+  {
+    "id": "cmelh21yuu7pn06usppsm49kf",
+    "name": "Roger Zirn",
+    "confidence": "low",
+    "bio": "",
+    "role": "",
+    "company": "",
+    "links": {},
+    "sources": [],
+    "asOf": ""
+  },
+  {
+    "id": "cmffk6y5b39zo07uo3s64exby",
+    "name": "Victor Nitu",
+    "confidence": "high",
+    "bio": "Victor Nitu is an AI Software Engineer at IMTF Group in Zürich, building AI agents that detect anomalous financial behaviour with knowledge graphs and open-source LLMs. He has over 10 years of experience in software architecture, blockchain and full-stack development.",
+    "role": "AI Software Engineer",
+    "company": "IMTF Group",
+    "links": {
+      "website": "https://www.victornitu.com/",
+      "github": "https://github.com/victornitu",
+      "twitter": "https://x.com/nitu_victor",
+      "linkedin": "https://www.linkedin.com/in/victornitu"
+    },
+    "sources": [
+      "https://www.victornitu.com/",
+      "https://github.com/victornitu"
+    ],
+    "asOf": "2026"
+  },
+  {
+    "id": "cmffka7ij3fbe07uqeo6ylxpx",
+    "name": "Raluca Baciu",
+    "confidence": "medium",
+    "bio": "Raluca Baciu is a Zürich-based executive and strategic communications specialist with over 15 years in digital marketing, executive branding and communities. She previously led global digital and community initiatives at SOPHiA GENETICS.",
+    "role": "Strategic Communications",
+    "company": "Vias Digital",
+    "links": {
+      "linkedin": "https://www.linkedin.com/in/baciuraluca/"
+    },
+    "sources": [
+      "https://www.superme.ai/rbaciu",
+      "https://www.linkedin.com/in/baciuraluca/"
+    ],
+    "asOf": "2025"
+  },
+  {
+    "id": "cmffkc2v73exn07uoefnrhzvm",
+    "name": "Julia Haitz",
+    "confidence": "low",
+    "bio": "",
+    "role": "",
+    "company": "",
+    "links": {},
+    "sources": [
+      "https://www.flashintel.ai/people/Julia-Haitz-ee50059f2a69b6f934d0adda03e66ad0/",
+      "https://www.moneyhouse.ch/en/person/haitz-julia-57547256701"
+    ],
+    "asOf": "2025",
+    "note": "main source is a people-data aggregator"
+  },
+  {
+    "id": "cmfxwnao1ve5e07us8ukxkvbg",
+    "name": "Yacine Belarbi",
+    "confidence": "high",
+    "bio": "Yacine Belarbi is a designer and developer who runs Studio Yacine, an interactive design and development studio in Zürich founded in 2017 that builds websites, e-commerce sites and web apps.",
+    "role": "Founder",
+    "company": "Studio Yacine",
+    "links": {
+      "website": "https://studioyacine.ch/",
+      "github": "https://github.com/moppedisco",
+      "linkedin": "https://www.linkedin.com/in/yacinebelarbi/"
+    },
+    "sources": [
+      "https://studioyacine.ch/",
+      "https://github.com/moppedisco",
+      "https://www.moneyhouse.ch/en/company/web-studio-yacine-belarbi-15250630171"
+    ],
+    "asOf": "2026"
+  },
+  {
+    "id": "cmhxlmczwdx2g06uoxdl4lxxn",
+    "name": "Rimas Krivickas",
+    "confidence": "low",
+    "bio": "",
+    "role": "",
+    "company": "",
+    "links": {},
+    "sources": [],
+    "asOf": ""
+  },
+  {
+    "id": "cmmdpblcslrfp07uifphn2ti5",
+    "name": "Christian Heitzmann",
+    "confidence": "high",
+    "bio": "Christian Heitzmann is founder and CEO of SimplexaCode AG in Lucerne, which documents software architectures, modernizes codebases and trains teams in Java and Python. He holds an MSc in Computational Science and Engineering from ETH Zurich.",
+    "role": "Founder and CEO",
+    "company": "SimplexaCode AG",
+    "links": {
+      "website": "https://www.simplexacode.ch/en/"
+    },
+    "sources": [
+      "https://www.simplexacode.ch/en/about-the-company/",
+      "https://pretalx.com/pyconse-2024/speaker/VGYMKY/",
+      "https://ittage.informatik-aktuell.de/speaker/christian-heitzmann.html"
+    ],
+    "asOf": "2024"
+  },
+  {
+    "id": "cmmz3c2nwtzw007unkuw53akf",
+    "name": "Marco Gähler",
+    "confidence": "high",
+    "bio": "Marco Gähler is a software engineer and author of \"Software Engineering Made Easy\" (Apress, 2025), a guide to writing clear, maintainable code. He studied physics at ETH Zurich and joined Zurich Instruments in 2018.",
+    "role": "Software Engineer",
+    "company": "Zurich Instruments",
+    "links": {},
+    "sources": [
+      "https://www.oreilly.com/library/view/software-engineering-made/9798868813863/html/638077_1_En_BookFrontmatter_OnlinePDF.xhtml",
+      "https://www.abebooks.com/9798868813856/Software-Engineering-Made-Easy-Comprehensive/plp"
+    ],
+    "asOf": "2025"
+  },
+  {
+    "id": "cmn68n2cwlsuy07us7xwmjg6n",
+    "name": "Marius Ishida",
+    "confidence": "low",
+    "bio": "",
+    "role": "",
+    "company": "",
+    "links": {},
+    "sources": [],
+    "asOf": ""
+  },
+  {
+    "id": "cmpe6gnl7a7gy08unx2ks6sd3",
+    "name": "Alex Suzuki",
+    "confidence": "high",
+    "bio": "Alex Suzuki is a Zürich-based solo software entrepreneur and owner of Pixelverse GmbH. He builds STRICH, a barcode scanning SDK for web apps, and writes about running a software product business as a solo developer.",
+    "role": "Founder",
+    "company": "Pixelverse GmbH (STRICH)",
+    "links": {
+      "website": "https://alexsuzuki.com/",
+      "github": "https://github.com/suzukieng",
+      "bluesky": "https://bsky.app/profile/alexsuzuki.com",
+      "linkedin": "https://www.linkedin.com/in/alex-suzuki-40a41a40/"
+    },
+    "sources": [
+      "https://alexsuzuki.com/",
+      "https://github.com/suzukieng",
+      "https://medium.com/better-programming/being-a-solo-software-entrepreneur-at-40-f2b397e6ba7f"
+    ],
+    "asOf": "2026"
+  },
+  {
+    "id": "cmpe6kx3tae3a08unbr5k0z94",
+    "name": "Hugo Sousa",
+    "confidence": "low",
+    "bio": "",
+    "role": "",
+    "company": "",
+    "links": {},
+    "sources": [],
+    "asOf": ""
+  },
+  {
+    "id": "cmqjn1kbl3vij08t9y6p18sgb",
+    "name": "Organising team",
+    "confidence": "low",
+    "bio": "",
+    "role": "",
+    "company": "",
+    "links": {},
+    "sources": [],
+    "asOf": ""
+  },
+  {
+    "id": "cmt6x48zbz4nm06up1dfm5q5q",
+    "name": "Anita Metodieva",
+    "confidence": "low",
+    "bio": "",
+    "role": "",
+    "company": "",
+    "links": {},
+    "sources": [],
+    "asOf": ""
+  },
+  {
+    "id": "cmt6x77kzenyd07ug96jwhs30",
+    "name": "Bogdan Ilie",
+    "confidence": "high",
+    "bio": "Bogdan Ilie is a Zürich-based frontend engineer focused on user experience and performance, with a background in web development, technical writing and design. He co-founded the ZurichJS community and helps run its meetups and conference.",
+    "role": "Frontend Engineer, ZurichJS co-founder",
+    "company": "ZurichJS",
+    "links": {
+      "website": "https://www.bugdan.dev/",
+      "github": "https://github.com/nosthrillz",
+      "linkedin": "https://www.linkedin.com/in/ilie-bogdan/"
+    },
+    "sources": [
+      "https://zurichjs.com/speakers/bogdan-ilie",
+      "https://github.com/nosthrillz"
+    ],
+    "asOf": "2026"
+  }
+]

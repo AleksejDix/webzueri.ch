@@ -1,0 +1,30 @@
+/* Global page transition styles */
+html.during-page-transition {
+    cursor: progress;
+  }
+  
+  html.during-page-transition * {
+    pointer-events: none;
+  }
+  
+  /* Prevent size distortion during transitions */
+  ::view-transition-group(*) {
+      animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+      animation-duration: 0.5s;
+  }
+    
+  ::view-transition-image-pair(*) {
+    isolation: auto;
+  } 
+  
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    position: absolute;
+    inset-block-start: 0;
+    inline-size: 100%;
+    block-size: auto;
+  
+    animation-duration: inherit;
+    animation-fill-mode: inherit;
+    animation-delay: inherit;
+  }

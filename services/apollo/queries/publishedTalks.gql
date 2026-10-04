@@ -1,0 +1,22 @@
+query publishedTalks($where: TalkWhereInput) {
+  talks(orderBy: createdAt_DESC, where: $where, first: 1000) {
+    id
+    name
+    category
+    youtubecode
+    createdAt
+    speakers {
+      id
+      name
+      speakerPicture {
+        url
+        handle
+        fileName
+      }
+    }
+    event {
+      id
+      date
+    }
+  }
+}

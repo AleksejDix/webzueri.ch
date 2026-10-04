@@ -1,0 +1,199 @@
+{
+  "takenAt": "2026-10-04T10:46:18.922Z",
+  "DRAFT": [
+    {
+      "id": "clkpc74ogrrfb0bulgjktcfe6",
+      "date": "2023-09-01",
+      "time": "1900",
+      "title": null,
+      "edition": 77,
+      "eventType": "Physical",
+      "meetupLink": "https://www.meetup.com/web-zurich/events/295091010/",
+      "streamLink": null,
+      "createdAt": "2023-07-30T11:07:15.160928+00:00",
+      "updatedAt": "2023-08-02T11:39:29.21542+00:00",
+      "talks": [
+        {
+          "id": "clkpcos9hs2k00bur8rruyvz6",
+          "name": "Q & A with Andy Budd"
+        },
+        {
+          "id": "clktnnyshvi0l0bujgqshsiv4",
+          "name": "GraphQL without Relay is not worth it"
+        },
+        {
+          "id": "clkpcli49s2280burw623wxzv",
+          "name": "Q & A with Brad Frost"
+        }
+      ],
+      "sponsors": [
+        {
+          "id": "clkpch23drvpy0buqkyvkn3yp",
+          "name": "Nexxiot"
+        },
+        {
+          "id": "cl8u9ysi4voa00bulrkq0415a",
+          "name": "Proton"
+        },
+        {
+          "id": "cl9pqxo8truvn0aupzxcjp89i",
+          "name": "Hygraph"
+        }
+      ],
+      "venue": {
+        "id": "clkpcamh8s0eg0buri3y3s676",
+        "name": "Nexxiot"
+      }
+    },
+    {
+      "id": "clm1wwiw25ble0atftgysfmf6",
+      "date": "2023-09-22",
+      "time": "1830",
+      "title": "Web Zurich September 2023",
+      "edition": 78,
+      "eventType": "Physical",
+      "meetupLink": "https://www.meetup.com/web-zurich/events/295843516/",
+      "streamLink": null,
+      "createdAt": "2023-09-02T10:59:48.755533+00:00",
+      "updatedAt": "2023-09-02T11:16:57.824095+00:00",
+      "talks": [
+        {
+          "id": "cliiooxglax8y0btc7dwbg7uk",
+          "name": "Generative AI and building conversational apps"
+        },
+        {
+          "id": "clm1x092w5nng0bun7g71ckty",
+          "name": "Let’s challenge an AI service"
+        },
+        {
+          "id": "clm1x5plw5m2v0auuw5piv6ju",
+          "name": "API First - its benefits in your API project"
+        }
+      ],
+      "sponsors": [
+        {
+          "id": "cjkign0h5vjkl0953a7zh4bqz",
+          "name": "Impact Hub Zürich"
+        },
+        {
+          "id": "ck30713rqg8th0b20j4w68vta",
+          "name": "Rockstar Recruiting"
+        },
+        {
+          "id": "cl9pqxo8truvn0aupzxcjp89i",
+          "name": "Hygraph"
+        },
+        {
+          "id": "cl8u9ysi4voa00bulrkq0415a",
+          "name": "Proton"
+        },
+        {
+          "id": "cl2zxqnsc2rq20eukzgqblw7k",
+          "name": "Migros"
+        }
+      ],
+      "venue": {
+        "id": "cjjb0jq4njqex0918vs8z5862",
+        "name": "Impact Hub Zürich - Viadukt"
+      }
+    }
+  ],
+  "PUBLISHED": [
+    {
+      "id": "clkpc74ogrrfb0bulgjktcfe6",
+      "date": "2023-09-01",
+      "time": "1900",
+      "title": null,
+      "edition": 77,
+      "eventType": "Physical",
+      "meetupLink": "https://www.meetup.com/web-zurich/events/295091010/",
+      "streamLink": null,
+      "createdAt": "2023-07-30T11:07:15.160928+00:00",
+      "updatedAt": "2023-08-02T11:39:29.21542+00:00",
+      "talks": [
+        {
+          "id": "clkpcos9hs2k00bur8rruyvz6",
+          "name": "Q & A with Andy Budd"
+        },
+        {
+          "id": "clktnnyshvi0l0bujgqshsiv4",
+          "name": "GraphQL without Relay is not worth it"
+        },
+        {
+          "id": "clkpcli49s2280burw623wxzv",
+          "name": "Q & A with Brad Frost"
+        }
+      ],
+      "sponsors": [
+        {
+          "id": "clkpch23drvpy0buqkyvkn3yp",
+          "name": "Nexxiot"
+        },
+        {
+          "id": "cl8u9ysi4voa00bulrkq0415a",
+          "name": "Proton"
+        },
+        {
+          "id": "cl9pqxo8truvn0aupzxcjp89i",
+          "name": "Hygraph"
+        }
+      ],
+      "venue": {
+        "id": "clkpcamh8s0eg0buri3y3s676",
+        "name": "Nexxiot"
+      }
+    },
+    {
+      "id": "clm1wwiw25ble0atftgysfmf6",
+      "date": "2023-09-22",
+      "time": "1830",
+      "title": "Web Zurich September 2023",
+      "edition": 78,
+      "eventType": "Physical",
+      "meetupLink": "https://www.meetup.com/web-zurich/events/295843516/",
+      "streamLink": null,
+      "createdAt": "2023-09-02T10:59:48.755533+00:00",
+      "updatedAt": "2023-09-02T11:16:57.824095+00:00",
+      "talks": [
+        {
+          "id": "cliiooxglax8y0btc7dwbg7uk",
+          "name": "Generative AI and building conversational apps"
+        },
+        {
+          "id": "clm1x092w5nng0bun7g71ckty",
+          "name": "Let’s challenge an AI service"
+        },
+        {
+          "id": "clm1x5plw5m2v0auuw5piv6ju",
+          "name": "API First - its benefits in your API project"
+        }
+      ],
+      "sponsors": [
+        {
+          "id": "cjkign0h5vjkl0953a7zh4bqz",
+          "name": "Impact Hub Zürich"
+        },
+        {
+          "id": "ck30713rqg8th0b20j4w68vta",
+          "name": "Rockstar Recruiting"
+        },
+        {
+          "id": "cl9pqxo8truvn0aupzxcjp89i",
+          "name": "Hygraph"
+        },
+        {
+          "id": "cl8u9ysi4voa00bulrkq0415a",
+          "name": "Proton"
+        },
+        {
+          "id": "cl2zxqnsc2rq20eukzgqblw7k",
+          "name": "Migros"
+        }
+      ],
+      "venue": {
+        "id": "cjjb0jq4njqex0918vs8z5862",
+        "name": "Impact Hub Zürich - Viadukt"
+      }
+    }
+  ]
+}

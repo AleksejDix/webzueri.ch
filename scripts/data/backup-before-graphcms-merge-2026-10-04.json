@@ -1,0 +1,637 @@
+{
+  "takenAt": "2026-10-04T10:22:29.839Z",
+  "DRAFT": [
+    {
+      "id": "cjkieplosvf6z09537dzdrra2",
+      "name": "GraphCMS",
+      "website": "https://graphcms.com/",
+      "position": null,
+      "stage": "DRAFT",
+      "createdAt": "2018-08-06T15:04:24.848+00:00",
+      "logo": {
+        "id": "cjkieqkw3vf9v09536sjugcf3",
+        "url": "https://eu-central-1.graphassets.com/AYopFRtiZSsGRyNXA0N4nz/UWOfWfyQbGQpsYSDwfRt",
+        "fileName": "graphcms-logo-graphql-cms.4cde8eb0.svg"
+      },
+      "events": [
+        {
+          "id": "cjlkttqay2ts10924gvfvp1t8",
+          "date": "2018-08-28",
+          "title": "8/2018"
+        },
+        {
+          "id": "cjlttrxcrmvtg09242txbq4ot",
+          "date": "2018-09-18",
+          "title": null
+        },
+        {
+          "id": "cjnirrcjlm8yu0932jjcukc8x",
+          "date": "2018-10-26",
+          "title": "October 2018"
+        },
+        {
+          "id": "cjnxon5toyzbx0932rui6xpw4",
+          "date": "2018-11-16",
+          "title": null
+        },
+        {
+          "id": "cjokfjxoloxx30932t6ca76rd",
+          "date": "2018-12-21",
+          "title": "xMas edition"
+        },
+        {
+          "id": "cjpzcybclh94v0a84gunvrhdm",
+          "date": "2019-01-24",
+          "title": "Jan 2019"
+        },
+        {
+          "id": "cjrgu3cchubv50a26a43khpte",
+          "date": "2019-02-25",
+          "title": "Februar 2019"
+        },
+        {
+          "id": "cjsbkuzs4qqe80c15276gnmzn",
+          "date": "2019-03-21",
+          "title": "March 2019"
+        },
+        {
+          "id": "cjsbkvtd0qqlo0c15saf0guyx",
+          "date": "2019-04-16",
+          "title": "April 2019"
+        },
+        {
+          "id": "cjudl7l5kjmy80c15g77ty9ns",
+          "date": "2019-05-21",
+          "title": "21 of May"
+        },
+        {
+          "id": "cjw1zlgq81dtu0819zww16zk5",
+          "date": "2019-06-19",
+          "title": "20 June 2019"
+        },
+        {
+          "id": "cjxndki9px4rk0910zgwpwjqw",
+          "date": "2019-07-25",
+          "title": "25 July"
+        },
+        {
+          "id": "cjyj63rkp36970d539wc1ul29",
+          "date": "2019-08-23",
+          "title": "BBQ Special 2019"
+        },
+        {
+          "id": "cjztdyj2uyp5009639f78xjiv",
+          "date": "2019-09-26",
+          "title": "26 September 2019"
+        },
+        {
+          "id": "ck11x5tfhzisk0b85y0e514mt",
+          "date": "2019-10-18",
+          "title": "18th October 2019"
+        },
+        {
+          "id": "ck21p0r24au540b49btxnp04t",
+          "date": "2019-11-27",
+          "title": "27th, November 2019"
+        },
+        {
+          "id": "ck2t3t4d6r78v0b32ao66p0ob",
+          "date": "2019-12-18",
+          "title": "xMas Special"
+        },
+        {
+          "id": "ck4awmv3vz9e80b20stx6gfun",
+          "date": "2020-01-24",
+          "title": "Januar 2020"
+        },
+        {
+          "id": "ck5s8lsbj8rst0b20ngmifs9p",
+          "date": "2020-02-17",
+          "title": "Feb 17, 2020"
+        },
+        {
+          "id": "ck6qrad9g9muf0b20rfu53zf7",
+          "date": "2020-03-02",
+          "title": "March 2, 2020"
+        },
+        {
+          "id": "ck7dg2no5t4d30b208sj1hmzk",
+          "date": "2020-04-27",
+          "title": "April Online Meetup "
+        },
+        {
+          "id": "cka72hl04cov70b841qp8g14m",
+          "date": "2020-05-25",
+          "title": "Mai Web Zurich"
+        },
+        {
+          "id": "ckap2wgayzpbr0b841lhaetap",
+          "date": "2020-06-17",
+          "title": "June Web Zuri"
+        },
+        {
+          "id": "ckcdhgfrd4puw0b091zi0q2m5",
+          "date": "2020-07-17",
+          "title": null
+        },
+        {
+          "id": "cke32bv684icw0b97cpahj920",
+          "date": "2020-08-21",
+          "title": null
+        },
+        {
+          "id": "ckiec4iylovx40970vd1aetue",
+          "date": "2020-12-18",
+          "title": "55th Web Zürich meetup - Christmas edition"
+        },
+        {
+          "id": "ckhka5qki5ryb0b77jn5wa5do",
+          "date": "2020-11-27",
+          "title": "Virtual meetup"
+        },
+        {
+          "id": "ckghqrxxnbsvu09117t0axrqa",
+          "date": "2020-10-30",
+          "title": "Virtual Halloween Meetup"
+        },
+        {
+          "id": "ckel1iicyqtr60916s7eamf5b",
+          "date": "2020-09-25",
+          "title": null
+        },
+        {
+          "id": "ckk4driiya43i0939pgjdzbov",
+          "date": "2021-01-29",
+          "title": "56th Web Zürich meetup"
+        },
+        {
+          "id": "cklexqgc8dx330a01sshb2p3z",
+          "date": "2021-03-31",
+          "title": null
+        },
+        {
+          "id": "ckospaawgy2s70d479m0lh6np",
+          "date": "2021-05-26",
+          "title": null
+        },
+        {
+          "id": "cl0cdqb7x2aac0axm3mvrjdqg",
+          "date": "2022-03-18",
+          "title": null
+        },
+        {
+          "id": "cl1krdguu1s8y0aus3tc1qpi3",
+          "date": "2022-04-29",
+          "title": null
+        },
+        {
+          "id": "cl4e612tn1gm80aun51xlr63x",
+          "date": "2022-06-24",
+          "title": null
+        },
+        {
+          "id": "cl6xlj16w3gpx0cunwe6rkb45",
+          "date": "2022-08-26",
+          "title": "Web Zurich Summer Special"
+        }
+      ]
+    },
+    {
+      "id": "cl9pqxo8truvn0aupzxcjp89i",
+      "name": "Hygraph",
+      "website": "https://hygraph.com/",
+      "position": null,
+      "stage": "DRAFT",
+      "createdAt": "2022-10-26T14:43:02.494468+00:00",
+      "logo": {
+        "id": "cm6p0i9il5iqi07umxvmfnnm3",
+        "url": "https://eu-central-1.graphassets.com/AYopFRtiZSsGRyNXA0N4nz/AIhJL5RSdqCpEr3ieGr3",
+        "fileName": "hygraph.svg"
+      },
+      "events": [
+        {
+          "id": "cl7ltokljroa10cuok3stw33a",
+          "date": "2022-10-28",
+          "title": null
+        },
+        {
+          "id": "clatmdct1n5hc0btbttgv5vw2",
+          "date": "2022-12-16",
+          "title": null
+        },
+        {
+          "id": "clfclwr7z8krs0aun4oyr62pn",
+          "date": "2023-03-31",
+          "title": null
+        },
+        {
+          "id": "clhot4fduj1c00at50fr62mqb",
+          "date": "2023-05-26",
+          "title": "Web Zurich May 2023"
+        },
+        {
+          "id": "cliioleo9aa2g0bthhvzsnvtv",
+          "date": "2023-06-27",
+          "title": null
+        },
+        {
+          "id": "clkpc74ogrrfb0bulgjktcfe6",
+          "date": "2023-09-01",
+          "title": null
+        },
+        {
+          "id": "clm1wwiw25ble0atftgysfmf6",
+          "date": "2023-09-22",
+          "title": "Web Zurich September 2023"
+        },
+        {
+          "id": "clnymuqp0fpws0btfh7xvixf9",
+          "date": "2023-11-10",
+          "title": null
+        },
+        {
+          "id": "clpv8tk562sf80bru91jlqx34",
+          "date": "2023-12-15",
+          "title": "Web Zurich December 2023"
+        },
+        {
+          "id": "clyg1kb99qxvr07tcwhchs0td",
+          "date": "2024-09-27",
+          "title": "Web Zurich September 2024"
+        },
+        {
+          "id": "cm3dik9i8ken308uopbd4e8ob",
+          "date": "2024-11-29",
+          "title": null
+        },
+        {
+          "id": "cm5ra8ve7i0y007ume629761c",
+          "date": "2025-01-24",
+          "title": "Web Zurich January 2025"
+        },
+        {
+          "id": "cm6ms080xbkr707uu21049b4j",
+          "date": "2025-02-28",
+          "title": "Web Zurich February 2025"
+        },
+        {
+          "id": "cmap1sxhh873t07uvs0im8uz3",
+          "date": "2025-05-23",
+          "title": "May the 23rd be with you"
+        },
+        {
+          "id": "cmc8xgv2z7t3f07t9sdv77m5j",
+          "date": "2025-06-27",
+          "title": "Web Zurich June 2025"
+        },
+        {
+          "id": "cmee3wcmz8yxh07tb5frcdulq",
+          "date": "2025-08-29",
+          "title": "Web Zurich August 2025"
+        },
+        {
+          "id": "cmffjxcit2vsi06uq4xzameet",
+          "date": "2025-09-26",
+          "title": "Web Zurich September 2025"
+        },
+        {
+          "id": "cmhxk35njag3007unid40zjq7",
+          "date": "2025-11-28",
+          "title": "Web Zurich November 2025"
+        },
+        {
+          "id": "cmklfwyhakrrp08uockrx5vae",
+          "date": "2026-01-30",
+          "title": "Web Zurich January 2026"
+        },
+        {
+          "id": "cmmdots9elegz07tcxai9pwp4",
+          "date": "2026-03-27",
+          "title": "Web Zurich March 2026"
+        },
+        {
+          "id": "cmt6xaln5eytm07ugdcdg4zsn",
+          "date": "2026-08-28",
+          "title": null
+        }
+      ]
+    }
+  ],
+  "PUBLISHED": [
+    {
+      "id": "cjkieplosvf6z09537dzdrra2",
+      "name": "GraphCMS",
+      "website": "https://graphcms.com/",
+      "position": null,
+      "stage": "PUBLISHED",
+      "createdAt": "2018-08-06T15:04:24.848+00:00",
+      "logo": {
+        "id": "cjkieqkw3vf9v09536sjugcf3",
+        "url": "https://eu-central-1.graphassets.com/AYopFRtiZSsGRyNXA0N4nz/UWOfWfyQbGQpsYSDwfRt",
+        "fileName": "graphcms-logo-graphql-cms.4cde8eb0.svg"
+      },
+      "events": [
+        {
+          "id": "cjlkttqay2ts10924gvfvp1t8",
+          "date": "2018-08-28",
+          "title": "8/2018"
+        },
+        {
+          "id": "cjlttrxcrmvtg09242txbq4ot",
+          "date": "2018-09-18",
+          "title": null
+        },
+        {
+          "id": "cjnirrcjlm8yu0932jjcukc8x",
+          "date": "2018-10-26",
+          "title": "October 2018"
+        },
+        {
+          "id": "cjnxon5toyzbx0932rui6xpw4",
+          "date": "2018-11-16",
+          "title": null
+        },
+        {
+          "id": "cjokfjxoloxx30932t6ca76rd",
+          "date": "2018-12-21",
+          "title": "xMas edition"
+        },
+        {
+          "id": "cjpzcybclh94v0a84gunvrhdm",
+          "date": "2019-01-24",
+          "title": "Jan 2019"
+        },
+        {
+          "id": "cjrgu3cchubv50a26a43khpte",
+          "date": "2019-02-25",
+          "title": "Februar 2019"
+        },
+        {
+          "id": "cjsbkuzs4qqe80c15276gnmzn",
+          "date": "2019-03-21",
+          "title": "March 2019"
+        },
+        {
+          "id": "cjsbkvtd0qqlo0c15saf0guyx",
+          "date": "2019-04-16",
+          "title": "April 2019"
+        },
+        {
+          "id": "cjudl7l5kjmy80c15g77ty9ns",
+          "date": "2019-05-21",
+          "title": "21 of May"
+        },
+        {
+          "id": "cjw1zlgq81dtu0819zww16zk5",
+          "date": "2019-06-19",
+          "title": "20 June 2019"
+        },
+        {
+          "id": "cjxndki9px4rk0910zgwpwjqw",
+          "date": "2019-07-25",
+          "title": "25 July"
+        },
+        {
+          "id": "cjyj63rkp36970d539wc1ul29",
+          "date": "2019-08-23",
+          "title": "BBQ Special 2019"
+        },
+        {
+          "id": "cjztdyj2uyp5009639f78xjiv",
+          "date": "2019-09-26",
+          "title": "26 September 2019"
+        },
+        {
+          "id": "ck11x5tfhzisk0b85y0e514mt",
+          "date": "2019-10-18",
+          "title": "18th October 2019"
+        },
+        {
+          "id": "ck21p0r24au540b49btxnp04t",
+          "date": "2019-11-27",
+          "title": "27th, November 2019"
+        },
+        {
+          "id": "ck2t3t4d6r78v0b32ao66p0ob",
+          "date": "2019-12-18",
+          "title": "xMas Special"
+        },
+        {
+          "id": "ck4awmv3vz9e80b20stx6gfun",
+          "date": "2020-01-24",
+          "title": "Januar 2020"
+        },
+        {
+          "id": "ck5s8lsbj8rst0b20ngmifs9p",
+          "date": "2020-02-17",
+          "title": "Feb 17, 2020"
+        },
+        {
+          "id": "ck6qrad9g9muf0b20rfu53zf7",
+          "date": "2020-03-02",
+          "title": "March 2, 2020"
+        },
+        {
+          "id": "ck7dg2no5t4d30b208sj1hmzk",
+          "date": "2020-04-27",
+          "title": "April Online Meetup "
+        },
+        {
+          "id": "cka72hl04cov70b841qp8g14m",
+          "date": "2020-05-25",
+          "title": "Mai Web Zurich"
+        },
+        {
+          "id": "ckap2wgayzpbr0b841lhaetap",
+          "date": "2020-06-17",
+          "title": "June Web Zuri"
+        },
+        {
+          "id": "ckcdhgfrd4puw0b091zi0q2m5",
+          "date": "2020-07-17",
+          "title": null
+        },
+        {
+          "id": "cke32bv684icw0b97cpahj920",
+          "date": "2020-08-21",
+          "title": null
+        },
+        {
+          "id": "ckiec4iylovx40970vd1aetue",
+          "date": "2020-12-18",
+          "title": "55th Web Zürich meetup - Christmas edition"
+        },
+        {
+          "id": "ckhka5qki5ryb0b77jn5wa5do",
+          "date": "2020-11-27",
+          "title": "Virtual meetup"
+        },
+        {
+          "id": "ckghqrxxnbsvu09117t0axrqa",
+          "date": "2020-10-30",
+          "title": "Virtual Halloween Meetup"
+        },
+        {
+          "id": "ckel1iicyqtr60916s7eamf5b",
+          "date": "2020-09-25",
+          "title": null
+        },
+        {
+          "id": "ckk4driiya43i0939pgjdzbov",
+          "date": "2021-01-29",
+          "title": "56th Web Zürich meetup"
+        },
+        {
+          "id": "cklexqgc8dx330a01sshb2p3z",
+          "date": "2021-03-31",
+          "title": null
+        },
+        {
+          "id": "ckospaawgy2s70d479m0lh6np",
+          "date": "2021-05-26",
+          "title": null
+        },
+        {
+          "id": "cl0cdqb7x2aac0axm3mvrjdqg",
+          "date": "2022-03-18",
+          "title": null
+        },
+        {
+          "id": "cl1krdguu1s8y0aus3tc1qpi3",
+          "date": "2022-04-29",
+          "title": null
+        },
+        {
+          "id": "cl4e612tn1gm80aun51xlr63x",
+          "date": "2022-06-24",
+          "title": null
+        },
+        {
+          "id": "cl6xlj16w3gpx0cunwe6rkb45",
+          "date": "2022-08-26",
+          "title": "Web Zurich Summer Special"
+        }
+      ]
+    },
+    {
+      "id": "cl9pqxo8truvn0aupzxcjp89i",
+      "name": "Hygraph",
+      "website": "https://hygraph.com/",
+      "position": null,
+      "stage": "PUBLISHED",
+      "createdAt": "2022-10-26T14:43:02.494468+00:00",
+      "logo": {
+        "id": "cm6p0i9il5iqi07umxvmfnnm3",
+        "url": "https://eu-central-1.graphassets.com/AYopFRtiZSsGRyNXA0N4nz/AIhJL5RSdqCpEr3ieGr3",
+        "fileName": "hygraph.svg"
+      },
+      "events": [
+        {
+          "id": "cl7ltokljroa10cuok3stw33a",
+          "date": "2022-10-28",
+          "title": null
+        },
+        {
+          "id": "clatmdct1n5hc0btbttgv5vw2",
+          "date": "2022-12-16",
+          "title": null
+        },
+        {
+          "id": "clfclwr7z8krs0aun4oyr62pn",
+          "date": "2023-03-31",
+          "title": null
+        },
+        {
+          "id": "clhot4fduj1c00at50fr62mqb",
+          "date": "2023-05-26",
+          "title": "Web Zurich May 2023"
+        },
+        {
+          "id": "cliioleo9aa2g0bthhvzsnvtv",
+          "date": "2023-06-27",
+          "title": null
+        },
+        {
+          "id": "clkpc74ogrrfb0bulgjktcfe6",
+          "date": "2023-09-01",
+          "title": null
+        },
+        {
+          "id": "clm1wwiw25ble0atftgysfmf6",
+          "date": "2023-09-22",
+          "title": "Web Zurich September 2023"
+        },
+        {
+          "id": "clnymuqp0fpws0btfh7xvixf9",
+          "date": "2023-11-10",
+          "title": null
+        },
+        {
+          "id": "clpv8tk562sf80bru91jlqx34",
+          "date": "2023-12-15",
+          "title": "Web Zurich December 2023"
+        },
+        {
+          "id": "clyg1kb99qxvr07tcwhchs0td",
+          "date": "2024-09-27",
+          "title": "Web Zurich September 2024"
+        },
+        {
+          "id": "cm3dik9i8ken308uopbd4e8ob",
+          "date": "2024-11-29",
+          "title": null
+        },
+        {
+          "id": "cm5ra8ve7i0y007ume629761c",
+          "date": "2025-01-24",
+          "title": "Web Zurich January 2025"
+        },
+        {
+          "id": "cm6ms080xbkr707uu21049b4j",
+          "date": "2025-02-28",
+          "title": "Web Zurich February 2025"
+        },
+        {
+          "id": "cmap1sxhh873t07uvs0im8uz3",
+          "date": "2025-05-23",
+          "title": "May the 23rd be with you"
+        },
+        {
+          "id": "cmc8xgv2z7t3f07t9sdv77m5j",
+          "date": "2025-06-27",
+          "title": "Web Zurich June 2025"
+        },
+        {
+          "id": "cmee3wcmz8yxh07tb5frcdulq",
+          "date": "2025-08-29",
+          "title": "Web Zurich August 2025"
+        },
+        {
+          "id": "cmffjxcit2vsi06uq4xzameet",
+          "date": "2025-09-26",
+          "title": "Web Zurich September 2025"
+        },
+        {
+          "id": "cmhxk35njag3007unid40zjq7",
+          "date": "2025-11-28",
+          "title": "Web Zurich November 2025"
+        },
+        {
+          "id": "cmklfwyhakrrp08uockrx5vae",
+          "date": "2026-01-30",
+          "title": "Web Zurich January 2026"
+        },
+        {
+          "id": "cmmdots9elegz07tcxai9pwp4",
+          "date": "2026-03-27",
+          "title": "Web Zurich March 2026"
+        },
+        {
+          "id": "cmt6xaln5eytm07ugdcdg4zsn",
+          "date": "2026-08-28",
+          "title": null
+        }
+      ]
+    }
+  ]
+}

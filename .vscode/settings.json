@@ -1,5 +1,19 @@
 {
-  "jumpToAliasFile.alias": {
-    "@": "/Users/aleksejdix/Projects/privat/webzueri.ch/src"
-  }
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "volar.takeOverMode.enabled": true,
+  "volar.autoCompleteRefs": true,
+  "files.associations": {
+    "*.vue": "vue"
+  },
+  "editor.formatOnSave": true,
+  "volar.serverPath.minTimeout": 30000,
+  "volar.completion.preferredTagNameCase": "pascal",
+  "volar.vueserver.maxOldSpaceSize": 8192,
+  "js/ts.implicitProjectConfig.checkJs": false,
+  "volar.inlayHints.eventArgumentInInlineHandlers": false,
+  "volar.icon.splitEditors": false,
+  "volar.autoClickOnNotification": true,
+  "volar.doctor.checkVueTsc": false,
+  "vue.server.hybridMode": false
 }

@@ -1,77 +1,71 @@
 <template>
   <div>
-    <page>
+    <PageComponent>
       <div
-        class="fixed pin-l pin-t bottom-0 h-full w-64 hidden xl:block bg-primary"
+        class="fixed left-0 top-0 bottom-0 h-full w-64 hidden xl:block bg-primary"
       >
-        <nav class="owl">
+        <nav class="space-y-4">
           <div>
-            <div class="py-4 px-8 min-h-16 flex items-center bg-blue">
-              <Overline class="text-white">Navigation</Overline>
+            <div class="py-4 px-8 min-h-16 flex items-center bg-blue-600">
+              <div class="text-white text-xs uppercase tracking-wider">Navigation</div>
             </div>
-            <ul class="list-reset">
+            <ul class="list-none">
               <li v-for="link in user" :key="link.name">
-                <nuxt-link
-                  class="text-pink hover:text-pink-light hover:bg-primary-dark transition text-12 no-underline py-4 px-8 flex items-center leading-none"
-                  active-class="text-grey-lightest bg-primary-dark"
+                <NuxtLink
+                  class="text-pink-500 hover:text-pink-300 hover:bg-gray-800 transition text-sm no-underline py-4 px-8 flex items-center leading-none"
+                  active-class="text-gray-100 bg-gray-800"
                   :to="link.to"
                   v-html="link.name"
-                ></nuxt-link>
+                ></NuxtLink>
               </li>
             </ul>
           </div>
         </nav>
       </div>
 
-      <div class="pl-0 xl:pl-64 bg-grey-lightest">
-        <nuxt />
+      <div class="pl-0 xl:pl-64 bg-gray-100">
+        <slot />
         <footer>
           <div class="flex justify-center px-3 py-4">
-            <logo slot="logo" class="text-grey-darker" />
+            <Logo class="text-gray-600" />
           </div>
         </footer>
       </div>
-    </page>
-    <modal />
-    <svg-symbols />
+    </PageComponent>
+    <ModalComponent />
+    <SvgSymbols />
   </div>
 </template>
 
-<script>
-import SvgSymbols from "@/components/SvgSymbols";
-import Logo from "@/components/Logo";
-import Page from "@/components/page";
-import Modal from "@/components/modal";
+<script setup lang="ts">
+import { ref } from 'vue';
+import SvgSymbols from '~/components/SvgSymbols.vue';
+import Logo from '~/components/Logo.vue';
+import PageComponent from '~/components/page.vue';
+import ModalComponent from '~/components/modal.vue';
 
-export default {
-  components: { SvgSymbols, Logo, Modal, Page },
-  data() {
-    return {
-      user: [
-        {
-          name: "Events",
-          to: "/dashboard/events/"
-        },
-        {
-          name: "Talks",
-          to: {
-            name: "dashboard-index-status-index",
-            params: { status: "talk" }
-          }
-        },
-        {
-          name: "Stories",
-          to: {
-            name: "dashboard-index-status-index",
-            params: { status: "story" }
-          }
-        },
-        {
-          name: "Settings",
-          to: "/dashboard/settings/"
-        }
-      ]
-    };
+const user = ref([
+  {
+    name: "Events",
+    to: "/dashboard/events/"
+  },
+  {
+    name: "Talks",
+    to: {
+      name: "dashboard-index-status-index",
+      params: { status: "talk" }
+    }
+  },
+  {
+    name: "Stories",
+    to: {
+      name: "dashboard-index-status-index",
+      params: { status: "story" }
+    }
+  },
+  {
+    name: "Settings",
+    to: "/dashboard/settings/"
   }
-};
-</script>
+]);
+</script> 

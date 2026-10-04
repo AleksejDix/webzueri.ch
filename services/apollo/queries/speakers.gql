@@ -1,18 +1,26 @@
 query speakers {
   speakers(
-    orderBy: name_ASC
     first: 1000
-    where: { speakerPicture: { speakerPictureSpeaker_some: {} } }
+    # Everyone who has given a talk; "Organising team" is a placeholder, not a person
+    where: { talks_some: {}, name_not: "Organising team" }
   ) {
     id
     name
+    role
+    company
     speakerPicture {
       url
       handle
+      fileName
     }
-    talks {
+    talks(orderBy: createdAt_DESC) {
       id
       name
+      youtubecode
+      createdAt
+      event {
+        date
+      }
     }
   }
 }

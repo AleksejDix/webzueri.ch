@@ -2,14 +2,49 @@ query speaker($id: ID!) {
   speaker(where: { id: $id }) {
     id
     name
+    bio
+    twitterHandle
+    github
+    role
+    company
+    website
+    linkedIn
+    mastodon
+    bluesky
+    profileAsOf
+    profileSources
     speakerPicture {
       url
-      handle
+      fileName
     }
-    talks {
+    talks(orderBy: createdAt_DESC) {
       id
       name
-      abstract
+      youtubecode
+      category
+      createdAt
+      event {
+        id
+        date
+        # Everyone else who spoke that evening
+        talks {
+          speakers {
+            id
+            name
+            speakerPicture {
+              url
+              fileName
+            }
+          }
+        }
+      }
+      speakers {
+        id
+        name
+        speakerPicture {
+          url
+        }
+      }
     }
   }
 }
