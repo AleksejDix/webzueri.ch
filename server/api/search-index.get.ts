@@ -71,7 +71,8 @@ export default defineCachedEventHandler(
     });
 
     return {
-      talks: data.talks.map((t) => ({
+      // Placeholders ("TBA") and notices stored as talks ("Unfortunately, we have to cancel…")
+      talks: data.talks.filter((t) => !/^(tba|unfortunately\b)/i.test(t.name.trim())).map((t) => ({
         id: t.id,
         name: t.name.trim(),
         category: t.category,
@@ -106,5 +107,5 @@ export default defineCachedEventHandler(
         })),
     };
   },
-  { maxAge: 60 * 60, name: "search-index-v2" }
+  { maxAge: 60 * 60, name: "search-index-v3" }
 );

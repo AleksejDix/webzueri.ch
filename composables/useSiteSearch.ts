@@ -68,9 +68,20 @@ const PAGES: SearchPage[] = [
 const CATEGORIES = ["frontend", "backend", "design", "others"];
 const VIDEO_WORDS = ["video", "videos", "recorded", "recording", "recordings", "youtube", "watch"];
 const NEXT_WORDS = ["next", "upcoming", "when", "today", "tonight", "where"];
-// Words that shape a question but don't describe what to find
+// "Latest talks": newest first, no topic needed
+const RECENT_WORDS = ["latest", "newest", "recent", "new"];
+// Words that shape a question but don't describe what to find, including the
+// verbs of "who talked about", "did anyone speak on"
 const FILLER = new Set(
-  "talk talks with about on the a an of in at from for to and or is are was were any all show me find list what which who there some".split(" ")
+  ("talk talks with about on the a an of in at from for to and or is are was were be been any all show me find list what which who " +
+    "there some how do does did i you we my your it its can could should would get give gave given talked spoke speaking presented " +
+    "need want much many has have here anything something stuff please anyone someone somebody everyone speak spoke").split(" ")
+);
+// Words that only ask for a direct answer; once it's given, they don't name a topic
+const ANSWER_WORDS = new Set(
+  ("free cost costs price ticket tickets pay entry sponsor sponsoring host hosting catering support speak speaker cfp submit propose " +
+    "present job jobs hiring salary recruit recruiting recruiter harassment harass report unsafe coc conduct contact email mail " +
+    "organiser organisers organizer organizers whatsapp slack chat join community newsletter").split(" ")
 );
 
 // Different words people use for the same topic
@@ -88,15 +99,24 @@ const SYNONYMS: Record<string, string[]> = {
   llm: ["llm", "gpt", "ai", "language model"],
   perf: ["performance", "perf", "fast", "speed"],
   performance: ["performance", "perf", "fast", "speed"],
-  "3d": ["3d", "webgl", "three", "webgpu"],
-  webgl: ["webgl", "3d", "three", "shader"],
-  css: ["css", "style", "styles", "styling"],
+  "3d": ["3d", "webgl", "three.js", "webgpu"],
+  webgl: ["webgl", "3d", "three.js", "shader"],
+  css: ["css", "styling", "stylesheet", "stylesheets"],
   security: ["security", "secure", "auth", "authentication", "privacy"],
   test: ["test", "testing", "tests"],
   testing: ["test", "testing", "tests"],
   node: ["node", "nodejs", "node.js"],
   serverless: ["serverless", "lambda", "edge"],
   pwa: ["pwa", "progressive web app", "service worker", "offline"],
+  webgpu: ["webgpu", "webgl", "3d", "shader", "three.js"],
+  figma: ["figma", "sketch", "prototype", "design system"],
+  sketch: ["sketch", "figma", "prototype"],
+  rust: ["rust", "webassembly", "wasm"],
+  wasm: ["webassembly", "wasm", "rust"],
+  webassembly: ["webassembly", "wasm"],
+  nextjs: ["next.js", "nextjs"],
+  vue: ["vue", "vue.js", "vuejs", "nuxt"],
+  agents: ["agent", "agents", "agentic", "ai"],
 };
 
 const MONTHS = ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"];
@@ -128,34 +148,41 @@ function distance(a: string, b: string, max: number) {
  * 2 for the start of a word, 1 for a close spelling, 0 for nothing.
  * Phrases ("machine learning") are matched against the joined text.
  */
-function matchWord(term: string, words: string[], text: string) {
+function matchWord(term: string, words: string[], text: string, fuzzy = true) {
   if (term.includes(" ")) return text.includes(term) ? 3 : 0;
   let best = 0;
-  const allowed = term.length >= 7 ? 2 : term.length >= 4 ? 1 : 0;
+  // Short words have too many neighbours ("rust", "rush"), so they must match as typed
+  const allowed = !fuzzy ? 0 : term.length >= 7 ? 2 : term.length >= 5 ? 1 : 0;
   for (const w of words) {
     if (w === term) return 3;
-    if (w.startsWith(term)) best = Math.max(best, 2);
-    else if (allowed && best < 1 && distance(term, w.slice(0, term.length + allowed), allowed) <= allowed) best = 1;
+    // A word's start counts from three letters, so "ai" doesn't find "airconsole"
+    if (term.length >= 3 && w.startsWith(term)) best = Math.max(best, 2);
+    // Typos keep the first letter and don't shorten the word, so "reakt" finds
+    // "react" but "rust" finds neither "trust" nor "run"
+    else if (allowed && best < 1 && w[0] === term[0] && w.length >= term.length && distance(term, w.slice(0, term.length + allowed), allowed) <= allowed) best = 1;
   }
   return best;
 }
 
-// A search word matches if it or any of its synonyms does
+// A search word matches if it or any of its synonyms does. Only the word as
+// typed gets typo tolerance; its synonyms must match as they are, or "wasm"
+// for "rust" would find "was"
 const variants = (term: string) => SYNONYMS[term] ?? [term];
 function matchTerm(term: string, words: string[], text: string) {
-  return Math.max(...variants(term).map((v) => matchWord(v, words, text)));
+  return Math.max(...variants(term).map((v) => matchWord(v, words, text, v === term)));
 }
 
 /**
- * Scores a record against every search word; each word must match somewhere.
+ * Scores a record against every search word; each word must match somewhere,
+ * unless `some` is set, when any word will do and more matching words score higher.
  * Fields carry weights, so a match in a title counts more than in a description.
  */
-function scoreFields(terms: string[], fields: { words: string[]; text: string; weight: number }[]) {
+function scoreFields(terms: string[], fields: { words: string[]; text: string; weight: number }[], some = false) {
   let total = 0;
   for (const term of terms) {
     let best = 0;
     for (const f of fields) best = Math.max(best, matchTerm(term, f.words, f.text) * f.weight);
-    if (!best) return 0;
+    if (!best && !some) return 0;
     total += best;
   }
   return total;
@@ -201,7 +228,7 @@ export function useSiteSearch() {
     loading.value = true;
     try {
       // The version busts browser caches whenever the index gains new fields
-      index.value = await $fetch<SearchIndex>("/api/search-index", { query: { v: 2 } });
+      index.value = await $fetch<SearchIndex>("/api/search-index", { query: { v: 3 } });
     } finally {
       loading.value = false;
     }
@@ -226,7 +253,9 @@ export function useSiteSearch() {
     if (!aboutSponsoring && has(tokens, "free", "cost", "costs", "price", "ticket", "tickets", "pay", "entry")) {
       out.push({ key: "free", text: "Yes, Web Zürich is free. Sponsors cover the food, drinks and venue.", link: "About Web Zürich", to: "/about" });
     }
-    if (has(tokens, "speak", "speaker", "cfp", "submit", "propose", "present") || hasPhrase(raw, "give a talk", "do a talk", "hold a talk")) {
+    // "Can I speak" asks how to give a talk; "did anyone speak about css" asks for talks
+    const pastTalks = hasPhrase(raw, "speak about", "spoke about", "speak on", "spoke on", "talked about", "anyone", "someone");
+    if (!pastTalks && (has(tokens, "speak", "speaker", "cfp", "submit", "propose", "present") || hasPhrase(raw, "give a talk", "do a talk", "hold a talk"))) {
       out.push({ key: "speak", text: "Anyone can propose a talk, first-timers included.", link: "Submit a talk", to: SUBMIT_TALK_URL, external: true });
     }
     if (aboutSponsoring) {
@@ -258,7 +287,12 @@ export function useSiteSearch() {
   }
 
   const results = computed(() => {
-    const raw = normalize(query.value.trim()).replace(/[?!.,]/g, " ");
+    // "next.js" and "next js" are a framework, not the next meetup
+    const raw = normalize(query.value.trim())
+      .replace(/\bnext\s*\.?\s*js\b/g, "nextjs")
+      // The site's own name doesn't describe what to find
+      .replace(/\bweb\s*zu(e)?rich\b/g, " ")
+      .replace(/[?!.,]/g, " ");
     const empty = {
       pages: [] as SearchPage[],
       answers: [] as SearchAnswer[],
@@ -267,6 +301,9 @@ export function useSiteSearch() {
       events: [] as SearchEvent[],
       showNext: false,
       talkTotal: 0,
+      // Set when nothing matched exactly and the results are the closest instead
+      talksNote: null as string | null,
+      eventsNote: null as string | null,
       filters: { video: false, category: null as string | null, year: null as number | null },
       words: "",
     };
@@ -287,14 +324,16 @@ export function useSiteSearch() {
     const byWords = byAt >= 0 ? tokens.slice(byAt + 1).filter((t) => !FILLER.has(t) && !/^\d+$/.test(t)) : [];
 
     const video = tokens.some((t) => VIDEO_WORDS.includes(t));
+    const recent = tokens.some((t) => RECENT_WORDS.includes(t));
     const category = tokens.find((t) => CATEGORIES.includes(t)) ?? null;
     const showNext = tokens.some((t) => NEXT_WORDS.includes(t)) || hasPhrase(raw, "next meetup", "next event");
     const answers = answersFor(raw, tokens);
 
     // What's left describes the topic to look for
-    const used = new Set([...VIDEO_WORDS, ...NEXT_WORDS, ...(category ? [category] : []), "by", "this", "last", "year", "meetup", "meetups"]);
+    const used = new Set([...VIDEO_WORDS, ...NEXT_WORDS, ...RECENT_WORDS, ...(category ? [category] : []), "by", "this", "last", "year", "meetup", "meetups"]);
     tokens = tokens.filter((t) => !used.has(t) && !FILLER.has(t) && t !== yearToken && !(month >= 0 && MONTHS[month]!.startsWith(t) && t.length >= 3));
-    const topic = tokens.filter((t) => !byWords.includes(t));
+    // Once a question got its direct answer, its own words don't also look for talks
+    const topic = tokens.filter((t) => !byWords.includes(t) && !(answers.length && ANSWER_WORDS.has(t)));
 
     const pages = PAGES.map((p) => ({ p, s: scoreFields(raw.split(/\s+/).filter((t) => !FILLER.has(t)), [{ words: wordsOf(`${p.title} ${p.keywords}`), text: normalize(p.title), weight: 1 }]) }))
       .filter((x) => x.s > 0 && !answers.length)
@@ -324,28 +363,50 @@ export function useSiteSearch() {
           .map((x) => x.s)
       : [];
 
-    const talkMatches = data.talks
-      .filter((x) => (!video || x.t.video) && (!category || normalize(x.t.category ?? "") === category))
-      .filter((x) => inYear(x.t.date) && inMonth(x.t.date))
-      .filter((x) => !byWords.length || scoreFields(byWords, [{ words: x.people, text: x.peopleText, weight: 1 }]) > 0)
-      .map((x) => ({
-        t: x.t,
-        score: topic.length
-          ? scoreFields(topic, [
-              { words: x.title, text: x.titleText, weight: 3 },
-              { words: x.people, text: x.peopleText, weight: 2.5 },
-              { words: x.about, text: x.aboutText, weight: 1 },
-            ])
-          : 1,
-      }))
-      .filter((x) => x.score > 0)
-      .sort((a, b) => b.score - a.score || (b.t.date ?? "").localeCompare(a.t.date ?? ""))
-      .map((x) => x.t);
+    const findTalks = (narrow: boolean, some: boolean) =>
+      data.talks
+        .filter((x) => !narrow || ((!video || x.t.video) && (!category || normalize(x.t.category ?? "") === category)))
+        .filter((x) => !narrow || (inYear(x.t.date) && inMonth(x.t.date)))
+        .filter((x) => !byWords.length || scoreFields(byWords, [{ words: x.people, text: x.peopleText, weight: 1 }]) > 0)
+        .map((x) => ({
+          t: x.t,
+          score: topic.length
+            ? scoreFields(
+                topic,
+                [
+                  { words: x.title, text: x.titleText, weight: 3 },
+                  { words: x.people, text: x.peopleText, weight: 2.5 },
+                  { words: x.about, text: x.aboutText, weight: 1 },
+                ],
+                some
+              )
+            : 1,
+        }))
+        .filter((x) => x.score > 0)
+        // "Latest talks" means newest first, whatever else matched
+        .sort((a, b) => (recent ? 0 : b.score - a.score) || (b.t.date ?? "").localeCompare(a.t.date ?? ""))
+        .map((x) => x.t);
 
-    const anyFilter = video || category || year || month >= 0 || topic.length || byWords.length;
+    // Nothing for every word and every filter: say so, then show the closest,
+    // first without the year, category or video filter, then talks matching
+    // some of the words
+    const narrowed = video || category || year || month >= 0;
+    let talkMatches = findTalks(true, false);
+    let talksNote: string | null = null;
+    if (!talkMatches.length && topic.length) {
+      const what = topic.join(" ");
+      if (narrowed && (talkMatches = findTalks(false, false)).length) {
+        const when = [month >= 0 ? MONTHS[month]![0]!.toUpperCase() + MONTHS[month]!.slice(1) : "", year ?? ""].filter(Boolean).join(" ");
+        talksNote = `No ${what} talks${when ? ` in ${when}` : " like that"}. The closest:`;
+      } else if (topic.length > 1 && (talkMatches = findTalks(narrowed, true)).length) {
+        talksNote = `Nothing about all of “${what}”. The closest:`;
+      }
+    }
+
+    const anyFilter = video || category || year || month >= 0 || topic.length || byWords.length || recent;
 
     // Meetups by date ("march 2024"), title or venue
-    const events = index.value!.events
+    let events = index.value!.events
       .filter((e) => inYear(e.date) && inMonth(e.date))
       .filter((e) => {
         if (!topic.length) return Boolean(year || month >= 0) && !byWords.length;
@@ -353,6 +414,17 @@ export function useSiteSearch() {
         return scoreFields(topic, [{ words, text: words.join(" "), weight: 1 }]) > 0;
       })
       .slice(0, 3);
+    // No meetup that month: the ones closest to it
+    let eventsNote: string | null = null;
+    if (!events.length && year && month >= 0 && !topic.length && !byWords.length) {
+      const target = Date.UTC(year, month, 15);
+      events = [...index.value!.events]
+        .sort((a, b) => Math.abs(Date.parse(a.date) - target) - Math.abs(Date.parse(b.date) - target))
+        .slice(0, 2)
+        .sort((a, b) => a.date.localeCompare(b.date));
+      const name = MONTHS[month]![0]!.toUpperCase() + MONTHS[month]!.slice(1);
+      eventsNote = `No meetup in ${name} ${year}. The closest:`;
+    }
 
     return {
       pages,
@@ -362,6 +434,8 @@ export function useSiteSearch() {
       talkTotal: anyFilter ? talkMatches.length : 0,
       events,
       showNext,
+      talksNote,
+      eventsNote,
       filters: { video, category, year },
       words: topic.join(" "),
     };

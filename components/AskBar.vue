@@ -259,6 +259,10 @@ const groups = computed(() => {
     "all-talks": "Talks",
     event: "Events",
   };
+  // When nothing matched exactly, the group says so before the closest results
+  const r = results.value;
+  if (r.talksNote) labels.talk = labels["all-talks"] = r.talksNote;
+  if (r.eventsNote) labels.event = r.eventsNote;
   const out: { label: string; items: Item[] }[] = [];
   for (const item of items.value) {
     const label = labels[item.kind];
