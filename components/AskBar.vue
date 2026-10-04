@@ -183,7 +183,7 @@ const optionId = (key: string) => `ask-${uid}-${key}`;
 
 const suggestions = ["Next meetup", "Videos from 2024", "Talks by Martin", "Accessibility", "Is it free?", "How do I give a talk?"];
 const placeholder = props.variant === "hero"
-  ? "Try “react videos”, “talks by Martin” or “is it free?”"
+  ? "Try “react videos”, “talks by Aleksej” or “is it free?”"
   : "Ask Web Zürich";
 
 const date = (iso: string) =>
