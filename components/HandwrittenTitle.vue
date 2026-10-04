@@ -41,7 +41,7 @@ import { HANDWRITING } from "~/utils/handwriting";
 const INK = ["#2bb7e8", "#4f7bf0", "#8f52e8", "#e14f9a", "#ff6347", "#ffb22e", "#3fcf7a"];
 // Where the letters under the dots sit along the line (the ü twice, then the
 // i), so each dot takes its letter's colour
-const DOTS_AT = [0.577, 0.63, 0.747];
+const DOTS_AT = [0.564, 0.618, 0.739];
 
 // One even pen speed (units per ms) and barely a pause where the pen lifts,
 // so the whole title reads as a single movement of the hand
