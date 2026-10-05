@@ -3,8 +3,8 @@
  *
  * Hygraph's own on-the-fly transformations answer 429 Too Many Requests when a
  * page asks for many at once (the speakers page loads ~190 photos), so we let
- * @nuxt/image fetch the original and resize it: IPX in dev and on a Node server,
- * Vercel's image optimiser when deployed there.
+ * @nuxt/image fetch the original and resize it: IPX in dev, and at build time
+ * for the static site on Cloudflare.
  */
 export function useThumb() {
   const img = useImage();

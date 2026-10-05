@@ -100,21 +100,6 @@ export default defineNuxtConfig({
     storageKey: 'wz-color-mode',
   },
   routeRules: {
-    // Served from Vercel's edge cache and re-rendered in the background, so
-    // visitors don't wait for Hygraph. Content edits show up within the hour
-    // (ten minutes on the home page, which shows the next meetup)
-    '/': { isr: 600 },
-    '/talks': { isr: 3600 },
-    '/talks/**': { isr: 3600 },
-    '/speakers': { isr: 3600 },
-    '/speakers/**': { isr: 3600 },
-    '/events': { isr: 3600 },
-    '/events/**': { isr: 3600 },
-    '/about': { isr: 3600 },
-    '/sponsors': { isr: 3600 },
-    '/communities': { isr: 3600 },
-    '/code-of-conduct': { isr: 3600 },
-    '/advertising-rules': { isr: 3600 },
     // Gallery photos rarely change; a week in the browser, refreshed in the background
     '/img/**': { headers: { 'cache-control': 'public, max-age=604800, stale-while-revalidate=86400' } },
     // On a static host the prerendered search data has no file extension, so say it's JSON
@@ -125,10 +110,11 @@ export default defineNuxtConfig({
     '/workshops': { redirect: { to: '/', statusCode: 301 } },
     '/workshops/**': { redirect: { to: '/', statusCode: 301 } },
   },
-  // For the static build on Cloudflare (npm run generate:cloudflare): files the crawler
-  // can't find through links on the pages. Not on Vercel, where these stay live routes
-  nitro: process.env.NITRO_PRESET !== 'cloudflare_pages_static' ? {} : {
+  // The site is built ahead of time and hosted on Cloudflare Pages (npm run generate:cloudflare,
+  // rebuilt on every push and whenever content is published in Hygraph)
+  nitro: {
     prerender: {
+      // Files the crawler can't find through links on the pages
       routes: ['/sitemap.xml', '/robots.txt', '/calendar.ics', '/api/search-index'],
       // talks.html rather than talks/index.html: Cloudflare Pages serves it at /talks,
       // where index.html would get a trailing slash (/talks/)

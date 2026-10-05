@@ -1,3 +1,0 @@
-{
-  "installCommand": "node scripts/fetch-redraw.mjs && npm install"
-}

@@ -8,7 +8,8 @@
  *   node scripts/fetch-redraw.mjs
  *
  * Needs REDRAW_GITHUB_TOKEN: a classic token with the repo scope from an
- * account invited to wcandillon/redraw. Vercel runs this as its install step.
+ * account invited to wcandillon/redraw. The Cloudflare Pages build command runs
+ * this before npm ci.
  */
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 
