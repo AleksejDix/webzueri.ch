@@ -59,6 +59,10 @@ query home {
       count
     }
   }
+  # Where speakers worked when they gave their talk, for the "speakers from" names under the hero
+  speakerCompanies: speakers(first: 1000, where: { talks_some: {}, name_not: "Organising team" }) {
+    company
+  }
   firstEvent: events(orderBy: date_ASC, first: 1, where: { talks_some: {} }) {
     date
   }

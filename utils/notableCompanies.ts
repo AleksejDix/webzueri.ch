@@ -1,0 +1,24 @@
+// Well-known companies to name under the hero, most recognisable first. A name only
+// shows if a speaker's company in Hygraph matches it, so the list never claims too much
+export const NOTABLE_COMPANIES: { name: string; match: RegExp }[] = [
+  { name: "Google", match: /\bgoogle\b/i },
+  { name: "Microsoft", match: /\bmicrosoft\b/i },
+  { name: "GitLab", match: /\bgitlab\b/i },
+  { name: "Hugging Face", match: /\bhugging ?face\b/i },
+  { name: "Swiss Post", match: /\bswiss post\b|\bdie post\b/i },
+  { name: "SRF", match: /\bSRF\b/ },
+  { name: "Ringier", match: /\bringier\b/i },
+  { name: "ETH Zürich", match: /\beth z(u|ü)rich\b/i },
+  { name: "Homegate", match: /\bhomegate\b/i },
+  { name: "Accenture", match: /\baccenture\b/i },
+  { name: "Capgemini", match: /\bcapgemini\b/i },
+  { name: "XING", match: /\bxing\b/i },
+  { name: "Smallpdf", match: /\bsmallpdf\b/i },
+  { name: "Scandit", match: /\bscandit\b/i },
+  { name: "Zurich Instruments", match: /\bzurich instruments\b/i },
+  { name: "DFINITY", match: /\bdfinity\b/i },
+  { name: "Esri", match: /\besri\b/i },
+  { name: "V-ZUG", match: /\bv-zug\b/i },
+  { name: "Liip", match: /\bliip\b/i },
+  { name: "Jung von Matt", match: /\bjung von matt\b/i },
+];

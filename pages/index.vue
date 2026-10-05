@@ -16,6 +16,7 @@
             <AskBar variant="hero" />
           </div>
         </div>
+        <SpeakerCompanies :companies="(data?.speakerCompanies ?? []).map((s: any) => s.company)" class="mt-[clamp(1rem,2vw,2.5rem)]" />
       </div>
     </section>
 
@@ -121,6 +122,7 @@ import AskBar from "~/components/AskBar.vue";
 import RevealStatement from "~/components/RevealStatement.vue";
 import SpeakerSpotlight from "~/components/SpeakerSpotlight.vue";
 import HomeSponsors from "~/components/HomeSponsors.vue";
+import SpeakerCompanies from "~/components/SpeakerCompanies.vue";
 
 const thumb = useThumb();
 const { data } = await useAsyncQuery<any>(homeQuery);
