@@ -10,7 +10,6 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@js-temporal/polyfill": "^0.5.1",
     "@nuxt/fonts": "^0.14.0",
     "@nuxt/icon": "^2.5.1",
     "@nuxt/image": "^2.1.0",
@@ -51,6 +50,9 @@
     "unplugin-typegpu": "^0.12.4"
   },
   "overrides": {
-    "lightningcss": "1.33.0"
+    "lightningcss": "1.33.0",
+    "vue-view-transitions": {
+      "nuxt": "$nuxt"
+    }
   }
 }

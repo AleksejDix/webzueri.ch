@@ -56,10 +56,6 @@ export default defineNuxtConfig({
       // Compiles Redraw's "use gpu" shader functions to WGSL
       typegpu({}),
     ],
-    define: {
-      // Ensure Temporal polyfill is available in development
-      global: 'globalThis',
-    },
   },
   css: ['~/assets/css/main.css', '~/assets/css/transition.css'],
   image: {
@@ -132,9 +128,5 @@ export default defineNuxtConfig({
         httpEndpoint: 'https://api-eu-central-1.hygraph.com/v2/cjiqbztau0hjj01i2nukb5bjt/master'
       }
     }
-  },
-  // Ensure compatibility for Temporal polyfill
-  build: {
-    transpile: ['@js-temporal/polyfill']
   },
 })
