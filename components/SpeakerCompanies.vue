@@ -30,18 +30,10 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
-import { NOTABLE_COMPANIES } from "~/utils/notableCompanies";
-
-const props = defineProps<{ companies: (string | null)[] }>();
-
-// Each speaker's company as entered, trimmed; "Independent" isn't a company
-const entered = computed(() =>
-  props.companies.map((c) => (c ?? "").trim()).filter((c) => c && !/^(independent|freelance)/i.test(c)),
-);
-const logos = computed(() => NOTABLE_COMPANIES.filter((n) => entered.value.some((c) => n.match.test(c))));
-const others = computed(() => {
-  const all = new Set(entered.value.map((c) => c.toLowerCase()));
-  return [...all].filter((c) => !logos.value.some((n) => n.match.test(c))).length;
-});
+const { data } = await useFetch<{
+  logos: { name: string; logo: string; aspect: number; scale?: number; dark?: boolean }[];
+  others: number;
+}>("/api/speaker-companies");
+const logos = computed(() => data.value?.logos ?? []);
+const others = computed(() => data.value?.others ?? 0);
 </script>

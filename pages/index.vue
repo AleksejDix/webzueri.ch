@@ -16,7 +16,7 @@
             <AskBar variant="hero" />
           </div>
         </div>
-        <SpeakerCompanies :companies="(data?.speakerCompanies ?? []).map((s: any) => s.company)" class="mt-[clamp(1rem,2vw,2.5rem)]" />
+        <SpeakerCompanies class="mt-[clamp(1rem,2vw,2.5rem)]" />
       </div>
     </section>
 
