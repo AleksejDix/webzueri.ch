@@ -5,10 +5,17 @@ import typegpu from "unplugin-typegpu/vite";
 export default defineNuxtConfig({
   compatibilityDate: '2025-05-15',
   devtools: { enabled: true },
+  features: {
+    // All CSS goes inline into the HTML (cached at the edge), so no stylesheet
+    // request blocks the first paint
+    inlineStyles: true,
+  },
   experimental: {
     viewTransition: true,
   },
   modules: [
+    // Self-hosts Inter with size-matched fallbacks: no render-blocking Google Fonts request
+    '@nuxt/fonts',
     '@nuxt/icon',
     '@nuxt/image',
     '@nuxt/scripts',
@@ -80,17 +87,33 @@ export default defineNuxtConfig({
       ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-        { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
-        { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
-        // Inter with its opsz axis: headlines use the Display cut, text the Text cut
-        {
-          rel: 'stylesheet',
-          href: 'https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&display=swap',
-        },
       ],
     },
   },
+  fonts: {
+    // Inter with its opsz axis: headlines use the Display cut, text the Text cut
+    families: [{ name: 'Inter', provider: 'google', weights: ['300 700'], styles: ['normal'] }],
+    defaults: { subsets: ['latin', 'latin-ext'] },
+    google: { experimental: { variableAxis: { Inter: { opsz: [['14', '32']] } } } },
+  },
   routeRules: {
+    // Served from Vercel's edge cache and re-rendered in the background, so
+    // visitors don't wait for Hygraph. Content edits show up within the hour
+    // (ten minutes on the home page, which shows the next meetup)
+    '/': { isr: 600 },
+    '/talks': { isr: 3600 },
+    '/talks/**': { isr: 3600 },
+    '/speakers': { isr: 3600 },
+    '/speakers/**': { isr: 3600 },
+    '/events': { isr: 3600 },
+    '/events/**': { isr: 3600 },
+    '/about': { isr: 3600 },
+    '/sponsors': { isr: 3600 },
+    '/communities': { isr: 3600 },
+    '/code-of-conduct': { isr: 3600 },
+    '/advertising-rules': { isr: 3600 },
+    // Gallery photos rarely change; a week in the browser, refreshed in the background
+    '/img/**': { headers: { 'cache-control': 'public, max-age=604800, stale-while-revalidate=86400' } },
     // The old team page lives on as About; one address keeps search engines from splitting it
     '/team': { redirect: { to: '/about', statusCode: 301 } },
     // Workshops were discontinued; keep old links working

@@ -30,12 +30,12 @@
         </ul>
       </nav>
     </div>
-    <p class="footer__legal"><Logo /> <span class="ml-3">A free community meetup since 2016.</span></p>
+    <!-- The logo is rendered on the server and wakes up (starting its 3D keycaps) only once scrolled into view -->
+    <p class="footer__legal"><LazyLogo hydrate-on-visible /> <span class="ml-3">A free community meetup since 2016.</span></p>
   </footer>
 </template>
 
 <script setup lang="ts">
-import Logo from "~/components/Logo.vue";
 import { MEETUP_URL, SUBMIT_TALK_URL } from "~/composables/useSiteSearch";
 </script>
 

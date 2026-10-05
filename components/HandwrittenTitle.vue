@@ -64,14 +64,21 @@ const canvas = ref<HTMLCanvasElement>();
 const svgOnly = ref(false);
 
 let stop = () => {};
+// Redraw compiles its shaders on the first frames; the 3D logo waits for that
+// (KeycapLogo.vue), as both at once block the page for seconds
+const titleBusy = useState("title-gpu-busy", () => false);
 
 onMounted(async () => {
+  titleBusy.value = true;
   try {
     stop = await write(root.value!, canvas.value!);
+    await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)));
   } catch (error) {
     // No WebGPU, or it failed: the SVG writes the title instead
     if (navigator.gpu) console.warn("HandwrittenTitle: Redraw failed, using the SVG", error);
     svgOnly.value = true;
+  } finally {
+    titleBusy.value = false;
   }
 });
 
