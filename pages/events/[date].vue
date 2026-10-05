@@ -48,7 +48,7 @@
           <a v-if="event.venue?.googleMapsUrl" :href="event.venue.googleMapsUrl" target="_blank" rel="noopener" class="btn btn-quiet">
             <LucideNavigation :size="16" aria-hidden="true" /> Directions
           </a>
-          <a v-if="event.streamLink" :href="event.streamLink" target="_blank" rel="noopener" class="btn btn-quiet">
+          <a v-if="webLink(event.streamLink)" :href="webLink(event.streamLink)!" target="_blank" rel="noopener" class="btn btn-quiet">
             <LucidePlay :size="14" fill="currentColor" aria-hidden="true" /> Watch the stream
           </a>
           <a v-if="!upcoming && event.meetupLink" :href="event.meetupLink" target="_blank" rel="noopener" class="btn btn-quiet">
@@ -187,6 +187,7 @@ import SponsorLogo from "~/components/SponsorLogo.vue";
 import { SUBMIT_TALK_URL } from "~/composables/useSiteSearch";
 import {
   calendarPath,
+  webLink,
   clock,
   isPlaceholder,
   meetupPath,
@@ -248,7 +249,8 @@ const title = computed(() => (event.value ? meetupTitle(event.value) : ""));
 const time = computed(() => clock(event.value?.time));
 const times = computed(() => meetupTimes(date, event.value?.time));
 const online = computed(() => event.value?.eventType === "Digital");
-const upcoming = computed(() => date >= new Date().toISOString().slice(0, 10));
+const today = useToday();
+const upcoming = computed(() => date >= today.value);
 
 // "Organising team" entries are notices, not talks
 const talks = computed(() => (event.value?.talks ?? []).filter((t) => !t.speakers.some((s) => /organising team/i.test(s.name))));
@@ -310,7 +312,7 @@ useHead(() => {
     eventStatus: "https://schema.org/EventScheduled",
     eventAttendanceMode: online.value ? "https://schema.org/OnlineEventAttendanceMode" : "https://schema.org/OfflineEventAttendanceMode",
     location: online.value
-      ? { "@type": "VirtualLocation", url: e.streamLink || e.meetupLink || url }
+      ? { "@type": "VirtualLocation", url: webLink(e.streamLink) || e.meetupLink || url }
       : e.venue
         ? {
             "@type": "Place",

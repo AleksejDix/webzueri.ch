@@ -86,6 +86,12 @@ export default defineNuxtConfig({
   },
   ogImage: {
     includeTwitter: false,
+    security: {
+      // Some speaker photos are 10 MB originals; the default 3 s isn't enough to fetch
+      // them while the static build renders hundreds of share images at once
+      imageFetchTimeout: 20000,
+      renderTimeout: 60000,
+    },
   },
   colorMode: {
     classSuffix: '',
@@ -111,11 +117,23 @@ export default defineNuxtConfig({
     '/advertising-rules': { isr: 3600 },
     // Gallery photos rarely change; a week in the browser, refreshed in the background
     '/img/**': { headers: { 'cache-control': 'public, max-age=604800, stale-while-revalidate=86400' } },
+    // On a static host the prerendered search data has no file extension, so say it's JSON
+    '/api/search-index': { headers: { 'content-type': 'application/json; charset=utf-8' } },
     // The old team page lives on as About; one address keeps search engines from splitting it
     '/team': { redirect: { to: '/about', statusCode: 301 } },
     // Workshops were discontinued; keep old links working
     '/workshops': { redirect: { to: '/', statusCode: 301 } },
     '/workshops/**': { redirect: { to: '/', statusCode: 301 } },
+  },
+  // For the static build on Cloudflare (npm run generate:cloudflare): files the crawler
+  // can't find through links on the pages. Not on Vercel, where these stay live routes
+  nitro: process.env.NITRO_PRESET !== 'cloudflare_pages_static' ? {} : {
+    prerender: {
+      routes: ['/sitemap.xml', '/robots.txt', '/calendar.ics', '/api/search-index'],
+      // talks.html rather than talks/index.html: Cloudflare Pages serves it at /talks,
+      // where index.html would get a trailing slash (/talks/)
+      autoSubfolderIndex: false,
+    },
   },
   // Leftover Nuxt 2 page (superseded by pages/talks/[id].vue); safe to delete
   ignore: ['pages/talks/_id/**'],

@@ -1,5 +1,6 @@
-query events($date: Date) {
-  events(orderBy: date_DESC, first: 1000, where: { date_lt: $date }) {
+# Every meetup, past and upcoming; the page splits them by today's date in the browser
+query events {
+  events(orderBy: date_DESC, first: 1000) {
     id
     date
     time
@@ -32,16 +33,6 @@ query events($date: Date) {
       logo {
         url
       }
-    }
-  }
-  next: events(orderBy: date_ASC, first: 1, where: { date_gte: $date }) {
-    date
-    time
-    title
-    meetupLink
-    venue {
-      name
-      city
     }
   }
 }

@@ -133,8 +133,9 @@ const speakerCount = computed(() => data.value?.speakersConnection?.aggregate?.c
 const eventCount = computed(() => data.value?.eventsConnection?.aggregate?.count ?? 0);
 const since = computed(() => data.value?.firstEvent?.[0]?.date?.slice(0, 4) ?? "2016");
 
-const today = new Date().toISOString().slice(0, 10);
-const upcoming = computed(() => !!event.value && event.value.date >= today);
+// "Next meetup" until the day is over, "Last meetup" after; decided in the browser too
+const today = useToday();
+const upcoming = computed(() => !!event.value && event.value.date >= today.value);
 
 const fmt = (iso: string, opts: Intl.DateTimeFormatOptions) =>
   new Date(iso).toLocaleDateString("en-GB", { ...opts, timeZone: "UTC" });

@@ -26,6 +26,9 @@ export const meetupTitle = (e: { title?: string | null; date: string }) =>
 export const meetupPath = (date: string) => `/events/${date}`;
 export const calendarPath = (date: string) => `/calendar/${date}.ics`;
 
+/** A link field from Hygraph, or null when it holds a note instead ("no stream, join us AFK") */
+export const webLink = (url?: string | null) => (url && /^https?:\/\//i.test(url.trim()) ? url.trim() : null);
+
 /** "18:30", "1830" or "19:00 (Stream open from 18:00)" all become "18:30"-style times */
 export function clock(t?: string | null) {
   const m = (t ?? "").match(/(\d{1,2}):?(\d{2})/);

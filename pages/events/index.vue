@@ -88,7 +88,7 @@
                 </li>
               </ul>
 
-              <footer v-if="event.sponsors?.length || event.meetupLink || event.streamLink" class="mt-5 flex flex-wrap items-center justify-between gap-x-8 gap-y-4 border-t border-line pt-5">
+              <footer v-if="event.sponsors?.length || event.meetupLink || webLink(event.streamLink)" class="mt-5 flex flex-wrap items-center justify-between gap-x-8 gap-y-4 border-t border-line pt-5">
                 <div v-if="event.sponsors?.length" class="flex flex-wrap items-center gap-x-5 gap-y-3">
                   <span class="text-[0.8125rem] font-semibold text-muted">Supported by</span>
                   <a
@@ -104,7 +104,7 @@
                   </a>
                 </div>
                 <div class="flex gap-5">
-                  <a v-if="event.streamLink" :href="event.streamLink" target="_blank" rel="noopener" class="text-[0.9375rem] font-bold tracking-[-0.01em] text-heading transition-[color] duration-200 ease-[ease] hover:text-(--wz-link)">Watch the stream</a>
+                  <a v-if="webLink(event.streamLink)" :href="webLink(event.streamLink)!" target="_blank" rel="noopener" class="text-[0.9375rem] font-bold tracking-[-0.01em] text-heading transition-[color] duration-200 ease-[ease] hover:text-(--wz-link)">Watch the stream</a>
                   <a v-if="event.meetupLink" :href="event.meetupLink" target="_blank" rel="noopener" class="text-[0.9375rem] font-bold tracking-[-0.01em] text-heading transition-[color] duration-200 ease-[ease] hover:text-(--wz-link)">Meetup page</a>
                 </div>
               </footer>
@@ -125,6 +125,7 @@ import SponsorLogo from "~/components/SponsorLogo.vue";
 import Avatar from "~/components/Avatar.vue";
 import YtThumb from "~/components/YtThumb.vue";
 import { MEETUP_URL } from "~/composables/useSiteSearch";
+import { webLink } from "~/utils/meetups";
 
 interface Venue {
   name: string;
@@ -144,17 +145,16 @@ interface Event {
   sponsors: { id: string; name: string; website: string; logo: { url: string } | null }[];
 }
 
-const today = new Date().toISOString().split("T")[0];
+const today = useToday();
 
-const { data } = await useAsyncQuery<{
-  events: Event[];
-  next: (Omit<Event, "talks" | "sponsors"> & { venue: Venue | null })[];
-}>(publishedEventsQuery, { date: today });
+const { data } = await useAsyncQuery<{ events: Event[] }>(publishedEventsQuery);
 
-// All meetups on one page, newest first, grouped by year
-const events = computed(() => data.value?.events ?? []);
+// All past meetups on one page, newest first, grouped by year; the soonest upcoming one
+// goes on top. Split by today's date in the browser, so a meetup moves down once it's over
+const all = computed(() => data.value?.events ?? []);
+const events = computed(() => all.value.filter((e) => e.date < today.value));
 const eventsCount = computed(() => events.value.filter((e) => !isPlaceholder(e)).length);
-const next = computed(() => data.value?.next?.[0] ?? null);
+const next = computed(() => [...all.value].reverse().find((e) => e.date >= today.value) ?? null);
 const lastDate = computed(() => events.value[0]?.date ?? null);
 const firstYear = computed(() => events.value.at(-1)?.date.slice(0, 4) ?? "2016");
 
