@@ -3,6 +3,7 @@
 export const NOTABLE_COMPANIES: { name: string; match: RegExp }[] = [
   { name: "Google", match: /\bgoogle\b/i },
   { name: "Microsoft", match: /\bmicrosoft\b/i },
+  { name: "YouTube", match: /\byoutube\b/i },
   { name: "GitLab", match: /\bgitlab\b/i },
   { name: "Hugging Face", match: /\bhugging ?face\b/i },
   { name: "Swiss Post", match: /\bswiss post\b|\bdie post\b/i },
