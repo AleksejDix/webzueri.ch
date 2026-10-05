@@ -1,9 +1,0 @@
-// Cloudflare Pages: the site is fully static (npm run generate:cloudflare writes it to
-// dist/). Pages rebuilds on every push to master, and through its deploy hook whenever
-// content is published in Hygraph
-{
-  "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "webzurich",
-  "pages_build_output_dir": "./dist",
-  "compatibility_date": "2026-10-01"
-}
