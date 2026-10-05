@@ -188,7 +188,6 @@ defineOgImage("Page", {
 }
 .price__amount {
   margin-top: 0.75rem;
-  font-variation-settings: "opsz" 32;
   font-size: clamp(2.5rem, 4vw, 3.25rem);
   font-weight: 500;
   line-height: 1;

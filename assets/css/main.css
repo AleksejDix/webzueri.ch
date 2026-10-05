@@ -17,8 +17,10 @@
   --color-zh-soft: #ebedee;
   --color-zh-line: #e2e3e5;
 
-  --font-display: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --font-sans: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  /* The system interface font, as on GitHub: SF Pro on Apple devices, Segoe UI on
+     Windows, Noto or Roboto on Android. Nothing to download, so text shows at once */
+  --font-display: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
 
   --radius-frame: clamp(1.5rem, 2.08vw, 3rem);
   --frame-inset: clamp(0.5rem, 1.38vw, 2rem);
@@ -53,10 +55,9 @@
 }
 
 @layer components {
-  /* Large headline in Inter's Display optical size: Swiss grotesk, tight and medium */
+  /* Large headline: Swiss grotesk, tight and medium */
   .display {
     font-family: var(--font-display);
-    font-variation-settings: "opsz" 32;
     font-weight: 400;
     letter-spacing: -0.036em;
     line-height: 1;
@@ -66,7 +67,6 @@
 
   .heading {
     font-family: var(--font-sans);
-    font-variation-settings: "opsz" 32;
     font-weight: 600;
     letter-spacing: -0.03em;
     line-height: 1.12;

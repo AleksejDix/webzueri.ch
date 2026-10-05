@@ -126,7 +126,6 @@ onBeforeUnmount(() => window.removeEventListener("keydown", onKey));
   display: block;
   padding: 0.375rem 0.5rem;
   border-radius: 0.75rem;
-  font-variation-settings: "opsz" 32;
   font-size: 1.625rem;
   font-weight: 500;
   letter-spacing: -0.035em;

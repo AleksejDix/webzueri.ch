@@ -321,7 +321,6 @@ defineOgImage("Page", {
   font-weight: 600;
 }
 .datecard__day {
-  font-variation-settings: "opsz" 32;
   font-size: clamp(7rem, 17vw, 10.5rem);
   font-weight: 500;
   line-height: 1;

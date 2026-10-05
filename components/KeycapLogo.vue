@@ -73,8 +73,6 @@ onMounted(async () => {
 
   const THREE = await import("three");
   const { RoundedBoxGeometry } = await import("three/examples/jsm/geometries/RoundedBoxGeometry.js");
-  // Legends are drawn with Inter, so wait for it before painting them
-  await document.fonts?.load("600 160px Inter").catch(() => {});
 
   let renderer: InstanceType<typeof THREE.WebGLRenderer>;
   try {
@@ -119,7 +117,7 @@ onMounted(async () => {
     c.width = c.height = 256;
     const ctx = c.getContext("2d")!;
     ctx.fillStyle = color;
-    ctx.font = '600 168px Inter, "Helvetica Neue", Arial, sans-serif';
+    ctx.font = '600 168px system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif';
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
     ctx.fillText(letter, 128, 140);

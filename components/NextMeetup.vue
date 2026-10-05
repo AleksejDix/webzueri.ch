@@ -87,7 +87,6 @@ const href = computed(() => props.event?.meetupLink || MEETUP_URL);
   font-weight: 600;
 }
 .next__day {
-  font-variation-settings: "opsz" 32;
   font-size: 1.375rem;
   font-weight: 600;
   letter-spacing: -0.04em;

@@ -14,8 +14,6 @@ export default defineNuxtConfig({
     viewTransition: true,
   },
   modules: [
-    // Self-hosts Inter with size-matched fallbacks: no render-blocking Google Fonts request
-    '@nuxt/fonts',
     '@nuxt/icon',
     '@nuxt/image',
     '@nuxt/scripts',
@@ -85,12 +83,6 @@ export default defineNuxtConfig({
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       ],
     },
-  },
-  fonts: {
-    // Inter with its opsz axis: headlines use the Display cut, text the Text cut
-    families: [{ name: 'Inter', provider: 'google', weights: ['300 700'], styles: ['normal'] }],
-    defaults: { subsets: ['latin', 'latin-ext'] },
-    google: { experimental: { variableAxis: { Inter: { opsz: [['14', '32']] } } } },
   },
   routeRules: {
     // Served from Vercel's edge cache and re-rendered in the background, so
