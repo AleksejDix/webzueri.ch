@@ -28,3 +28,6 @@ logs
 
 # Redraw is subscriber-only; scripts/fetch-redraw.mjs downloads it at build time
 vendors
+
+# Cloudflare wrangler local state
+.wrangler
