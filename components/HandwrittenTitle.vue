@@ -5,7 +5,7 @@
     <!-- Sets the size, and draws the title itself when there is no JavaScript or no WebGPU -->
     <svg class="handwritten__svg" :viewBox="HANDWRITING.viewBox" aria-hidden="true" focusable="false">
       <defs>
-        <linearGradient :id="ink" gradientUnits="userSpaceOnUse" x1="160" x2="1380" y1="0" y2="0">
+        <linearGradient :id="ink" gradientUnits="userSpaceOnUse" x1="150" x2="1240" y1="0" y2="0">
           <stop v-for="(c, i) in INK" :key="i" :offset="i / (INK.length - 1)" :stop-color="c" />
         </linearGradient>
       </defs>
