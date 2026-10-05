@@ -76,15 +76,19 @@ export default defineNuxtConfig({
         { property: 'og:site_name', content: 'Web Zürich' },
         { property: 'og:type', content: 'website' },
         { property: 'og:locale', content: 'en_US' },
-        { name: 'twitter:card', content: 'summary_large_image' },
         { name: 'theme-color', content: '#0070b4' },
-        { name: 'twitter:site', content: '@webzuerich' },
-        { name: 'twitter:creator', content: '@aleksejdix' },
       ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       ],
     },
+  },
+  // No twitter:* tags (unhead deprecates them): X reads the og: tags
+  seo: {
+    automaticTwitterTags: false,
+  },
+  ogImage: {
+    includeTwitter: false,
   },
   colorMode: {
     classSuffix: '',
