@@ -121,8 +121,6 @@ export default defineNuxtConfig({
       autoSubfolderIndex: false,
     },
   },
-  // Leftover Nuxt 2 page (superseded by pages/talks/[id].vue); safe to delete
-  ignore: ['pages/talks/_id/**'],
   lucide: {
     namePrefix: "Lucide",
   },
