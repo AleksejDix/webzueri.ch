@@ -8,7 +8,7 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "generate:cloudflare": "NITRO_PRESET=cloudflare_pages_static nuxt generate"
+    "generate:cloudflare": "NITRO_PRESET=cloudflare_pages_static nuxt generate && node scripts/clean-cf-redirects.mjs"
   },
   "dependencies": {
     "@nuxt/icon": "^2.5.1",
