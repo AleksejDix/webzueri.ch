@@ -29,6 +29,7 @@ export default defineNuxtConfig({
     '@nuxtjs/sitemap',
     'nuxt-schema-org',
     'nuxt-og-image',
+    'nuxt-security',
   ],
   site: {
     url: 'https://webzurich.ch',
@@ -93,6 +94,54 @@ export default defineNuxtConfig({
       renderTimeout: 60000,
     },
   },
+  // nuxt-security, set up for a static site: the Content-Security-Policy goes into each page
+  // as a <meta> tag with hashes of its inline scripts, and scripts get integrity (SRI) checks.
+  // The other security headers are in routeRules below, as one rule for Cloudflare's _headers
+  // (the per-page export would need more rules than Pages allows). Its server-side features
+  // have nothing to run on here
+  security: {
+    headers: {
+      contentSecurityPolicy: {
+        'default-src': ["'self'"],
+        'base-uri': ["'none'"],
+        'object-src': ["'none'"],
+        'form-action': ["'self'"],
+        'script-src': ["'self'", "'strict-dynamic'", "'nonce-{{nonce}}'"],
+        'script-src-attr': ["'none'"],
+        // Vue and @nuxtjs/color-mode set inline styles; the CSS is inlined into the HTML
+        'style-src': ["'self'", "'unsafe-inline'"],
+        // Speaker photos and logos from Hygraph, video thumbnails from YouTube
+        'img-src': ["'self'", 'data:', 'blob:', 'https://eu-central-1.graphassets.com', 'https://i.ytimg.com'],
+        'font-src': ["'self'", 'data:'],
+        'connect-src': ["'self'", 'https://api-eu-central-1.hygraph.com'],
+        // Talk videos play from YouTube's no-cookie player
+        'frame-src': ['https://www.youtube-nocookie.com'],
+        'worker-src': ["'self'", 'blob:'],
+        'manifest-src': ["'self'"],
+        'upgrade-insecure-requests': true,
+      },
+      // Not as headers: these go out through routeRules instead (see the comment above)
+      crossOriginEmbedderPolicy: false,
+      crossOriginOpenerPolicy: false,
+      crossOriginResourcePolicy: false,
+      originAgentCluster: false,
+      referrerPolicy: false,
+      strictTransportSecurity: false,
+      xContentTypeOptions: false,
+      xDNSPrefetchControl: false,
+      xDownloadOptions: false,
+      xFrameOptions: false,
+      xPermittedCrossDomainPolicies: false,
+      xXSSProtection: false,
+      permissionsPolicy: false,
+    },
+    ssg: { meta: true, hashScripts: true, hashStyles: false, nitroHeaders: false, exportToPresets: false },
+    rateLimiter: false,
+    requestSizeLimiter: false,
+    xssValidator: false,
+    corsHandler: false,
+    allowedMethodsRestricter: false,
+  },
   colorMode: {
     classSuffix: '',
     preference: 'system',
@@ -100,6 +149,18 @@ export default defineNuxtConfig({
     storageKey: 'wz-color-mode',
   },
   routeRules: {
+    // Security headers for every page, written to Cloudflare's _headers. The YouTube player
+    // needs the referrer (it refuses to play without one) and fullscreen
+    '/**': {
+      headers: {
+        'strict-transport-security': 'max-age=15552000; includeSubDomains',
+        'x-content-type-options': 'nosniff',
+        'x-frame-options': 'SAMEORIGIN',
+        'referrer-policy': 'strict-origin-when-cross-origin',
+        'cross-origin-opener-policy': 'same-origin',
+        'permissions-policy': 'camera=(), microphone=(), geolocation=(), display-capture=(), fullscreen=(self "https://www.youtube-nocookie.com")',
+      },
+    },
     // Gallery photos rarely change; a week in the browser, refreshed in the background
     '/img/**': { headers: { 'cache-control': 'public, max-age=604800, stale-while-revalidate=86400' } },
     // On a static host the prerendered search data has no file extension, so say it's JSON
