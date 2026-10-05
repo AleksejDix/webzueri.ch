@@ -73,8 +73,6 @@ export default defineNuxtConfig({
         { name: 'description', content: 'Learn, share and collaborate with your local Web professionals and enthusiasts!' },
         { name: 'yandex-verification', content: '5b394792ab19c0bd' },
         { name: 'google-site-verification', content: 'IVcT2HAuAxv-lQubqO2BqwmRDjl4IFoNMBDGBPyELH0' },
-        { property: 'og:site_name', content: 'Web Zürich' },
-        { property: 'og:type', content: 'website' },
         { property: 'og:locale', content: 'en_US' },
         { name: 'theme-color', content: '#0070b4' },
       ],
