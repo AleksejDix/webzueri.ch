@@ -3,12 +3,12 @@
     Photos from our meetups, crossfading in the hero card like america.gov.
     Slides fill the parent card; the controls sit centred just below it.
   -->
-  <section class="gallery" aria-roledescription="carousel" aria-label="Photos from Web Zürich meetups">
-    <div class="gallery__slides" :aria-live="playing ? 'off' : 'polite'">
+  <section class="absolute inset-0 rounded-[inherit]" aria-roledescription="carousel" aria-label="Photos from Web Zürich meetups">
+    <div class="absolute inset-0 overflow-hidden rounded-[inherit] bg-soft" :aria-live="playing ? 'off' : 'polite'">
       <div
         v-for="(photo, i) in photos"
         :key="photo.src"
-        class="gallery__slide"
+        class="absolute inset-0 opacity-0 transition-opacity duration-1200 ease-[ease] motion-reduce:transition-none [&.is-current]:opacity-100"
         :class="{ 'is-current': i === current }"
         role="group"
         aria-roledescription="slide"
@@ -24,20 +24,26 @@
           densities="x1 x2"
           format="webp"
           quality="72"
-          class="gallery__photo"
+          class="h-full w-full object-cover"
           :preload="i === 0"
           :loading="i === 0 ? 'eager' : 'lazy'"
         />
       </div>
     </div>
 
-    <div class="gallery__controls">
-      <button type="button" class="gallery__button" aria-label="Previous photo" @click="go(-1)">
+    <!-- Three round buttons centred under the card, as on america.gov -->
+    <div class="absolute top-[calc(100%+1.25rem)] left-1/2 flex -translate-x-1/2 gap-2">
+      <button
+        type="button"
+        class="grid size-9 place-items-center rounded-full bg-raised text-heading shadow-[0_1px_2px_rgb(var(--wz-shadow)/0.08),0_4px_10px_-4px_rgb(var(--wz-shadow)/0.2)] [transition:background-color_0.2s,color_0.2s] hover:bg-deep hover:text-white"
+        aria-label="Previous photo"
+        @click="go(-1)"
+      >
         <LucideChevronLeft :size="16" aria-hidden="true" />
       </button>
       <button
         type="button"
-        class="gallery__button"
+        class="grid size-9 place-items-center rounded-full bg-raised text-heading shadow-[0_1px_2px_rgb(var(--wz-shadow)/0.08),0_4px_10px_-4px_rgb(var(--wz-shadow)/0.2)] [transition:background-color_0.2s,color_0.2s] hover:bg-deep hover:text-white"
         :aria-label="playing ? 'Pause slideshow' : 'Play slideshow'"
         :aria-pressed="playing"
         @click="toggle"
@@ -45,7 +51,12 @@
         <LucidePause v-if="playing" :size="14" fill="currentColor" aria-hidden="true" />
         <LucidePlay v-else :size="14" fill="currentColor" aria-hidden="true" />
       </button>
-      <button type="button" class="gallery__button" aria-label="Next photo" @click="go(1)">
+      <button
+        type="button"
+        class="grid size-9 place-items-center rounded-full bg-raised text-heading shadow-[0_1px_2px_rgb(var(--wz-shadow)/0.08),0_4px_10px_-4px_rgb(var(--wz-shadow)/0.2)] [transition:background-color_0.2s,color_0.2s] hover:bg-deep hover:text-white"
+        aria-label="Next photo"
+        @click="go(1)"
+      >
         <LucideChevronRight :size="16" aria-hidden="true" />
       </button>
     </div>
@@ -108,62 +119,3 @@ onBeforeUnmount(() => {
   document.removeEventListener("visibilitychange", onVisibility);
 });
 </script>
-
-<style scoped>
-.gallery {
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-}
-.gallery__slides {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  border-radius: inherit;
-  background: var(--color-zh-soft);
-}
-.gallery__slide {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  transition: opacity 1.2s ease;
-}
-.gallery__slide.is-current {
-  opacity: 1;
-}
-.gallery__photo {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* Three round buttons centred under the card, as on america.gov */
-.gallery__controls {
-  position: absolute;
-  top: calc(100% + 1.25rem);
-  left: 50%;
-  display: flex;
-  gap: 0.5rem;
-  transform: translateX(-50%);
-}
-.gallery__button {
-  display: grid;
-  place-items: center;
-  width: 2.25rem;
-  height: 2.25rem;
-  border-radius: 999px;
-  background: #fff;
-  color: var(--color-zh-navy);
-  box-shadow: 0 1px 2px rgb(0 12 31 / 0.08), 0 4px 10px -4px rgb(0 12 31 / 0.2);
-  transition: background-color 0.2s, color 0.2s;
-}
-.gallery__button:hover {
-  background: var(--color-zh-navy);
-  color: #fff;
-}
-@media (prefers-reduced-motion: reduce) {
-  .gallery__slide {
-    transition: none;
-  }
-}
-</style>

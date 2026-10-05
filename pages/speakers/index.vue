@@ -4,45 +4,71 @@
       title="Speakers"
       :lede="`${people.length} people have shared what they know on the Web Zürich stage. Pick someone to see their talks.`"
     >
-      <label class="filter">
-        <LucideSearch :size="18" class="text-zh-blue" aria-hidden="true" />
+      <label
+        class="mt-8 flex h-13 w-[min(100%,30rem)] items-center gap-2.5 rounded-full border border-line bg-raised px-5 transition-[border-color,box-shadow] duration-200 ease-[ease] focus-within:border-link focus-within:ring-4 focus-within:ring-link/15"
+      >
+        <LucideSearch :size="18" class="text-link" aria-hidden="true" />
         <span class="sr-only">Search speakers</span>
-        <input v-model="query" type="search" placeholder="Search by name, company or talk" autocomplete="off" />
+        <input
+          v-model="query"
+          type="search"
+          placeholder="Search by name, company or talk"
+          autocomplete="off"
+          class="h-full min-w-0 flex-1 bg-transparent text-[1rem] focus:outline-none"
+        />
       </label>
-      <nav v-if="!terms.length" class="letters" aria-label="Jump to a letter">
-        <a v-for="g in groups" :key="g.letter" :href="`#letter-${g.letter}`" class="letters__link">{{ g.letter }}</a>
+      <!-- A to Z jump links -->
+      <nav v-if="!terms.length" class="mt-5 flex max-w-[40rem] flex-wrap justify-center gap-1" aria-label="Jump to a letter">
+        <a
+          v-for="g in groups"
+          :key="g.letter"
+          :href="`#letter-${g.letter}`"
+          class="grid size-8 place-items-center rounded-full text-[0.875rem] font-semibold text-heading transition-colors duration-200 ease-[ease] hover:bg-accent hover:text-white"
+          >{{ g.letter }}</a
+        >
       </nav>
     </PageHero>
 
-    <div class="list">
+    <div class="mx-auto mt-[clamp(3rem,5vw,4.5rem)] max-w-[78rem] px-4 pb-[clamp(5rem,8vw,8rem)]">
       <!-- Searching shows one flat list of matches -->
       <template v-if="terms.length">
-        <p class="status" aria-live="polite">
+        <p class="mx-2 mb-6 flex flex-wrap items-center gap-x-4 gap-y-2 text-[0.9375rem] font-medium text-muted" aria-live="polite">
           {{ plural(matches.length, "speaker") }} match “{{ query.trim() }}”
-          <button type="button" class="status__clear" @click="query = ''">
+          <button
+            type="button"
+            class="inline-flex items-center gap-1 font-semibold text-link hover:underline hover:underline-offset-[0.2em]"
+            @click="query = ''"
+          >
             <LucideX :size="14" aria-hidden="true" /> Clear
           </button>
         </p>
-        <ul v-if="matches.length" class="grid">
+        <ul v-if="matches.length" class="grid grid-cols-[repeat(auto-fill,minmax(min(100%,12.5rem),1fr))] gap-4 *:flex">
           <li v-for="p in matches" :key="p.id"><SpeakerTile :person="p" /></li>
         </ul>
-        <div v-else class="empty">
+        <div v-else class="py-16 text-center">
           <p class="heading text-2xl">Nobody matches that.</p>
-          <p class="mt-2 text-zh-muted">Check the spelling, or try a company or a word from a talk title.</p>
+          <p class="mt-2 text-muted">Check the spelling, or try a company or a word from a talk title.</p>
         </div>
       </template>
 
       <template v-else>
         <!-- The people who keep coming back to the stage -->
-        <section class="regulars" aria-labelledby="regulars-title">
-          <h2 id="regulars-title" class="section-head">
-            <span class="display section-head__title">Regulars</span>
-            <span class="section-head__count">{{ regulars.length }} people with {{ REGULAR }} or more talks</span>
+        <section aria-labelledby="regulars-title">
+          <h2 id="regulars-title" class="mx-2 mb-6 flex flex-wrap items-baseline gap-x-4 gap-y-1">
+            <span class="display text-[clamp(2.5rem,5vw,4.5rem)] leading-none">Regulars</span>
+            <span class="text-[1rem] font-semibold text-muted">{{ regulars.length }} people with {{ REGULAR }} or more talks</span>
           </h2>
-          <ul class="regulars__grid">
+          <!-- Regulars: bigger cards with their latest talks -->
+          <ul class="grid grid-cols-[repeat(auto-fill,minmax(min(100%,24rem),1fr))] gap-4 *:flex">
             <li v-for="p in regulars" :key="p.id">
-              <NuxtLink :to="`/speakers/${p.id}`" class="regular">
-                <span class="regular__photo" :style="{ '--tone': p.tone }">
+              <NuxtLink
+                :to="`/speakers/${p.id}`"
+                class="group/card grid w-full grid-cols-[auto_minmax(0,1fr)] gap-5 rounded-tile bg-raised py-3 pr-6 pl-3 shadow-[0_0_0_1px_rgb(var(--wz-shadow)/0.07),0_1px_2px_rgb(var(--wz-shadow)/0.04),0_8px_24px_-16px_rgb(var(--wz-shadow)/0.18)] [transition:translate_0.4s_var(--ease-out-soft),box-shadow_0.4s] hover:-translate-y-1 hover:shadow-[0_0_0_1px_rgb(var(--wz-shadow)/0.08),0_1px_2px_rgb(var(--wz-shadow)/0.05),0_14px_28px_-14px_rgb(var(--wz-shadow)/0.28)]"
+              >
+                <span
+                  class="relative grid aspect-square w-34 place-items-center rounded-[1.25rem] bg-(--tone) text-[2rem] font-semibold text-white"
+                  :style="{ '--tone': p.tone }"
+                >
                   <img
                     v-if="p.photo"
                     :src="thumb(p.photo, 360)"
@@ -50,19 +76,24 @@
                     width="180"
                     height="180"
                     loading="lazy"
+                    class="size-full rounded-[inherit] object-cover object-top"
                     :style="{ viewTransitionName: `speaker-${p.id}` }"
                   />
                   <span v-else aria-hidden="true">{{ initials(p.name) }}</span>
-                  <span class="regular__count" aria-hidden="true">{{ p.talks.length }}</span>
+                  <!-- Talk count as a blue badge on the photo -->
+                  <span
+                    class="absolute -right-1.5 -bottom-1.5 grid size-9 place-items-center rounded-full bg-accent text-[1rem] font-bold text-white shadow-[0_0_0_4px_var(--wz-raised)]"
+                    aria-hidden="true"
+                    >{{ p.talks.length }}</span>
                 </span>
-                <span class="regular__body">
-                  <span class="regular__name">{{ p.name }}<span class="sr-only">, {{ p.talks.length }} talks</span></span>
-                  <span v-if="p.roleLine" class="regular__role">{{ p.roleLine }}</span>
-                  <span class="regular__talks">
-                    <span v-for="t in p.talks.slice(0, 3)" :key="t.id" class="regular__talk">
-                      <LucidePlay v-if="t.youtubecode" :size="11" fill="currentColor" class="regular__play" aria-label="Recorded" />
-                      <span class="regular__talk-name">{{ t.name.trim() }}</span>
-                      <span class="regular__year">{{ yearOf(t) }}</span>
+                <span class="flex min-w-0 flex-col gap-1 py-2">
+                  <span class="text-[1.25rem] font-semibold tracking-[-0.015em] text-heading transition-colors duration-200 ease-[ease] group-hover/card:text-link">{{ p.name }}<span class="sr-only">, {{ p.talks.length }} talks</span></span>
+                  <span v-if="p.roleLine" class="line-clamp-2 text-[0.875rem] leading-[1.4] text-muted">{{ p.roleLine }}</span>
+                  <span class="mt-auto grid grid-cols-1 gap-1 pt-2.5">
+                    <span v-for="t in p.talks.slice(0, 3)" :key="t.id" class="flex min-w-0 items-baseline gap-1.5 text-[0.8125rem] text-ink">
+                      <LucidePlay v-if="t.youtubecode" :size="11" fill="currentColor" class="flex-none text-link" aria-label="Recorded" />
+                      <span class="min-w-0 truncate">{{ t.name.trim() }}</span>
+                      <span class="ml-auto flex-none text-muted tabular-nums">{{ yearOf(t) }}</span>
                     </span>
                   </span>
                 </span>
@@ -71,14 +102,23 @@
           </ul>
         </section>
 
-        <section class="everyone" aria-labelledby="everyone-title">
-          <h2 id="everyone-title" class="section-head">
-            <span class="display section-head__title">Everyone</span>
-            <span class="section-head__count">A to Z by first name</span>
+        <section class="mt-[clamp(5rem,8vw,7rem)]" aria-labelledby="everyone-title">
+          <h2 id="everyone-title" class="mx-2 mb-6 flex flex-wrap items-baseline gap-x-4 gap-y-1">
+            <span class="display text-[clamp(2.5rem,5vw,4.5rem)] leading-none">Everyone</span>
+            <span class="text-[1rem] font-semibold text-muted">A to Z by first name</span>
           </h2>
-          <section v-for="g in groups" :id="`letter-${g.letter}`" :key="g.letter" class="letter" :aria-label="g.letter">
-            <h3 class="letter__head" aria-hidden="true">{{ g.letter }}</h3>
-            <ul class="grid">
+          <section
+            v-for="g in groups"
+            :id="`letter-${g.letter}`"
+            :key="g.letter"
+            class="grid scroll-mt-4 grid-cols-[4.5rem_minmax(0,1fr)] gap-4 pt-8 [@media(max-width:640px)]:grid-cols-1"
+            :aria-label="g.letter"
+          >
+            <h3
+              class="sticky top-4 self-start pl-2 text-[clamp(2.5rem,4vw,3.5rem)] leading-none font-medium tracking-[-0.04em] text-link"
+              aria-hidden="true"
+            >{{ g.letter }}</h3>
+            <ul class="grid grid-cols-[repeat(auto-fill,minmax(min(100%,12.5rem),1fr))] gap-4 *:flex">
               <li v-for="p in g.people" :key="p.id"><SpeakerTile :person="p" /></li>
             </ul>
           </section>
@@ -177,14 +217,25 @@ const matches = computed(() => people.value.filter((p) => terms.value.every((t) 
 
 const plural = (n: number, word: string) => `${n} ${word}${n === 1 ? "" : "s"}`;
 
-// One tile in the grid: photo (or initials on Zürich blue), name, role and talks
+// One tile in the grid: photo (or initials on Zürich blue), name, role and talks.
+// Rendered with h(), so the Tailwind classes live in these strings
+const tile = {
+  card: "group/tile flex w-full flex-col rounded-tile bg-raised px-2 pt-2 pb-4 shadow-[0_0_0_1px_rgb(var(--wz-shadow)/0.07),0_1px_2px_rgb(var(--wz-shadow)/0.04),0_8px_24px_-16px_rgb(var(--wz-shadow)/0.18)] [transition:translate_0.4s_var(--ease-out-soft),box-shadow_0.4s] hover:-translate-y-1 hover:shadow-[0_0_0_1px_rgb(var(--wz-shadow)/0.08),0_1px_2px_rgb(var(--wz-shadow)/0.05),0_14px_28px_-14px_rgb(var(--wz-shadow)/0.28)]",
+  photo: "mb-3.5 grid aspect-square place-items-center overflow-hidden rounded-[1.25rem] bg-(--tone) text-[2.25rem] font-semibold tracking-[-0.02em] text-white",
+  img: "size-full object-cover object-top transition-transform duration-500 ease-out-soft group-hover/tile:scale-105",
+  name: "px-2 text-[1.0625rem] leading-[1.25] font-semibold tracking-[-0.01em] text-heading transition-colors duration-200 ease-[ease] group-hover/tile:text-link",
+  role: "mt-1 line-clamp-2 px-2 text-[0.8125rem] leading-[1.4] text-muted",
+  meta: "mt-auto flex flex-wrap items-center gap-x-2.5 gap-y-1.5 px-2 pt-3 text-[0.8125rem] font-semibold text-heading",
+  video: "inline-flex items-center gap-1 rounded-full bg-link/10 px-2 py-0.5 text-link",
+  year: "ml-auto font-medium text-muted tabular-nums",
+};
 const SpeakerTile = defineComponent({
   props: { person: { type: Object as () => Person, required: true } },
   setup(props) {
     return () => {
       const p = props.person;
-      return h(NuxtLink, { to: `/speakers/${p.id}`, class: "tile-card" }, () => [
-        h("span", { class: "tile-card__photo", style: { "--tone": p.tone } }, [
+      return h(NuxtLink, { to: `/speakers/${p.id}`, class: tile.card }, () => [
+        h("span", { class: tile.photo, style: { "--tone": p.tone } }, [
           p.photo
             ? h("img", {
                 src: thumb(p.photo, 320),
@@ -192,16 +243,17 @@ const SpeakerTile = defineComponent({
                 width: 160,
                 height: 160,
                 loading: "lazy",
+                class: tile.img,
                 style: { viewTransitionName: `speaker-${p.id}` },
               })
             : h("span", { "aria-hidden": "true" }, initials(p.name)),
         ]),
-        h("span", { class: "tile-card__name" }, p.name),
-        p.roleLine ? h("span", { class: "tile-card__role" }, p.roleLine) : null,
-        h("span", { class: "tile-card__meta" }, [
+        h("span", { class: tile.name }, p.name),
+        p.roleLine ? h("span", { class: tile.role }, p.roleLine) : null,
+        h("span", { class: tile.meta }, [
           h("span", plural(p.talks.length, "talk")),
-          p.videos ? h("span", { class: "tile-card__video" }, [h(Play, { size: 10, fill: "currentColor", "aria-hidden": "true" }), " Video"]) : null,
-          p.latest ? h("span", { class: "tile-card__year" }, p.latest) : null,
+          p.videos ? h("span", { class: tile.video }, [h(Play, { size: 10, fill: "currentColor", "aria-hidden": "true" }), " Video"]) : null,
+          p.latest ? h("span", { class: tile.year }, p.latest) : null,
         ]),
       ]);
     };
@@ -219,360 +271,3 @@ defineOgImage("Page", {
   description: "Everyone who has given a talk at Web Zürich, with their talks and recordings.",
 });
 </script>
-
-<style scoped>
-.filter {
-  display: flex;
-  align-items: center;
-  gap: 0.625rem;
-  width: min(100%, 30rem);
-  height: 3.25rem;
-  margin-top: 2rem;
-  padding-inline: 1.25rem;
-  border-radius: 999px;
-  background: #fff;
-  border: 1px solid var(--color-zh-line);
-  transition: border-color 0.2s, box-shadow 0.2s;
-}
-.filter:focus-within {
-  border-color: var(--color-zh-blue);
-  box-shadow: 0 0 0 4px rgb(0 112 180 / 0.15);
-}
-.filter input {
-  flex: 1;
-  min-width: 0;
-  height: 100%;
-  background: transparent;
-  font-size: 1rem;
-}
-.filter input:focus {
-  outline: none;
-}
-
-/* A to Z jump links */
-.letters {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.25rem;
-  max-width: 40rem;
-  margin-top: 1.25rem;
-}
-.letters__link {
-  display: grid;
-  place-items: center;
-  width: 2rem;
-  height: 2rem;
-  border-radius: 999px;
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: var(--color-zh-navy);
-  transition: background-color 0.2s, color 0.2s;
-}
-.letters__link:hover {
-  background: var(--color-zh-blue);
-  color: #fff;
-}
-
-.list {
-  max-width: 78rem;
-  margin: clamp(3rem, 5vw, 4.5rem) auto 0;
-  padding: 0 1rem clamp(5rem, 8vw, 8rem);
-}
-.status {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.5rem 1rem;
-  margin: 0 0.5rem 1.5rem;
-  font-size: 0.9375rem;
-  font-weight: 500;
-  color: var(--color-zh-muted);
-}
-.status__clear {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.25rem;
-  font-weight: 600;
-  color: var(--color-zh-blue);
-}
-.status__clear:hover {
-  text-decoration: underline;
-  text-underline-offset: 0.2em;
-}
-.empty {
-  padding-block: 4rem;
-  text-align: center;
-}
-
-.section-head {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0.25rem 1rem;
-  margin: 0 0.5rem 1.5rem;
-}
-.section-head__title {
-  font-size: clamp(2.5rem, 5vw, 4.5rem);
-  line-height: 1;
-}
-.section-head__count {
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--color-zh-muted);
-}
-
-/* Regulars: bigger cards with their latest talks */
-.regulars__grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 24rem), 1fr));
-  gap: 1rem;
-}
-.regulars__grid > li {
-  display: flex;
-}
-.regular {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  gap: 1.25rem;
-  width: 100%;
-  padding: 0.75rem 1.5rem 0.75rem 0.75rem;
-  border-radius: 1.75rem;
-  background: #fff;
-  box-shadow: 0 0 0 1px rgb(0 12 31 / 0.07), 0 1px 2px rgb(0 12 31 / 0.04), 0 8px 24px -16px rgb(0 12 31 / 0.18);
-  transition: transform 0.4s var(--ease-out-soft), box-shadow 0.4s;
-}
-.regular:hover {
-  transform: translateY(-4px);
-  box-shadow:
-    0 0 0 1px rgb(0 12 31 / 0.08),
-    0 1px 2px rgb(0 12 31 / 0.05),
-    0 14px 28px -14px rgb(0 12 31 / 0.28);
-}
-.regular:focus-visible {
-  border-radius: 1.75rem;
-}
-.regular__photo {
-  position: relative;
-  display: grid;
-  place-items: center;
-  width: 8.5rem;
-  aspect-ratio: 1;
-  border-radius: 1.25rem;
-  background: var(--tone);
-  color: #fff;
-  font-size: 2rem;
-  font-weight: 600;
-}
-.regular__photo img {
-  width: 100%;
-  height: 100%;
-  border-radius: inherit;
-  object-fit: cover;
-  object-position: top;
-}
-/* Talk count as a blue badge on the photo */
-.regular__count {
-  position: absolute;
-  right: -0.375rem;
-  bottom: -0.375rem;
-  display: grid;
-  place-items: center;
-  width: 2.25rem;
-  height: 2.25rem;
-  border-radius: 999px;
-  background: var(--color-zh-blue);
-  color: #fff;
-  font-size: 1rem;
-  font-weight: 700;
-  box-shadow: 0 0 0 4px #fff;
-}
-.regular__body {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-  min-width: 0;
-  padding-block: 0.5rem;
-}
-.regular__name {
-  font-size: 1.25rem;
-  font-weight: 600;
-  letter-spacing: -0.015em;
-  color: var(--color-zh-navy);
-  transition: color 0.2s;
-}
-.regular:hover .regular__name {
-  color: var(--color-zh-blue);
-}
-.regular__role {
-  font-size: 0.875rem;
-  line-height: 1.4;
-  color: var(--color-zh-muted);
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-.regular__talks {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: 0.25rem;
-  margin-top: auto;
-  padding-top: 0.625rem;
-}
-.regular__talk {
-  display: flex;
-  min-width: 0;
-  align-items: baseline;
-  gap: 0.375rem;
-  font-size: 0.8125rem;
-  color: var(--color-zh-ink);
-}
-.regular__play {
-  flex: none;
-  color: var(--color-zh-blue);
-}
-.regular__talk-name {
-  min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-.regular__year {
-  flex: none;
-  margin-left: auto;
-  color: var(--color-zh-muted);
-  font-variant-numeric: tabular-nums;
-}
-
-/* Everyone */
-.everyone {
-  margin-top: clamp(5rem, 8vw, 7rem);
-}
-.letter {
-  display: grid;
-  grid-template-columns: 4.5rem minmax(0, 1fr);
-  gap: 1rem;
-  padding-top: 2rem;
-  scroll-margin-top: 1rem;
-}
-@media (max-width: 640px) {
-  .letter {
-    grid-template-columns: minmax(0, 1fr);
-  }
-}
-.letter__head {
-  position: sticky;
-  top: 1rem;
-  align-self: start;
-  padding-left: 0.5rem;
-  font-size: clamp(2.5rem, 4vw, 3.5rem);
-  font-weight: 500;
-  line-height: 1;
-  letter-spacing: -0.04em;
-  color: var(--color-zh-blue);
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 12.5rem), 1fr));
-  gap: 1rem;
-}
-.grid > li {
-  display: flex;
-}
-
-/* Tiles are rendered by SpeakerTile, so they're styled through :deep */
-.grid :deep(.tile-card) {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  padding: 0.5rem 0.5rem 1rem;
-  border-radius: 1.75rem;
-  background: #fff;
-  box-shadow: 0 0 0 1px rgb(0 12 31 / 0.07), 0 1px 2px rgb(0 12 31 / 0.04), 0 8px 24px -16px rgb(0 12 31 / 0.18);
-  transition: transform 0.4s var(--ease-out-soft), box-shadow 0.4s;
-}
-.grid :deep(.tile-card:hover) {
-  transform: translateY(-4px);
-  box-shadow:
-    0 0 0 1px rgb(0 12 31 / 0.08),
-    0 1px 2px rgb(0 12 31 / 0.05),
-    0 14px 28px -14px rgb(0 12 31 / 0.28);
-}
-.grid :deep(.tile-card:focus-visible) {
-  border-radius: 1.75rem;
-}
-.grid :deep(.tile-card__photo) {
-  display: grid;
-  place-items: center;
-  aspect-ratio: 1;
-  margin-bottom: 0.875rem;
-  border-radius: 1.25rem;
-  overflow: hidden;
-  background: var(--tone);
-  color: #fff;
-  font-size: 2.25rem;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-}
-.grid :deep(.tile-card__photo img) {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top;
-  transition: transform 0.5s var(--ease-out-soft);
-}
-.grid :deep(.tile-card:hover .tile-card__photo img) {
-  transform: scale(1.05);
-}
-.grid :deep(.tile-card__name) {
-  padding-inline: 0.5rem;
-  font-size: 1.0625rem;
-  font-weight: 600;
-  line-height: 1.25;
-  letter-spacing: -0.01em;
-  color: var(--color-zh-navy);
-  transition: color 0.2s;
-}
-.grid :deep(.tile-card:hover .tile-card__name) {
-  color: var(--color-zh-blue);
-}
-.grid :deep(.tile-card__role) {
-  margin-top: 0.25rem;
-  padding-inline: 0.5rem;
-  font-size: 0.8125rem;
-  line-height: 1.4;
-  color: var(--color-zh-muted);
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-.grid :deep(.tile-card__meta) {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.375rem 0.625rem;
-  margin-top: auto;
-  padding: 0.75rem 0.5rem 0;
-  font-size: 0.8125rem;
-  font-weight: 600;
-  color: var(--color-zh-navy);
-}
-.grid :deep(.tile-card__video) {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.25rem;
-  padding: 0.125rem 0.5rem;
-  border-radius: 999px;
-  background: rgb(0 112 180 / 0.1);
-  color: var(--color-zh-blue);
-}
-.grid :deep(.tile-card__year) {
-  margin-left: auto;
-  font-weight: 500;
-  color: var(--color-zh-muted);
-  font-variant-numeric: tabular-nums;
-}
-</style>

@@ -34,11 +34,11 @@
       <template v-if="prices.length">
         <h2 id="prices">Prices</h2>
         <p>What it costs to cover each part of an evening. Paying for any one of them gets your company a speaking slot.</p>
-        <table class="prices">
+        <table class="mt-6 w-full border-collapse">
           <tbody>
             <tr v-for="item in prices" :key="item.name">
-              <th scope="row">{{ item.name }}</th>
-              <td>{{ item.price }}</td>
+              <th scope="row" class="border-b border-line py-4 text-left font-medium">{{ item.name }}</th>
+              <td class="border-b border-line py-4 text-right font-semibold text-heading tabular-nums">{{ item.price }}</td>
             </tr>
           </tbody>
         </table>
@@ -82,25 +82,3 @@ defineOgImage("Page", {
 });
 </script>
 
-<style scoped>
-.prices {
-  width: 100%;
-  margin-top: 1.5rem;
-  border-collapse: collapse;
-}
-.prices th,
-.prices td {
-  padding: 1rem 0;
-  border-bottom: 1px solid var(--color-zh-line);
-  text-align: left;
-}
-.prices th {
-  font-weight: 500;
-}
-.prices td {
-  font-weight: 600;
-  text-align: right;
-  color: var(--color-zh-navy);
-  font-variant-numeric: tabular-nums;
-}
-</style>

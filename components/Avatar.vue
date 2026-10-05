@@ -5,13 +5,13 @@
     :alt="alt ?? ''"
     :width="size"
     :height="size"
-    class="avatar"
+    class="avatar inline-grid flex-none place-items-center rounded-full bg-soft object-cover"
     :style="{ width: `${size}px`, height: `${size}px` }"
     loading="lazy"
   />
   <span
     v-else
-    class="avatar avatar--initials"
+    class="avatar inline-grid flex-none place-items-center rounded-full bg-soft object-cover font-semibold text-heading"
     :style="{ width: `${size}px`, height: `${size}px`, fontSize: `${Math.round(size * 0.36)}px` }"
     :aria-label="alt"
     :role="alt ? 'img' : undefined"
@@ -29,18 +29,3 @@ withDefaults(defineProps<{ url?: string | null; name?: string; alt?: string; siz
   size: 40,
 });
 </script>
-
-<style scoped>
-.avatar {
-  flex: none;
-  display: inline-grid;
-  place-items: center;
-  border-radius: 999px;
-  object-fit: cover;
-  background: var(--color-zh-soft);
-}
-.avatar--initials {
-  font-weight: 600;
-  color: var(--color-zh-navy);
-}
-</style>

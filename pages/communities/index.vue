@@ -1,33 +1,42 @@
 <template>
   <div>
     <PageHero title="Communities" :lede="lede">
-      <div class="filters">
-        <label class="filters__search">
-          <LucideSearch :size="18" class="text-zh-blue" aria-hidden="true" />
+      <div class="mt-8 grid w-full justify-items-center gap-3">
+        <label
+          class="mb-1 flex h-13 w-[min(100%,30rem)] items-center gap-2.5 rounded-full border border-line bg-raised px-5 transition-[border-color,box-shadow] duration-200 ease-[ease] focus-within:border-link focus-within:ring-4 focus-within:ring-link/15"
+        >
+          <LucideSearch :size="18" class="text-link" aria-hidden="true" />
           <span class="sr-only">Search communities</span>
-          <input v-model="search" type="search" placeholder="Search by name, topic or city" autocomplete="off" />
+          <input
+            v-model="search"
+            type="search"
+            placeholder="Search by name, topic or city"
+            autocomplete="off"
+            class="h-full min-w-0 flex-1 bg-transparent text-[1rem] focus:outline-none"
+          />
         </label>
-        <div class="filters__chips" role="group" aria-label="Filter by topic">
-          <button type="button" class="chip" :aria-pressed="!topic" @click="topic = null">
-            All <span class="chip__count">{{ topicCounts.All }}</span>
+        <div class="flex flex-wrap justify-center gap-2" role="group" aria-label="Filter by topic">
+          <button type="button" class="chip group" :aria-pressed="!topic" @click="topic = null">
+            All <span class="text-[0.75rem] text-muted tabular-nums group-aria-pressed:text-on-strong/70">{{ topicCounts.All }}</span>
           </button>
           <button
             v-for="t in topics"
             :key="t"
             type="button"
-            class="chip"
+            class="chip group"
             :aria-pressed="topic === t"
             @click="topic = topic === t ? null : t"
           >
-            {{ t }} <span class="chip__count">{{ topicCounts[t] ?? 0 }}</span>
+            {{ t }} <span class="text-[0.75rem] text-muted tabular-nums group-aria-pressed:text-on-strong/70">{{ topicCounts[t] ?? 0 }}</span>
           </button>
         </div>
-        <div v-if="cities.length > 1" class="filters__chips" role="group" aria-label="Filter by city">
+        <div v-if="cities.length > 1" class="flex flex-wrap justify-center gap-2" role="group" aria-label="Filter by city">
+          <!-- Cities are the secondary filter: no border until hovered or picked -->
           <button
             v-for="c in cities"
             :key="c"
             type="button"
-            class="chip chip--city"
+            class="chip not-aria-pressed:border-transparent not-aria-pressed:bg-transparent not-aria-pressed:text-muted not-aria-pressed:hover:text-link"
             :aria-pressed="city === c"
             @click="city = city === c ? null : c"
           >
@@ -37,31 +46,49 @@
       </div>
     </PageHero>
 
-    <div class="list">
-      <p class="status" aria-live="polite">
+    <div class="mx-auto mt-[clamp(3rem,5vw,4.5rem)] max-w-312 px-4 pb-[clamp(5rem,8vw,8rem)]">
+      <p class="mx-2 flex flex-wrap items-center gap-x-4 gap-y-2 text-[0.9375rem] font-medium text-muted" aria-live="polite">
         <span>{{ plural(visible.length, "community", "communities") }}{{ isFiltered ? " match" : "" }}</span>
-        <button v-if="isFiltered" type="button" class="status__clear" @click="clearFilters">
+        <button
+          v-if="isFiltered"
+          type="button"
+          class="inline-flex items-center gap-1 font-semibold text-link hover:text-accent-hover hover:underline hover:underline-offset-[0.2em]"
+          @click="clearFilters"
+        >
           <LucideX :size="14" aria-hidden="true" /> Clear filters
         </button>
       </p>
 
-      <section v-for="group in groups" :key="group.topic" class="group" :aria-labelledby="slug(group.topic)">
-        <h2 :id="slug(group.topic)" class="group__head">
-          <span class="display group__title">{{ group.topic }}</span>
-          <span class="group__count">{{ group.items.length }}</span>
+      <section v-for="group in groups" :key="group.topic" class="pt-[clamp(2.5rem,4.5vw,4rem)]" :aria-labelledby="slug(group.topic)">
+        <h2 :id="slug(group.topic)" class="mx-2 mb-5 flex items-baseline gap-3">
+          <span class="display text-[clamp(2rem,3.6vw,3.25rem)] leading-[1.05]">{{ group.topic }}</span>
+          <span class="text-[1rem] font-semibold text-muted tabular-nums">{{ group.items.length }}</span>
         </h2>
-        <ul class="grid">
-          <li v-for="c in group.items" :key="c.url">
-            <a :href="c.url" target="_blank" rel="noopener" class="card">
-              <span class="card__top">
-                <span class="card__mark" :style="{ background: toneOf(c.name) }" aria-hidden="true">{{ mark(c.name) }}</span>
-                <span class="card__city"><LucideMapPin :size="12" aria-hidden="true" />{{ c.city }}</span>
+        <ul class="grid grid-cols-[repeat(auto-fill,minmax(min(100%,20rem),1fr))] gap-4">
+          <li v-for="c in group.items" :key="c.url" class="flex">
+            <a
+              :href="c.url"
+              target="_blank"
+              rel="noopener"
+              class="group flex w-full flex-col gap-2.5 rounded-tile bg-raised p-6 shadow-[0_0_0_1px_rgb(var(--wz-shadow)/0.07),0_1px_2px_rgb(var(--wz-shadow)/0.04),0_8px_24px_-16px_rgb(var(--wz-shadow)/0.18)] [transition:translate_0.4s_var(--ease-out-soft),box-shadow_0.4s] hover:-translate-y-1 hover:shadow-[0_0_0_1px_rgb(var(--wz-shadow)/0.08),0_1px_2px_rgb(var(--wz-shadow)/0.05),0_14px_28px_-14px_rgb(var(--wz-shadow)/0.28)]"
+            >
+              <span class="mb-2 flex items-start justify-between gap-4">
+                <span
+                  class="grid size-14 place-items-center rounded-[1.125rem] text-[1.125rem] font-semibold tracking-[-0.02em] text-white transition-transform duration-400 ease-out-soft group-hover:scale-105 group-hover:-rotate-6"
+                  :style="{ background: toneOf(c.name) }"
+                  aria-hidden="true"
+                >{{ mark(c.name) }}</span>
+                <span class="inline-flex items-center gap-1 rounded-full bg-soft px-2.5 py-1 text-[0.8125rem] font-semibold text-heading"><LucideMapPin :size="12" aria-hidden="true" />{{ c.city }}</span>
               </span>
-              <span class="card__name">{{ c.name }}</span>
-              <span class="card__text">{{ c.description }}</span>
-              <span class="card__link">
+              <span class="text-[1.25rem] leading-tight font-semibold tracking-[-0.015em] text-heading transition-colors duration-200 ease-[ease] group-hover:text-link">{{ c.name }}</span>
+              <span class="text-[0.9375rem] leading-[1.55] text-pretty text-muted">{{ c.description }}</span>
+              <span class="mt-auto inline-flex items-center gap-1 pt-3 text-[0.875rem] font-semibold text-link">
                 {{ host(c.url) }}
-                <LucideArrowUpRight :size="16" class="card__arrow" aria-hidden="true" />
+                <LucideArrowUpRight
+                  :size="16"
+                  class="transition-transform duration-300 ease-out-soft group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                  aria-hidden="true"
+                />
                 <span class="sr-only">(opens in a new tab)</span>
               </span>
             </a>
@@ -69,20 +96,23 @@
         </ul>
       </section>
 
-      <div v-if="!visible.length" class="empty">
+      <div v-if="!visible.length" class="py-16 text-center">
         <p class="heading text-2xl">No communities match.</p>
-        <p class="mt-2 text-zh-muted">Try another word, or suggest the one you're looking for below.</p>
+        <p class="mt-2 text-muted">Try another word, or suggest the one you're looking for below.</p>
         <button type="button" class="btn btn-quiet mt-6" @click="clearFilters">Clear filters</button>
       </div>
 
-      <aside class="suggest">
+      <!-- The one invitation on the page, in Zürich blue -->
+      <aside
+        class="mt-[clamp(4rem,7vw,6rem)] flex flex-wrap items-center justify-between gap-x-12 gap-y-6 rounded-frame bg-accent p-[clamp(2rem,4vw,3.5rem)] text-white"
+      >
         <div>
-          <h2 class="display suggest__title">Missing a community?</h2>
-          <p class="suggest__text">
+          <h2 class="display text-[clamp(2rem,3.6vw,3.25rem)] leading-[1.05] text-white">Missing a community?</h2>
+          <p class="mt-3 max-w-136 text-[1.0625rem] leading-[1.55] text-[rgb(255_255_255/0.85)]">
             If you run or love a tech group in Switzerland that meets regularly, email us at info@webzurich.ch and we'll add it here.
           </p>
         </div>
-        <a :href="COMMUNITY_SUGGEST_URL" class="btn suggest__btn">
+        <a :href="COMMUNITY_SUGGEST_URL" class="btn bg-raised text-heading hover:bg-soft">
           <LucideMail :size="16" aria-hidden="true" /> Suggest a community
         </a>
       </aside>
@@ -176,245 +206,3 @@ defineOgImage("Page", {
 });
 </script>
 
-<style scoped>
-.filters {
-  display: grid;
-  justify-items: center;
-  gap: 0.75rem;
-  width: 100%;
-  margin-top: 2rem;
-}
-.filters__search {
-  display: flex;
-  align-items: center;
-  gap: 0.625rem;
-  width: min(100%, 30rem);
-  height: 3.25rem;
-  margin-bottom: 0.25rem;
-  padding-inline: 1.25rem;
-  border-radius: 999px;
-  background: #fff;
-  border: 1px solid var(--color-zh-line);
-  transition: border-color 0.2s, box-shadow 0.2s;
-}
-.filters__search:focus-within {
-  border-color: var(--color-zh-blue);
-  box-shadow: 0 0 0 4px rgb(0 112 180 / 0.15);
-}
-.filters__search input {
-  flex: 1;
-  min-width: 0;
-  height: 100%;
-  background: transparent;
-  font-size: 1rem;
-}
-.filters__search input:focus {
-  outline: none;
-}
-.filters__chips {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.5rem;
-}
-.chip__count {
-  font-size: 0.75rem;
-  color: var(--color-zh-muted);
-  font-variant-numeric: tabular-nums;
-}
-.chip[aria-pressed="true"] .chip__count {
-  color: rgb(255 255 255 / 0.7);
-}
-/* Cities are the secondary filter: no border until hovered or picked */
-.chip--city:not([aria-pressed="true"]) {
-  border-color: transparent;
-  background: transparent;
-  color: var(--color-zh-muted);
-}
-.chip--city:not([aria-pressed="true"]):hover {
-  color: var(--color-zh-blue);
-}
-
-.list {
-  max-width: 78rem;
-  margin: clamp(3rem, 5vw, 4.5rem) auto 0;
-  padding: 0 1rem clamp(5rem, 8vw, 8rem);
-}
-.status {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.5rem 1rem;
-  margin-inline: 0.5rem;
-  font-size: 0.9375rem;
-  font-weight: 500;
-  color: var(--color-zh-muted);
-}
-.status__clear {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.25rem;
-  font-weight: 600;
-  color: var(--color-zh-blue);
-}
-.status__clear:hover {
-  color: var(--color-zh-blue-hover);
-  text-decoration: underline;
-  text-underline-offset: 0.2em;
-}
-
-.group {
-  padding-top: clamp(2.5rem, 4.5vw, 4rem);
-}
-.group__head {
-  display: flex;
-  align-items: baseline;
-  gap: 0.75rem;
-  margin: 0 0.5rem 1.25rem;
-}
-.group__title {
-  font-size: clamp(2rem, 3.6vw, 3.25rem);
-  line-height: 1.05;
-}
-.group__count {
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--color-zh-muted);
-  font-variant-numeric: tabular-nums;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 20rem), 1fr));
-  gap: 1rem;
-}
-.grid > li {
-  display: flex;
-}
-
-.card {
-  display: flex;
-  flex-direction: column;
-  gap: 0.625rem;
-  width: 100%;
-  padding: 1.5rem;
-  border-radius: 1.75rem;
-  background: #fff;
-  box-shadow: 0 0 0 1px rgb(0 12 31 / 0.07), 0 1px 2px rgb(0 12 31 / 0.04), 0 8px 24px -16px rgb(0 12 31 / 0.18);
-  transition: transform 0.4s var(--ease-out-soft), box-shadow 0.4s;
-}
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow:
-    0 0 0 1px rgb(0 12 31 / 0.08),
-    0 1px 2px rgb(0 12 31 / 0.05),
-    0 14px 28px -14px rgb(0 12 31 / 0.28);
-}
-.card:focus-visible {
-  border-radius: 1.75rem;
-}
-.card__top {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 1rem;
-  margin-bottom: 0.5rem;
-}
-.card__mark {
-  display: grid;
-  place-items: center;
-  width: 3.5rem;
-  height: 3.5rem;
-  border-radius: 1.125rem;
-  color: #fff;
-  font-size: 1.125rem;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  transition: transform 0.4s var(--ease-out-soft);
-}
-.card:hover .card__mark {
-  transform: rotate(-6deg) scale(1.05);
-}
-.card__city {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.25rem;
-  padding: 0.25rem 0.625rem;
-  border-radius: 999px;
-  background: var(--color-zh-soft);
-  font-size: 0.8125rem;
-  font-weight: 600;
-  color: var(--color-zh-navy);
-}
-.card__name {
-  font-size: 1.25rem;
-  font-weight: 600;
-  line-height: 1.25;
-  letter-spacing: -0.015em;
-  color: var(--color-zh-navy);
-  transition: color 0.2s;
-}
-.card:hover .card__name {
-  color: var(--color-zh-blue);
-}
-.card__text {
-  font-size: 0.9375rem;
-  line-height: 1.55;
-  color: var(--color-zh-muted);
-  text-wrap: pretty;
-}
-.card__link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.25rem;
-  margin-top: auto;
-  padding-top: 0.75rem;
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: var(--color-zh-blue);
-}
-.card__arrow {
-  transition: transform 0.3s var(--ease-out-soft);
-}
-.card:hover .card__arrow {
-  transform: translate(2px, -2px);
-}
-
-.empty {
-  padding-block: 4rem;
-  text-align: center;
-}
-
-/* The one invitation on the page, in Zürich blue */
-.suggest {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1.5rem 3rem;
-  margin-top: clamp(4rem, 7vw, 6rem);
-  padding: clamp(2rem, 4vw, 3.5rem);
-  border-radius: var(--radius-frame);
-  background: var(--color-zh-blue);
-  color: #fff;
-}
-.suggest__title {
-  font-size: clamp(2rem, 3.6vw, 3.25rem);
-  line-height: 1.05;
-  color: #fff;
-}
-.suggest__text {
-  max-width: 34rem;
-  margin-top: 0.75rem;
-  font-size: 1.0625rem;
-  line-height: 1.55;
-  color: rgb(255 255 255 / 0.85);
-}
-.suggest__btn {
-  background: #fff;
-  color: var(--color-zh-navy);
-}
-.suggest__btn:hover {
-  background: var(--color-zh-soft);
-}
-</style>

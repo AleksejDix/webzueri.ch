@@ -1,12 +1,17 @@
 <template>
-  <header class="site-header">
-    <a class="skip-link" href="#content">Skip to content</a>
+  <!-- Sits over the top of the first frame on every page: 16px below the frame's top edge
+       and 24px in from its sides, as on america.gov -->
+  <header class="absolute inset-[calc(var(--notice-h)+1rem)_calc(var(--frame-inset)+1.5rem)_auto] z-50">
+    <a
+      class="fixed top-2 left-1/2 z-60 -translate-x-1/2 -translate-y-[150%] rounded-full bg-accent px-4 py-2 font-semibold text-white [transition:translate_0.2s] focus:translate-y-0"
+      href="#content"
+    >Skip to content</a>
 
-    <nav class="site-header__bar" aria-label="Main">
+    <nav class="flex items-center justify-between p-6" aria-label="Main">
       <Logo />
       <button
         type="button"
-        class="btn btn-ink site-header__menu"
+        class="btn btn-ink relative z-2 h-11 px-5 pt-0 pb-0.5 text-[1rem] leading-none font-medium tracking-[-0.03em] bg-[#002664] hover:bg-[#001b47] dark:bg-strong dark:hover:bg-strong"
         :aria-expanded="menuOpen"
         aria-controls="site-menu"
         @click="menuOpen = !menuOpen"
@@ -16,20 +21,28 @@
     </nav>
 
     <Transition name="sheet">
-      <div v-if="menuOpen" id="site-menu" class="sheet">
-        <ul class="sheet__links">
+      <div
+        v-if="menuOpen"
+        id="site-menu"
+        class="absolute top-[4.25rem] right-[clamp(0.5rem,2vw,1.25rem)] z-1 w-[min(calc(100vw-2.5rem),22rem)] origin-top-right rounded-[1.75rem] bg-raised p-6 shadow-[0_1px_2px_rgb(var(--wz-shadow)/0.06),0_30px_60px_-20px_rgb(var(--wz-shadow)/0.35)]"
+      >
+        <ul class="sheet__links grid">
           <li v-for="(link, i) in links" :key="link.to" :style="{ '--i': i }">
-            <NuxtLink :to="link.to" class="sheet__link">{{ link.text }}</NuxtLink>
+            <NuxtLink
+              :to="link.to"
+              class="block rounded-xl px-2 py-1.5 text-[1.625rem] leading-[1.2] font-medium tracking-[-0.035em] text-heading [transition:color_0.2s] hover:text-link [&.router-link-active]:text-link"
+            >{{ link.text }}</NuxtLink>
           </li>
         </ul>
-        <div class="sheet__footer">
+        <div class="mt-6 flex flex-wrap gap-2 border-t border-line pt-6">
           <a :href="SUBMIT_TALK_URL" target="_blank" rel="noopener" class="btn btn-primary">Submit a talk</a>
           <a :href="MEETUP_URL" target="_blank" rel="noopener" class="btn btn-quiet">Join on Meetup</a>
+          <ThemeSwitch class="ml-auto" />
         </div>
       </div>
     </Transition>
     <Transition name="fade">
-      <div v-if="menuOpen" class="scrim" aria-hidden="true" @click="menuOpen = false" />
+      <div v-if="menuOpen" class="fixed inset-0 z-0" aria-hidden="true" @click="menuOpen = false" />
     </Transition>
   </header>
 </template>
@@ -62,95 +75,6 @@ onBeforeUnmount(() => window.removeEventListener("keydown", onKey));
 </script>
 
 <style scoped>
-/* Sits over the top of the first frame on every page */
-.site-header {
-  position: absolute;
-  /* 16px below the frame's top edge and 24px in from its sides, as on america.gov */
-  inset: calc(var(--notice-h) + 1rem) calc(var(--frame-inset) + 1.5rem) auto;
-  z-index: 50;
-}
-.site-header__bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1.5rem;
-}
-.site-header__menu {
-  position: relative;
-  z-index: 2;
-  height: 2.75rem;
-  padding: 0 1.25rem 2px;
-  font-size: 1rem;
-  font-weight: 500;
-  line-height: 1;
-  letter-spacing: -0.03em;
-  background: #002664;
-}
-.site-header__menu:hover {
-  background: #001b47;
-}
-
-.skip-link {
-  position: fixed;
-  top: 0.5rem;
-  left: 50%;
-  z-index: 60;
-  transform: translate(-50%, -150%);
-  padding: 0.5rem 1rem;
-  border-radius: 999px;
-  background: var(--color-zh-blue);
-  color: #fff;
-  font-weight: 600;
-  transition: transform 0.2s;
-}
-.skip-link:focus {
-  transform: translate(-50%, 0);
-}
-
-.sheet {
-  position: absolute;
-  top: 4.25rem;
-  right: clamp(0.5rem, 2vw, 1.25rem);
-  z-index: 1;
-  width: min(calc(100vw - 2.5rem), 22rem);
-  padding: 1.5rem;
-  border-radius: 1.75rem;
-  background: #fff;
-  box-shadow: 0 1px 2px rgb(0 12 31 / 0.06), 0 30px 60px -20px rgb(0 12 31 / 0.35);
-  transform-origin: top right;
-}
-.sheet__links {
-  display: grid;
-}
-.sheet__link {
-  display: block;
-  padding: 0.375rem 0.5rem;
-  border-radius: 0.75rem;
-  font-size: 1.625rem;
-  font-weight: 500;
-  letter-spacing: -0.035em;
-  line-height: 1.2;
-  color: var(--color-zh-navy);
-  transition: color 0.2s;
-}
-.sheet__link:hover,
-.sheet__link.router-link-active {
-  color: var(--color-zh-blue);
-}
-.sheet__footer {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-top: 1.5rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--color-zh-line);
-}
-.scrim {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-}
-
 .sheet-enter-active {
   transition: opacity 0.25s, transform 0.35s var(--ease-out-soft);
 }

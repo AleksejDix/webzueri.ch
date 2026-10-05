@@ -1,22 +1,23 @@
 <template>
   <div v-if="event">
-    <section class="frame hero">
-      <div class="hero__inner">
-        <NuxtLink to="/events" class="back">
+    <section class="frame">
+      <div class="mx-auto max-w-6xl px-[clamp(1.5rem,3vw,3rem)] pt-[clamp(6rem,6.23vw,9rem)] pb-[clamp(3rem,4.5vw,5rem)]">
+        <NuxtLink to="/events" class="inline-flex items-center gap-1.5 rounded-full bg-raised px-3.5 py-1.5 text-[0.875rem] font-semibold text-heading transition-[color] duration-200 ease-[ease] hover:text-(--wz-link)">
           <LucideArrowLeft :size="16" aria-hidden="true" />
           All meetups
         </NuxtLink>
 
-        <div class="hero__main">
-          <div class="datetile" aria-hidden="true">
-            <span class="datetile__month">{{ fmt({ month: "short" }) }}</span>
-            <span class="datetile__day">{{ fmt({ day: "numeric" }) }}</span>
-            <span class="datetile__year">{{ fmt({ year: "numeric" }) }}</span>
+        <div class="mt-8 flex flex-wrap items-center gap-[clamp(1.5rem,3vw,3rem)]">
+          <!-- A big Zürich-blue calendar leaf -->
+          <div class="grid aspect-square w-[clamp(8rem,12vw,11rem)] place-items-center content-center rounded-[clamp(1.75rem,2.5vw,2.5rem)] bg-accent leading-none text-white shadow-[0_2px_2px_rgb(0_0_0/0.05),0_7px_3.5px_rgb(0_0_0/0.04),0_15px_4.5px_rgb(0_0_0/0.03)]" aria-hidden="true">
+            <span class="text-[clamp(1rem,1.4vw,1.25rem)] font-semibold text-[rgb(255_255_255/0.85)]">{{ fmt({ month: "short" }) }}</span>
+            <span class="mt-1.5 text-[clamp(3.5rem,6vw,5rem)] font-semibold tracking-[-0.05em]">{{ fmt({ day: "numeric" }) }}</span>
+            <span class="mt-1.5 text-[0.9375rem] font-medium text-[rgb(255_255_255/0.75)]">{{ fmt({ year: "numeric" }) }}</span>
           </div>
-          <div class="hero__text">
-            <p v-if="event.edition" class="hero__edition">Meetup #{{ event.edition }}</p>
-            <h1 class="display hero__title">{{ title }}</h1>
-            <ul class="facts">
+          <div class="min-w-[min(100%,20rem)] flex-1">
+            <p v-if="event.edition" class="font-semibold text-(--wz-link)">Meetup #{{ event.edition }}</p>
+            <h1 class="display mt-1 text-[clamp(2.5rem,5vw,5.5rem)] leading-none text-balance">{{ title }}</h1>
+            <ul class="mt-5 flex flex-wrap gap-x-6 gap-y-2 text-[clamp(1rem,1.3vw,1.25rem)] text-ink *:inline-flex *:items-center *:gap-2 [&_svg]:text-(--wz-link)">
               <li>
                 <LucideCalendarDays :size="18" aria-hidden="true" />
                 <time :datetime="times.start">{{ fmt({ weekday: "long", day: "numeric", month: "long", year: "numeric" }) }}</time>
@@ -37,7 +38,7 @@
           </div>
         </div>
 
-        <div class="actions">
+        <div class="mt-8 flex flex-wrap gap-2">
           <a v-if="upcoming && event.meetupLink" :href="event.meetupLink" target="_blank" rel="noopener" class="btn btn-primary">
             RSVP on Meetup <LucideArrowUpRight :size="16" aria-hidden="true" />
           </a>
@@ -57,112 +58,113 @@
       </div>
     </section>
 
-    <div class="content">
+    <div class="mx-auto mt-[clamp(4rem,7vw,6rem)] grid max-w-6xl grid-cols-[minmax(0,1fr)_20rem] gap-[clamp(2rem,4vw,4rem)] px-[clamp(1rem,3vw,3rem)] [@media(max-width:900px)]:grid-cols-[minmax(0,1fr)]">
       <!-- The evening in order: a real sequence, so the talks are numbered -->
-      <section class="programme" aria-labelledby="programme-title">
-        <h2 id="programme-title" class="section-title">Programme</h2>
-        <ol class="agenda">
-          <li class="agenda__item agenda__item--quiet">
-            <span class="agenda__when">{{ time || "Evening" }}</span>
+      <section aria-labelledby="programme-title">
+        <h2 id="programme-title" class="text-[1.125rem] font-semibold text-(--wz-link)">Programme</h2>
+        <!-- Programme: a timeline with the time or the talk number on the left -->
+        <ol class="relative mt-6 grid gap-9 before:absolute before:top-6 before:bottom-6 before:left-[calc(2.25rem-1px)] before:w-[2px] before:rounded-[2px] before:bg-line">
+          <li class="relative grid grid-cols-[4.5rem_minmax(0,1fr)] gap-5">
+            <span class="z-1 h-fit justify-self-center rounded-full bg-page px-2 py-1 text-[0.875rem] font-semibold text-muted tabular-nums shadow-[0_0_0_6px_var(--wz-page)]">{{ time || "Evening" }}</span>
             <div>
-              <h3 class="agenda__title">Doors open</h3>
-              <p class="agenda__text">Grab a drink, find a seat and say hello.</p>
+              <h3 class="text-lg leading-tight font-semibold tracking-[-0.015em] text-balance text-heading">Doors open</h3>
+              <p class="mt-1 max-w-[40rem] text-base/[1.6] text-muted">Grab a drink, find a seat and say hello.</p>
             </div>
           </li>
 
-          <li v-for="(talk, i) in talks" :key="talk.id" class="agenda__item">
-            <span class="agenda__when agenda__when--number" aria-hidden="true">{{ i + 1 }}</span>
-            <div class="agenda__body">
-              <h3 class="agenda__title">
-                <NuxtLink :to="`/talks/${talk.id}`" class="agenda__link">{{ talk.name.trim() }}</NuxtLink>
+          <li v-for="(talk, i) in talks" :key="talk.id" class="relative grid grid-cols-[4.5rem_minmax(0,1fr)] gap-5">
+            <span class="z-1 grid size-11 place-items-center justify-self-center rounded-full bg-accent text-[1.125rem] font-semibold text-white tabular-nums shadow-[0_0_0_6px_var(--wz-page)]" aria-hidden="true">{{ i + 1 }}</span>
+            <div>
+              <h3 class="text-[clamp(1.25rem,2vw,1.625rem)] leading-tight font-semibold tracking-[-0.015em] text-balance text-heading">
+                <NuxtLink :to="`/talks/${talk.id}`" class="transition-[color] duration-200 ease-[ease] hover:text-(--wz-link)">{{ talk.name.trim() }}</NuxtLink>
               </h3>
-              <ul class="agenda__speakers">
+              <ul class="mt-3.5 flex flex-wrap gap-x-6 gap-y-2">
                 <li v-for="s in talk.speakers" :key="s.id">
-                  <NuxtLink :to="`/speakers/${s.id}`" class="speaker">
+                  <NuxtLink :to="`/speakers/${s.id}`" class="group inline-flex items-center gap-2.5">
                     <Avatar :url="photoOf(s.speakerPicture)" :name="s.name" :size="40" />
-                    <span>
-                      <span class="speaker__name">{{ s.name.trim() }}</span>
-                      <span v-if="s.role || s.company" class="speaker__role">{{ [s.role, s.company].filter(Boolean).join(", ") }}</span>
+                    <span class="grid">
+                      <span class="font-semibold text-heading transition-[color] duration-200 ease-[ease] group-hover:text-(--wz-link)">{{ s.name.trim() }}</span>
+                      <span v-if="s.role || s.company" class="text-[0.8125rem] text-muted">{{ [s.role, s.company].filter(Boolean).join(", ") }}</span>
                     </span>
                   </NuxtLink>
                 </li>
               </ul>
-              <p v-if="summary(talk.abstract)" class="agenda__text">{{ summary(talk.abstract) }}</p>
-              <NuxtLink v-if="talk.youtubecode" :to="`/talks/${talk.id}`" class="agenda__video">
+              <p v-if="summary(talk.abstract)" class="mt-3 max-w-[40rem] text-base/[1.6] text-muted">{{ summary(talk.abstract) }}</p>
+              <NuxtLink v-if="talk.youtubecode" :to="`/talks/${talk.id}`" class="mt-3.5 inline-flex items-center gap-1.5 rounded-full bg-[color-mix(in_srgb,var(--wz-accent)_10%,transparent)] px-3.5 py-1.5 text-[0.875rem] font-semibold text-(--wz-link) transition-[background-color,color] duration-200 ease-[ease] hover:bg-accent hover:text-white">
                 <LucidePlay :size="12" fill="currentColor" aria-hidden="true" /> Watch the recording
               </NuxtLink>
             </div>
           </li>
 
-          <li v-if="!talks.length" class="agenda__item agenda__item--quiet">
-            <span class="agenda__when">Talks</span>
+          <li v-if="!talks.length" class="relative grid grid-cols-[4.5rem_minmax(0,1fr)] gap-5">
+            <span class="z-1 h-fit justify-self-center rounded-full bg-page px-2 py-1 text-[0.875rem] font-semibold text-muted tabular-nums shadow-[0_0_0_6px_var(--wz-page)]">Talks</span>
             <div>
-              <h3 class="agenda__title">To be announced</h3>
-              <p class="agenda__text">
+              <h3 class="text-lg leading-tight font-semibold tracking-[-0.015em] text-balance text-heading">To be announced</h3>
+              <p class="mt-1 max-w-[40rem] text-base/[1.6] text-muted">
                 Want to be on stage?
-                <a :href="SUBMIT_TALK_URL" target="_blank" rel="noopener" class="text-link">Submit a talk</a>.
+                <a :href="SUBMIT_TALK_URL" target="_blank" rel="noopener" class="inline-link">Submit a talk</a>.
               </p>
             </div>
           </li>
 
-          <li class="agenda__item agenda__item--quiet">
-            <span class="agenda__when">After</span>
+          <li class="relative grid grid-cols-[4.5rem_minmax(0,1fr)] gap-5">
+            <span class="z-1 h-fit justify-self-center rounded-full bg-page px-2 py-1 text-[0.875rem] font-semibold text-muted tabular-nums shadow-[0_0_0_6px_var(--wz-page)]">After</span>
             <div>
-              <h3 class="agenda__title">Food, drinks and conversation</h3>
-              <p class="agenda__text">Stay as long as you like. This is where most of the community happens.</p>
+              <h3 class="text-lg leading-tight font-semibold tracking-[-0.015em] text-balance text-heading">Food, drinks and conversation</h3>
+              <p class="mt-1 max-w-[40rem] text-base/[1.6] text-muted">Stay as long as you like. This is where most of the community happens.</p>
             </div>
           </li>
         </ol>
       </section>
 
-      <aside class="side">
-        <section v-if="event.venue" class="panel" aria-labelledby="venue-title">
-          <h2 id="venue-title" class="panel__title">Venue</h2>
-          <p class="panel__name">{{ event.venue.name }}</p>
-          <p v-if="venueAddress(event.venue)" class="panel__text">{{ venueAddress(event.venue) }}</p>
-          <a v-if="event.venue.googleMapsUrl" :href="event.venue.googleMapsUrl" target="_blank" rel="noopener" class="text-link panel__link">
+      <aside class="grid content-start gap-4">
+        <section v-if="event.venue" class="rounded-3xl bg-soft p-6" aria-labelledby="venue-title">
+          <h2 id="venue-title" class="text-[0.875rem] font-semibold text-(--wz-link)">Venue</h2>
+          <p class="mt-2 text-[1.125rem] font-semibold text-heading">{{ event.venue.name }}</p>
+          <p v-if="venueAddress(event.venue)" class="mt-1 leading-normal text-ink">{{ venueAddress(event.venue) }}</p>
+          <a v-if="event.venue.googleMapsUrl" :href="event.venue.googleMapsUrl" target="_blank" rel="noopener" class="inline-link mt-3 inline-block">
             Open in Maps
           </a>
         </section>
 
-        <section v-if="sponsors.length" class="panel" aria-labelledby="sponsors-title">
-          <h2 id="sponsors-title" class="panel__title">Made possible by</h2>
-          <ul class="logos">
+        <section v-if="sponsors.length" class="rounded-3xl bg-soft p-6" aria-labelledby="sponsors-title">
+          <h2 id="sponsors-title" class="text-[0.875rem] font-semibold text-(--wz-link)">Made possible by</h2>
+          <ul class="mt-4 flex flex-wrap items-center gap-x-6 gap-y-4">
             <li v-for="sp in sponsors" :key="sp.id">
-              <a :href="sp.website" target="_blank" rel="noopener" class="logos__link" :title="sp.name">
+              <a :href="sp.website" target="_blank" rel="noopener" class="flex h-10 items-center" :title="sp.name">
                 <SponsorLogo :src="sp.logo!.url" :alt="sp.name" :area="1800" :max-width="120" />
               </a>
             </li>
           </ul>
         </section>
 
-        <section class="panel panel--free">
-          <p class="panel__text">Free to attend, and everyone follows our <NuxtLink to="/code-of-conduct" class="text-link">Code of Conduct</NuxtLink>.</p>
+        <section class="rounded-3xl bg-soft p-6">
+          <p class="text-[0.9375rem] leading-normal text-ink">Free to attend, and everyone follows our <NuxtLink to="/code-of-conduct" class="inline-link">Code of Conduct</NuxtLink>.</p>
         </section>
       </aside>
     </div>
 
-    <section v-if="photos.length" class="photos" aria-labelledby="photos-title">
-      <h2 id="photos-title" class="section-title">Photos</h2>
-      <ul class="photos__grid">
+    <section v-if="photos.length" class="mx-auto mt-[clamp(4rem,7vw,6rem)] max-w-6xl px-[clamp(1rem,3vw,3rem)]" aria-labelledby="photos-title">
+      <h2 id="photos-title" class="text-[1.125rem] font-semibold text-(--wz-link)">Photos</h2>
+      <ul class="mt-5 grid grid-cols-[repeat(auto-fill,minmax(min(100%,18rem),1fr))] gap-3">
         <li v-for="p in photos" :key="p.id">
-          <NuxtImg :src="p.image.url" :alt="p.caption || ''" sizes="100vw sm:50vw lg:33vw" format="webp" quality="72" loading="lazy" class="photos__img" />
+          <NuxtImg :src="p.image.url" :alt="p.caption || ''" sizes="100vw sm:50vw lg:33vw" format="webp" quality="72" loading="lazy" class="aspect-[3/2] w-full rounded-[1.25rem] object-cover" />
         </li>
       </ul>
     </section>
 
-    <nav class="pager" aria-label="Other meetups">
-      <NuxtLink v-if="previous" :to="meetupPath(previous.date)" class="pager__link">
+    <nav class="mx-auto mt-[clamp(4rem,7vw,6rem)] flex max-w-6xl flex-wrap justify-between gap-4 px-[clamp(1rem,3vw,3rem)] pb-[clamp(5rem,8vw,8rem)]" aria-label="Other meetups">
+      <NuxtLink v-if="previous" :to="meetupPath(previous.date)" class="inline-flex items-center gap-3 rounded-[1.25rem] px-5 py-4 shadow-[0_0_0_1px_rgb(var(--wz-shadow)/0.08)] transition-[background-color,box-shadow] duration-200 ease-[ease] hover:bg-soft hover:shadow-[0_0_0_1px_transparent]">
         <LucideArrowLeft :size="16" aria-hidden="true" />
-        <span>
-          <span class="pager__label">Previous meetup</span>
-          <span class="pager__title">{{ meetupTitle(previous) }}</span>
+        <span class="grid">
+          <span class="text-[0.8125rem] text-muted">Previous meetup</span>
+          <span class="font-semibold text-heading">{{ meetupTitle(previous) }}</span>
         </span>
       </NuxtLink>
-      <NuxtLink v-if="next" :to="meetupPath(next.date)" class="pager__link pager__link--next">
-        <span>
-          <span class="pager__label">Next meetup</span>
-          <span class="pager__title">{{ meetupTitle(next) }}</span>
+      <NuxtLink v-if="next" :to="meetupPath(next.date)" class="ml-auto inline-flex items-center gap-3 rounded-[1.25rem] px-5 py-4 text-right shadow-[0_0_0_1px_rgb(var(--wz-shadow)/0.08)] transition-[background-color,box-shadow] duration-200 ease-[ease] hover:bg-soft hover:shadow-[0_0_0_1px_transparent]">
+        <span class="grid">
+          <span class="text-[0.8125rem] text-muted">Next meetup</span>
+          <span class="font-semibold text-heading">{{ meetupTitle(next) }}</span>
         </span>
         <LucideArrowRight :size="16" aria-hidden="true" />
       </NuxtLink>
@@ -332,337 +334,3 @@ useHead(() => {
 });
 </script>
 
-<style scoped>
-.hero__inner {
-  max-width: 72rem;
-  margin-inline: auto;
-  padding: clamp(6rem, 6.23vw, 9rem) clamp(1.5rem, 3vw, 3rem) clamp(3rem, 4.5vw, 5rem);
-}
-.back {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.375rem;
-  padding: 0.375rem 0.875rem;
-  border-radius: 999px;
-  background: #fff;
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: var(--color-zh-navy);
-  transition: color 0.2s;
-}
-.back:hover {
-  color: var(--color-zh-blue);
-}
-.hero__main {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: clamp(1.5rem, 3vw, 3rem);
-  margin-top: 2rem;
-}
-/* A big Zürich-blue calendar leaf */
-.datetile {
-  display: grid;
-  place-items: center;
-  align-content: center;
-  width: clamp(8rem, 12vw, 11rem);
-  aspect-ratio: 1;
-  border-radius: clamp(1.75rem, 2.5vw, 2.5rem);
-  background: var(--color-zh-blue);
-  color: #fff;
-  line-height: 1;
-  box-shadow: 0 2px 2px rgb(0 0 0 / 0.05), 0 7px 3.5px rgb(0 0 0 / 0.04), 0 15px 4.5px rgb(0 0 0 / 0.03);
-}
-.datetile__month {
-  font-size: clamp(1rem, 1.4vw, 1.25rem);
-  font-weight: 600;
-  color: rgb(255 255 255 / 0.85);
-}
-.datetile__day {
-  margin-top: 0.375rem;
-  font-size: clamp(3.5rem, 6vw, 5rem);
-  font-weight: 600;
-  letter-spacing: -0.05em;
-}
-.datetile__year {
-  margin-top: 0.375rem;
-  font-size: 0.9375rem;
-  font-weight: 500;
-  color: rgb(255 255 255 / 0.75);
-}
-.hero__text {
-  flex: 1;
-  min-width: min(100%, 20rem);
-}
-.hero__edition {
-  font-weight: 600;
-  color: var(--color-zh-blue);
-}
-.hero__title {
-  margin-top: 0.25rem;
-  font-size: clamp(2.5rem, 5vw, 5.5rem);
-  line-height: 1;
-  text-wrap: balance;
-}
-.facts {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem 1.5rem;
-  margin-top: 1.25rem;
-  font-size: clamp(1rem, 1.3vw, 1.25rem);
-  color: var(--color-zh-ink);
-}
-.facts li {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-.facts :deep(svg) {
-  color: var(--color-zh-blue);
-}
-.actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-top: 2rem;
-}
-
-.content {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 20rem;
-  gap: clamp(2rem, 4vw, 4rem);
-  max-width: 72rem;
-  margin: clamp(4rem, 7vw, 6rem) auto 0;
-  padding-inline: clamp(1rem, 3vw, 3rem);
-}
-@media (max-width: 900px) {
-  .content {
-    grid-template-columns: minmax(0, 1fr);
-  }
-}
-.section-title {
-  font-size: 1.125rem;
-  font-weight: 600;
-  color: var(--color-zh-blue);
-}
-
-/* Programme: a timeline with the time or the talk number on the left */
-.agenda {
-  position: relative;
-  display: grid;
-  gap: 2.25rem;
-  margin-top: 1.5rem;
-}
-.agenda::before {
-  content: "";
-  position: absolute;
-  top: 1.5rem;
-  bottom: 1.5rem;
-  left: calc(2.25rem - 1px);
-  width: 2px;
-  border-radius: 2px;
-  background: var(--color-zh-line);
-}
-.agenda__item {
-  position: relative;
-  display: grid;
-  grid-template-columns: 4.5rem minmax(0, 1fr);
-  gap: 1.25rem;
-}
-.agenda__when {
-  justify-self: center;
-  z-index: 1;
-  padding: 0.25rem 0.5rem;
-  border-radius: 999px;
-  background: #fff;
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: var(--color-zh-muted);
-  font-variant-numeric: tabular-nums;
-  box-shadow: 0 0 0 6px #fff;
-  height: fit-content;
-}
-.agenda__when--number {
-  display: grid;
-  place-items: center;
-  width: 2.75rem;
-  height: 2.75rem;
-  padding: 0;
-  background: var(--color-zh-blue);
-  color: #fff;
-  font-size: 1.125rem;
-}
-.agenda__title {
-  font-size: clamp(1.25rem, 2vw, 1.625rem);
-  font-weight: 600;
-  line-height: 1.25;
-  letter-spacing: -0.015em;
-  color: var(--color-zh-navy);
-  text-wrap: balance;
-}
-.agenda__item--quiet .agenda__title {
-  font-size: 1.125rem;
-}
-.agenda__link {
-  transition: color 0.2s;
-}
-.agenda__link:hover {
-  color: var(--color-zh-blue);
-}
-.agenda__speakers {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem 1.5rem;
-  margin-top: 0.875rem;
-}
-.speaker {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.625rem;
-}
-.speaker > span {
-  display: grid;
-}
-.speaker__name {
-  font-weight: 600;
-  color: var(--color-zh-navy);
-  transition: color 0.2s;
-}
-.speaker:hover .speaker__name {
-  color: var(--color-zh-blue);
-}
-.speaker__role {
-  font-size: 0.8125rem;
-  color: var(--color-zh-muted);
-}
-.agenda__text {
-  margin-top: 0.75rem;
-  max-width: 40rem;
-  font-size: 1rem;
-  line-height: 1.6;
-  color: var(--color-zh-muted);
-}
-.agenda__item--quiet .agenda__text {
-  margin-top: 0.25rem;
-}
-.agenda__video {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.375rem;
-  margin-top: 0.875rem;
-  padding: 0.375rem 0.875rem;
-  border-radius: 999px;
-  background: rgb(0 112 180 / 0.1);
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: var(--color-zh-blue);
-  transition: background-color 0.2s, color 0.2s;
-}
-.agenda__video:hover {
-  background: var(--color-zh-blue);
-  color: #fff;
-}
-
-.side {
-  display: grid;
-  align-content: start;
-  gap: 1rem;
-}
-.panel {
-  padding: 1.5rem;
-  border-radius: 1.5rem;
-  background: var(--color-zh-soft);
-}
-.panel__title {
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: var(--color-zh-blue);
-}
-.panel__name {
-  margin-top: 0.5rem;
-  font-size: 1.125rem;
-  font-weight: 600;
-  color: var(--color-zh-navy);
-}
-.panel__text {
-  margin-top: 0.25rem;
-  line-height: 1.5;
-  color: var(--color-zh-ink);
-}
-.panel--free .panel__text {
-  margin-top: 0;
-  font-size: 0.9375rem;
-}
-.panel__link {
-  display: inline-block;
-  margin-top: 0.75rem;
-}
-.logos {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 1rem 1.5rem;
-  margin-top: 1rem;
-}
-.logos__link {
-  display: flex;
-  align-items: center;
-  height: 2.5rem;
-}
-
-.photos {
-  max-width: 72rem;
-  margin: clamp(4rem, 7vw, 6rem) auto 0;
-  padding-inline: clamp(1rem, 3vw, 3rem);
-}
-.photos__grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
-  gap: 0.75rem;
-  margin-top: 1.25rem;
-}
-.photos__img {
-  width: 100%;
-  aspect-ratio: 3 / 2;
-  border-radius: 1.25rem;
-  object-fit: cover;
-}
-
-.pager {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 1rem;
-  max-width: 72rem;
-  margin: clamp(4rem, 7vw, 6rem) auto 0;
-  padding: 0 clamp(1rem, 3vw, 3rem) clamp(5rem, 8vw, 8rem);
-}
-.pager__link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 1rem 1.25rem;
-  border-radius: 1.25rem;
-  box-shadow: 0 0 0 1px rgb(0 12 31 / 0.08);
-  transition: background-color 0.2s, box-shadow 0.2s;
-}
-.pager__link:hover {
-  background: var(--color-zh-soft);
-  box-shadow: 0 0 0 1px transparent;
-}
-.pager__link--next {
-  margin-left: auto;
-  text-align: right;
-}
-.pager__link > span {
-  display: grid;
-}
-.pager__label {
-  font-size: 0.8125rem;
-  color: var(--color-zh-muted);
-}
-.pager__title {
-  font-weight: 600;
-  color: var(--color-zh-navy);
-}
-</style>

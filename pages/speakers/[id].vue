@@ -1,49 +1,68 @@
 <template>
   <div v-if="speaker">
-    <section class="frame profile">
-      <div class="profile__inner">
-        <div class="profile__photo" :style="{ '--tone': tone }">
+    <section class="frame">
+      <!-- Hero: a big photo beside the name, stacked on small screens -->
+      <div
+        class="mx-auto grid max-w-6xl grid-cols-[auto_minmax(0,1fr)] items-center gap-[clamp(2rem,4vw,5rem)] px-[clamp(1.5rem,3vw,3rem)] pt-[clamp(6rem,6.23vw,9rem)] pb-[clamp(3rem,4.5vw,6rem)] [@media(max-width:800px)]:grid-cols-1 [@media(max-width:800px)]:justify-items-center [@media(max-width:800px)]:text-center"
+      >
+        <div
+          class="grid aspect-square w-[clamp(12rem,24vw,24rem)] place-items-center overflow-hidden rounded-[clamp(1.75rem,3vw,3rem)] bg-(--tone) text-[clamp(3rem,6vw,6rem)] font-semibold tracking-[-0.03em] text-white shadow-[0_2px_2px_rgb(var(--wz-shadow)/0.05),0_7px_3.5px_rgb(var(--wz-shadow)/0.04),0_15px_4.5px_rgb(var(--wz-shadow)/0.03),0_27px_5.5px_rgb(var(--wz-shadow)/0.01)]"
+          :style="{ '--tone': tone }"
+        >
           <img
             v-if="photo"
             :src="thumb(photo, 720)"
             :alt="name"
             width="360"
             height="360"
+            class="size-full object-cover object-top"
             :style="{ viewTransitionName: `speaker-${speaker.id}` }"
           />
           <span v-else aria-hidden="true">{{ initials(name) }}</span>
         </div>
 
-        <div class="profile__text">
-          <NuxtLink to="/speakers" class="back">
+        <div class="flex min-w-0 flex-col items-start [@media(max-width:800px)]:items-center">
+          <NuxtLink
+            to="/speakers"
+            class="mb-6 inline-flex items-center gap-1.5 rounded-full bg-raised px-3.5 py-1.5 text-[0.875rem] font-semibold text-heading transition-colors duration-200 ease-[ease] hover:text-link"
+          >
             <LucideArrowLeft :size="16" aria-hidden="true" />
             All speakers
           </NuxtLink>
-          <h1 class="display profile__name">{{ name }}</h1>
-          <p v-if="roleLine" class="lede profile__role">{{ roleLine }}</p>
+          <h1 class="display text-[clamp(2.75rem,5.5vw,6.5rem)] leading-none text-balance">{{ name }}</h1>
+          <p v-if="roleLine" class="lede mt-4 text-[clamp(1.125rem,1.5vw,1.75rem)] leading-[1.25] text-balance">{{ roleLine }}</p>
 
-          <ul class="stats">
-            <li class="stat">
-              <strong>{{ talks.length }}</strong> {{ talks.length === 1 ? "talk" : "talks" }}
+          <ul class="mt-7 flex flex-wrap gap-2 [@media(max-width:800px)]:justify-center">
+            <li class="inline-flex items-center gap-1.5 rounded-full bg-raised/70 px-3.5 py-2 text-[0.9375rem] text-muted">
+              <strong class="font-semibold text-heading tabular-nums">{{ talks.length }}</strong> {{ talks.length === 1 ? "talk" : "talks" }}
             </li>
-            <li v-if="videos" class="stat">
-              <LucidePlay :size="12" fill="currentColor" class="text-zh-blue" aria-hidden="true" />
-              <strong>{{ videos }}</strong> recorded
+            <li v-if="videos" class="inline-flex items-center gap-1.5 rounded-full bg-raised/70 px-3.5 py-2 text-[0.9375rem] text-muted">
+              <LucidePlay :size="12" fill="currentColor" class="text-link" aria-hidden="true" />
+              <strong class="font-semibold text-heading tabular-nums">{{ videos }}</strong> recorded
             </li>
-            <li v-if="firstYear" class="stat">
-              On stage since <strong>{{ firstYear }}</strong>
+            <li v-if="firstYear" class="inline-flex items-center gap-1.5 rounded-full bg-raised/70 px-3.5 py-2 text-[0.9375rem] text-muted">
+              On stage since <strong class="font-semibold text-heading tabular-nums">{{ firstYear }}</strong>
             </li>
           </ul>
 
-          <ul class="links">
+          <ul class="mt-4 flex flex-wrap gap-2 [@media(max-width:800px)]:justify-center">
             <li v-for="link in links" :key="link.href">
-              <a :href="link.href" target="_blank" rel="noopener me" class="pill">
+              <a
+                :href="link.href"
+                target="_blank"
+                rel="noopener me"
+                class="inline-flex h-11 items-center gap-2 rounded-full bg-raised px-4.5 font-medium text-heading shadow-[0_1px_2px_rgb(var(--wz-shadow)/0.06)] transition-[color,background-color] duration-200 ease-[ease] hover:text-link"
+              >
                 <component :is="link.icon" :size="16" aria-hidden="true" />
                 {{ link.label }}
               </a>
             </li>
             <li>
-              <button type="button" class="pill pill--ink" @click="share">
+              <button
+                type="button"
+                class="inline-flex h-11 items-center gap-2 rounded-full bg-deep px-4.5 font-medium text-white shadow-[0_1px_2px_rgb(var(--wz-shadow)/0.06)] transition-[color,background-color] duration-200 ease-[ease]"
+                @click="share"
+              >
                 <LucideShare2 :size="16" aria-hidden="true" />
                 {{ shared ? "Link copied" : "Share profile" }}
               </button>
@@ -53,53 +72,67 @@
       </div>
     </section>
 
-    <div class="content">
-      <section v-if="bio" class="about" aria-labelledby="about-title">
-        <h2 id="about-title" class="section-title">About</h2>
+    <div class="mx-auto mt-[clamp(4rem,7vw,6rem)] max-w-[78rem] px-4 pb-[clamp(5rem,8vw,8rem)]">
+      <!-- About: a label column beside a large, readable bio -->
+      <section
+        v-if="bio"
+        class="about mx-2 grid grid-cols-[14rem_minmax(0,46rem)] gap-x-8 gap-y-4 [@media(max-width:800px)]:grid-cols-1"
+        aria-labelledby="about-title"
+      >
+        <h2 id="about-title" class="text-[1.125rem] font-semibold text-link">About</h2>
         <div>
-          <p class="about__bio">{{ bio }}</p>
-          <details v-if="sources.length" class="about__sources">
-            <summary>Compiled from public sources<template v-if="speaker.profileAsOf"> ({{ speaker.profileAsOf }})</template></summary>
-            <ul>
+          <p class="text-[clamp(1.25rem,1.6vw,1.5rem)] leading-[1.55] tracking-[-0.01em] text-pretty text-ink">{{ bio }}</p>
+          <details v-if="sources.length" class="mt-5 text-[0.875rem] text-muted">
+            <summary class="w-fit cursor-pointer">Compiled from public sources<template v-if="speaker.profileAsOf"> ({{ speaker.profileAsOf }})</template></summary>
+            <ul class="my-3 grid gap-1">
               <li v-for="src in sources" :key="src">
-                <a :href="src" target="_blank" rel="noopener">{{ prettyUrl(src) }}</a>
+                <a :href="src" target="_blank" rel="noopener" class="break-all underline underline-offset-[3px]">{{ prettyUrl(src) }}</a>
               </li>
             </ul>
-            <p>Something out of date? Write to <a :href="`mailto:${SPONSOR_EMAIL}`">{{ SPONSOR_EMAIL }}</a> and we'll fix it.</p>
+            <p>Something out of date? Write to <a :href="`mailto:${SPONSOR_EMAIL}`" class="break-all underline underline-offset-[3px]">{{ SPONSOR_EMAIL }}</a> and we'll fix it.</p>
           </details>
         </div>
       </section>
 
-      <section class="talks" aria-labelledby="talks-title">
-        <h2 id="talks-title" class="section-head">
-          <span class="display section-head__title">{{ talks.length === 1 ? "Talk" : "Talks" }}</span>
-          <span class="section-head__count">at Web Zürich, newest first</span>
+      <!-- Closer to the bio when there is one, flush at the top when there is not -->
+      <section
+        class="mt-[clamp(4rem,7vw,6rem)] first:mt-0 [.about+&]:mt-[clamp(5rem,8vw,7rem)]"
+        aria-labelledby="talks-title"
+      >
+        <h2 id="talks-title" class="mx-2 mb-6 flex flex-wrap items-baseline gap-x-4 gap-y-1">
+          <span class="display text-[clamp(2.25rem,4.5vw,4rem)] leading-none">{{ talks.length === 1 ? "Talk" : "Talks" }}</span>
+          <span class="text-[1rem] font-semibold text-muted">at Web Zürich, newest first</span>
         </h2>
-        <ul class="grid">
+        <ul class="grid grid-cols-[repeat(auto-fill,minmax(min(100%,18rem),1fr))] gap-4 *:flex">
           <li v-for="talk in talks" :key="talk.id">
             <TalkTile :talk="talk" :exclude="speaker.id" />
           </li>
         </ul>
       </section>
 
-      <!-- The people they shared an evening with, so you can keep exploring -->
-      <section v-if="peers.length" class="peers" aria-labelledby="peers-title">
-        <h2 id="peers-title" class="section-head">
-          <span class="display section-head__title">Shared the stage with</span>
-          <span class="section-head__count">{{ peers.length }} {{ peers.length === 1 ? "speaker" : "speakers" }} on the same evenings</span>
+      <!-- The people they shared an evening with, so you can keep exploring: name pills with a face -->
+      <section v-if="peers.length" class="mt-[clamp(5rem,8vw,7rem)]" aria-labelledby="peers-title">
+        <h2 id="peers-title" class="mx-2 mb-6 flex flex-wrap items-baseline gap-x-4 gap-y-1">
+          <span class="display text-[clamp(2.25rem,4.5vw,4rem)] leading-none">Shared the stage with</span>
+          <span class="text-[1rem] font-semibold text-muted">{{ peers.length }} {{ peers.length === 1 ? "speaker" : "speakers" }} on the same evenings</span>
         </h2>
-        <ul class="peers__list">
+        <ul class="mx-2 flex flex-wrap gap-2">
           <li v-for="p in peers" :key="p.id">
-            <NuxtLink :to="`/speakers/${p.id}`" class="peer">
-              <Avatar :url="p.photo" :name="p.name" :size="44" />
-              <span class="peer__name">{{ p.name }}</span>
+            <NuxtLink
+              :to="`/speakers/${p.id}`"
+              class="group/peer inline-flex items-center gap-2.5 rounded-full py-1 pr-4 pl-1 shadow-[0_0_0_1px_rgb(var(--wz-shadow)/0.08)] transition-[background-color,box-shadow] duration-200 ease-[ease] hover:bg-soft hover:shadow-[0_0_0_1px_transparent]"
+            >
+              <Avatar :url="p.photo" :name="p.name" :size="44" class="max-w-none" />
+              <span class="text-[0.9375rem] font-semibold text-heading transition-colors duration-200 ease-[ease] group-hover/peer:text-link">{{ p.name }}</span>
             </NuxtLink>
           </li>
         </ul>
       </section>
 
-      <aside class="invite">
-        <p class="invite__text">Have something to share? Web Zürich is always looking for speakers, first-timers included.</p>
+      <aside
+        class="mt-[clamp(5rem,8vw,7rem)] flex flex-wrap items-center justify-between gap-x-8 gap-y-4 rounded-tile bg-soft px-[clamp(1.5rem,3vw,2.5rem)] py-[clamp(1.5rem,3vw,2.25rem)]"
+      >
+        <p class="max-w-[36rem] text-[1.125rem] leading-[1.5] text-heading">Have something to share? Web Zürich is always looking for speakers, first-timers included.</p>
         <a :href="SUBMIT_TALK_URL" target="_blank" rel="noopener" class="btn btn-primary">
           Submit a talk <LucideArrowUpRight :size="16" aria-hidden="true" />
         </a>
@@ -283,279 +316,3 @@ if (speaker.value) {
   });
 }
 </script>
-
-<style scoped>
-/* Hero: a big photo beside the name, stacked on small screens */
-.profile__inner {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  align-items: center;
-  gap: clamp(2rem, 4vw, 5rem);
-  max-width: 72rem;
-  margin-inline: auto;
-  padding: clamp(6rem, 6.23vw, 9rem) clamp(1.5rem, 3vw, 3rem) clamp(3rem, 4.5vw, 6rem);
-}
-@media (max-width: 800px) {
-  .profile__inner {
-    grid-template-columns: minmax(0, 1fr);
-    justify-items: center;
-    text-align: center;
-  }
-}
-.profile__photo {
-  display: grid;
-  place-items: center;
-  width: clamp(12rem, 24vw, 24rem);
-  aspect-ratio: 1;
-  border-radius: clamp(1.75rem, 3vw, 3rem);
-  overflow: hidden;
-  background: var(--tone);
-  color: #fff;
-  font-size: clamp(3rem, 6vw, 6rem);
-  font-weight: 600;
-  letter-spacing: -0.03em;
-  box-shadow: 0 2px 2px rgb(0 0 0 / 0.05), 0 7px 3.5px rgb(0 0 0 / 0.04), 0 15px 4.5px rgb(0 0 0 / 0.03), 0 27px 5.5px rgb(0 0 0 / 0.01);
-}
-.profile__photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top;
-}
-.profile__text {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  min-width: 0;
-}
-@media (max-width: 800px) {
-  .profile__text {
-    align-items: center;
-  }
-}
-.back {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.375rem;
-  margin-bottom: 1.5rem;
-  padding: 0.375rem 0.875rem;
-  border-radius: 999px;
-  background: #fff;
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: var(--color-zh-navy);
-  transition: color 0.2s;
-}
-.back:hover {
-  color: var(--color-zh-blue);
-}
-.profile__name {
-  font-size: clamp(2.75rem, 5.5vw, 6.5rem);
-  line-height: 1;
-  text-wrap: balance;
-}
-.profile__role {
-  margin-top: 1rem;
-  font-size: clamp(1.125rem, 1.5vw, 1.75rem);
-  line-height: 1.25;
-  text-wrap: balance;
-}
-
-.stats {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-top: 1.75rem;
-}
-.stat {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.375rem;
-  padding: 0.5rem 0.875rem;
-  border-radius: 999px;
-  background: rgb(255 255 255 / 0.7);
-  font-size: 0.9375rem;
-  color: var(--color-zh-muted);
-}
-.stat strong {
-  font-weight: 600;
-  color: var(--color-zh-navy);
-  font-variant-numeric: tabular-nums;
-}
-
-.links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-top: 1rem;
-}
-@media (max-width: 800px) {
-  .stats,
-  .links {
-    justify-content: center;
-  }
-}
-.pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  height: 2.75rem;
-  padding: 0 1.125rem;
-  border-radius: 999px;
-  background: #fff;
-  font-weight: 500;
-  color: var(--color-zh-navy);
-  box-shadow: 0 1px 2px rgb(0 0 0 / 0.06);
-  transition: color 0.2s, background-color 0.2s;
-}
-.pill:hover {
-  color: var(--color-zh-blue);
-}
-.pill--ink {
-  background: var(--color-zh-navy);
-  color: #fff;
-}
-.pill--ink:hover {
-  background: var(--color-zh-ink);
-  color: #fff;
-}
-
-.content {
-  max-width: 78rem;
-  margin: clamp(4rem, 7vw, 6rem) auto 0;
-  padding: 0 1rem clamp(5rem, 8vw, 8rem);
-}
-
-/* About: a label column beside a large, readable bio */
-.about {
-  display: grid;
-  grid-template-columns: 14rem minmax(0, 46rem);
-  gap: 1rem 2rem;
-  margin-inline: 0.5rem;
-}
-@media (max-width: 800px) {
-  .about {
-    grid-template-columns: minmax(0, 1fr);
-  }
-}
-.section-title {
-  font-size: 1.125rem;
-  font-weight: 600;
-  color: var(--color-zh-blue);
-}
-.about__bio {
-  font-size: clamp(1.25rem, 1.6vw, 1.5rem);
-  line-height: 1.55;
-  letter-spacing: -0.01em;
-  color: var(--color-zh-ink);
-  text-wrap: pretty;
-}
-.about__sources {
-  margin-top: 1.25rem;
-  font-size: 0.875rem;
-  color: var(--color-zh-muted);
-}
-.about__sources summary {
-  width: fit-content;
-  cursor: pointer;
-}
-.about__sources ul {
-  display: grid;
-  gap: 0.25rem;
-  margin-block: 0.75rem;
-}
-.about__sources a {
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  word-break: break-all;
-}
-
-.section-head {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0.25rem 1rem;
-  margin: 0 0.5rem 1.5rem;
-}
-.section-head__title {
-  font-size: clamp(2.25rem, 4.5vw, 4rem);
-  line-height: 1;
-}
-.section-head__count {
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--color-zh-muted);
-}
-
-.talks {
-  margin-top: clamp(4rem, 7vw, 6rem);
-}
-.about + .talks {
-  margin-top: clamp(5rem, 8vw, 7rem);
-}
-.content > .talks:first-child {
-  margin-top: 0;
-}
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
-  gap: 1rem;
-}
-.grid > li {
-  display: flex;
-}
-
-/* Peers as name pills with a face */
-.peers {
-  margin-top: clamp(5rem, 8vw, 7rem);
-}
-.peers__list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-inline: 0.5rem;
-}
-.peer {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.625rem;
-  padding: 0.25rem 1rem 0.25rem 0.25rem;
-  border-radius: 999px;
-  box-shadow: 0 0 0 1px rgb(0 12 31 / 0.08);
-  transition: background-color 0.2s, box-shadow 0.2s;
-}
-.peer:hover {
-  background: var(--color-zh-soft);
-  box-shadow: 0 0 0 1px transparent;
-}
-.peer :deep(.avatar) {
-  max-width: none;
-}
-.peer__name {
-  font-size: 0.9375rem;
-  font-weight: 600;
-  color: var(--color-zh-navy);
-  transition: color 0.2s;
-}
-.peer:hover .peer__name {
-  color: var(--color-zh-blue);
-}
-
-.invite {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem 2rem;
-  margin-top: clamp(5rem, 8vw, 7rem);
-  padding: clamp(1.5rem, 3vw, 2.25rem) clamp(1.5rem, 3vw, 2.5rem);
-  border-radius: 1.75rem;
-  background: var(--color-zh-soft);
-}
-.invite__text {
-  max-width: 36rem;
-  font-size: 1.125rem;
-  line-height: 1.5;
-  color: var(--color-zh-navy);
-}
-</style>

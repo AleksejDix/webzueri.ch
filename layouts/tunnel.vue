@@ -37,14 +37,3 @@ const redirectTo = (routeName: string) => {
 };
 </script>
 
-<style scoped>
-@reference "~/assets/css/main.css";
-
-.nuxt-link-active {
-  @apply text-gray-500;
-}
-.nuxt-link-active::after {
-  content: "";
-  @apply absolute inset-x-0 bottom-0 bg-orange-500 h-1;
-}
-</style> 

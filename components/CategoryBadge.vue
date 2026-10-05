@@ -1,7 +1,7 @@
 <template>
   <span
     v-if="category"
-    class="category-badge"
+    class="whitespace-nowrap rounded-full px-3 py-1 text-[0.75rem] font-medium"
     :class="getCategoryClass(category)"
   >
     {{ category }}
@@ -17,50 +17,15 @@ defineProps<Props>();
 
 const getCategoryClass = (cat: string) => {
   if (cat === "Design") {
-    return "category-design";
+    return "bg-[#f3e8ff] text-[#7c3aed]";
   } else if (cat === "Frontend") {
-    return "category-frontend";
+    return "bg-[#d1fae5] text-[#059669]";
   } else if (cat === "Backend") {
-    return "category-backend";
+    return "bg-[#dbeafe] text-[#2563eb]";
   } else if (cat === "All") {
-    return "category-all";
+    return "bg-[#f3f4f6] text-[#111827]";
   } else {
-    return "category-other";
+    return "bg-[#f9fafb] text-[#6b7280]";
   }
 };
 </script>
-
-<style scoped>
-.category-badge {
-  padding: 0.25rem 0.75rem;
-  border-radius: 9999px;
-  font-size: 0.75rem;
-  font-weight: 500;
-  white-space: nowrap;
-}
-
-.category-design {
-  background-color: #f3e8ff;
-  color: #7c3aed;
-}
-
-.category-frontend {
-  background-color: #d1fae5;
-  color: #059669;
-}
-
-.category-backend {
-  background-color: #dbeafe;
-  color: #2563eb;
-}
-
-.category-all {
-  background-color: #f3f4f6;
-  color: #111827;
-}
-
-.category-other {
-  background-color: #f9fafb;
-  color: #6b7280;
-}
-</style>

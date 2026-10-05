@@ -1,15 +1,18 @@
 <template>
-  <footer class="footer frame">
-    <div class="footer__grid">
-      <div class="footer__hello">
-        <p class="display footer__title">See you at the next meetup.</p>
+  <footer class="frame mt-28 mb-3 px-[clamp(1.5rem,5vw,4rem)] pt-[clamp(2.5rem,6vw,4.5rem)] pb-28">
+    <div class="mx-auto grid max-w-6xl gap-14 md:grid-cols-[1.2fr_1fr] md:items-end">
+      <div>
+        <p class="display max-w-[12ch] text-[clamp(2.25rem,5vw,3.75rem)]">See you at the next meetup.</p>
         <div class="mt-6 flex flex-wrap gap-2">
           <a :href="MEETUP_URL" target="_blank" rel="noopener" class="btn btn-primary">Join on Meetup</a>
-          <a :href="SUBMIT_TALK_URL" target="_blank" rel="noopener" class="btn footer__btn-outline">Submit a talk</a>
+          <a :href="SUBMIT_TALK_URL" target="_blank" rel="noopener" class="btn bg-raised text-heading shadow-[0_1px_2px_rgb(var(--wz-shadow)/0.08)] hover:text-link">Submit a talk</a>
         </div>
       </div>
 
-      <nav class="footer__nav" aria-label="Footer">
+      <nav
+        class="grid grid-cols-[repeat(3,auto)] justify-start gap-x-10 gap-y-6 md:justify-end *:grid *:content-start *:gap-3 [&_a]:font-medium [&_a]:text-heading [&_a]:[transition:color_0.2s] [&_a:hover]:text-link"
+        aria-label="Footer"
+      >
         <ul>
           <li><NuxtLink to="/events">Events</NuxtLink></li>
           <li><NuxtLink to="/talks">Talks</NuxtLink></li>
@@ -31,72 +34,10 @@
       </nav>
     </div>
     <!-- The logo is rendered on the server and wakes up (starting its 3D keycaps) only once scrolled into view -->
-    <p class="footer__legal"><LazyLogo hydrate-on-visible /> <span class="ml-3">A free community meetup since 2016.</span></p>
+    <p class="mx-auto mt-16 max-w-6xl text-[0.875rem] text-muted"><LazyLogo hydrate-on-visible /> <span class="ml-3">A free community meetup since 2016.</span></p>
   </footer>
 </template>
 
 <script setup lang="ts">
 import { MEETUP_URL, SUBMIT_TALK_URL } from "~/composables/useSiteSearch";
 </script>
-
-<style scoped>
-.footer {
-  margin-block: 7rem 0.75rem;
-  padding: clamp(2.5rem, 6vw, 4.5rem) clamp(1.5rem, 5vw, 4rem) 7rem;
-}
-.footer__grid {
-  display: grid;
-  gap: 3.5rem;
-  max-width: 72rem;
-  margin-inline: auto;
-}
-@media (min-width: 768px) {
-  .footer__grid {
-    grid-template-columns: 1.2fr 1fr;
-    align-items: end;
-  }
-}
-.footer__title {
-  font-size: clamp(2.25rem, 5vw, 3.75rem);
-  max-width: 12ch;
-}
-.footer__btn-outline {
-  background: #fff;
-  color: var(--color-zh-navy);
-  box-shadow: 0 1px 2px rgb(0 12 31 / 0.08);
-}
-.footer__btn-outline:hover {
-  color: var(--color-zh-blue);
-}
-
-.footer__nav {
-  display: grid;
-  grid-template-columns: repeat(3, auto);
-  justify-content: start;
-  gap: 1.5rem 2.5rem;
-}
-@media (min-width: 768px) {
-  .footer__nav {
-    justify-content: end;
-  }
-}
-.footer__nav ul {
-  display: grid;
-  gap: 0.75rem;
-  align-content: start;
-}
-.footer__nav a {
-  font-weight: 500;
-  color: var(--color-zh-navy);
-  transition: color 0.2s;
-}
-.footer__nav a:hover {
-  color: var(--color-zh-blue);
-}
-.footer__legal {
-  max-width: 72rem;
-  margin: 4rem auto 0;
-  font-size: 0.875rem;
-  color: var(--color-zh-muted);
-}
-</style>

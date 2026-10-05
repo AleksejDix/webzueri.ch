@@ -1,39 +1,61 @@
 <template>
-  <NuxtLink :to="`/talks/${talk.id}`" class="card">
+  <NuxtLink
+    :to="`/talks/${talk.id}`"
+    class="group/card flex w-full flex-col rounded-[1.75rem] bg-raised p-2 shadow-[0_0_0_1px_rgb(var(--wz-shadow)/0.07),0_1px_2px_rgb(var(--wz-shadow)/0.04),0_8px_24px_-16px_rgb(var(--wz-shadow)/0.18)] [transition:translate_0.4s_var(--ease-out-soft),box-shadow_0.4s] hover:-translate-y-1 hover:shadow-[0_0_0_1px_rgb(var(--wz-shadow)/0.08),0_1px_2px_rgb(var(--wz-shadow)/0.05),0_14px_28px_-14px_rgb(var(--wz-shadow)/0.28)]"
+  >
+    <!-- A talk as a card: the recording in full colour, or its speakers on Zürich blue -->
     <span
-      class="card__media"
-      :class="{ 'card__media--faces': !talk.youtubecode }"
+      class="relative grid aspect-video place-items-center overflow-hidden rounded-[1.25rem]"
+      :class="
+        talk.youtubecode
+          ? 'bg-deep'
+          : 'bg-(--tone) bg-[radial-gradient(120%_90%_at_30%_15%,rgb(255_255_255/0.16),transparent_60%)] [--ring:var(--tone)] [transition:background-color_0.3s] group-hover/card:bg-(--ring) group-hover/card:[--ring:color-mix(in_oklab,var(--tone),black_18%)]'
+      "
       :style="{ '--tone': tone }"
     >
       <template v-if="talk.youtubecode">
-        <YtThumb :id="talk.youtubecode" alt="" />
-        <span class="card__play" aria-hidden="true"><LucidePlay :size="14" fill="currentColor" /></span>
+        <!-- Fill the 16:9 box exactly, cropping YouTube's letterbox bars -->
+        <YtThumb :id="talk.youtubecode" alt="" class="absolute inset-0 transition-transform duration-500 ease-out-soft group-hover/card:scale-105" />
+        <span
+          class="absolute bottom-3 left-3 grid size-9 place-items-center rounded-full bg-raised pl-0.5 text-link shadow-[0_2px_8px_rgb(var(--wz-shadow)/0.25)] [transition:background-color_0.3s,color_0.3s,scale_0.4s_var(--ease-out-soft)] group-hover/card:scale-110 group-hover/card:bg-accent group-hover/card:text-white"
+          aria-hidden="true"
+        >
+          <LucidePlay :size="14" fill="currentColor" />
+        </span>
       </template>
       <!-- No recording: the people who gave the talk take the stage instead -->
-      <span v-else-if="talk.speakers?.length" class="card__faces" aria-hidden="true">
+      <span v-else-if="talk.speakers?.length" class="flex pl-4" aria-hidden="true">
         <Avatar
           v-for="s in talk.speakers.slice(0, 3)"
           :key="s.id"
           :url="s.speakerPicture?.url"
           :name="s.name"
           :size="talk.speakers.length > 1 ? 76 : 92"
+          class="-ml-4 max-w-none shadow-[0_0_0_4px_var(--ring)] [transition:translate_0.4s_var(--ease-out-soft),box-shadow_0.3s] group-hover/card:odd:-translate-y-[3px] group-hover/card:even:translate-y-[3px]"
         />
       </span>
-      <LucideMic v-else :size="32" class="card__mic" aria-hidden="true" />
+      <LucideMic v-else :size="32" class="text-[rgb(255_255_255/0.85)]" aria-hidden="true" />
     </span>
 
-    <span class="card__body">
-      <span class="card__title">{{ talk.name.trim() }}</span>
-      <span v-if="others.length" class="card__speakers">
-        <span v-if="talk.youtubecode" class="card__mini" aria-hidden="true">
-          <Avatar v-for="s in others.slice(0, 3)" :key="s.id" :url="s.speakerPicture?.url" :name="s.name" :size="26" />
+    <span class="flex flex-1 flex-col gap-2 px-3 pt-4 pb-3">
+      <span class="line-clamp-3 text-[1.125rem] leading-[1.3] font-semibold tracking-[-0.01em] text-pretty text-heading [transition:color_0.2s] group-hover/card:text-link">{{ talk.name.trim() }}</span>
+      <span v-if="others.length" class="flex items-center gap-2 text-[0.9375rem] text-ink">
+        <span v-if="talk.youtubecode" class="flex flex-none pl-1.5" aria-hidden="true">
+          <Avatar
+            v-for="s in others.slice(0, 3)"
+            :key="s.id"
+            :url="s.speakerPicture?.url"
+            :name="s.name"
+            :size="26"
+            class="-ml-1.5 max-w-none shadow-[0_0_0_2px_var(--wz-raised)]"
+          />
         </span>
         {{ others.length < (talk.speakers?.length ?? 0) ? "with " : "" }}{{ others.map((s) => s.name).join(", ") }}
       </span>
-      <span class="card__meta">
+      <span class="mt-auto flex flex-wrap items-center gap-x-2.5 gap-y-1.5 pt-1 text-[0.8125rem] text-muted">
         <span>{{ month }}</span>
-        <span v-if="talk.category && talk.category !== 'Others'" class="card__tag">{{ talk.category }}</span>
-        <span v-if="talk.youtubecode" class="card__tag card__tag--video">Video</span>
+        <span v-if="talk.category && talk.category !== 'Others'" class="rounded-full bg-soft px-2 py-0.5 font-semibold text-heading">{{ talk.category }}</span>
+        <span v-if="talk.youtubecode" class="rounded-full bg-accent/10 px-2 py-0.5 font-semibold text-link">Video</span>
       </span>
     </span>
   </NuxtLink>
@@ -76,158 +98,3 @@ const month = computed(() => {
 const TONES = ["#0070b4", "#00407c", "#2b8fd3"];
 const tone = computed(() => TONES[[...props.talk.id].reduce((h, c) => (h * 31 + c.charCodeAt(0)) >>> 0, 7) % TONES.length]);
 </script>
-
-<style scoped>
-/* A talk as a card: the recording in full colour, or its speakers on Zürich blue */
-.card {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  padding: 0.5rem;
-  border-radius: 1.75rem;
-  background: #fff;
-  box-shadow: 0 0 0 1px rgb(0 12 31 / 0.07), 0 1px 2px rgb(0 12 31 / 0.04), 0 8px 24px -16px rgb(0 12 31 / 0.18);
-  transition: transform 0.4s var(--ease-out-soft), box-shadow 0.4s;
-}
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow:
-    0 0 0 1px rgb(0 12 31 / 0.08),
-    0 1px 2px rgb(0 12 31 / 0.05),
-    0 14px 28px -14px rgb(0 12 31 / 0.28);
-}
-.card:focus-visible {
-  border-radius: 1.75rem;
-}
-
-/* Media: the recording in full colour, or the speakers on Zürich blue */
-.card__media {
-  position: relative;
-  display: grid;
-  place-items: center;
-  aspect-ratio: 16 / 9;
-  border-radius: 1.25rem;
-  overflow: hidden;
-  background: var(--color-zh-navy);
-}
-.card__media > :deep(img) {
-  /* Fill the 16:9 box exactly, cropping YouTube's letterbox bars */
-  position: absolute;
-  inset: 0;
-  transition: transform 0.5s var(--ease-out-soft);
-}
-.card:hover .card__media > :deep(img) {
-  transform: scale(1.05);
-}
-.card__media--faces {
-  --ring: var(--tone);
-  background-color: var(--tone);
-  background-image: radial-gradient(120% 90% at 30% 15%, rgb(255 255 255 / 0.16), transparent 60%);
-  transition: background-color 0.3s;
-}
-.card:hover .card__media--faces {
-  --ring: color-mix(in oklab, var(--tone), black 18%);
-  background-color: var(--ring);
-}
-.card__faces {
-  display: flex;
-  padding-left: 1rem;
-}
-.card__faces > * {
-  margin-left: -1rem;
-  max-width: none;
-  box-shadow: 0 0 0 4px var(--ring);
-  transition: transform 0.4s var(--ease-out-soft), box-shadow 0.3s;
-}
-.card:hover .card__faces > :nth-child(odd) {
-  transform: translateY(-3px);
-}
-.card:hover .card__faces > :nth-child(even) {
-  transform: translateY(3px);
-}
-.card__mic {
-  color: rgb(255 255 255 / 0.85);
-}
-.card__play {
-  position: absolute;
-  left: 0.75rem;
-  bottom: 0.75rem;
-  display: grid;
-  place-items: center;
-  width: 2.25rem;
-  height: 2.25rem;
-  padding-left: 2px;
-  border-radius: 999px;
-  background: #fff;
-  color: var(--color-zh-blue);
-  box-shadow: 0 2px 8px rgb(0 12 31 / 0.25);
-  transition: background-color 0.3s, color 0.3s, transform 0.4s var(--ease-out-soft);
-}
-.card:hover .card__play {
-  background: var(--color-zh-blue);
-  color: #fff;
-  transform: scale(1.1);
-}
-
-.card__body {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  gap: 0.5rem;
-  padding: 1rem 0.75rem 0.75rem;
-}
-.card__title {
-  font-size: 1.125rem;
-  font-weight: 600;
-  line-height: 1.3;
-  letter-spacing: -0.01em;
-  color: var(--color-zh-navy);
-  text-wrap: pretty;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  transition: color 0.2s;
-}
-.card:hover .card__title {
-  color: var(--color-zh-blue);
-}
-.card__speakers {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.9375rem;
-  color: var(--color-zh-ink);
-}
-.card__mini {
-  display: flex;
-  flex: none;
-  padding-left: 0.375rem;
-}
-.card__mini > * {
-  margin-left: -0.375rem;
-  max-width: none;
-  box-shadow: 0 0 0 2px #fff;
-}
-.card__meta {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.375rem 0.625rem;
-  margin-top: auto;
-  padding-top: 0.25rem;
-  font-size: 0.8125rem;
-  color: var(--color-zh-muted);
-}
-.card__tag {
-  padding: 0.125rem 0.5rem;
-  border-radius: 999px;
-  background: var(--color-zh-soft);
-  font-weight: 600;
-  color: var(--color-zh-navy);
-}
-.card__tag--video {
-  background: rgb(0 112 180 / 0.1);
-  color: var(--color-zh-blue);
-}
-</style>

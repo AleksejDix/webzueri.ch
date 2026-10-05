@@ -8,7 +8,7 @@
         <slot name="backdrop">
           <div id="modalbackdrop"></div>
           <div
-            class="block backdrop fixed inset-auto"
+            class="block fixed inset-auto bg-[hsla(109,0%,10%,0.9)]"
             @click="closeModal"
           ></div>
         </slot>
@@ -48,10 +48,6 @@ const closeModal = () => {
 </script>
 
 <style scoped>
-.backdrop {
-  background-color: hsla(109, 0%, 10%, 0.9);
-}
-
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.3s;

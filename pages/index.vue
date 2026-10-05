@@ -1,12 +1,18 @@
 <template>
   <div>
-    <section class="frame hero">
-      <div class="hero__inner">
-        <h1 class="hero__title"><HandwrittenTitle /></h1>
-        <p class="lede hero__lede">Talks, speakers and meetups. Whatever you're looking for, start here.</p>
-        <div class="hero__card">
+    <section class="frame">
+      <!-- 144px above and below, as on america.gov. Their controls row only exists with several photos -->
+      <div class="flex flex-col items-center px-[clamp(1rem,1.38vw,2rem)] py-[clamp(6rem,6.23vw,9rem)] text-center">
+        <!-- The title is drawn by hand, so its size is a width rather than a font size -->
+        <h1 class="mx-auto w-[min(100%,clamp(18rem,50vw,64rem))]"><HandwrittenTitle /></h1>
+        <p class="lede hero__lede mt-[clamp(1.25rem,1.8vw,2.5rem)] text-[clamp(1.125rem,1.44vw,2.25rem)] leading-[1.1]">Talks, speakers and meetups. Whatever you're looking for, start here.</p>
+        <!-- 56vw wide at 3:2, radius 64px and the search bar 16px from the top, as on america.gov.
+             The bottom margin leaves room for the slideshow buttons under the card -->
+        <div
+          class="hero__card relative mt-[clamp(2rem,2.6vw,3.75rem)] mb-14 aspect-[3/2] w-[min(100%,max(40rem,56.34vw))] rounded-[clamp(1.5rem,2.77vw,4rem)] shadow-[0_2px_2px_rgb(0_0_0/0.05),0_7px_3.5px_rgb(0_0_0/0.04),0_15px_4.5px_rgb(0_0_0/0.03),0_27px_5.5px_rgb(0_0_0/0.01)] max-[40rem]:aspect-[4/5]"
+        >
           <HeroGallery v-if="gallery.length" :photos="gallery" />
-          <div class="hero__ask">
+          <div class="absolute inset-x-[7.68%] top-4 z-2 max-[40rem]:inset-x-3">
             <AskBar variant="hero" />
           </div>
         </div>
@@ -14,58 +20,87 @@
     </section>
 
     <!-- The one scroll-driven moment on the page -->
-    <section class="statement" aria-label="Web Zürich in numbers">
+    <section class="px-6 pt-[clamp(5rem,11.86vw,17.125rem)] pb-[clamp(5rem,14.6vw,21.125rem)]" aria-label="Web Zürich in numbers">
       <RevealStatement :parts="statement" />
     </section>
 
-    <section class="rows" aria-label="What you'll find here">
-      <article class="row">
-        <NuxtLink to="/speakers" class="row__tile tile faces" tabindex="-1" aria-hidden="true">
-          <img v-for="s in faces" :key="s.id" :src="thumb(s.speakerPicture?.url, 160)" alt="" width="80" height="80" loading="lazy" />
+    <!-- 448px tile, 136px gutter, 308px text and 120px between rows -->
+    <section class="grid gap-[clamp(4rem,5.2vw,7.5rem)] px-6" aria-label="What you'll find here">
+      <article class="grid items-center justify-center gap-8 md:grid-cols-[minmax(0,28rem)_minmax(0,19.25rem)] md:gap-x-[clamp(2.5rem,5.9vw,8.5rem)]">
+        <NuxtLink
+          to="/speakers"
+          class="tile grid aspect-square grid-cols-3 place-items-center rounded-[19.2%] bg-soft p-7 transition-transform duration-500 ease-out-soft hover:-translate-y-1"
+          tabindex="-1"
+          aria-hidden="true"
+        >
+          <img
+            v-for="s in faces"
+            :key="s.id"
+            :src="thumb(s.speakerPicture?.url, 160)"
+            alt=""
+            width="80"
+            height="80"
+            loading="lazy"
+            class="aspect-square w-[82%] rounded-full border-4 border-white object-cover shadow-[0_10px_24px_-12px_rgb(var(--wz-shadow)/0.45)]"
+          />
         </NuxtLink>
-        <div class="row__text">
-          <h2 class="heading row__title">The people behind the talks.</h2>
-          <p class="row__body">
+        <div>
+          <h2 class="heading text-[clamp(1.75rem,3vw,2.5rem)] leading-[1.05] font-medium tracking-[-0.03em]">The people behind the talks.</h2>
+          <p class="mt-6 mb-8 text-lg leading-[1.45] text-muted">
             {{ speakerCount }} people have shared what they know on our stage. Find them and everything they presented.
           </p>
-          <NuxtLink to="/speakers" class="row__link">Meet the speakers</NuxtLink>
+          <NuxtLink to="/speakers" class="text-[1rem] leading-none font-bold tracking-[-0.01em] text-heading [transition:color_0.2s] hover:text-link">Meet the speakers</NuxtLink>
         </div>
       </article>
 
-      <article v-if="event" class="row">
-        <a :href="event.meetupLink || MEETUP_URL" target="_blank" rel="noopener" class="row__tile tile datecard" tabindex="-1" aria-hidden="true">
-          <span class="datecard__month">{{ fmt(event.date, { month: "long", year: "numeric" }) }}</span>
-          <span class="datecard__day">{{ fmt(event.date, { day: "numeric" }) }}</span>
-          <span class="datecard__venue">{{ event.venue ? [event.venue.name, event.venue.city].filter(Boolean).join(", ") : "Zürich" }}</span>
+      <article v-if="event" class="grid items-center justify-center gap-8 md:grid-cols-[minmax(0,28rem)_minmax(0,19.25rem)] md:gap-x-[clamp(2.5rem,5.9vw,8.5rem)]">
+        <a
+          :href="event.meetupLink || MEETUP_URL"
+          target="_blank"
+          rel="noopener"
+          class="tile flex aspect-square flex-col items-center justify-center rounded-[19.2%] bg-accent p-8 text-center text-white transition-transform duration-500 ease-out-soft hover:-translate-y-1"
+          tabindex="-1"
+          aria-hidden="true"
+        >
+          <span class="text-[1.0625rem] font-semibold">{{ fmt(event.date, { month: "long", year: "numeric" }) }}</span>
+          <span class="text-[clamp(7rem,17vw,10.5rem)] leading-none font-medium tracking-[-0.06em]">{{ fmt(event.date, { day: "numeric" }) }}</span>
+          <span class="max-w-[15rem] text-[0.9375rem] text-[rgb(255_255_255/0.85)]">{{ event.venue ? [event.venue.name, event.venue.city].filter(Boolean).join(", ") : "Zürich" }}</span>
         </a>
-        <div class="row__text">
-          <h2 class="heading row__title">
+        <div>
+          <h2 class="heading text-[clamp(1.75rem,3vw,2.5rem)] leading-[1.05] font-medium tracking-[-0.03em]">
             {{ upcoming ? "Next meetup" : "Last meetup" }}, {{ fmt(event.date, { weekday: "long", day: "numeric", month: "long" }) }}.
           </h2>
-          <ul class="row__talks">
+          <ul class="mt-5 mb-6 grid gap-3.5">
             <li v-for="talk in event.talks" :key="talk.id">
-              <NuxtLink :to="`/talks/${talk.id}`" class="row__talk">
-                <span class="row__talk-title">{{ talk.name.trim() }}</span>
-                <span class="text-zh-muted">{{ talk.speakers.map((s) => s.name).join(", ") }}</span>
+              <NuxtLink :to="`/talks/${talk.id}`" class="group/talk grid leading-[1.4]">
+                <span class="font-semibold text-heading [transition:color_0.2s] group-hover/talk:text-link">{{ talk.name.trim() }}</span>
+                <span class="text-muted">{{ talk.speakers.map((s) => s.name).join(", ") }}</span>
               </NuxtLink>
             </li>
           </ul>
-          <a :href="event.meetupLink || MEETUP_URL" target="_blank" rel="noopener" class="row__link">
+          <a :href="event.meetupLink || MEETUP_URL" target="_blank" rel="noopener" class="text-[1rem] leading-none font-bold tracking-[-0.01em] text-heading [transition:color_0.2s] hover:text-link">
             {{ upcoming ? "Register on Meetup" : "Get notified about the next one" }}
           </a>
         </div>
       </article>
 
-      <article class="row">
-        <a :href="SUBMIT_TALK_URL" target="_blank" rel="noopener" class="row__tile tile stage" tabindex="-1" aria-hidden="true">
-          <span class="stage__mic"><LucideMic :size="36" /></span>
+      <article class="grid items-center justify-center gap-8 md:grid-cols-[minmax(0,28rem)_minmax(0,19.25rem)] md:gap-x-[clamp(2.5rem,5.9vw,8.5rem)]">
+        <a
+          :href="SUBMIT_TALK_URL"
+          target="_blank"
+          rel="noopener"
+          class="tile grid aspect-square place-items-center rounded-[19.2%] bg-soft transition-transform duration-500 ease-out-soft hover:-translate-y-1"
+          tabindex="-1"
+          aria-hidden="true"
+        >
+          <span class="grid size-24 place-items-center rounded-full bg-accent text-white shadow-[0_0_0_1.25rem_color-mix(in_oklab,var(--wz-accent)_8%,transparent),0_0_0_2.5rem_color-mix(in_oklab,var(--wz-accent)_5%,transparent)]"><LucideMic :size="36" /></span>
         </a>
-        <div class="row__text">
-          <h2 class="heading row__title">Your turn on stage.</h2>
-          <p class="row__body">
+        <div>
+          <h2 class="heading text-[clamp(1.75rem,3vw,2.5rem)] leading-[1.05] font-medium tracking-[-0.03em]">Your turn on stage.</h2>
+          <p class="mt-6 mb-8 text-lg leading-[1.45] text-muted">
             Anyone can apply to speak, whether it's your first talk or your fiftieth. Send us your idea through a short form.
           </p>
-          <a :href="SUBMIT_TALK_URL" target="_blank" rel="noopener" class="row__link">Submit a talk</a>
+          <a :href="SUBMIT_TALK_URL" target="_blank" rel="noopener" class="text-[1rem] leading-none font-bold tracking-[-0.01em] text-heading [transition:color_0.2s] hover:text-link">Submit a talk</a>
         </div>
       </article>
     </section>
@@ -155,61 +190,12 @@ defineOgImage("Page", {
 </script>
 
 <style scoped>
-.hero__inner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  /* 144px above and below, as on america.gov. Their controls row only exists with several photos */
-  padding: clamp(6rem, 6.23vw, 9rem) clamp(1rem, 1.38vw, 2rem);
-  text-align: center;
-}
-/* The title is drawn by hand, so its size is a width rather than a font size */
-.hero__title {
-  width: min(100%, clamp(18rem, 50vw, 64rem));
-  margin-inline: auto;
-}
+/* Lede and photo card rise in on load (the keyframes are scoped, so the animations stay here) */
 .hero__lede {
-  margin-top: clamp(1.25rem, 1.8vw, 2.5rem);
-  font-size: clamp(1.125rem, 1.44vw, 2.25rem);
-  line-height: 1.1;
   animation: rise 1s var(--ease-out-soft) 0.1s both;
 }
-/* 56vw wide at 3:2, radius 64px and the search bar 16px from the top, as on america.gov */
 .hero__card {
-  position: relative;
-  /* Room for the slideshow buttons under the card */
-  margin-bottom: 3.5rem;
-  width: min(100%, max(40rem, 56.34vw));
-  aspect-ratio: 3 / 2;
-  margin-top: clamp(2rem, 2.6vw, 3.75rem);
-  border-radius: clamp(1.5rem, 2.77vw, 4rem);
-  box-shadow:
-    0 2px 2px rgb(0 0 0 / 0.05),
-    0 7px 3.5px rgb(0 0 0 / 0.04),
-    0 15px 4.5px rgb(0 0 0 / 0.03),
-    0 27px 5.5px rgb(0 0 0 / 0.01);
   animation: rise 1.1s var(--ease-out-soft) 0.2s both;
-}
-.hero__photo {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: inherit;
-}
-.hero__ask {
-  position: absolute;
-  inset: 1rem 7.68% auto;
-  z-index: 2;
-}
-@media (max-width: 640px) {
-  .hero__card {
-    aspect-ratio: 4 / 5;
-  }
-  .hero__ask {
-    inset-inline: 0.75rem;
-  }
 }
 @keyframes rise {
   from {
@@ -217,134 +203,4 @@ defineOgImage("Page", {
     transform: translateY(1.25rem);
   }
 }
-
-.statement {
-  padding: clamp(5rem, 11.86vw, 17.125rem) 1.5rem clamp(5rem, 14.6vw, 21.125rem);
-}
-
-/* 448px tile, 136px gutter, 308px text and 120px between rows */
-.rows {
-  display: grid;
-  gap: clamp(4rem, 5.2vw, 7.5rem);
-  padding-inline: 1.5rem;
-}
-.row {
-  display: grid;
-  gap: 2rem;
-  align-items: center;
-  justify-content: center;
-}
-@media (min-width: 768px) {
-  .row {
-    grid-template-columns: minmax(0, 28rem) minmax(0, 19.25rem);
-    column-gap: clamp(2.5rem, 5.9vw, 8.5rem);
-  }
-}
-.row__tile {
-  display: block;
-  aspect-ratio: 1;
-  border-radius: 19.2%;
-  transition: transform 0.5s var(--ease-out-soft);
-}
-.row__tile:hover {
-  transform: translateY(-4px);
-}
-.row__title {
-  font-size: clamp(1.75rem, 3vw, 2.5rem);
-  font-weight: 500;
-  line-height: 1.05;
-  letter-spacing: -0.03em;
-}
-.row__body {
-  margin-block: 1.5rem 2rem;
-  font-size: 1.125rem;
-  line-height: 1.45;
-  color: var(--color-zh-muted);
-}
-.row__link {
-  font-size: 1rem;
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: -0.01em;
-  color: var(--color-zh-navy);
-  transition: color 0.2s;
-}
-.row__link:hover {
-  color: var(--color-zh-blue);
-}
-.row__talks {
-  display: grid;
-  gap: 0.875rem;
-  margin-block: 1.25rem 1.5rem;
-}
-.row__talk {
-  display: grid;
-  line-height: 1.4;
-}
-.row__talk-title {
-  font-weight: 600;
-  color: var(--color-zh-navy);
-  transition: color 0.2s;
-}
-.row__talk:hover .row__talk-title {
-  color: var(--color-zh-blue);
-}
-
-/* Tile contents */
-.faces {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  place-items: center;
-  padding: 1.75rem;
-  background: var(--color-zh-soft);
-}
-.faces img {
-  width: 82%;
-  aspect-ratio: 1;
-  border-radius: 999px;
-  object-fit: cover;
-  border: 4px solid #fff;
-  box-shadow: 0 10px 24px -12px rgb(0 12 31 / 0.45);
-}
-.datecard {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 2rem;
-  background: var(--color-zh-blue);
-  color: #fff;
-  text-align: center;
-}
-.datecard__month {
-  font-size: 1.0625rem;
-  font-weight: 600;
-}
-.datecard__day {
-  font-size: clamp(7rem, 17vw, 10.5rem);
-  font-weight: 500;
-  line-height: 1;
-  letter-spacing: -0.06em;
-}
-.datecard__venue {
-  max-width: 15rem;
-  font-size: 0.9375rem;
-  color: rgb(255 255 255 / 0.85);
-}
-.stage {
-  display: grid;
-  place-items: center;
-  background: var(--color-zh-soft);
-}
-.stage__mic {
-  display: grid;
-  place-items: center;
-  width: 6rem;
-  height: 6rem;
-  border-radius: 999px;
-  background: var(--color-zh-blue);
-  color: #fff;
-  box-shadow: 0 0 0 1.25rem rgb(0 112 180 / 0.08), 0 0 0 2.5rem rgb(0 112 180 / 0.05);
-}
-
 </style>

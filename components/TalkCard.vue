@@ -3,17 +3,17 @@
     <div class="flex flex-col">
       <!-- Talk header with title and category -->
       <div class="flex items-center justify-between">
-        <h3 class="font-medium text-gray-900 group-hover:text-gray-700">{{ talk.name }}</h3>
+        <h3 class="font-medium text-heading group-hover:text-ink">{{ talk.name }}</h3>
         <slot name="category"></slot>
       </div>
       
       <!-- Abstract preview -->
-      <p v-if="talk.abstract" class="mt-2 text-sm text-gray-500 line-clamp-2">
+      <p v-if="talk.abstract" class="mt-2 text-sm text-muted line-clamp-2">
         {{ talk.abstract }}
       </p>
       
       <!-- Video indicator -->
-      <div v-if="talk.youtubecode" class="mt-2 text-xs text-gray-400">
+      <div v-if="talk.youtubecode" class="mt-2 text-xs text-muted">
         Video available
       </div>
       
@@ -33,7 +33,7 @@
       
       <!-- Speakers -->
       <div v-if="talk.speakers && talk.speakers.length > 0" class="mt-3 pt-2" 
-           :class="{'border-t border-gray-50': !hideTopBorder}">
+           :class="{'border-t border-line': !hideTopBorder}">
         <div v-for="speaker in talk.speakers" :key="speaker.id" class="mt-2">
           <SpeakerCard 
             :speaker="speaker" 
@@ -63,12 +63,3 @@ defineProps({
   }
 });
 </script>
-
-<style scoped>
-.line-clamp-2 {
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-</style> 

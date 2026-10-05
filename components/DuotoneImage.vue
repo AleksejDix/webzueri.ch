@@ -1,13 +1,13 @@
 <template>
-  <div class="img-wrapper ">
+  <div class="relative h-full items-center justify-center overflow-hidden bg-(--base) before:pointer-events-none before:absolute before:inset-0 before:z-1 before:size-full before:[mix-blend-mode:var(--fg-blend)]">
     <img 
       :src="transformedImageUrl" 
       :alt="alt" 
-      class="w-full h-full object-cover"
+      class="relative h-full w-full max-w-full flex-[1_0_100%] object-cover"
       @error="handleImageError"
       :style="{ viewTransitionName: alt.split(' ').join('-')+'-image' }"
     >
-    <div v-if="showInitials && !imageLoaded" class="initials">
+    <div v-if="showInitials && !imageLoaded" class="absolute z-2 text-[2rem] font-bold text-white">
       {{ initials }}
     </div>
   </div>
@@ -65,44 +65,3 @@ function handleImageError() {
 }
 </script>
 
-<style scoped>
-.img-wrapper {
-  background-color: var(--base);
-  height: 100%; 
-  overflow: hidden;
-  position: relative;
-  justify-content: center;
-  align-items: center;
-}
-
-.img-wrapper img {
-  flex: 1 0 100%;
-  height: 100%;
-  max-width: 100%;
-  object-fit: cover;
-  position: relative;
-  width: 100%;
-}
-
-.img-wrapper::before {
-  bottom: 0;
-  content: '';
-  height: 100%;
-  left: 0;
-  mix-blend-mode: var(--fg-blend);
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 100%;
-  z-index: 1;
-  pointer-events: none;
-}
-
-.initials {
-  color: white;
-  font-size: 2rem;
-  font-weight: bold;
-  position: absolute;
-  z-index: 2;
-}
-</style> 

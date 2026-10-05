@@ -1,9 +1,9 @@
 <template>
-  <section class="frame page-hero">
-    <div class="page-hero__inner">
+  <section class="frame">
+    <div class="mx-auto flex max-w-4xl flex-col items-center px-[clamp(1rem,1.38vw,2rem)] pt-[clamp(6rem,6.23vw,9rem)] pb-[clamp(3rem,4vw,6rem)] text-center">
       <slot name="before" />
-      <h1 class="display page-hero__title">{{ title }}</h1>
-      <p v-if="lede" class="lede page-hero__lede">{{ lede }}</p>
+      <h1 class="display page-hero__title text-[clamp(2.75rem,4.6vw,7rem)] leading-none">{{ title }}</h1>
+      <p v-if="lede" class="lede page-hero__lede mt-4 max-w-xl">{{ lede }}</p>
       <slot />
     </div>
   </section>
@@ -14,23 +14,11 @@ defineProps<{ title: string; lede?: string }>();
 </script>
 
 <style scoped>
-.page-hero__inner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  max-width: 56rem;
-  margin-inline: auto;
-  padding: clamp(6rem, 6.23vw, 9rem) clamp(1rem, 1.38vw, 2rem) clamp(3rem, 4vw, 6rem);
-  text-align: center;
-}
+/* Scoped keyframe names are rewritten by Vue, so the animations that use them stay here */
 .page-hero__title {
-  font-size: clamp(2.75rem, 4.6vw, 7rem);
-  line-height: 1;
   animation: hero-rise 0.9s var(--ease-out-soft) both;
 }
 .page-hero__lede {
-  max-width: 36rem;
-  margin-top: 1rem;
   animation: hero-rise 0.9s var(--ease-out-soft) 0.1s both;
 }
 @keyframes hero-rise {

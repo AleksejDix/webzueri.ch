@@ -1,6 +1,6 @@
 <template>
   <section
-    class="carousel"
+    class="mx-auto w-[min(100%,56rem)]"
     aria-roledescription="carousel"
     aria-label="Recently recorded talks"
     @mouseenter="hovering = true"
@@ -8,14 +8,14 @@
     @focusin="hovering = true"
     @focusout="hovering = false"
   >
-    <div class="carousel__stage tile">
+    <div class="tile relative aspect-video bg-deep shadow-[0_40px_80px_-40px_rgb(var(--wz-shadow)/0.55)]">
       <TransitionGroup name="slide">
         <NuxtLink
           v-for="(talk, i) in talks"
           v-show="i === current"
           :key="talk.id"
           :to="`/talks/${talk.id}`"
-          class="carousel__slide"
+          class="group/slide absolute inset-0 block text-white"
           role="group"
           aria-roledescription="slide"
           :aria-label="`${i + 1} of ${talks.length}`"
@@ -23,32 +23,45 @@
           :tabindex="i === current ? 0 : -1"
         >
           <YtThumb :id="talk.youtubecode" :eager="i === 0" hd alt="" />
-          <span class="carousel__shade" aria-hidden="true" />
-          <span class="carousel__caption">
-            <span class="carousel__play" aria-hidden="true"><LucidePlay :size="18" fill="currentColor" /></span>
+          <span class="absolute inset-0 bg-[linear-gradient(to_top,rgb(0_42_82/0.85),rgb(0_42_82/0)_55%)]" aria-hidden="true" />
+          <span class="carousel__caption absolute inset-x-0 bottom-0 flex items-center gap-4 p-[clamp(1rem,3vw,2rem)] text-left">
+            <span
+              class="grid size-12 flex-none place-items-center rounded-full bg-raised pl-0.5 text-link transition-transform duration-300 ease-out-soft group-hover/slide:scale-108"
+              aria-hidden="true"
+            ><LucidePlay :size="18" fill="currentColor" /></span>
             <span class="min-w-0">
-              <span class="carousel__title">{{ talk.name }}</span>
-              <span class="carousel__speaker">{{ talk.speakers.map((s) => s.name).join(", ") }}</span>
+              <span class="block font-display text-[clamp(1.25rem,2.6vw,2rem)] leading-[1.15] tracking-[-0.02em] text-balance">{{ talk.name }}</span>
+              <span class="mt-1 block text-[0.9375rem] text-[rgb(255_255_255/0.85)]">{{ talk.speakers.map((s) => s.name).join(", ") }}</span>
             </span>
           </span>
         </NuxtLink>
       </TransitionGroup>
     </div>
 
-    <div class="carousel__controls">
-      <button type="button" class="carousel__btn" aria-label="Previous talk" @click="go(-1)">
+    <div class="mt-4 flex justify-center gap-2">
+      <button
+        type="button"
+        class="grid size-9 place-items-center rounded-full bg-raised text-heading shadow-[0_1px_2px_rgb(var(--wz-shadow)/0.12),0_4px_12px_-4px_rgb(var(--wz-shadow)/0.2)] [transition:color_0.2s,translate_0.2s] hover:-translate-y-px hover:text-link"
+        aria-label="Previous talk"
+        @click="go(-1)"
+      >
         <LucideChevronLeft :size="16" />
       </button>
       <button
         type="button"
-        class="carousel__btn"
+        class="grid size-9 place-items-center rounded-full bg-raised text-heading shadow-[0_1px_2px_rgb(var(--wz-shadow)/0.12),0_4px_12px_-4px_rgb(var(--wz-shadow)/0.2)] [transition:color_0.2s,translate_0.2s] hover:-translate-y-px hover:text-link"
         :aria-label="playing ? 'Pause rotation' : 'Play rotation'"
         @click="playing = !playing"
       >
         <LucidePause v-if="playing" :size="14" fill="currentColor" />
         <LucidePlay v-else :size="14" fill="currentColor" />
       </button>
-      <button type="button" class="carousel__btn" aria-label="Next talk" @click="go(1)">
+      <button
+        type="button"
+        class="grid size-9 place-items-center rounded-full bg-raised text-heading shadow-[0_1px_2px_rgb(var(--wz-shadow)/0.12),0_4px_12px_-4px_rgb(var(--wz-shadow)/0.2)] [transition:color_0.2s,translate_0.2s] hover:-translate-y-px hover:text-link"
+        aria-label="Next talk"
+        @click="go(1)"
+      >
         <LucideChevronRight :size="16" />
       </button>
     </div>
@@ -90,89 +103,7 @@ onBeforeUnmount(() => clearInterval(timer));
 </script>
 
 <style scoped>
-.carousel {
-  width: min(100%, 56rem);
-  margin-inline: auto;
-}
-.carousel__stage {
-  position: relative;
-  aspect-ratio: 16 / 9;
-  background: var(--color-zh-navy);
-  box-shadow: 0 40px 80px -40px rgb(0 12 31 / 0.55);
-}
-.carousel__slide {
-  position: absolute;
-  inset: 0;
-  display: block;
-  color: #fff;
-}
-.carousel__shade {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgb(0 42 82 / 0.85), rgb(0 42 82 / 0) 55%);
-}
-.carousel__caption {
-  position: absolute;
-  inset-inline: 0;
-  bottom: 0;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  padding: clamp(1rem, 3vw, 2rem);
-  text-align: left;
-}
-.carousel__play {
-  flex: none;
-  display: grid;
-  place-items: center;
-  width: 3rem;
-  height: 3rem;
-  padding-left: 2px;
-  border-radius: 999px;
-  background: #fff;
-  color: var(--color-zh-blue);
-  transition: transform 0.3s var(--ease-out-soft);
-}
-.carousel__slide:hover .carousel__play {
-  transform: scale(1.08);
-}
-.carousel__title {
-  display: block;
-  font-family: var(--font-display);
-  font-size: clamp(1.25rem, 2.6vw, 2rem);
-  letter-spacing: -0.02em;
-  line-height: 1.15;
-  text-wrap: balance;
-}
-.carousel__speaker {
-  display: block;
-  margin-top: 0.25rem;
-  font-size: 0.9375rem;
-  color: rgb(255 255 255 / 0.85);
-}
-
-.carousel__controls {
-  display: flex;
-  justify-content: center;
-  gap: 0.5rem;
-  margin-top: 1rem;
-}
-.carousel__btn {
-  display: grid;
-  place-items: center;
-  width: 2.25rem;
-  height: 2.25rem;
-  border-radius: 999px;
-  background: #fff;
-  color: var(--color-zh-navy);
-  box-shadow: 0 1px 2px rgb(0 12 31 / 0.12), 0 4px 12px -4px rgb(0 12 31 / 0.2);
-  transition: color 0.2s, transform 0.2s;
-}
-.carousel__btn:hover {
-  color: var(--color-zh-blue);
-  transform: translateY(-1px);
-}
-
+/* Vue transition classes for the cross-fade */
 .slide-enter-active,
 .slide-leave-active {
   transition: opacity 0.8s ease, transform 1.2s var(--ease-out-soft);

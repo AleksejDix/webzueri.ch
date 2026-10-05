@@ -1,12 +1,15 @@
 <template>
   <section
-    class="hero-card"
+    class="mx-auto w-[min(100%,max(56rem,60vw),calc((100svh_-_22rem)_*_16_/_9))]"
     aria-roledescription="carousel"
     aria-label="Zürich"
     @mouseenter="hovering = true"
     @mouseleave="hovering = false"
   >
-    <div class="hero-card__stage">
+    <!-- The card grows with the screen, but never so tall that the controls fall below the fold -->
+    <div
+      class="relative aspect-video min-h-[22rem] rounded-4xl bg-soft shadow-[0_50px_100px_-40px_rgb(var(--wz-shadow)/0.45),0_20px_40px_-30px_rgb(var(--wz-shadow)/0.3)]"
+    >
       <TransitionGroup name="photo">
         <img
           v-for="(photo, i) in photos"
@@ -18,25 +21,40 @@
           :alt="photo.alt"
           :loading="i === 0 ? 'eager' : 'lazy'"
           :fetchpriority="i === 0 ? 'high' : undefined"
-          class="hero-card__photo"
+          class="absolute inset-0 h-full w-full rounded-[inherit] object-cover"
           :style="{ objectPosition: photo.position }"
         />
       </TransitionGroup>
       <!-- The search bar sits on the photo -->
-      <div class="hero-card__overlay">
+      <div class="absolute inset-x-[clamp(0.75rem,6vw,4rem)] top-[clamp(0.75rem,2vw,1.25rem)] z-2">
         <slot />
       </div>
     </div>
 
-    <div class="hero-card__controls">
-      <button type="button" class="hero-card__btn" aria-label="Previous photo" @click="go(-1)">
+    <div class="mt-6 flex justify-center gap-2">
+      <button
+        type="button"
+        class="grid size-9 place-items-center rounded-full bg-raised text-heading shadow-[0_1px_2px_rgb(var(--wz-shadow)/0.1),0_6px_14px_-6px_rgb(var(--wz-shadow)/0.25)] [transition:translate_0.2s] hover:-translate-y-px"
+        aria-label="Previous photo"
+        @click="go(-1)"
+      >
         <LucideChevronLeft :size="16" />
       </button>
-      <button type="button" class="hero-card__btn" :aria-label="playing ? 'Pause photos' : 'Play photos'" @click="playing = !playing">
+      <button
+        type="button"
+        class="grid size-9 place-items-center rounded-full bg-raised text-heading shadow-[0_1px_2px_rgb(var(--wz-shadow)/0.1),0_6px_14px_-6px_rgb(var(--wz-shadow)/0.25)] [transition:translate_0.2s] hover:-translate-y-px"
+        :aria-label="playing ? 'Pause photos' : 'Play photos'"
+        @click="playing = !playing"
+      >
         <LucidePause v-if="playing" :size="13" fill="currentColor" />
         <LucidePlay v-else :size="13" fill="currentColor" />
       </button>
-      <button type="button" class="hero-card__btn" aria-label="Next photo" @click="go(1)">
+      <button
+        type="button"
+        class="grid size-9 place-items-center rounded-full bg-raised text-heading shadow-[0_1px_2px_rgb(var(--wz-shadow)/0.1),0_6px_14px_-6px_rgb(var(--wz-shadow)/0.25)] [transition:translate_0.2s] hover:-translate-y-px"
+        aria-label="Next photo"
+        @click="go(1)"
+      >
         <LucideChevronRight :size="16" />
       </button>
     </div>
@@ -94,56 +112,8 @@ onBeforeUnmount(() => clearInterval(timer));
 </script>
 
 <style scoped>
-.hero-card {
-  /* Grows with the screen, but never so tall that the controls fall below the fold */
-  width: min(100%, max(56rem, 60vw), calc((100svh - 22rem) * 16 / 9));
-  margin-inline: auto;
-}
-.hero-card__stage {
-  position: relative;
-  aspect-ratio: 16 / 9;
-  min-height: 22rem;
-  border-radius: 2rem;
-  background: var(--color-zh-soft);
-  box-shadow: 0 50px 100px -40px rgb(0 12 31 / 0.45), 0 20px 40px -30px rgb(0 12 31 / 0.3);
-}
-.hero-card__photo {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: inherit;
-}
-.hero-card__overlay {
-  position: absolute;
-  inset: clamp(0.75rem, 2vw, 1.25rem) clamp(0.75rem, 6vw, 4rem) auto;
-  z-index: 2;
-}
-.hero-card__controls {
-  display: flex;
-  justify-content: center;
-  gap: 0.5rem;
-  margin-top: 1.5rem;
-}
-.hero-card__btn {
-  display: grid;
-  place-items: center;
-  width: 2.25rem;
-  height: 2.25rem;
-  border-radius: 999px;
-  background: #fff;
-  color: var(--color-zh-navy);
-  box-shadow: 0 1px 2px rgb(0 12 31 / 0.1), 0 6px 14px -6px rgb(0 12 31 / 0.25);
-  transition: transform 0.2s;
-}
-.hero-card__btn:hover {
-  transform: translateY(-1px);
-}
-
-.photo-enter-active {
-  transition: opacity 1.2s ease;
-}
+/* Vue transition classes for the cross-fade */
+.photo-enter-active,
 .photo-leave-active {
   transition: opacity 1.2s ease;
 }

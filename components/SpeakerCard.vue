@@ -17,7 +17,7 @@
       </div>
       <div
         v-else
-        class="w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center text-gray-500"
+        class="w-12 h-12 rounded-full bg-soft flex items-center justify-center text-muted"
       >
         {{ getInitials(speaker.name) }}
       </div>
@@ -25,10 +25,10 @@
 
     <!-- Speaker info -->
     <div class="flex-grow">
-      <h3 class="text-gray-900 font-medium group-hover:text-gray-700">
+      <h3 class="text-heading font-medium group-hover:text-ink">
         {{ speaker.name }}
       </h3>
-      <p v-if="showTalkCount && speaker.talks" class="text-sm text-gray-500">
+      <p v-if="showTalkCount && speaker.talks" class="text-sm text-muted">
         {{
           speaker.talks.length === 1
             ? "1 talk"
@@ -38,13 +38,13 @@
     </div>
 
     <!-- Optional rank -->
-    <div v-if="rank !== undefined" class="mr-3 text-gray-400 font-mono text-lg">
+    <div v-if="rank !== undefined" class="mr-3 text-muted font-mono text-lg">
       {{ rank }}
     </div>
 
     <!-- Optional talk count badge -->
     <div v-if="showTalkBadge && speaker.talks" class="ml-auto">
-      <span class="text-gray-500 font-mono text-lg tabular-nums">
+      <span class="text-muted font-mono text-lg tabular-nums">
         {{ speaker.talks.length }}
       </span>
     </div>
@@ -81,9 +81,3 @@ function getInitials(name: string): string {
     .substring(0, 2);
 }
 </script>
-
-<style scoped>
-.tabular-nums {
-  font-variant-numeric: tabular-nums;
-}
-</style>

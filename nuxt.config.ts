@@ -14,6 +14,8 @@ export default defineNuxtConfig({
     viewTransition: true,
   },
   modules: [
+    // Light and dark: follows the system, a toggle can override; sets the class before first paint
+    '@nuxtjs/color-mode',
     '@nuxt/icon',
     '@nuxt/image',
     '@nuxt/scripts',
@@ -83,6 +85,12 @@ export default defineNuxtConfig({
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       ],
     },
+  },
+  colorMode: {
+    classSuffix: '',
+    preference: 'system',
+    fallback: 'light',
+    storageKey: 'wz-color-mode',
   },
   routeRules: {
     // Served from Vercel's edge cache and re-rendered in the background, so

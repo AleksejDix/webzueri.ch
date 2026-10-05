@@ -4,28 +4,48 @@
       title="About Web Zürich"
       lede="A free evening meetup for people who build the web. Talks, food and conversation in Zürich, since 2016."
     >
-      <dl v-if="about" class="facts">
-        <NuxtLink v-for="f in facts" :key="f.label" :to="f.to" class="fact">
-          <dt class="fact__label">{{ f.label }}</dt>
-          <dd class="display fact__value">{{ f.value }}</dd>
+      <!-- Numbers that open the pages behind them -->
+      <dl v-if="about" class="mt-10 grid w-[min(100%,44rem)] grid-cols-4 gap-2 [@media(max-width:640px)]:grid-cols-2">
+        <NuxtLink
+          v-for="f in facts"
+          :key="f.label"
+          :to="f.to"
+          class="group flex flex-col-reverse items-center gap-1 rounded-3xl bg-raised px-2 pt-5 pb-4 [transition:translate_0.4s_var(--ease-out-soft),box-shadow_0.4s] hover:-translate-y-[3px] hover:shadow-[0_14px_28px_-16px_rgb(var(--wz-shadow)/0.3)]"
+        >
+          <dt class="text-[0.875rem] font-semibold text-muted">{{ f.label }}</dt>
+          <dd class="display text-[clamp(2.25rem,3.6vw,3.25rem)] leading-none text-heading tabular-nums transition-colors duration-200 ease-[ease] group-hover:text-link">
+            {{ f.value }}
+          </dd>
         </NuxtLink>
       </dl>
     </PageHero>
 
     <!-- The community is the people: everyone who has spoken, as one wall of faces -->
-    <section v-if="about?.faces.length" class="people" aria-labelledby="people-title">
-      <h2 id="people-title" class="display people__title">{{ about.counts.speakers }} people have spoken at Web Zürich</h2>
-      <p class="lede people__lede">
+    <section v-if="about?.faces.length" class="mx-auto mt-[clamp(5rem,9vw,8rem)] max-w-312 px-4 text-center" aria-labelledby="people-title">
+      <h2 id="people-title" class="display mx-auto max-w-200 text-[clamp(2.25rem,4vw,4rem)] leading-[1.05] text-balance">
+        {{ about.counts.speakers }} people have spoken at Web Zürich
+      </h2>
+      <p class="lede mx-auto mt-4 max-w-136">
         From first-timers to conference regulars. Pick a face to see their talks.
       </p>
-      <ul class="wall">
+      <ul class="wall mt-[clamp(2.5rem,4vw,3.5rem)] flex flex-wrap justify-center gap-2">
         <li v-for="(p, i) in about.faces" :key="p.id" :style="{ '--i': i }">
-          <NuxtLink :to="`/speakers/${p.id}`" class="face" :data-name="p.name">
-            <img :src="thumb(p.picture, 128)" :alt="p.name" width="64" height="64" loading="lazy" />
+          <NuxtLink
+            :to="`/speakers/${p.id}`"
+            class="face relative grid size-16 place-items-center rounded-full bg-soft [transition:scale_0.3s_var(--ease-out-soft),box-shadow_0.3s] hover:z-2 hover:scale-125 hover:shadow-[0_0_0_3px_var(--wz-page),0_10px_20px_-8px_rgb(var(--wz-shadow)/0.4)] focus-visible:z-2 focus-visible:scale-125 focus-visible:shadow-[0_0_0_3px_var(--wz-page),0_10px_20px_-8px_rgb(var(--wz-shadow)/0.4)]"
+            :data-name="p.name"
+          >
+            <img :src="thumb(p.picture, 128)" :alt="p.name" width="64" height="64" loading="lazy" class="size-full rounded-[inherit] object-cover" />
           </NuxtLink>
         </li>
         <li :style="{ '--i': about.faces.length }">
-          <a :href="SUBMIT_TALK_URL" target="_blank" rel="noopener" class="face face--you" data-name="You? Submit a talk">
+          <a
+            :href="SUBMIT_TALK_URL"
+            target="_blank"
+            rel="noopener"
+            class="face relative grid size-16 place-items-center rounded-full bg-accent text-white [transition:scale_0.3s_var(--ease-out-soft),box-shadow_0.3s] hover:z-2 hover:scale-125 hover:bg-accent-hover hover:shadow-[0_0_0_3px_var(--wz-page),0_10px_20px_-8px_rgb(var(--wz-shadow)/0.4)] focus-visible:z-2 focus-visible:scale-125 focus-visible:shadow-[0_0_0_3px_var(--wz-page),0_10px_20px_-8px_rgb(var(--wz-shadow)/0.4)]"
+            data-name="You? Submit a talk"
+          >
             <LucidePlus :size="26" aria-hidden="true" />
             <span class="sr-only">Submit a talk</span>
           </a>
@@ -33,17 +53,23 @@
       </ul>
     </section>
 
-    <section v-if="about?.milestones.length" class="story" aria-labelledby="story-title">
-      <h2 id="story-title" class="display section-title">{{ about.counts.years }} years, a few moments</h2>
-      <ol class="timeline">
-        <li v-for="m in about.milestones" :key="m.title" class="moment">
-          <span class="moment__date" aria-hidden="true">
-            <span class="moment__month">{{ fmt(m.date, { month: "short" }) }}</span>
-            <span class="moment__year">{{ fmt(m.date, { year: "numeric" }) }}</span>
+    <section v-if="about?.milestones.length" class="mx-auto mt-[clamp(6rem,10vw,9rem)] max-w-176 px-4" aria-labelledby="story-title">
+      <h2 id="story-title" class="display text-center text-[clamp(2.25rem,4vw,4rem)] leading-[1.05] text-balance">{{ about.counts.years }} years, a few moments</h2>
+      <!-- ::before is the line that joins the moments, behind the date tiles -->
+      <ol
+        class="relative mt-[clamp(2.5rem,4vw,3.5rem)] grid gap-7 before:absolute before:inset-y-8 before:left-[calc(2.375rem-1px)] before:w-0.5 before:rounded-xs before:bg-line"
+      >
+        <li v-for="m in about.milestones" :key="m.title" class="relative grid grid-cols-[auto_minmax(0,1fr)] items-center gap-6">
+          <span
+            class="grid size-19 place-items-center content-center rounded-[1.375rem] bg-accent leading-none text-white shadow-[0_0_0_6px_var(--wz-page)]"
+            aria-hidden="true"
+          >
+            <span class="text-[0.8125rem] font-semibold text-[rgb(255_255_255/0.85)]">{{ fmt(m.date, { month: "short" }) }}</span>
+            <span class="mt-[0.3rem] text-[1.375rem] font-semibold tracking-[-0.03em]">{{ fmt(m.date, { year: "numeric" }) }}</span>
           </span>
           <div>
-            <h3 class="moment__title">{{ m.title }}</h3>
-            <p class="moment__text">
+            <h3 class="text-[clamp(1.25rem,2vw,1.5rem)] font-semibold tracking-[-0.015em] text-heading">{{ m.title }}</h3>
+            <p class="mt-1 text-[1rem] leading-[1.55] text-muted">
               <span class="sr-only">{{ fmt(m.date, { month: "long", year: "numeric" }) }}: </span>{{ m.text }}
             </p>
           </div>
@@ -51,51 +77,66 @@
       </ol>
     </section>
 
-    <section class="evening" aria-labelledby="evening-title">
-      <h2 id="evening-title" class="display section-title">How an evening works</h2>
-      <ol class="steps">
-        <li v-for="s in steps" :key="s.title" class="step">
-          <span class="step__icon" aria-hidden="true"><component :is="s.icon" :size="22" /></span>
-          <span class="step__when">{{ s.when }}</span>
-          <h3 class="step__title">{{ s.title }}</h3>
-          <p class="step__text">{{ s.text }}</p>
+    <section class="mx-auto mt-[clamp(6rem,10vw,9rem)] max-w-312 px-4" aria-labelledby="evening-title">
+      <h2 id="evening-title" class="display text-center text-[clamp(2.25rem,4vw,4rem)] leading-[1.05] text-balance">How an evening works</h2>
+      <ol class="mt-[clamp(2.5rem,4vw,3.5rem)] grid grid-cols-[repeat(auto-fit,minmax(min(100%,18rem),1fr))] gap-4">
+        <li v-for="s in steps" :key="s.title" class="flex flex-col gap-2 rounded-tile bg-soft p-7">
+          <span class="mb-2 grid size-12 place-items-center rounded-2xl bg-raised text-link" aria-hidden="true"><component :is="s.icon" :size="22" /></span>
+          <span class="text-[0.875rem] font-semibold text-link">{{ s.when }}</span>
+          <h3 class="text-[1.375rem] font-semibold tracking-[-0.015em] text-heading">{{ s.title }}</h3>
+          <p class="text-[0.9375rem] leading-[1.55] text-muted">{{ s.text }}</p>
         </li>
       </ol>
-      <p class="evening__note">
+      <p class="mt-6 text-center text-muted">
         Everyone is welcome, and everyone follows our
-        <NuxtLink to="/code-of-conduct" class="text-link">Code of Conduct</NuxtLink>.
+        <NuxtLink to="/code-of-conduct" class="inline-link">Code of Conduct</NuxtLink>.
       </p>
     </section>
 
-    <section class="join" aria-labelledby="join-title">
-      <h2 id="join-title" class="display section-title">Be part of it</h2>
-      <ul class="ways">
-        <li v-for="w in ways" :key="w.title">
+    <section class="mx-auto mt-[clamp(6rem,10vw,9rem)] max-w-312 px-4 pb-[clamp(5rem,8vw,8rem)]" aria-labelledby="join-title">
+      <h2 id="join-title" class="display text-center text-[clamp(2.25rem,4vw,4rem)] leading-[1.05] text-balance">Be part of it</h2>
+      <ul class="mt-[clamp(2.5rem,4vw,3.5rem)] grid grid-cols-[repeat(auto-fit,minmax(min(100%,16rem),1fr))] gap-4">
+        <li v-for="w in ways" :key="w.title" class="flex">
+          <!-- The main invitation, in Zürich blue -->
           <component
             :is="w.external ? 'a' : NuxtLink"
             v-bind="w.external ? { href: w.to, target: '_blank', rel: 'noopener' } : { to: w.to }"
-            class="way"
-            :class="{ 'way--primary': w.primary }"
+            class="group flex w-full flex-col gap-2 rounded-tile p-7 [transition:translate_0.4s_var(--ease-out-soft),box-shadow_0.4s,background-color_0.3s] hover:-translate-y-1 hover:shadow-[0_0_0_1px_rgb(var(--wz-shadow)/0.08),0_1px_2px_rgb(var(--wz-shadow)/0.05),0_14px_28px_-14px_rgb(var(--wz-shadow)/0.28)]"
+            :class="w.primary ? 'bg-accent hover:bg-accent-hover' : 'bg-raised shadow-[0_0_0_1px_rgb(var(--wz-shadow)/0.07),0_1px_2px_rgb(var(--wz-shadow)/0.04),0_8px_24px_-16px_rgb(var(--wz-shadow)/0.18)]'"
           >
-            <span class="way__icon" aria-hidden="true"><component :is="w.icon" :size="22" /></span>
-            <span class="way__title">{{ w.title }}</span>
-            <span class="way__text">{{ w.text }}</span>
-            <span class="way__cta">
+            <span
+              class="mb-2 grid size-12 place-items-center rounded-2xl"
+              :class="w.primary ? 'bg-[rgb(255_255_255/0.15)] text-white' : 'bg-accent/10 text-link'"
+              aria-hidden="true"
+            >
+              <component :is="w.icon" :size="22" />
+            </span>
+            <span class="text-[1.375rem] font-semibold tracking-[-0.015em]" :class="w.primary ? 'text-white' : 'text-heading'">{{ w.title }}</span>
+            <span class="text-[0.9375rem] leading-[1.55]" :class="w.primary ? 'text-[rgb(255_255_255/0.85)]' : 'text-muted'">{{ w.text }}</span>
+            <span class="mt-auto inline-flex items-center gap-1 pt-4 text-[0.9375rem] font-semibold" :class="w.primary ? 'text-white' : 'text-link'">
               {{ w.cta }}
-              <LucideArrowUpRight v-if="w.external" :size="16" aria-hidden="true" />
-              <LucideArrowRight v-else :size="16" aria-hidden="true" />
+              <LucideArrowUpRight
+                v-if="w.external"
+                :size="16"
+                class="transition-transform duration-300 ease-out-soft group-hover:translate-x-[3px]"
+                aria-hidden="true"
+              />
+              <LucideArrowRight v-else :size="16" class="transition-transform duration-300 ease-out-soft group-hover:translate-x-[3px]" aria-hidden="true" />
             </span>
           </component>
         </li>
       </ul>
 
-      <div v-if="about?.founders.length" class="founders">
-        <p class="founders__line">Web Zürich is run by volunteers. It was founded by</p>
-        <ul class="founders__list">
+      <div v-if="about?.founders.length" class="mt-[clamp(4rem,7vw,6rem)] text-center">
+        <p class="text-muted">Web Zürich is run by volunteers. It was founded by</p>
+        <ul class="mt-4 flex flex-wrap justify-center gap-2">
           <li v-for="f in about.founders" :key="f.id">
-            <NuxtLink :to="`/speakers/${f.id}`" class="founder">
+            <NuxtLink
+              :to="`/speakers/${f.id}`"
+              class="group flex items-center gap-3.5 rounded-full py-1.5 pr-5 pl-1.5 shadow-[0_0_0_1px_rgb(var(--wz-shadow)/0.07)] transition-[background-color,box-shadow] duration-200 ease-[ease] hover:bg-soft hover:shadow-[0_0_0_1px_transparent]"
+            >
               <Avatar :url="f.picture" :name="f.name" :size="56" />
-              <span class="founder__name">{{ f.name }}</span>
+              <span class="font-semibold text-heading transition-colors duration-200 ease-[ease] group-hover:text-link">{{ f.name }}</span>
             </NuxtLink>
           </li>
         </ul>
@@ -197,83 +238,8 @@ defineOgImage("Page", {
 </script>
 
 <style scoped>
-/* Numbers that open the pages behind them */
-.facts {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 0.5rem;
-  width: min(100%, 44rem);
-  margin-top: 2.5rem;
-}
-@media (max-width: 640px) {
-  .facts {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-.fact {
-  display: flex;
-  flex-direction: column-reverse;
-  align-items: center;
-  gap: 0.25rem;
-  padding: 1.25rem 0.5rem 1rem;
-  border-radius: 1.5rem;
-  background: #fff;
-  transition: transform 0.4s var(--ease-out-soft), box-shadow 0.4s;
-}
-.fact:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 14px 28px -16px rgb(0 12 31 / 0.3);
-}
-.fact__value {
-  font-size: clamp(2.25rem, 3.6vw, 3.25rem);
-  line-height: 1;
-  font-variant-numeric: tabular-nums;
-  color: var(--color-zh-navy);
-  transition: color 0.2s;
-}
-.fact:hover .fact__value {
-  color: var(--color-zh-blue);
-}
-.fact__label {
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: var(--color-zh-muted);
-}
-
-.section-title {
-  font-size: clamp(2.25rem, 4vw, 4rem);
-  line-height: 1.05;
-  text-align: center;
-  text-wrap: balance;
-}
-
-/* Wall of faces */
-.people {
-  max-width: 78rem;
-  margin: clamp(5rem, 9vw, 8rem) auto 0;
-  padding-inline: 1rem;
-  text-align: center;
-}
-.people__title {
-  max-width: 50rem;
-  margin-inline: auto;
-  font-size: clamp(2.25rem, 4vw, 4rem);
-  line-height: 1.05;
-  text-wrap: balance;
-}
-.people__lede {
-  max-width: 34rem;
-  margin: 1rem auto 0;
-}
-.wall {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.5rem;
-  margin-top: clamp(2.5rem, 4vw, 3.5rem);
-}
+/* One orchestrated moment: the faces arrive in a quick wave. Scoped keyframe names are rewritten by Vue, so this stays here */
 .wall > li {
-  /* One orchestrated moment: the faces arrive in a quick wave */
   animation: face-in 0.6s var(--ease-out-soft) both;
   animation-delay: calc(min(var(--i), 200) * 6ms);
 }
@@ -283,28 +249,8 @@ defineOgImage("Page", {
     transform: scale(0.6);
   }
 }
-.face {
-  position: relative;
-  display: grid;
-  place-items: center;
-  width: 4rem;
-  height: 4rem;
-  border-radius: 999px;
-  background: var(--color-zh-soft);
-  transition: transform 0.3s var(--ease-out-soft), box-shadow 0.3s;
-}
-.face img {
-  width: 100%;
-  height: 100%;
-  border-radius: inherit;
-  object-fit: cover;
-}
-.face:hover,
-.face:focus-visible {
-  z-index: 2;
-  transform: scale(1.25);
-  box-shadow: 0 0 0 3px #fff, 0 10px 20px -8px rgb(0 12 31 / 0.4);
-}
+
+/* The name as a tooltip */
 .face::after {
   content: attr(data-name);
   position: absolute;
@@ -312,7 +258,7 @@ defineOgImage("Page", {
   left: 50%;
   padding: 0.3rem 0.6rem;
   border-radius: 0.5rem;
-  background: var(--color-zh-navy);
+  background: var(--wz-deep);
   color: #fff;
   font-size: 0.6875rem;
   font-weight: 600;
@@ -326,259 +272,5 @@ defineOgImage("Page", {
 .face:focus-visible::after {
   opacity: 1;
   transform: translate(-50%, 0);
-}
-.face--you {
-  background: var(--color-zh-blue);
-  color: #fff;
-}
-.face--you:hover {
-  background: var(--color-zh-blue-hover);
-}
-
-/* Timeline */
-.story {
-  max-width: 44rem;
-  margin: clamp(6rem, 10vw, 9rem) auto 0;
-  padding-inline: 1rem;
-}
-.timeline {
-  position: relative;
-  display: grid;
-  gap: 1.75rem;
-  margin-top: clamp(2.5rem, 4vw, 3.5rem);
-}
-/* The line that joins the moments, behind the date tiles */
-.timeline::before {
-  content: "";
-  position: absolute;
-  top: 2rem;
-  bottom: 2rem;
-  left: calc(2.375rem - 1px);
-  width: 2px;
-  border-radius: 2px;
-  background: var(--color-zh-line);
-}
-.moment {
-  position: relative;
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  align-items: center;
-  gap: 1.5rem;
-}
-.moment__date {
-  display: grid;
-  place-items: center;
-  align-content: center;
-  width: 4.75rem;
-  height: 4.75rem;
-  border-radius: 1.375rem;
-  background: var(--color-zh-blue);
-  color: #fff;
-  line-height: 1;
-  box-shadow: 0 0 0 6px #fff;
-}
-.moment__month {
-  font-size: 0.8125rem;
-  font-weight: 600;
-  color: rgb(255 255 255 / 0.85);
-}
-.moment__year {
-  margin-top: 0.3rem;
-  font-size: 1.375rem;
-  font-weight: 600;
-  letter-spacing: -0.03em;
-}
-.moment__title {
-  font-size: clamp(1.25rem, 2vw, 1.5rem);
-  font-weight: 600;
-  letter-spacing: -0.015em;
-  color: var(--color-zh-navy);
-}
-.moment__text {
-  margin-top: 0.25rem;
-  font-size: 1rem;
-  line-height: 1.55;
-  color: var(--color-zh-muted);
-}
-
-/* Evening */
-.evening {
-  max-width: 78rem;
-  margin: clamp(6rem, 10vw, 9rem) auto 0;
-  padding-inline: 1rem;
-}
-.steps {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
-  gap: 1rem;
-  margin-top: clamp(2.5rem, 4vw, 3.5rem);
-}
-.step {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  padding: 1.75rem;
-  border-radius: 1.75rem;
-  background: var(--color-zh-soft);
-}
-.step__icon {
-  display: grid;
-  place-items: center;
-  width: 3rem;
-  height: 3rem;
-  margin-bottom: 0.5rem;
-  border-radius: 1rem;
-  background: #fff;
-  color: var(--color-zh-blue);
-}
-.step__when {
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: var(--color-zh-blue);
-}
-.step__title {
-  font-size: 1.375rem;
-  font-weight: 600;
-  letter-spacing: -0.015em;
-  color: var(--color-zh-navy);
-}
-.step__text {
-  font-size: 0.9375rem;
-  line-height: 1.55;
-  color: var(--color-zh-muted);
-}
-.evening__note {
-  margin-top: 1.5rem;
-  text-align: center;
-  color: var(--color-zh-muted);
-}
-
-/* Ways to join */
-.join {
-  max-width: 78rem;
-  margin: clamp(6rem, 10vw, 9rem) auto 0;
-  padding: 0 1rem clamp(5rem, 8vw, 8rem);
-}
-.ways {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
-  gap: 1rem;
-  margin-top: clamp(2.5rem, 4vw, 3.5rem);
-}
-.ways > li {
-  display: flex;
-}
-.way {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  width: 100%;
-  padding: 1.75rem;
-  border-radius: 1.75rem;
-  background: #fff;
-  box-shadow: 0 0 0 1px rgb(0 12 31 / 0.07), 0 1px 2px rgb(0 12 31 / 0.04), 0 8px 24px -16px rgb(0 12 31 / 0.18);
-  transition: transform 0.4s var(--ease-out-soft), box-shadow 0.4s, background-color 0.3s;
-}
-.way:hover {
-  transform: translateY(-4px);
-  box-shadow:
-    0 0 0 1px rgb(0 12 31 / 0.08),
-    0 1px 2px rgb(0 12 31 / 0.05),
-    0 14px 28px -14px rgb(0 12 31 / 0.28);
-}
-.way:focus-visible {
-  border-radius: 1.75rem;
-}
-.way__icon {
-  display: grid;
-  place-items: center;
-  width: 3rem;
-  height: 3rem;
-  margin-bottom: 0.5rem;
-  border-radius: 1rem;
-  background: rgb(0 112 180 / 0.1);
-  color: var(--color-zh-blue);
-}
-.way__title {
-  font-size: 1.375rem;
-  font-weight: 600;
-  letter-spacing: -0.015em;
-  color: var(--color-zh-navy);
-}
-.way__text {
-  font-size: 0.9375rem;
-  line-height: 1.55;
-  color: var(--color-zh-muted);
-}
-.way__cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.25rem;
-  margin-top: auto;
-  padding-top: 1rem;
-  font-size: 0.9375rem;
-  font-weight: 600;
-  color: var(--color-zh-blue);
-}
-.way__cta svg {
-  transition: transform 0.3s var(--ease-out-soft);
-}
-.way:hover .way__cta svg {
-  transform: translateX(3px);
-}
-/* The main invitation, in Zürich blue */
-.way--primary {
-  background: var(--color-zh-blue);
-  box-shadow: none;
-}
-.way--primary:hover {
-  background: var(--color-zh-blue-hover);
-}
-.way--primary .way__icon {
-  background: rgb(255 255 255 / 0.15);
-  color: #fff;
-}
-.way--primary .way__title,
-.way--primary .way__cta {
-  color: #fff;
-}
-.way--primary .way__text {
-  color: rgb(255 255 255 / 0.85);
-}
-
-.founders {
-  margin-top: clamp(4rem, 7vw, 6rem);
-  text-align: center;
-}
-.founders__line {
-  color: var(--color-zh-muted);
-}
-.founders__list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.5rem;
-  margin-top: 1rem;
-}
-.founder {
-  display: flex;
-  align-items: center;
-  gap: 0.875rem;
-  padding: 0.375rem 1.25rem 0.375rem 0.375rem;
-  border-radius: 999px;
-  box-shadow: 0 0 0 1px rgb(0 12 31 / 0.07);
-  transition: background-color 0.2s, box-shadow 0.2s;
-}
-.founder:hover {
-  background: var(--color-zh-soft);
-  box-shadow: 0 0 0 1px transparent;
-}
-.founder__name {
-  font-weight: 600;
-  color: var(--color-zh-navy);
-  transition: color 0.2s;
-}
-.founder:hover .founder__name {
-  color: var(--color-zh-blue);
 }
 </style>

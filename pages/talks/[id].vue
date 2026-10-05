@@ -2,53 +2,67 @@
   <div v-if="talk">
     <PageHero :title="talk.name.trim()">
       <template #before>
-        <NuxtLink to="/talks" class="back">
+        <NuxtLink
+          to="/talks"
+          class="mb-6 inline-flex items-center gap-1.5 rounded-full bg-raised px-3.5 py-1.5 text-[0.875rem] font-semibold text-heading hover:text-link"
+        >
           <LucideArrowLeft :size="16" aria-hidden="true" />
           All talks
         </NuxtLink>
       </template>
-      <ul class="byline">
+      <ul class="mt-7 flex flex-wrap justify-center gap-3">
         <li v-for="s in talk.speakers" :key="s.id">
-          <NuxtLink :to="`/speakers/${s.id}`" class="byline__speaker">
+          <NuxtLink
+            :to="`/speakers/${s.id}`"
+            class="inline-flex items-center gap-2.5 rounded-full bg-raised py-1 pr-4 pl-1 font-semibold text-heading [transition:color_0.2s] hover:text-link"
+          >
             <Avatar :url="s.speakerPicture?.url" :name="s.name" :size="36" />
             {{ s.name }}
           </NuxtLink>
         </li>
       </ul>
-      <p v-if="meta" class="mt-3 text-zh-muted">{{ meta }}</p>
+      <p v-if="meta" class="mt-3 text-muted">{{ meta }}</p>
     </PageHero>
 
-    <div class="talk">
+    <div class="mx-auto mt-[clamp(2.5rem,6vw,4rem)] grid max-w-[48rem] gap-14 px-6">
       <!-- Click-to-play: the YouTube player only loads when someone asks for it -->
-      <div v-if="talk.youtubecode" class="talk__video tile">
+      <div v-if="talk.youtubecode" class="tile relative aspect-video bg-deep shadow-[0_40px_80px_-40px_rgb(var(--wz-shadow)/0.55)] lg:-mx-24">
         <iframe
           v-if="playing"
           :src="`https://www.youtube-nocookie.com/embed/${talk.youtubecode}?autoplay=1&rel=0`"
           :title="talk.name"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen
+          class="absolute inset-0 h-full w-full border-0"
         />
-        <button v-else type="button" class="talk__poster" @click="playing = true">
+        <button v-else type="button" class="group/poster absolute inset-0 h-full w-full border-0" @click="playing = true">
           <YtThumb :id="talk.youtubecode" hd eager alt="" />
-          <span class="talk__play"><LucidePlay :size="28" fill="currentColor" aria-hidden="true" /></span>
+          <span
+            class="absolute top-1/2 left-1/2 grid size-20 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-raised pl-1 text-link shadow-[0_0_0_0.75rem_rgb(255_255_255/0.25)] transition-transform duration-300 ease-out-soft group-hover/poster:scale-108"
+          ><LucidePlay :size="28" fill="currentColor" aria-hidden="true" /></span>
           <span class="sr-only">Play video: {{ talk.name }}</span>
         </button>
       </div>
 
-      <div v-if="talk.abstract" class="talk__abstract">
+      <div v-if="talk.abstract">
         <h2 class="heading text-2xl">About this talk</h2>
-        <p>{{ talk.abstract }}</p>
+        <p class="mt-4 max-w-[65ch] text-lg leading-[1.7] whitespace-pre-line">{{ talk.abstract }}</p>
       </div>
 
-      <section v-if="talk.speakers?.length" class="talk__speakers">
-        <h2 class="heading text-2xl">{{ talk.speakers.length === 1 ? "Speaker" : "Speakers" }}</h2>
-        <NuxtLink v-for="s in talk.speakers" :key="s.id" :to="`/speakers/${s.id}`" class="speaker-link">
+      <section v-if="talk.speakers?.length" class="grid gap-2">
+        <h2 class="heading mb-2 text-2xl">{{ talk.speakers.length === 1 ? "Speaker" : "Speakers" }}</h2>
+        <NuxtLink
+          v-for="s in talk.speakers"
+          :key="s.id"
+          :to="`/speakers/${s.id}`"
+          class="-mx-3 flex items-center gap-4 rounded-3xl p-3 [transition:background_0.2s] hover:bg-soft"
+        >
           <Avatar :url="s.speakerPicture?.url" :name="s.name" :size="56" />
           <span>
-            <span class="block text-lg font-semibold text-zh-navy">{{ s.name }}</span>
-            <span class="text-zh-muted">See all talks</span>
+            <span class="block text-lg font-semibold text-heading">{{ s.name }}</span>
+            <span class="text-muted">See all talks</span>
           </span>
-          <LucideArrowRight :size="18" class="ml-auto text-zh-blue" aria-hidden="true" />
+          <LucideArrowRight :size="18" class="ml-auto text-link" aria-hidden="true" />
         </NuxtLink>
       </section>
     </div>
@@ -152,114 +166,3 @@ if (talk.value?.youtubecode) {
   });
 }
 </script>
-
-<style scoped>
-.back {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.375rem;
-  margin-bottom: 1.5rem;
-  padding: 0.375rem 0.875rem;
-  border-radius: 999px;
-  background: #fff;
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: var(--color-zh-navy);
-}
-.back:hover {
-  color: var(--color-zh-blue);
-}
-.byline {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.75rem;
-  margin-top: 1.75rem;
-}
-.byline__speaker {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.625rem;
-  padding: 0.25rem 1rem 0.25rem 0.25rem;
-  border-radius: 999px;
-  background: #fff;
-  font-weight: 600;
-  color: var(--color-zh-navy);
-  transition: color 0.2s;
-}
-.byline__speaker:hover {
-  color: var(--color-zh-blue);
-}
-
-.talk {
-  display: grid;
-  gap: 3.5rem;
-  max-width: 48rem;
-  margin: clamp(2.5rem, 6vw, 4rem) auto 0;
-  padding-inline: 1.5rem;
-}
-.talk__video {
-  position: relative;
-  aspect-ratio: 16 / 9;
-  background: var(--color-zh-navy);
-  box-shadow: 0 40px 80px -40px rgb(0 12 31 / 0.55);
-}
-@media (min-width: 1024px) {
-  .talk__video {
-    margin-inline: -6rem;
-  }
-}
-.talk__video iframe,
-.talk__poster {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  border: 0;
-}
-.talk__play {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  display: grid;
-  place-items: center;
-  width: 5rem;
-  height: 5rem;
-  padding-left: 4px;
-  border-radius: 999px;
-  background: #fff;
-  color: var(--color-zh-blue);
-  transform: translate(-50%, -50%);
-  box-shadow: 0 0 0 0.75rem rgb(255 255 255 / 0.25);
-  transition: transform 0.3s var(--ease-out-soft);
-}
-.talk__poster:hover .talk__play {
-  transform: translate(-50%, -50%) scale(1.08);
-}
-.talk__abstract p {
-  margin-top: 1rem;
-  font-size: 1.125rem;
-  line-height: 1.7;
-  white-space: pre-line;
-  max-width: 65ch;
-}
-.talk__speakers {
-  display: grid;
-  gap: 0.5rem;
-}
-.talk__speakers h2 {
-  margin-bottom: 0.5rem;
-}
-.speaker-link {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  padding: 0.75rem;
-  margin-inline: -0.75rem;
-  border-radius: 1.5rem;
-  transition: background 0.2s;
-}
-.speaker-link:hover {
-  background: var(--color-zh-soft);
-}
-</style>

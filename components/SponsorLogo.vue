@@ -5,8 +5,8 @@
     :alt="alt"
     crossorigin="anonymous"
     loading="lazy"
-    class="sponsor-logo"
-    :class="`is-${tone}`"
+    class="max-h-full max-w-full object-contain transition-[filter,opacity] duration-300 ease-[ease]"
+    :class="[`is-${tone}`, tones[tone]]"
     :style="size"
     @load="detect"
   />
@@ -34,6 +34,12 @@ const size = ref<Record<string, string>>({});
  */
 const img = ref<HTMLImageElement>();
 const tone = ref<"pending" | "ink" | "solid">("pending");
+// The is-* class stays as a hook for parents; in dark mode the marks are inverted to light
+const tones = {
+  pending: "opacity-0",
+  ink: "brightness-0 opacity-72 dark:invert",
+  solid: "grayscale mix-blend-multiply opacity-85 dark:invert dark:mix-blend-screen",
+};
 
 function detect() {
   const el = img.value;
@@ -68,23 +74,3 @@ onMounted(() => {
 });
 </script>
 
-<style scoped>
-.sponsor-logo {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-  transition: filter 0.3s, opacity 0.3s;
-}
-.is-pending {
-  opacity: 0;
-}
-.is-ink {
-  filter: brightness(0);
-  opacity: 0.72;
-}
-.is-solid {
-  filter: grayscale(1);
-  mix-blend-mode: multiply;
-  opacity: 0.85;
-}
-</style>

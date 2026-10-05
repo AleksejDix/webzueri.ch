@@ -1,32 +1,61 @@
 <template>
   <!-- Compact: the speaker's face instead of a video tile, for lists inside other content -->
-  <NuxtLink v-if="compact" :to="`/talks/${talk.id}`" class="talk-row talk-row--compact">
-    <span class="talk-row__faces talk-row__faces--lead" aria-hidden="true">
-      <Avatar v-for="s in (talk.speakers ?? []).slice(0, 2)" :key="s.id" :url="s.speakerPicture?.url" :name="s.name" :size="40" />
+  <NuxtLink
+    v-if="compact"
+    :to="`/talks/${talk.id}`"
+    class="group/row -mx-3 flex items-center gap-4 rounded-3xl px-3 py-2.5 [transition:background_0.2s] hover:bg-soft"
+  >
+    <span class="inline-flex flex-none" aria-hidden="true">
+      <Avatar
+        v-for="s in (talk.speakers ?? []).slice(0, 2)"
+        :key="s.id"
+        :url="s.speakerPicture?.url"
+        :name="s.name"
+        :size="40"
+        class="shadow-[0_0_0_2px_var(--wz-raised)] not-first:-ml-3"
+      />
     </span>
-    <span class="talk-row__body">
-      <span class="talk-row__title">{{ talk.name.trim() }}</span>
-      <span class="talk-row__line">
+    <span class="grid min-w-0 gap-1.5">
+      <span class="text-[1.0625rem] leading-[1.3] font-semibold text-pretty text-heading group-hover/row:text-link">{{ talk.name.trim() }}</span>
+      <span class="flex flex-wrap items-center gap-x-2.5 gap-y-1 text-[0.9375rem] text-muted">
         {{ (talk.speakers ?? []).map((s) => s.name).join(", ") }}
-        <span v-if="talk.youtubecode" class="talk-row__video"><LucidePlay :size="10" fill="currentColor" aria-hidden="true" /> Video</span>
+        <span
+          v-if="talk.youtubecode"
+          class="inline-flex items-center gap-1 rounded-full bg-soft px-2 py-[0.0625rem] text-[0.75rem] font-semibold text-link group-hover/row:bg-raised"
+        ><LucidePlay :size="10" fill="currentColor" aria-hidden="true" /> Video</span>
       </span>
     </span>
   </NuxtLink>
-  <NuxtLink v-else :to="`/talks/${talk.id}`" class="talk-row">
-    <span class="talk-row__media tile">
+  <NuxtLink
+    v-else
+    :to="`/talks/${talk.id}`"
+    class="group/row -mx-3 flex items-center gap-5 rounded-3xl p-3 [transition:background_0.2s] hover:bg-soft"
+  >
+    <span class="tile relative aspect-[16/10] w-[clamp(6.5rem,22vw,10rem)] flex-none rounded-2xl bg-deep">
       <YtThumb v-if="talk.youtubecode" :id="talk.youtubecode" alt="" />
-      <span v-else class="talk-row__placeholder" aria-hidden="true"><LucideMic :size="22" /></span>
-      <span v-if="talk.youtubecode" class="talk-row__play" aria-hidden="true"><LucidePlay :size="12" fill="currentColor" /></span>
+      <span v-else class="grid h-full w-full place-items-center bg-soft text-link group-hover/row:bg-raised" aria-hidden="true"><LucideMic :size="22" /></span>
+      <span
+        v-if="talk.youtubecode"
+        class="absolute bottom-2 left-2 grid size-6 place-items-center rounded-full bg-raised pl-px text-link"
+        aria-hidden="true"
+      ><LucidePlay :size="12" fill="currentColor" /></span>
     </span>
-    <span class="talk-row__body">
-      <span class="talk-row__title">{{ talk.name.trim() }}</span>
-      <span v-if="talk.speakers?.length" class="talk-row__speakers">
-        <span class="talk-row__faces" aria-hidden="true">
-          <Avatar v-for="s in talk.speakers.slice(0, 3)" :key="s.id" :url="s.speakerPicture?.url" :name="s.name" :size="24" />
+    <span class="grid min-w-0 gap-1.5">
+      <span class="text-[1.0625rem] leading-[1.3] font-semibold text-pretty text-heading group-hover/row:text-link">{{ talk.name.trim() }}</span>
+      <span v-if="talk.speakers?.length" class="flex items-center gap-2 text-[0.9375rem] text-ink">
+        <span class="inline-flex" aria-hidden="true">
+          <Avatar
+            v-for="s in talk.speakers.slice(0, 3)"
+            :key="s.id"
+            :url="s.speakerPicture?.url"
+            :name="s.name"
+            :size="24"
+            class="shadow-[0_0_0_2px_var(--wz-raised)] not-first:-ml-1.5"
+          />
         </span>
         {{ talk.speakers.map((s) => s.name).join(", ") }}
       </span>
-      <span v-if="meta" class="talk-row__meta">{{ meta }}</span>
+      <span v-if="meta" class="text-[0.875rem] text-muted">{{ meta }}</span>
     </span>
   </NuxtLink>
 </template>
@@ -60,117 +89,3 @@ const meta = computed(() => {
   return parts.join(", ");
 });
 </script>
-
-<style scoped>
-.talk-row {
-  display: flex;
-  align-items: center;
-  gap: 1.25rem;
-  padding: 0.75rem;
-  margin-inline: -0.75rem;
-  border-radius: 1.5rem;
-  transition: background 0.2s;
-}
-.talk-row:hover {
-  background: var(--color-zh-soft);
-}
-.talk-row__media {
-  position: relative;
-  flex: none;
-  width: clamp(6.5rem, 22vw, 10rem);
-  aspect-ratio: 16 / 10;
-  border-radius: 1rem;
-  background: var(--color-zh-navy);
-}
-.talk-row__placeholder {
-  display: grid;
-  place-items: center;
-  width: 100%;
-  height: 100%;
-  background: var(--color-zh-soft);
-  color: var(--color-zh-blue);
-}
-.talk-row:hover .talk-row__placeholder {
-  background: #fff;
-}
-.talk-row__play {
-  position: absolute;
-  left: 0.5rem;
-  bottom: 0.5rem;
-  display: grid;
-  place-items: center;
-  width: 1.5rem;
-  height: 1.5rem;
-  padding-left: 1px;
-  border-radius: 999px;
-  background: #fff;
-  color: var(--color-zh-blue);
-}
-.talk-row__body {
-  display: grid;
-  gap: 0.375rem;
-  min-width: 0;
-}
-.talk-row__title {
-  font-size: 1.0625rem;
-  font-weight: 600;
-  line-height: 1.3;
-  color: var(--color-zh-navy);
-  text-wrap: pretty;
-}
-.talk-row:hover .talk-row__title {
-  color: var(--color-zh-blue);
-}
-.talk-row__speakers {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.9375rem;
-  color: var(--color-zh-ink);
-}
-.talk-row__faces {
-  display: inline-flex;
-}
-.talk-row__faces > * + * {
-  margin-left: -0.375rem;
-}
-.talk-row__faces > * {
-  box-shadow: 0 0 0 2px #fff;
-}
-.talk-row__meta {
-  font-size: 0.875rem;
-  color: var(--color-zh-muted);
-}
-.talk-row--compact {
-  gap: 1rem;
-  padding: 0.625rem 0.75rem;
-}
-.talk-row__faces--lead {
-  flex: none;
-}
-.talk-row__faces--lead > * + * {
-  margin-left: -0.75rem;
-}
-.talk-row__line {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.25rem 0.625rem;
-  font-size: 0.9375rem;
-  color: var(--color-zh-muted);
-}
-.talk-row__video {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.25rem;
-  padding: 0.0625rem 0.5rem;
-  border-radius: 999px;
-  background: var(--color-zh-soft);
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: var(--color-zh-blue);
-}
-.talk-row--compact:hover .talk-row__video {
-  background: #fff;
-}
-</style>

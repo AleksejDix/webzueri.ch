@@ -1,38 +1,9 @@
 <template>
-  <p class="notice">
+  <p class="flex h-(--notice-h) flex-wrap items-center justify-center gap-x-[0.3em] gap-y-0 px-4 text-center text-xs/none tracking-[-0.02em] text-muted">
+    <!-- The thin line above the frame, like america.gov's "official website" notice -->
     Everyone at Web Zürich follows our
-    <NuxtLink to="/code-of-conduct">Code of Conduct</NuxtLink>
+    <NuxtLink to="/code-of-conduct" class="font-semibold text-heading underline decoration-line underline-offset-3 transition-[color,text-decoration-color] duration-200 ease-[ease] hover:text-link hover:decoration-link">Code of Conduct</NuxtLink>
     and
-    <NuxtLink to="/advertising-rules">advertising rules</NuxtLink>.
+    <NuxtLink to="/advertising-rules" class="font-semibold text-heading underline decoration-line underline-offset-3 transition-[color,text-decoration-color] duration-200 ease-[ease] hover:text-link hover:decoration-link">advertising rules</NuxtLink>.
   </p>
 </template>
-
-<style scoped>
-/* The thin line above the frame, like america.gov's "official website" notice */
-.notice {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 0 0.3em;
-  height: var(--notice-h);
-  padding-inline: 1rem;
-  font-size: 0.75rem;
-  line-height: 1;
-  letter-spacing: -0.02em;
-  color: var(--color-zh-muted);
-  text-align: center;
-}
-.notice a {
-  font-weight: 600;
-  color: var(--color-zh-navy);
-  text-decoration: underline;
-  text-decoration-color: var(--color-zh-line);
-  text-underline-offset: 3px;
-  transition: color 0.2s, text-decoration-color 0.2s;
-}
-.notice a:hover {
-  color: var(--color-zh-blue);
-  text-decoration-color: var(--color-zh-blue);
-}
-</style>

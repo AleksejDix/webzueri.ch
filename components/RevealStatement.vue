@@ -1,11 +1,16 @@
 <template>
-  <p ref="el" class="reveal display" :style="{ '--p': progress, '--n': count }">
+  <p
+    ref="el"
+    class="display mx-auto max-w-[11em] text-center text-[clamp(2.25rem,4.15vw,6rem)] leading-[1.05] *:[--t:clamp(0,calc((var(--p)*(var(--n)+4)-var(--i))/4),1)] *:opacity-[calc(0.14+0.86*var(--t))] *:blur-[calc((1-var(--t))*5px)]"
+    :style="{ '--p': progress, '--n': count }"
+  >
+    <!-- Each token's own progress (--t): words come in one after another, four at a time -->
     <template v-for="(token, i) in tokens" :key="i">
-      <span v-if="token.type === 'word'" class="reveal__word" :style="{ '--i': token.index }">{{ token.text }}</span>
-      <span v-else-if="token.type === 'faces'" class="reveal__inline reveal__faces" :style="{ '--i': token.index }" aria-hidden="true">
-        <img v-for="url in token.faces" :key="url" :src="url" alt="" width="64" height="64" loading="lazy" />
+      <span v-if="token.type === 'word'" :style="{ '--i': token.index }">{{ token.text }}</span>
+      <span v-else-if="token.type === 'faces'" class="inline-flex scale-[calc(0.7+0.3*var(--t))] align-middle leading-none" :style="{ '--i': token.index }" aria-hidden="true">
+        <img v-for="url in token.faces" :key="url" :src="url" alt="" width="64" height="64" loading="lazy" class="size-[0.9em] rounded-full border-3 border-page object-cover shadow-[0_4px_12px_-4px_rgb(var(--wz-shadow)/0.4)] not-first:-ml-[0.3em]" />
       </span>
-      <span v-else class="reveal__inline reveal__icon" :style="{ '--i': token.index }" aria-hidden="true">
+      <span v-else class="inline-grid size-[0.9em] scale-[calc(0.7+0.3*var(--t))] place-items-center rounded-full bg-accent align-middle leading-none text-white" :style="{ '--i': token.index }" aria-hidden="true">
         <LucidePlay v-if="token.icon === 'play'" :size="22" fill="currentColor" />
         <LucideMic v-else-if="token.icon === 'mic'" :size="22" />
         <LucideMapPin v-else :size="22" />
@@ -74,45 +79,3 @@ onBeforeUnmount(() => {
 });
 </script>
 
-<style scoped>
-.reveal {
-  max-width: 11em;
-  margin-inline: auto;
-  font-size: clamp(2.25rem, 4.15vw, 6rem);
-  line-height: 1.05;
-  text-align: center;
-}
-/* Each token's own progress: words come in one after another, four at a time */
-.reveal__word,
-.reveal__inline {
-  --t: clamp(0, calc((var(--p) * (var(--n) + 4) - var(--i)) / 4), 1);
-  opacity: calc(0.14 + 0.86 * var(--t));
-  filter: blur(calc((1 - var(--t)) * 5px));
-}
-.reveal__inline {
-  display: inline-flex;
-  vertical-align: middle;
-  line-height: 1;
-  transform: scale(calc(0.7 + 0.3 * var(--t)));
-}
-.reveal__faces img {
-  width: 0.9em;
-  height: 0.9em;
-  border-radius: 999px;
-  object-fit: cover;
-  border: 3px solid #fff;
-  box-shadow: 0 4px 12px -4px rgb(0 12 31 / 0.4);
-}
-.reveal__faces img + img {
-  margin-left: -0.3em;
-}
-.reveal__icon {
-  display: inline-grid;
-  place-items: center;
-  width: 0.9em;
-  height: 0.9em;
-  border-radius: 999px;
-  background: var(--color-zh-blue);
-  color: #fff;
-}
-</style>

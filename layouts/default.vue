@@ -1,5 +1,5 @@
 <template>
-  <div class="relative min-h-screen bg-white">
+  <div class="relative min-h-screen bg-page">
     <TopNotice />
     <NavigationMain />
     <main id="content">

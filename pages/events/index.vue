@@ -2,108 +2,110 @@
   <div>
     <PageHero title="Events" :lede="`Every Web Zürich meetup since ${firstYear}, newest first. ${eventsCount} so far.`">
       <!-- Next meetup, or an honest note when none is scheduled -->
-      <div class="next">
+      <div class="mt-8 flex flex-wrap items-center justify-center gap-x-5 gap-y-4 rounded-[1.75rem] bg-raised py-3 pr-3 pl-5 text-left shadow-[0_1px_2px_rgb(0_0_0/0.05)]">
         <template v-if="next">
-          <span class="next__date">
+          <span class="grid size-14 place-items-center rounded-2xl bg-accent text-[0.75rem] leading-none font-semibold text-white">
             <span>{{ fmt(next.date, { month: "short" }) }}</span>
-            <strong>{{ fmt(next.date, { day: "numeric" }) }}</strong>
+            <strong class="text-[1.375rem] font-semibold tracking-[-0.04em]">{{ fmt(next.date, { day: "numeric" }) }}</strong>
           </span>
-          <span class="next__text">
-            <strong>Next meetup: {{ fmt(next.date, { weekday: "long", day: "numeric", month: "long" }) }}</strong>
-            <span>{{ [next.time && clock(next.time), venueName(next.venue)].filter(Boolean).join(", ") }}</span>
+          <span class="grid gap-0.5">
+            <strong class="font-semibold text-heading">Next meetup: {{ fmt(next.date, { weekday: "long", day: "numeric", month: "long" }) }}</strong>
+            <span class="text-[0.9375rem] text-muted">{{ [next.time && clock(next.time), venueName(next.venue)].filter(Boolean).join(", ") }}</span>
           </span>
           <a :href="next.meetupLink || MEETUP_URL" target="_blank" rel="noopener" class="btn btn-primary">Register on Meetup</a>
         </template>
         <template v-else>
-          <span class="next__text">
-            <strong>No meetup scheduled yet</strong>
-            <span v-if="lastDate">The last one was on {{ fmt(lastDate, { day: "numeric", month: "long", year: "numeric" }) }}.</span>
+          <span class="grid gap-0.5">
+            <strong class="font-semibold text-heading">No meetup scheduled yet</strong>
+            <span v-if="lastDate" class="text-[0.9375rem] text-muted">The last one was on {{ fmt(lastDate, { day: "numeric", month: "long", year: "numeric" }) }}.</span>
           </span>
           <a :href="MEETUP_URL" target="_blank" rel="noopener" class="btn btn-primary">Get notified on Meetup</a>
         </template>
       </div>
 
-      <nav class="years" aria-label="Jump to a year">
+      <nav class="mt-7 flex flex-wrap justify-center gap-1.5" aria-label="Jump to a year">
         <a v-for="g in groups" :key="g.year" :href="`#year-${g.year}`" class="chip">
           {{ g.year }}
-          <span class="chip__count">{{ g.events.length }}</span>
+          <span class="text-[0.75rem] text-muted tabular-nums">{{ g.events.length }}</span>
         </a>
       </nav>
     </PageHero>
 
-    <div class="band">
-      <div class="list">
-        <section v-for="group in groups" :id="`year-${group.year}`" :key="group.year" class="year">
-          <h2 class="year__head">
-            <span class="display year__title">{{ group.year }}</span>
-            <span class="year__count">{{ group.events.filter((e) => !isPlaceholder(e)).length }} meetups</span>
+    <div class="mt-[clamp(3rem,5vw,4.5rem)] pt-2 pb-[clamp(5rem,8vw,8rem)]">
+      <div class="mx-auto max-w-[62rem] px-4">
+        <section v-for="group in groups" :id="`year-${group.year}`" :key="group.year" class="scroll-mt-4 pt-[clamp(3rem,5vw,4.5rem)]">
+          <h2 class="mx-2 mb-5 flex items-baseline gap-4">
+            <span class="display text-[clamp(3rem,6vw,5rem)] leading-none tabular-nums">{{ group.year }}</span>
+            <span class="text-[1rem] font-semibold text-muted">{{ group.events.filter((e) => !isPlaceholder(e)).length }} meetups</span>
           </h2>
 
           <template v-for="event in group.events" :key="event.id">
             <!-- Placeholders like "No event in June" stay a quiet line -->
-            <p v-if="isPlaceholder(event)" class="skip">
-              <span class="skip__month">{{ fmt(event.date, { month: "long" }) }}</span>
+            <p v-if="isPlaceholder(event)" class="mx-2 mb-4 rounded-[1.25rem] border border-dashed border-line px-6 py-4 text-muted">
+              <span class="mr-2 font-semibold text-ink">{{ fmt(event.date, { month: "long" }) }}</span>
               No meetup this month.
             </p>
 
-            <article v-else class="event">
-              <header class="event__head">
-                <div class="event__date" aria-hidden="true">
-                  <span class="event__month">{{ fmt(event.date, { month: "short" }) }}</span>
-                  <span class="event__day">{{ fmt(event.date, { day: "numeric" }) }}</span>
+            <article v-else class="mb-4 rounded-4xl bg-raised p-[clamp(1.25rem,2.5vw,2rem)] shadow-[0_0_0_1px_rgb(var(--wz-shadow)/0.07),0_1px_2px_rgb(var(--wz-shadow)/0.04),0_8px_24px_-16px_rgb(var(--wz-shadow)/0.18)]">
+              <header class="grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-5 [@media(max-width:720px)]:grid-cols-[auto_minmax(0,1fr)]">
+                <!-- Zürich blue gives every evening a colour anchor -->
+                <div class="grid size-19 place-items-center content-center rounded-[1.375rem] bg-accent leading-none text-white" aria-hidden="true">
+                  <span class="text-[0.8125rem] font-semibold text-[rgb(255_255_255/0.85)]">{{ fmt(event.date, { month: "short" }) }}</span>
+                  <span class="mt-1 text-[2rem] font-semibold tracking-[-0.05em]">{{ fmt(event.date, { day: "numeric" }) }}</span>
                 </div>
-                <div class="event__heading">
-                  <h3 class="heading event__title"><NuxtLink :to="`/events/${event.date}`" class="event__link">{{ eventTitle(event) }}</NuxtLink></h3>
-                  <p class="event__meta">
+                <div>
+                  <h3 class="heading text-[clamp(1.25rem,2vw,1.625rem)] font-medium"><NuxtLink :to="`/events/${event.date}`" class="transition-[color] duration-200 ease-[ease] hover:text-(--wz-link)">{{ eventTitle(event) }}</NuxtLink></h3>
+                  <p class="mt-1.5 flex flex-wrap items-center gap-x-4 gap-y-1 text-[0.9375rem] text-muted">
                     <span>{{ fmt(event.date, { weekday: "long", day: "numeric", month: "long" }) }}</span>
                     <span v-if="event.time">{{ clock(event.time) }}</span>
-                    <a v-if="event.venue?.googleMapsUrl" :href="event.venue.googleMapsUrl" target="_blank" rel="noopener" class="event__venue">
+                    <a v-if="event.venue?.googleMapsUrl" :href="event.venue.googleMapsUrl" target="_blank" rel="noopener" class="inline-flex items-center gap-1 hover:text-(--wz-link)">
                       <LucideMapPin :size="14" aria-hidden="true" />{{ venueName(event.venue) }}
                     </a>
-                    <span v-else-if="event.venue" class="event__venue"><LucideMapPin :size="14" aria-hidden="true" />{{ venueName(event.venue) }}</span>
-                    <span v-if="event.eventType === 'Digital'" class="event__online">Online</span>
+                    <span v-else-if="event.venue" class="inline-flex items-center gap-1"><LucideMapPin :size="14" aria-hidden="true" />{{ venueName(event.venue) }}</span>
+                    <span v-if="event.eventType === 'Digital'" class="rounded-full bg-soft px-2 py-0.5 text-[0.8125rem] font-semibold text-heading">Online</span>
                   </p>
                 </div>
                 <!-- The evening's speakers: faces make the list feel like people, not a log -->
-                <div v-if="faces(event).length" class="event__faces" aria-hidden="true">
+                <div v-if="faces(event).length" class="flex pl-3 *:-ml-3 *:shadow-[0_0_0_3px_var(--wz-raised)] [@media(max-width:720px)]:col-span-full" aria-hidden="true">
                   <Avatar v-for="f in faces(event)" :key="f.id" :url="f.speakerPicture?.url" :name="f.name" :size="52" />
                 </div>
               </header>
 
-              <ul v-if="videos(event).length" class="event__videos" aria-label="Recordings">
+              <!-- Recordings in full colour -->
+              <ul v-if="videos(event).length" class="mt-6 grid grid-cols-[repeat(auto-fill,minmax(min(100%,10.5rem),1fr))] gap-2.5" aria-label="Recordings">
                 <li v-for="talk in videos(event)" :key="talk.id">
-                  <NuxtLink :to="`/talks/${talk.id}`" class="video">
-                    <span class="video__thumb"><YtThumb :id="talk.youtubecode!" alt="" /></span>
-                    <span class="video__play" aria-hidden="true"><LucidePlay :size="12" fill="currentColor" /></span>
+                  <NuxtLink :to="`/talks/${talk.id}`" class="group relative block">
+                    <span class="block aspect-video overflow-hidden rounded-2xl bg-deep *:transition-transform *:duration-500 *:ease-out-soft group-hover:*:scale-105"><YtThumb :id="talk.youtubecode!" alt="" /></span>
+                    <span class="absolute bottom-2.5 left-2.5 grid size-7 place-items-center rounded-full bg-raised pl-[2px] text-(--wz-link)" aria-hidden="true"><LucidePlay :size="12" fill="currentColor" /></span>
                     <span class="sr-only">Watch: {{ talk.name }}</span>
                   </NuxtLink>
                 </li>
               </ul>
 
-              <ul v-if="realTalks(event).length" class="event__talks">
+              <ul v-if="realTalks(event).length" class="mt-5 grid gap-0.5">
                 <li v-for="talk in realTalks(event)" :key="talk.id">
                   <TalkRow :talk="talk" compact />
                 </li>
               </ul>
 
-              <footer v-if="event.sponsors?.length || event.meetupLink || event.streamLink" class="event__foot">
-                <div v-if="event.sponsors?.length" class="event__sponsors">
-                  <span class="event__label">Supported by</span>
+              <footer v-if="event.sponsors?.length || event.meetupLink || event.streamLink" class="mt-5 flex flex-wrap items-center justify-between gap-x-8 gap-y-4 border-t border-line pt-5">
+                <div v-if="event.sponsors?.length" class="flex flex-wrap items-center gap-x-5 gap-y-3">
+                  <span class="text-[0.8125rem] font-semibold text-muted">Supported by</span>
                   <a
                     v-for="sp in event.sponsors.filter((x) => x.logo?.url)"
                     :key="sp.id"
                     :href="sp.website"
                     target="_blank"
                     rel="noopener"
-                    class="event__sponsor"
+                    class="event__sponsor grid h-7 place-items-center"
                     :title="sp.name"
                   >
                     <SponsorLogo :src="sp.logo!.url" :alt="sp.name" :area="900" :max-width="90" />
                   </a>
                 </div>
-                <div class="event__links">
-                  <a v-if="event.streamLink" :href="event.streamLink" target="_blank" rel="noopener" class="row-link">Watch the stream</a>
-                  <a v-if="event.meetupLink" :href="event.meetupLink" target="_blank" rel="noopener" class="row-link">Meetup page</a>
+                <div class="flex gap-5">
+                  <a v-if="event.streamLink" :href="event.streamLink" target="_blank" rel="noopener" class="text-[0.9375rem] font-bold tracking-[-0.01em] text-heading transition-[color] duration-200 ease-[ease] hover:text-(--wz-link)">Watch the stream</a>
+                  <a v-if="event.meetupLink" :href="event.meetupLink" target="_blank" rel="noopener" class="text-[0.9375rem] font-bold tracking-[-0.01em] text-heading transition-[color] duration-200 ease-[ease] hover:text-(--wz-link)">Meetup page</a>
                 </div>
               </footer>
             </article>
@@ -204,278 +206,8 @@ defineOgImage("Page", {
 </script>
 
 <style scoped>
-.next {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem 1.25rem;
-  margin-top: 2rem;
-  padding: 0.75rem 0.75rem 0.75rem 1.25rem;
-  border-radius: 1.75rem;
-  background: #fff;
-  text-align: left;
-  box-shadow: 0 1px 2px rgb(0 0 0 / 0.05);
-}
-.next__date {
-  display: grid;
-  place-items: center;
-  width: 3.5rem;
-  height: 3.5rem;
-  border-radius: 1rem;
-  background: var(--color-zh-blue);
-  color: #fff;
-  font-size: 0.75rem;
-  font-weight: 600;
-  line-height: 1;
-}
-.next__date strong {
-  font-size: 1.375rem;
-  font-weight: 600;
-  letter-spacing: -0.04em;
-}
-.next__text {
-  display: grid;
-  gap: 0.125rem;
-}
-.next__text strong {
-  font-weight: 600;
-  color: var(--color-zh-navy);
-}
-.next__text span {
-  font-size: 0.9375rem;
-  color: var(--color-zh-muted);
-}
-
-.years {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.375rem;
-  margin-top: 1.75rem;
-}
-.chip__count {
-  font-size: 0.75rem;
-  color: var(--color-zh-muted);
-  font-variant-numeric: tabular-nums;
-}
-
-.band {
-  margin-top: clamp(3rem, 5vw, 4.5rem);
-  padding-block: 0.5rem clamp(5rem, 8vw, 8rem);
-}
-.list {
-  max-width: 62rem;
-  margin: 0 auto;
-  padding-inline: 1rem;
-}
-.year {
-  padding-top: clamp(3rem, 5vw, 4.5rem);
-  scroll-margin-top: 1rem;
-}
-.year__head {
-  display: flex;
-  align-items: baseline;
-  gap: 1rem;
-  margin: 0 0.5rem 1.25rem;
-}
-.year__title {
-  font-size: clamp(3rem, 6vw, 5rem);
-  line-height: 1;
-  font-variant-numeric: tabular-nums;
-}
-.year__count {
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--color-zh-muted);
-}
-
-.event {
-  margin-bottom: 1rem;
-  padding: clamp(1.25rem, 2.5vw, 2rem);
-  border-radius: 2rem;
-  background: #fff;
-  box-shadow: 0 0 0 1px rgb(0 12 31 / 0.07), 0 1px 2px rgb(0 12 31 / 0.04), 0 8px 24px -16px rgb(0 12 31 / 0.18);
-}
-.event__head {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
-  align-items: center;
-  gap: 1.25rem;
-}
-@media (max-width: 720px) {
-  .event__head {
-    grid-template-columns: auto minmax(0, 1fr);
-  }
-  .event__faces {
-    grid-column: 1 / -1;
-  }
-}
-/* Zürich blue gives every evening a colour anchor */
-.event__date {
-  display: grid;
-  place-items: center;
-  align-content: center;
-  width: 4.75rem;
-  height: 4.75rem;
-  border-radius: 1.375rem;
-  background: var(--color-zh-blue);
-  color: #fff;
-  line-height: 1;
-}
-.event__month {
-  font-size: 0.8125rem;
-  font-weight: 600;
-  color: rgb(255 255 255 / 0.85);
-}
-.event__day {
-  margin-top: 0.25rem;
-  font-size: 2rem;
-  font-weight: 600;
-  letter-spacing: -0.05em;
-}
-.event__title {
-  font-size: clamp(1.25rem, 2vw, 1.625rem);
-  font-weight: 500;
-}
-.event__link {
-  transition: color 0.2s;
-}
-.event__link:hover {
-  color: var(--color-zh-blue);
-}
-.event__meta {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.25rem 1rem;
-  margin-top: 0.375rem;
-  font-size: 0.9375rem;
-  color: var(--color-zh-muted);
-}
-.event__venue {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.25rem;
-}
-a.event__venue:hover {
-  color: var(--color-zh-blue);
-}
-.event__online {
-  padding: 0.125rem 0.5rem;
-  border-radius: 999px;
-  background: var(--color-zh-soft);
-  font-size: 0.8125rem;
-  font-weight: 600;
-  color: var(--color-zh-navy);
-}
-.event__faces {
-  display: flex;
-  padding-left: 0.75rem;
-}
-.event__faces > * {
-  margin-left: -0.75rem;
-  box-shadow: 0 0 0 3px #fff;
-}
-
-/* Recordings in full colour */
-.event__videos {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 10.5rem), 1fr));
-  gap: 0.625rem;
-  margin-top: 1.5rem;
-}
-.video {
-  position: relative;
-  display: block;
-}
-.video__thumb {
-  display: block;
-  aspect-ratio: 16 / 9;
-  border-radius: 1rem;
-  overflow: hidden;
-  background: var(--color-zh-navy);
-}
-.video__thumb :deep(img) {
-  transition: transform 0.5s var(--ease-out-soft);
-}
-.video:hover .video__thumb :deep(img) {
-  transform: scale(1.05);
-}
-.video__play {
-  position: absolute;
-  left: 0.625rem;
-  bottom: 0.625rem;
-  display: grid;
-  place-items: center;
-  width: 1.75rem;
-  height: 1.75rem;
-  padding-left: 2px;
-  border-radius: 999px;
-  background: #fff;
-  color: var(--color-zh-blue);
-}
-
-.event__talks {
-  display: grid;
-  gap: 0.125rem;
-  margin-top: 1.25rem;
-}
-.event__foot {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem 2rem;
-  margin-top: 1.25rem;
-  padding-top: 1.25rem;
-  border-top: 1px solid var(--color-zh-line);
-}
-.event__sponsors {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.75rem 1.25rem;
-}
-.event__label {
-  font-size: 0.8125rem;
-  font-weight: 600;
-  color: var(--color-zh-muted);
-}
-.event__sponsor {
-  display: grid;
-  place-items: center;
-  height: 1.75rem;
-}
+/* Sponsor logos are dimmed inside SponsorLogo; full strength on hover */
 .event__sponsor:hover :deep(img) {
   opacity: 1;
 }
-.event__links {
-  display: flex;
-  gap: 1.25rem;
-}
-.row-link {
-  font-size: 0.9375rem;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  color: var(--color-zh-navy);
-  transition: color 0.2s;
-}
-.row-link:hover {
-  color: var(--color-zh-blue);
-}
-
-.skip {
-  margin: 0 0.5rem 1rem;
-  padding: 1rem 1.5rem;
-  border-radius: 1.25rem;
-  border: 1px dashed var(--color-zh-line);
-  color: var(--color-zh-muted);
-}
-.skip__month {
-  margin-right: 0.5rem;
-  font-weight: 600;
-  color: var(--color-zh-ink);
-}
-
 </style>

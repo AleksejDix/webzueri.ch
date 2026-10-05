@@ -6,26 +6,25 @@
     rel="noopener"
     role="option"
     :aria-selected="active"
-    class="next"
-    :class="{ 'is-active': active }"
+    class="flex items-center gap-4 rounded-[1.125rem] bg-soft p-3 text-ink transition-[background,box-shadow] duration-200 ease-[ease] hover:shadow-[inset_0_0_0_2px_var(--wz-link)] aria-selected:shadow-[inset_0_0_0_2px_var(--wz-link)]"
     @mousedown.prevent
     @click.prevent="$emit('pick')"
   >
-    <span class="next__date" aria-hidden="true">
-      <span class="next__month">{{ month }}</span>
-      <span class="next__day">{{ day }}</span>
+    <span class="grid size-14 flex-none place-items-center rounded-2xl bg-accent leading-none text-white" aria-hidden="true">
+      <span class="text-[0.75rem] font-semibold">{{ month }}</span>
+      <span class="text-[1.375rem] font-semibold tracking-[-0.04em]">{{ day }}</span>
     </span>
     <span class="min-w-0">
       <template v-if="event">
-        <span class="next__title">{{ weekday }}, {{ longDate }}{{ event.time ? ` at ${event.time}` : "" }}</span>
-        <span class="next__meta">
+        <span class="block font-semibold text-heading">{{ weekday }}, {{ longDate }}{{ event.time ? ` at ${event.time}` : "" }}</span>
+        <span class="block text-[0.875rem] text-muted">
           {{ event.venue || "Venue to be announced" }}<template v-if="event.talkCount">, {{ event.talkCount }} talks</template>.
           Register on Meetup.
         </span>
       </template>
       <template v-else>
-        <span class="next__title">No meetup scheduled yet</span>
-        <span class="next__meta">
+        <span class="block font-semibold text-heading">No meetup scheduled yet</span>
+        <span class="block text-[0.875rem] text-muted">
           <template v-if="last">The last one was on {{ longDate }}. </template>Follow the Meetup group to hear about the next date.
         </span>
       </template>
@@ -56,49 +55,3 @@ const longDate = computed(() => at({ day: "numeric", month: "long", year: "numer
 const href = computed(() => props.event?.meetupLink || MEETUP_URL);
 </script>
 
-<style scoped>
-.next {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  padding: 0.75rem;
-  border-radius: 1.125rem;
-  background: var(--color-zh-soft);
-  color: var(--color-zh-ink);
-  transition: background 0.2s, box-shadow 0.2s;
-}
-.next.is-active,
-.next:hover {
-  box-shadow: inset 0 0 0 2px var(--color-zh-blue);
-}
-.next__date {
-  flex: none;
-  display: grid;
-  place-items: center;
-  width: 3.5rem;
-  height: 3.5rem;
-  border-radius: 1rem;
-  background: var(--color-zh-blue);
-  color: #fff;
-  line-height: 1;
-}
-.next__month {
-  font-size: 0.75rem;
-  font-weight: 600;
-}
-.next__day {
-  font-size: 1.375rem;
-  font-weight: 600;
-  letter-spacing: -0.04em;
-}
-.next__title {
-  display: block;
-  font-weight: 600;
-  color: var(--color-zh-navy);
-}
-.next__meta {
-  display: block;
-  font-size: 0.875rem;
-  color: var(--color-zh-muted);
-}
-</style>

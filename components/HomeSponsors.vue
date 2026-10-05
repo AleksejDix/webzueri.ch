@@ -1,29 +1,58 @@
 <template>
-  <section v-if="badges.length" class="made-by" aria-labelledby="made-by-title">
-    <h2 id="made-by-title" class="display made-by__title">Made possible by</h2>
-    <p class="lede made-by__lede">
+  <section v-if="badges.length" class="mx-auto mt-[clamp(7rem,12vw,11rem)] flex flex-col items-center px-6 text-center" aria-labelledby="made-by-title">
+    <h2 id="made-by-title" class="display text-[clamp(2.5rem,4vw,4rem)] leading-[1.06]">Made possible by</h2>
+    <p class="lede mt-4 max-w-[34rem]">
       {{ badges.length }} companies have supported {{ meetups }} meetups since {{ since }}. They host us, feed us and clean up afterwards.
     </p>
 
     <!-- Round "seal" badges in a diamond: the biggest supporters on top, sized by meetups -->
-    <ul v-for="(row, r) in rows" :key="r" class="seals">
-      <li v-for="b in row" :key="b.id" class="seal" :class="`seal--${b.tier}`">
-        <a :href="b.website" target="_blank" rel="noopener" class="seal__badge" :aria-label="`${b.name}, ${b.count} meetups since ${b.since}`">
+    <ul
+      v-for="(row, r) in rows"
+      :key="r"
+      class="mt-[clamp(0.75rem,1.6vw,1.5rem)] flex max-w-[64rem] flex-wrap items-center justify-center gap-[clamp(0.75rem,1.6vw,1.5rem)] first-of-type:mt-[clamp(3rem,5vw,4.5rem)]"
+    >
+      <li v-for="b in row" :key="b.id" class="relative flex flex-col items-center">
+        <!-- america.gov's layered seal shadow -->
+        <a
+          :href="b.website"
+          target="_blank"
+          rel="noopener"
+          class="seal__badge group/badge relative grid place-items-center rounded-full bg-raised shadow-[0_0_0_1px_rgb(var(--wz-shadow)/0.04),0_2px_2px_rgb(0_0_0/0.05),0_7px_3.5px_rgb(0_0_0/0.04),0_15px_4.5px_rgb(0_0_0/0.03),0_27px_5.5px_rgb(0_0_0/0.01)] [transition:translate_0.4s_var(--ease-out-soft),box-shadow_0.4s] hover:-translate-y-1.5 hover:shadow-[0_0_0_1px_rgb(var(--wz-shadow)/0.05),0_4px_4px_rgb(0_0_0/0.05),0_14px_10px_rgb(0_0_0/0.05),0_28px_24px_rgb(0_0_0/0.05)] focus-visible:-translate-y-1.5 focus-visible:shadow-[0_0_0_1px_rgb(var(--wz-shadow)/0.05),0_4px_4px_rgb(0_0_0/0.05),0_14px_10px_rgb(0_0_0/0.05),0_28px_24px_rgb(0_0_0/0.05)]"
+          :class="{
+            large: 'size-[clamp(8.5rem,13vw,10.5rem)]',
+            medium: 'size-[clamp(7rem,10.5vw,8.25rem)]',
+            small: 'size-[clamp(5.75rem,8.5vw,6.5rem)]',
+          }[b.tier]"
+          :aria-label="`${b.name}, ${b.count} meetups since ${b.since}`"
+        >
           <SponsorLogo :src="b.logo" :alt="''" :area="b.area" :max-width="b.maxWidth" />
           <!-- On hover the logo steps back and the facts take its place, inside the circle -->
-          <span class="seal__caption" aria-hidden="true">
-            <strong>{{ b.name }}</strong>
+          <span
+            class="pointer-events-none absolute inset-0 grid translate-y-1 place-content-center gap-0.5 rounded-[inherit] text-center leading-[1.25] text-muted opacity-0 [transition:opacity_0.25s,translate_0.3s_var(--ease-out-soft)] group-hover/badge:translate-y-0 group-hover/badge:opacity-100 group-focus-visible/badge:translate-y-0 group-focus-visible/badge:opacity-100"
+            :class="b.tier === 'small' ? 'px-[10%] text-[0.6875rem]' : 'px-[14%] text-[0.8125rem]'"
+            aria-hidden="true"
+          >
+            <strong
+              class="mb-0.5 font-semibold tracking-[-0.01em] text-balance text-heading"
+              :class="b.tier === 'small' ? 'text-[0.75rem]' : 'text-[0.9375rem]'"
+            >{{ b.name }}</strong>
             <span>{{ b.count }} meetups</span>
             <span v-if="b.tier !== 'small'">since {{ b.since }}</span>
           </span>
-          <span v-if="b.current" class="seal__now" title="Supporting us this year" aria-hidden="true" />
+          <!-- Zürich-blue mark on the rim for this year's sponsors -->
+          <span
+            v-if="b.current"
+            class="absolute top-[9%] right-[9%] size-3 rounded-full bg-accent shadow-[0_0_0_3px_var(--wz-raised)]"
+            title="Supporting us this year"
+            aria-hidden="true"
+          />
         </a>
       </li>
     </ul>
 
-    <p class="made-by__key"><span class="seal__now seal__now--inline" aria-hidden="true" /> Supporting us this year</p>
+    <p class="mt-10 inline-flex items-center gap-2 text-[0.875rem] text-muted"><span class="inline-block size-3 rounded-full bg-accent" aria-hidden="true" /> Supporting us this year</p>
 
-    <div class="made-by__actions">
+    <div class="mt-6 flex flex-wrap justify-center gap-2">
       <NuxtLink to="/sponsors#support" class="btn btn-ink">Support an evening</NuxtLink>
       <NuxtLink to="/sponsors" class="btn btn-quiet">See all sponsors</NuxtLink>
     </div>
@@ -101,77 +130,8 @@ const since = computed(() => badges.value.map((b) => b.since).filter(Boolean).so
 </script>
 
 <style scoped>
-.made-by {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: clamp(7rem, 12vw, 11rem) auto 0;
-  padding-inline: 1.5rem;
-  text-align: center;
-}
-.made-by__title {
-  font-size: clamp(2.5rem, 4vw, 4rem);
-  line-height: 1.06;
-}
-.made-by__lede {
-  max-width: 34rem;
-  margin-top: 1rem;
-}
-
-.seals {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: clamp(0.75rem, 1.6vw, 1.5rem);
-  max-width: 64rem;
-  margin-top: clamp(0.75rem, 1.6vw, 1.5rem);
-}
-.seals:first-of-type {
-  margin-top: clamp(3rem, 5vw, 4.5rem);
-}
-.seal {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.seal__badge {
-  position: relative;
-  display: grid;
-  place-items: center;
-  border-radius: 999px;
-  background: #fff;
-  /* america.gov's layered seal shadow */
-  box-shadow:
-    0 0 0 1px rgb(0 12 31 / 0.04),
-    0 2px 2px rgb(0 0 0 / 0.05),
-    0 7px 3.5px rgb(0 0 0 / 0.04),
-    0 15px 4.5px rgb(0 0 0 / 0.03),
-    0 27px 5.5px rgb(0 0 0 / 0.01);
-  transition: transform 0.4s var(--ease-out-soft), box-shadow 0.4s;
-}
-.seal--large .seal__badge {
-  width: clamp(8.5rem, 13vw, 10.5rem);
-  height: clamp(8.5rem, 13vw, 10.5rem);
-}
-.seal--medium .seal__badge {
-  width: clamp(7rem, 10.5vw, 8.25rem);
-  height: clamp(7rem, 10.5vw, 8.25rem);
-}
-.seal--small .seal__badge {
-  width: clamp(5.75rem, 8.5vw, 6.5rem);
-  height: clamp(5.75rem, 8.5vw, 6.5rem);
-}
-.seal__badge:hover,
-.seal__badge:focus-visible {
-  transform: translateY(-6px);
-  box-shadow:
-    0 0 0 1px rgb(0 12 31 / 0.05),
-    0 4px 4px rgb(0 0 0 / 0.05),
-    0 14px 10px rgb(0 0 0 / 0.05),
-    0 28px 24px rgb(0 0 0 / 0.05);
-}
+/* The logo steps back on hover. These target SponsorLogo's <img>, whose own
+   (unlayered) styles would win over utility classes, so they stay here */
 .seal__badge :deep(img) {
   transition: opacity 0.25s, transform 0.4s var(--ease-out-soft);
 }
@@ -182,77 +142,5 @@ const since = computed(() => badges.value.map((b) => b.since).filter(Boolean).so
 .seal__badge:focus-visible :deep(img) {
   opacity: 0;
   transform: scale(0.92);
-}
-
-/* Zürich-blue mark on the rim for this year's sponsors */
-.seal__now {
-  position: absolute;
-  top: 9%;
-  right: 9%;
-  width: 0.75rem;
-  height: 0.75rem;
-  border-radius: 999px;
-  background: var(--color-zh-blue);
-  box-shadow: 0 0 0 3px #fff;
-}
-.seal__now--inline {
-  position: static;
-  display: inline-block;
-  box-shadow: none;
-}
-
-/* Name and count, centred in the badge on hover */
-.seal__caption {
-  position: absolute;
-  inset: 0;
-  display: grid;
-  place-content: center;
-  gap: 0.125rem;
-  padding: 0 14%;
-  border-radius: inherit;
-  font-size: 0.8125rem;
-  line-height: 1.25;
-  color: var(--color-zh-muted);
-  text-align: center;
-  opacity: 0;
-  transform: translateY(0.25rem);
-  pointer-events: none;
-  transition: opacity 0.25s, transform 0.3s var(--ease-out-soft);
-}
-.seal__caption strong {
-  margin-bottom: 0.125rem;
-  font-size: 0.9375rem;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  color: var(--color-zh-navy);
-  text-wrap: balance;
-}
-.seal--small .seal__caption {
-  padding: 0 10%;
-  font-size: 0.6875rem;
-}
-.seal--small .seal__caption strong {
-  font-size: 0.75rem;
-}
-.seal__badge:hover .seal__caption,
-.seal__badge:focus-visible .seal__caption {
-  opacity: 1;
-  transform: none;
-}
-
-.made-by__key {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-top: 2.5rem;
-  font-size: 0.875rem;
-  color: var(--color-zh-muted);
-}
-.made-by__actions {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.5rem;
-  margin-top: 1.5rem;
 }
 </style>

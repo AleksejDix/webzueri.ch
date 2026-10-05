@@ -1,6 +1,66 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+/* `dark:` follows the class @nuxtjs/color-mode puts on <html> (system setting or the toggle) */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/*
+ * Colours by meaning, each with a light and a dark value. Use these
+ * (bg-page, bg-soft, bg-raised, text-heading, text-ink, text-muted,
+ * border-line, text-link, bg-accent, bg-strong/text-on-strong) instead of
+ * fixed colours, so components work in both modes without dark: variants.
+ */
+:root {
+  --wz-page: #ffffff; /* page background */
+  --wz-soft: #ebedee; /* frames and panels */
+  --wz-raised: #ffffff; /* cards, buttons and fields on a panel */
+  --wz-heading: #000c1f; /* headlines */
+  --wz-ink: #0b1a2b; /* body text */
+  --wz-muted: #59616d; /* secondary text */
+  --wz-line: #e2e3e5; /* borders, dividers */
+  --wz-link: #0070b4; /* links and blue text */
+  --wz-accent: #0070b4; /* blue fills: primary buttons, badges */
+  --wz-accent-hover: #005a91;
+  --wz-deep: #000c1f; /* navy panels and tiles that carry white text */
+  --wz-strong: #000c1f; /* inverted fills: dark button, selected chip */
+  --wz-on-strong: #ffffff;
+  --wz-shadow: 0 12 31; /* rgb of shadows, used as rgb(var(--wz-shadow) / a) */
+  color-scheme: light;
+}
+.dark {
+  --wz-page: #0a0e14;
+  --wz-soft: #121922;
+  --wz-raised: #1a222d;
+  --wz-heading: #f2f5f9;
+  --wz-ink: #d9dfe6;
+  --wz-muted: #97a1ad;
+  --wz-line: #29323e;
+  --wz-link: #5fb1ee;
+  --wz-accent: #1580c9;
+  --wz-accent-hover: #2b92d8;
+  --wz-deep: #17304a;
+  --wz-strong: #f2f5f9;
+  --wz-on-strong: #0a0e14;
+  --wz-shadow: 0 0 0;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-page: var(--wz-page);
+  --color-soft: var(--wz-soft);
+  --color-raised: var(--wz-raised);
+  --color-heading: var(--wz-heading);
+  --color-ink: var(--wz-ink);
+  --color-muted: var(--wz-muted);
+  --color-line: var(--wz-line);
+  --color-link: var(--wz-link);
+  --color-accent: var(--wz-accent);
+  --color-accent-hover: var(--wz-accent-hover);
+  --color-deep: var(--wz-deep);
+  --color-strong: var(--wz-strong);
+  --color-on-strong: var(--wz-on-strong);
+}
+
 /*
  * Web Zürich design tokens.
  * Zürich Blau #0070B4 comes from the Canton of Zurich design system
@@ -8,14 +68,15 @@
  * imagery; type sits in a deep ink so pages stay calm.
  */
 @theme {
-  --color-zh-blue: #0070b4;
-  --color-zh-blue-hover: #005a91;
+  /* Kept as aliases while components move to the colours above */
+  --color-zh-blue: var(--wz-link);
+  --color-zh-blue-hover: var(--wz-accent-hover);
   --color-zh-deep: #00407c;
-  --color-zh-navy: #000c1f;
-  --color-zh-ink: #0b1a2b;
-  --color-zh-muted: #59616d;
-  --color-zh-soft: #ebedee;
-  --color-zh-line: #e2e3e5;
+  --color-zh-navy: var(--wz-heading);
+  --color-zh-ink: var(--wz-ink);
+  --color-zh-muted: var(--wz-muted);
+  --color-zh-soft: var(--wz-soft);
+  --color-zh-line: var(--wz-line);
 
   /* The system interface font, as on GitHub: SF Pro on Apple devices, Segoe UI on
      Windows, Noto or Roboto on Android. Nothing to download, so text shows at once */
@@ -37,18 +98,18 @@
   }
 
   html {
-    @apply bg-white text-zh-ink antialiased;
+    @apply bg-page text-ink antialiased;
     font-family: var(--font-sans);
     -webkit-text-size-adjust: 100%;
   }
 
   ::selection {
-    background: var(--color-zh-blue);
+    background: var(--wz-accent);
     color: white;
   }
 
   :focus-visible {
-    outline: 3px solid var(--color-zh-blue);
+    outline: 3px solid var(--wz-link);
     outline-offset: 3px;
     border-radius: 0.5rem;
   }
@@ -61,7 +122,7 @@
     font-weight: 400;
     letter-spacing: -0.036em;
     line-height: 1;
-    color: var(--color-zh-navy);
+    color: var(--wz-heading);
     text-wrap: balance;
   }
 
@@ -70,12 +131,12 @@
     font-weight: 600;
     letter-spacing: -0.03em;
     line-height: 1.12;
-    color: var(--color-zh-navy);
+    color: var(--wz-heading);
     text-wrap: balance;
   }
 
   .lede {
-    @apply text-lg md:text-xl text-zh-muted;
+    @apply text-lg md:text-xl text-muted;
     line-height: 1.45;
     text-wrap: pretty;
   }
@@ -86,27 +147,27 @@
     margin: 0 var(--frame-inset);
     border-radius: var(--radius-frame);
     isolation: isolate;
-    background: var(--color-zh-soft);
+    background: var(--wz-soft);
   }
 
   .btn {
     @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition-colors;
   }
   .btn-primary {
-    @apply bg-zh-blue text-white hover:bg-zh-blue-hover;
+    @apply bg-accent text-white hover:bg-accent-hover;
   }
   .btn-quiet {
-    @apply bg-white text-zh-navy shadow-[0_1px_2px_rgb(0_26_51/0.08)] hover:bg-zh-soft;
+    @apply bg-raised text-heading shadow-[0_1px_2px_rgb(var(--wz-shadow)/0.08)] hover:bg-soft;
   }
   .btn-ink {
-    @apply bg-zh-navy text-white hover:bg-zh-ink;
+    @apply bg-strong text-on-strong hover:opacity-90;
   }
 
   .chip {
-    @apply inline-flex items-center gap-1.5 rounded-full border border-zh-line bg-white px-3.5 py-1.5 text-sm text-zh-navy transition-colors hover:border-zh-blue hover:text-zh-blue;
+    @apply inline-flex items-center gap-1.5 rounded-full border border-line bg-raised px-3.5 py-1.5 text-sm text-heading transition-colors hover:border-link hover:text-link;
   }
   .chip[aria-pressed="true"] {
-    @apply border-zh-navy bg-zh-navy text-white hover:text-white;
+    @apply border-strong bg-strong text-on-strong hover:text-on-strong;
   }
 
   .tile {
@@ -119,7 +180,7 @@
    * so black becomes blue and white stays white. Full colour on hover.
    */
   .duotone {
-    background: var(--color-zh-blue);
+    background: var(--wz-accent);
   }
   .duotone img {
     filter: grayscale(1) contrast(1.15) brightness(1.05);
@@ -139,7 +200,7 @@
     padding-inline: 1.5rem;
     font-size: 1.125rem;
     line-height: 1.65;
-    color: var(--color-zh-ink);
+    color: var(--wz-ink);
   }
   .policy h2 {
     margin-top: 3rem;
@@ -147,7 +208,7 @@
     font-weight: 600;
     letter-spacing: -0.03em;
     line-height: 1.15;
-    color: var(--color-zh-navy);
+    color: var(--wz-heading);
   }
   .policy h2:first-child {
     margin-top: 0;
@@ -163,17 +224,18 @@
     list-style: disc;
   }
   .policy li::marker {
-    color: var(--color-zh-blue);
+    color: var(--wz-link);
   }
   .policy a {
     font-weight: 600;
-    color: var(--color-zh-blue);
+    color: var(--wz-link);
     text-decoration: underline;
     text-underline-offset: 3px;
   }
 
-  .text-link {
-    @apply font-semibold text-zh-navy underline decoration-zh-line decoration-2 underline-offset-4 transition-colors hover:text-zh-blue hover:decoration-zh-blue;
+  /* Underlined link inside running text. (Not `text-link`: that is the blue text colour utility) */
+  .inline-link {
+    @apply font-semibold text-heading underline decoration-line decoration-2 underline-offset-4 transition-colors hover:text-link hover:decoration-link;
   }
 }
 

@@ -1,30 +1,45 @@
 <template>
-  <figure class="timeline">
-    <figcaption class="timeline__legend">
-      <span><i class="dot" aria-hidden="true" /> Earlier meetups</span>
-      <span><i class="dot dot--recent" aria-hidden="true" /> Last 12 months</span>
+  <figure>
+    <figcaption class="mb-6 flex justify-center gap-6 text-[0.875rem] text-muted *:inline-flex *:items-center *:gap-2">
+      <span><i class="inline-block size-2.5 rounded-full bg-deep" aria-hidden="true" /> Earlier meetups</span>
+      <span><i class="inline-block size-2.5 rounded-full bg-accent" aria-hidden="true" /> Last 12 months</span>
     </figcaption>
 
-    <div class="timeline__scroll">
-      <div class="timeline__grid" :style="{ '--years': years.length }">
-        <!-- Year axis -->
-        <div class="timeline__corner" aria-hidden="true" />
-        <div class="timeline__axis" aria-hidden="true">
+    <div class="overflow-x-auto [scrollbar-width:thin]">
+      <div class="grid min-w-240 grid-cols-[12rem_1fr] gap-x-6 gap-y-2.5" :style="{ '--years': years.length }">
+        <!-- Year axis. The label column is sticky so the axis can scroll sideways on phones -->
+        <div class="sticky left-0 z-2 bg-page" aria-hidden="true" />
+        <div
+          class="grid grid-cols-[repeat(var(--years),1fr)] pb-1 text-[0.8125rem] font-medium text-muted tabular-nums *:pl-3"
+          aria-hidden="true"
+        >
           <span v-for="y in years" :key="y">{{ y }}</span>
         </div>
 
         <template v-for="s in rows" :key="s.id">
-          <a :href="s.website" target="_blank" rel="noopener" class="timeline__label" :title="s.name">
-            <span class="timeline__logo"><SponsorLogo :src="s.logo!.url" :alt="s.name" :area="2600" :max-width="150" /></span>
-            <span class="timeline__count">{{ s.count }} meetups</span>
+          <!-- The sponsor's logo is the row label. On hover it stays an ink mark: some logos are white artwork that would vanish in colour -->
+          <a
+            :href="s.website"
+            target="_blank"
+            rel="noopener"
+            class="sticky left-0 z-2 flex min-h-18 flex-col justify-center gap-1.5 bg-page [&:hover_img]:opacity-100"
+            :title="s.name"
+          >
+            <span class="flex h-10 items-center [&_img]:object-left"><SponsorLogo :src="s.logo!.url" :alt="s.name" :area="2600" :max-width="150" /></span>
+            <span class="text-[0.8125rem] font-medium text-muted tabular-nums">{{ s.count }} meetups</span>
             <span class="sr-only">, {{ s.first?.slice(0, 4) }} to {{ s.last?.slice(0, 4) }}</span>
           </a>
-          <div class="timeline__track" aria-hidden="true">
+          <!-- Each sponsor gets a soft rounded track, with year dividers in the page colour -->
+          <div
+            class="relative rounded-full bg-soft bg-[linear-gradient(to_right,var(--wz-page)_2px,transparent_2px)] bg-size-[calc(100%/var(--years))_100%]"
+            aria-hidden="true"
+          >
+            <!-- 2px surface ring keeps neighbouring meetups apart; ::before is a bigger hover target than the mark -->
             <span
               v-for="e in placed(s.events)"
               :key="e.id"
-              class="dot"
-              :class="{ 'dot--recent': e.date >= recentFrom, 'dot--end': e.left > 80 }"
+              class="dot absolute top-1/2 inline-block size-2.5 -translate-1/2 rounded-full shadow-[0_0_0_2px_var(--wz-soft)] before:absolute before:-inset-2 hover:z-3 hover:scale-150"
+              :class="[e.date >= recentFrom ? 'bg-accent' : 'bg-deep', { 'dot--end': e.left > 80 }]"
               :style="{ left: `${e.left}%` }"
               :data-label="label(e)"
             />
@@ -33,20 +48,20 @@
       </div>
     </div>
 
-    <details class="timeline__table">
-      <summary>Show as a table</summary>
-      <table>
+    <details class="mt-6 text-[0.875rem] text-muted">
+      <summary class="w-fit cursor-pointer">Show as a table</summary>
+      <table class="mt-4 w-full border-collapse">
         <thead>
-          <tr>
-            <th scope="col">Sponsor</th>
-            <th scope="col">Meetups</th>
-            <th scope="col">First</th>
-            <th scope="col">Most recent</th>
+          <tr class="*:border-b *:border-line *:py-2 *:pr-3 *:text-left *:tabular-nums">
+            <th scope="col" class="font-semibold text-ink">Sponsor</th>
+            <th scope="col" class="font-semibold text-ink">Meetups</th>
+            <th scope="col" class="font-semibold text-ink">First</th>
+            <th scope="col" class="font-semibold text-ink">Most recent</th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="s in rows" :key="s.id">
-            <th scope="row">{{ s.name }}</th>
+          <tr v-for="s in rows" :key="s.id" class="*:border-b *:border-line *:py-2 *:pr-3 *:text-left *:tabular-nums">
+            <th scope="row" class="font-medium text-heading">{{ s.name }}</th>
             <td>{{ s.count }}</td>
             <td>{{ s.first ? fmt(s.first) : "" }}</td>
             <td>{{ s.last ? fmt(s.last) : "" }}</td>
@@ -104,125 +119,8 @@ const label = (e: { date: string; title: string | null }) => (e.title ? `${fmt(e
 </script>
 
 <style scoped>
-.timeline {
-  margin: 0;
-}
-.timeline__legend {
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
-  margin-bottom: 1.5rem;
-  font-size: 0.875rem;
-  color: var(--color-zh-muted);
-}
-.timeline__legend span {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-.timeline__legend .dot {
-  position: static;
-  transform: none;
-}
-
-.timeline__scroll {
-  overflow-x: auto;
-  scrollbar-width: thin;
-}
-.timeline__grid {
-  display: grid;
-  grid-template-columns: 12rem 1fr;
-  row-gap: 0.625rem;
-  column-gap: 1.5rem;
-  min-width: 60rem;
-}
-
-/* Sticky label column so the axis can scroll sideways on phones */
-.timeline__corner,
-.timeline__label {
-  position: sticky;
-  left: 0;
-  z-index: 2;
-  background: #fff;
-}
-.timeline__axis {
-  display: grid;
-  grid-template-columns: repeat(var(--years), 1fr);
-  padding-bottom: 0.25rem;
-  font-size: 0.8125rem;
-  font-weight: 500;
-  color: var(--color-zh-muted);
-  font-variant-numeric: tabular-nums;
-}
-.timeline__axis span {
-  padding-left: 0.75rem;
-}
-
-/* The sponsor's logo is the row label */
-.timeline__label {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 0.375rem;
-  min-height: 4.5rem;
-}
-.timeline__logo {
-  display: flex;
-  align-items: center;
-  height: 2.5rem;
-}
-.timeline__logo :deep(img) {
-  object-position: left center;
-}
-.timeline__label:hover :deep(img) {
-  /* Stay an ink mark: some logos are white artwork that would vanish in colour */
-  opacity: 1;
-}
-.timeline__count {
-  font-size: 0.8125rem;
-  font-weight: 500;
-  color: var(--color-zh-muted);
-  font-variant-numeric: tabular-nums;
-}
-
-/* Each sponsor gets a soft rounded track, with white year dividers */
-.timeline__track {
-  position: relative;
-  border-radius: 999px;
-  background-color: var(--color-zh-soft);
-  background-image: linear-gradient(to right, #fff 2px, transparent 2px);
-  background-size: calc(100% / var(--years)) 100%;
-}
-
-.dot {
-  position: absolute;
-  top: 50%;
-  display: inline-block;
-  width: 0.625rem;
-  height: 0.625rem;
-  border-radius: 999px;
-  background: var(--color-zh-navy);
-  /* 2px surface ring keeps neighbouring meetups apart */
-  box-shadow: 0 0 0 2px var(--color-zh-soft);
-  transform: translate(-50%, -50%);
-}
-.timeline__legend .dot {
-  box-shadow: none;
-}
-.dot--recent {
-  background: var(--color-zh-blue);
-}
-/* Bigger hover target than the mark, with the date as a tooltip */
-.timeline__track .dot::before {
-  content: "";
-  position: absolute;
-  inset: -0.5rem;
-}
-.timeline__track .dot:hover {
-  z-index: 3;
-  transform: translate(-50%, -50%) scale(1.5);
-}
-.timeline__track .dot:hover::after {
+/* The date as a tooltip. Near the right edge it opens to the left so it isn't cut off */
+.dot:hover::after {
   content: attr(data-label);
   position: absolute;
   bottom: calc(100% + 0.625rem);
@@ -231,49 +129,17 @@ const label = (e: { date: string; title: string | null }) => (e.title ? `${fmt(e
   transform-origin: bottom center;
   padding: 0.375rem 0.625rem;
   border-radius: 0.5rem;
-  background: var(--color-zh-navy);
+  background: var(--wz-deep);
   color: #fff;
   font-size: 0.875rem;
   font-weight: 500;
   white-space: nowrap;
   pointer-events: none;
 }
-
-/* Near the right edge the label opens to the left so it isn't cut off */
-.timeline__track .dot--end:hover::after {
+.dot--end:hover::after {
   left: auto;
   right: -0.5rem;
   transform: scale(0.67);
   transform-origin: bottom right;
-}
-
-.timeline__table {
-  margin-top: 1.5rem;
-  font-size: 0.875rem;
-  color: var(--color-zh-muted);
-}
-.timeline__table summary {
-  width: fit-content;
-  cursor: pointer;
-}
-.timeline__table table {
-  width: 100%;
-  margin-top: 1rem;
-  border-collapse: collapse;
-}
-.timeline__table th,
-.timeline__table td {
-  padding: 0.5rem 0.75rem 0.5rem 0;
-  border-bottom: 1px solid var(--color-zh-line);
-  text-align: left;
-  font-variant-numeric: tabular-nums;
-}
-.timeline__table thead th {
-  font-weight: 600;
-  color: var(--color-zh-ink);
-}
-.timeline__table tbody th {
-  font-weight: 500;
-  color: var(--color-zh-navy);
 }
 </style>

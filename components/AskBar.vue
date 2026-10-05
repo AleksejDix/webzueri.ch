@@ -2,21 +2,28 @@
   <div
     ref="root"
     class="ask"
-    :class="[`ask--${variant}`, { 'ask--open': open, 'ask--hidden': variant === 'floating' && docked }]"
+    :class="[
+      `ask--${variant}`,
+      { 'ask--open': open, 'ask--hidden translate-y-[calc(100%+2rem)] opacity-0': variant === 'floating' && docked },
+      variant === 'hero'
+        ? 'relative mx-auto w-full'
+        : 'pointer-events-none fixed inset-x-0 bottom-[max(1rem,env(safe-area-inset-bottom))] z-40 flex justify-center px-4 [transition:translate_0.45s_var(--ease-out-soft),opacity_0.3s]',
+    ]"
     :inert="variant === 'floating' && docked ? true : undefined"
   >
-    <div class="ask__box">
+    <div class="pointer-events-auto relative" :class="variant === 'hero' ? 'w-full' : 'w-[min(100%,38rem)]'">
       <!-- Results panel. Opens upwards for the floating bar, downwards in the hero -->
       <div
         v-if="open"
         :id="listId"
-        class="ask__panel"
+        class="ask__panel absolute inset-x-0 max-h-[min(60vh,34rem)] overflow-y-auto overscroll-contain rounded-3xl border border-line bg-raised p-4 shadow-[0_24px_60px_-20px_rgb(var(--wz-shadow)/0.35)]"
+        :class="variant === 'hero' ? 'top-[calc(100%+0.5rem)] z-30 origin-top text-left' : 'bottom-[calc(100%+0.5rem)] origin-bottom'"
         role="listbox"
         :aria-label="query ? `Results for ${query}` : 'Suggestions'"
       >
         <template v-if="!query.trim()">
-          <p class="ask__group">Try</p>
-          <div class="ask__chips">
+          <p class="mx-2 mt-3 mb-1.5 text-[0.8125rem] font-semibold text-muted first:mt-0">Try</p>
+          <div class="flex flex-wrap gap-2 px-1">
             <button
               v-for="s in suggestions"
               :key="s"
@@ -41,8 +48,8 @@
 
         <template v-else>
           <template v-for="group in groups" :key="group.label">
-            <p class="ask__group">{{ group.label }}</p>
-            <ul class="ask__list">
+            <p class="mx-2 mt-3 mb-1.5 text-[0.8125rem] font-semibold text-muted first:mt-0">{{ group.label }}</p>
+            <ul class="grid gap-0.5">
               <li v-for="item in group.items" :key="item.key">
                 <NextMeetup
                   v-if="item.kind === 'next'"
@@ -58,8 +65,8 @@
                   :href="hrefOf(item)"
                   role="option"
                   :aria-selected="isActive(item)"
-                  class="ask__option"
-                  :class="{ 'is-active': isActive(item), 'ask__option--answer': item.kind === 'answer' }"
+                  class="flex items-center gap-3 rounded-[0.875rem] p-2 text-ink"
+                  :class="{ 'is-active bg-soft': isActive(item) }"
                   @mousedown.prevent
                   @mouseenter="activeIndex = items.indexOf(item)"
                   @click.prevent="pick(item)"
@@ -68,15 +75,18 @@
                     v-if="item.kind === 'speaker' && item.picture"
                     :src="item.picture"
                     alt=""
-                    class="ask__avatar"
+                    class="size-10 flex-none rounded-full object-cover"
                     width="40"
                     height="40"
 
                   />
-                  <span v-else-if="item.kind === 'speaker'" class="ask__avatar ask__avatar--empty">
+                  <span
+                    v-else-if="item.kind === 'speaker'"
+                    class="grid size-10 flex-none place-items-center rounded-full bg-soft text-[0.8125rem] font-semibold text-heading"
+                  >
                     {{ initials(item.title) }}
                   </span>
-                  <span v-else class="ask__icon" aria-hidden="true">
+                  <span v-else class="grid size-10 flex-none place-items-center rounded-full bg-soft text-link" aria-hidden="true">
                     <LucideMessageCircle v-if="item.kind === 'answer'" :size="16" />
                     <LucidePlay v-else-if="item.kind === 'talk' && item.video" :size="16" />
                     <LucideMic v-else-if="item.kind === 'talk'" :size="16" />
@@ -85,33 +95,52 @@
                     <LucideArrowUpRight v-else-if="item.external" :size="16" />
                     <LucideCornerDownRight v-else :size="16" />
                   </span>
+                  <!-- Answers are sentences: let them wrap, and show where the link goes -->
                   <span class="min-w-0 flex-1">
-                    <span class="ask__title">{{ item.title }}</span>
-                    <span v-if="item.meta" class="ask__meta">{{ item.meta }}</span>
+                    <span
+                      class="block overflow-hidden leading-[1.3] text-ellipsis"
+                      :class="[
+                        item.kind === 'answer' ? 'font-medium text-pretty whitespace-normal' : 'font-semibold whitespace-nowrap',
+                        { 'text-link': isActive(item) },
+                      ]"
+                    >{{ item.title }}</span>
+                    <span
+                      v-if="item.meta"
+                      class="block truncate text-[0.875rem]"
+                      :class="item.kind === 'answer' ? 'mt-0.5 font-semibold text-link' : 'text-muted'"
+                    >{{ item.meta }}</span>
                   </span>
                 </a>
               </li>
             </ul>
           </template>
 
-          <p v-if="!items.length && index" class="ask__empty">
+          <p v-if="!items.length && index" class="p-2 leading-[1.6] text-muted">
             Nothing matches “{{ query }}”. Try a technology like
-            <button type="button" class="text-link" @mousedown.prevent @click="query = 'css'">css</button>,
+            <button type="button" class="inline-link" @mousedown.prevent @click="query = 'css'">css</button>,
             a speaker's first name, or
-            <button type="button" class="text-link" @mousedown.prevent @click="query = 'next meetup'">next meetup</button>.
+            <button type="button" class="inline-link" @mousedown.prevent @click="query = 'next meetup'">next meetup</button>.
           </p>
-          <p v-else-if="!index" class="ask__empty">Loading talks and speakers…</p>
+          <p v-else-if="!index" class="p-2 leading-[1.6] text-muted">Loading talks and speakers…</p>
         </template>
       </div>
 
-      <form class="ask__bar" role="search" @submit.prevent="submit">
-        <LucideSearch class="ask__lens" :size="variant === 'hero' ? 22 : 18" aria-hidden="true" />
+      <form
+        class="flex items-center gap-2 rounded-full border bg-raised shadow-[0_1px_2px_rgb(var(--wz-shadow)/0.06),0_12px_32px_-12px_rgb(var(--wz-shadow)/0.25)] [transition:border-color_0.2s,box-shadow_0.2s] focus-within:shadow-[0_0_0_4px_color-mix(in_srgb,var(--wz-link)_15%,transparent),0_12px_32px_-12px_rgb(var(--wz-shadow)/0.3)]"
+        :class="variant === 'hero'
+          ? 'h-[clamp(3.5rem,4.15vw,6rem)] border-transparent ps-[clamp(1rem,1.73vw,2.5rem)] pe-[clamp(0.5rem,1vw,1.45rem)]'
+          : 'h-14 border-line ps-5 pe-2 focus-within:border-link'"
+        role="search"
+        @submit.prevent="submit"
+      >
+        <LucideSearch class="flex-none text-link" :size="variant === 'hero' ? 22 : 18" aria-hidden="true" />
         <label :for="inputId" class="sr-only">Ask Web Zürich</label>
         <input
           :id="inputId"
           ref="input"
           v-model="query"
-          class="ask__input"
+          class="h-full min-w-0 flex-1 bg-transparent placeholder:text-muted focus:outline-none"
+          :class="variant === 'hero' ? 'text-[clamp(1rem,0.91vw,1.3125rem)] tracking-[-0.03em] text-heading' : 'text-[1rem] text-ink'"
           type="text"
           role="combobox"
           autocomplete="off"
@@ -126,18 +155,27 @@
           @keydown.up.prevent="move(-1)"
           @keydown.esc="onEscape"
         />
-        <kbd v-if="variant === 'floating' && !query" class="ask__kbd" aria-hidden="true">/</kbd>
+        <kbd
+          v-if="variant === 'floating' && !query"
+          class="grid size-6 flex-none place-items-center rounded-md border border-line [font:500_0.75rem_var(--font-sans)] text-muted"
+          aria-hidden="true"
+        >/</kbd>
         <button
           v-else-if="query"
           type="button"
-          class="ask__clear"
+          class="grid size-8 flex-none place-items-center rounded-full text-muted hover:bg-soft"
           aria-label="Clear"
           @mousedown.prevent
           @click="query = ''"
         >
           <LucideX :size="16" />
         </button>
-        <button type="submit" class="ask__go" aria-label="Show results">
+        <button
+          type="submit"
+          class="grid flex-none place-items-center rounded-full bg-accent text-white [transition:background_0.2s] hover:bg-accent-hover"
+          :class="variant === 'hero' ? 'size-[clamp(2.5rem,2.16vw,3.125rem)]' : 'size-10'"
+          aria-label="Show results"
+        >
           <LucideArrowRight :size="18" />
         </button>
       </form>
@@ -354,242 +392,14 @@ onBeforeUnmount(() => {
 </script>
 
 <style scoped>
-.ask {
-  --bar-h: 3.5rem;
-}
-.ask--hero {
-  --bar-h: clamp(3.5rem, 4.15vw, 6rem);
-  position: relative;
-  width: 100%;
-  margin-inline: auto;
-}
-.ask--floating {
-  position: fixed;
-  inset-inline: 0;
-  bottom: max(1rem, env(safe-area-inset-bottom));
-  z-index: 40;
-  display: flex;
-  justify-content: center;
-  padding-inline: 1rem;
-  pointer-events: none;
-  transition: transform 0.45s var(--ease-out-soft), opacity 0.3s;
-}
-.ask--hidden {
-  transform: translateY(calc(100% + 2rem));
-  opacity: 0;
-}
-.ask__box {
-  position: relative;
-  width: min(100%, 38rem);
-  pointer-events: auto;
-}
-.ask--hero .ask__box {
-  width: 100%;
-}
-
-.ask__bar {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  height: var(--bar-h);
-  padding-inline: 1.25rem 0.5rem;
-  border-radius: 999px;
-  background: #fff;
-  border: 1px solid var(--color-zh-line);
-  box-shadow: 0 1px 2px rgb(0 12 31 / 0.06), 0 12px 32px -12px rgb(0 12 31 / 0.25);
-  transition: border-color 0.2s, box-shadow 0.2s;
-}
-.ask__bar:focus-within {
-  border-color: var(--color-zh-blue);
-  box-shadow: 0 0 0 4px rgb(0 112 180 / 0.15), 0 12px 32px -12px rgb(0 12 31 / 0.3);
-}
-.ask__lens {
-  flex: none;
-  color: var(--color-zh-blue);
-}
-.ask__input {
-  flex: 1;
-  min-width: 0;
-  height: 100%;
-  background: transparent;
-  font-size: 1rem;
-  color: var(--color-zh-ink);
-}
-.ask--hero .ask__input {
-  font-size: clamp(1rem, 0.91vw, 1.3125rem);
-  letter-spacing: -0.03em;
-  color: var(--color-zh-navy);
-}
-.ask--hero .ask__bar {
-  padding-inline: clamp(1rem, 1.73vw, 2.5rem) clamp(0.5rem, 1vw, 1.45rem);
-  border-color: transparent;
-}
-.ask--hero .ask__go {
-  width: clamp(2.5rem, 2.16vw, 3.125rem);
-  height: clamp(2.5rem, 2.16vw, 3.125rem);
-}
-.ask__input::placeholder {
-  color: var(--color-zh-muted);
-}
-.ask__input:focus {
-  outline: none;
-}
-.ask__kbd {
-  flex: none;
-  display: grid;
-  place-items: center;
-  width: 1.5rem;
-  height: 1.5rem;
-  border-radius: 0.375rem;
-  border: 1px solid var(--color-zh-line);
-  font: 500 0.75rem var(--font-sans);
-  color: var(--color-zh-muted);
-}
-.ask__clear {
-  flex: none;
-  display: grid;
-  place-items: center;
-  width: 2rem;
-  height: 2rem;
-  border-radius: 999px;
-  color: var(--color-zh-muted);
-}
-.ask__clear:hover {
-  background: var(--color-zh-soft);
-}
-.ask__go {
-  flex: none;
-  display: grid;
-  place-items: center;
-  width: calc(var(--bar-h) - 1rem);
-  height: calc(var(--bar-h) - 1rem);
-  border-radius: 999px;
-  background: var(--color-zh-blue);
-  color: #fff;
-  transition: background 0.2s;
-}
-.ask__go:hover {
-  background: var(--color-zh-blue-hover);
-}
-
+/* Kept here: Vue renames scoped keyframes, so the animation has to live next to them */
 .ask__panel {
-  position: absolute;
-  inset-inline: 0;
-  max-height: min(60vh, 34rem);
-  overflow-y: auto;
-  overscroll-behavior: contain;
-  padding: 1rem;
-  border-radius: 1.5rem;
-  background: #fff;
-  border: 1px solid var(--color-zh-line);
-  box-shadow: 0 24px 60px -20px rgb(0 12 31 / 0.35);
   animation: panel-in 0.25s var(--ease-out-soft);
-}
-.ask--floating .ask__panel {
-  bottom: calc(100% + 0.5rem);
-  transform-origin: bottom center;
-}
-.ask--hero .ask__panel {
-  top: calc(100% + 0.5rem);
-  z-index: 30;
-  text-align: left;
-  transform-origin: top center;
 }
 @keyframes panel-in {
   from {
     opacity: 0;
     transform: translateY(6px) scale(0.98);
   }
-}
-
-.ask__group {
-  margin: 0.75rem 0.5rem 0.375rem;
-  font-size: 0.8125rem;
-  font-weight: 600;
-  color: var(--color-zh-muted);
-}
-.ask__group:first-child {
-  margin-top: 0;
-}
-.ask__chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  padding-inline: 0.25rem;
-}
-.ask__list {
-  display: grid;
-  gap: 0.125rem;
-}
-.ask__option {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.5rem;
-  border-radius: 0.875rem;
-  color: var(--color-zh-ink);
-}
-.ask__option.is-active {
-  background: var(--color-zh-soft);
-}
-.ask__option.is-active .ask__title {
-  color: var(--color-zh-blue);
-}
-.ask__avatar {
-  flex: none;
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: 999px;
-  object-fit: cover;
-}
-.ask__avatar--empty {
-  display: grid;
-  place-items: center;
-  background: var(--color-zh-soft);
-  font-size: 0.8125rem;
-  font-weight: 600;
-  color: var(--color-zh-navy);
-}
-.ask__icon {
-  flex: none;
-  display: grid;
-  place-items: center;
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: 999px;
-  background: var(--color-zh-soft);
-  color: var(--color-zh-blue);
-}
-.ask__title {
-  display: block;
-  font-weight: 600;
-  line-height: 1.3;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-.ask__meta {
-  display: block;
-  font-size: 0.875rem;
-  color: var(--color-zh-muted);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-/* Answers are sentences: let them wrap, and show where the link goes */
-.ask__option--answer .ask__title {
-  font-weight: 500;
-  white-space: normal;
-  text-wrap: pretty;
-}
-.ask__option--answer .ask__meta {
-  margin-top: 0.125rem;
-  font-weight: 600;
-  color: var(--color-zh-blue);
-}
-.ask__empty {
-  padding: 0.5rem;
-  color: var(--color-zh-muted);
-  line-height: 1.6;
 }
 </style>
