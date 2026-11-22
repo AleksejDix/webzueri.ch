@@ -15,13 +15,13 @@
         :aria-label="`${i + 1} of ${photos.length}`"
         :aria-hidden="i !== current"
       >
-        <!-- Only the current photo and its neighbours are loaded -->
+        <!-- Only the current photo and its neighbours are loaded, resized by Cloudflare on request -->
         <NuxtImg
           v-if="near(i)"
+          provider="cloudflare"
           :src="photo.src"
           :alt="photo.alt"
           sizes="100vw md:90vw lg:1200px"
-          densities="x1 x2"
           format="webp"
           quality="72"
           class="h-full w-full object-cover"

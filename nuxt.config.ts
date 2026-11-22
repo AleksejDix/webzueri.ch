@@ -63,6 +63,13 @@ export default defineNuxtConfig({
     // Hygraph originals are resized by @nuxt/image, not by Hygraph (it rate-limits transformations)
     domains: ['eu-central-1.graphassets.com', 'i.ytimg.com', 'images.unsplash.com'],
     quality: 75,
+    // The hero slideshow resizes on request through Cloudflare (provider="cloudflare"): a static
+    // build only writes the /_ipx/ sizes its pages show, and the slideshow renders three slides at
+    // a time. The webzurich.ch zone has Image Transformations on, with Hygraph's asset folder
+    // (eu-central-1.graphassets.com/AYopFRtiZSsGRyNXA0N4nz) allowed as a source.
+    cloudflare: {
+      baseURL: 'https://webzurich.ch',
+    },
   },
   runtimeConfig: {
     hygraphEndpoint: 'https://api-eu-central-1.hygraph.com/v2/cjiqbztau0hjj01i2nukb5bjt/master',
