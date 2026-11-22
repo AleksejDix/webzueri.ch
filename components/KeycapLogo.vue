@@ -11,7 +11,7 @@
 </template>
 
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted, ref, watch } from "vue";
+import { onBeforeUnmount, onMounted, ref } from "vue";
 
 const root = ref<HTMLElement>();
 const canvas = ref<HTMLCanvasElement>();
@@ -56,12 +56,10 @@ function pop() {
   }, 260);
 }
 
-// The CSS keycaps show first; three.js takes over once the page has loaded,
-// the handwritten title (if any) has compiled its shaders, and the browser is idle
-const titleBusy = useState("title-gpu-busy", () => false);
+// The CSS keycaps show first; three.js takes over once the page has loaded
+// and the browser is idle
 async function settled() {
   if (document.readyState !== "complete") await new Promise((r) => addEventListener("load", r, { once: true }));
-  await new Promise((r) => (titleBusy.value ? watch(titleBusy, (busy) => !busy && r(true)) : r(true)));
   await new Promise((r) => ("requestIdleCallback" in window ? requestIdleCallback(r, { timeout: 3000 }) : setTimeout(r, 500)));
 }
 

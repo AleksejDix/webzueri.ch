@@ -1,5 +1,4 @@
 import tailwindcss from "@tailwindcss/vite";
-import typegpu from "unplugin-typegpu/vite";
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -52,11 +51,7 @@ export default defineNuxtConfig({
     sources: ['/api/__sitemap__/urls'],
   },
   vite: {
-    plugins: [
-      tailwindcss(),
-      // Compiles Redraw's "use gpu" shader functions to WGSL
-      typegpu({}),
-    ],
+    plugins: [tailwindcss()],
   },
   css: ['~/assets/css/main.css', '~/assets/css/transition.css'],
   image: {
